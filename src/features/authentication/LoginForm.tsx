@@ -1,80 +1,40 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Form } from "../../ui/Form";
-import { Button } from "../../ui/Button";
 import styled from "styled-components";
-import LoginFormField from "./LoginFormField";
+import { Link } from "react-router-dom";
+import { FormWindow } from "../../ui/FormWindow";
+import FormManager from "./FormManager";
 
-const StyledLoginForm = styled(Form)`
+const StyledLink = styled(Link)`
 	position: absolute;
-	top: 50%;
 	left: 50%;
-	transform: translate(-50%);
-	width: 40rem;
-	height: 60rem;
-	gap: 1.2rem;
+	bottom: 5%;
+	transform: translateX(-50%);
 `;
 
-type FormValues = {
-	email: string;
-	password: string;
-};
+const Reminder = styled.a`
+	display: block;
+	width: fit-content;
+	margin: 5px auto;
+`;
 
 const LoginForm = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FormValues>({
-		mode: "onBlur",
-	});
-	const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
-
-	const emailValidation = {
-		required: "Email is required",
-		pattern: {
-			value: /^\S+@\S+\.\S+$/,
-			message: "Invalid email address",
-		},
+	const handleSubmit = (data: any) => {
+		console.log("Login Form:", data);
 	};
 
-	const passwordValidation = {
-		required: "Password is required",
-		pattern: {
-			value: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};:'"<>,.?~\\-])\S*$/,
-			message: "Password must contain at least one uppercase letter and one special character",
-		},
+	const handleReminder = () => {
+		console.log("Remind password");
 	};
 
 	return (
-		<StyledLoginForm onSubmit={handleSubmit(onSubmit)}>
-			<LoginFormField<FormValues>
-				name="email"
-				type="email"
-				label="Email"
-				register={register}
-				validation={emailValidation}
-				errors={errors.email}
+		<FormWindow>
+			<FormManager
+				submitHandler={handleSubmit}
+				name="Login"
 			/>
-			<LoginFormField<FormValues>
-				name="password"
-				type="password"
-				label="Password"
-				register={register}
-				validation={passwordValidation}
-				errors={errors.password}
-			/>
-			<Button type="submit">Submit</Button>
-		</StyledLoginForm>
+			<Reminder onClick={handleReminder}>Forgot Username/Password</Reminder>
+			<StyledLink to="/register">Create Your Account</StyledLink>
+		</FormWindow>
 	);
 };
 
 export default LoginForm;
-
-/*
-<Label>Email:</Label>
-			<Input
-				type="email"
-				{...register("email", emailValidation)}
-			/>
-			{errors.email && <ErrorMessage>{errors.email?.message}</ErrorMessage>}
-			*/
