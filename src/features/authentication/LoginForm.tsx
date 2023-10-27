@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import { FormWindow } from "../../ui/FormWindow";
 import FormManager from "./FormManager";
+import { GoogleLogin } from "../../ui/GoogleLogin";
 
 const StyledLink = styled(Link)`
 	position: absolute;
@@ -25,6 +27,10 @@ const LoginForm = () => {
 		console.log("Remind password");
 	};
 
+	const handleGoogleLogin = () => {
+		console.log("Google Login");
+	};
+
 	return (
 		<FormWindow>
 			<FormManager
@@ -32,6 +38,10 @@ const LoginForm = () => {
 				name="Login"
 			/>
 			<Reminder onClick={handleReminder}>Forgot Username/Password</Reminder>
+			<GoogleLogin onClick={handleGoogleLogin}>
+				<FcGoogle />
+				Login with Google
+			</GoogleLogin>
 			<StyledLink to="/register">Create Your Account</StyledLink>
 		</FormWindow>
 	);
