@@ -1,8 +1,18 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Form } from "../../ui/Form";
-import { Label } from "../../ui/Label";
-import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
+import styled from "styled-components";
+import LoginFormField from "./LoginFormField";
+
+const StyledLoginForm = styled(Form)`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%);
+	width: 40rem;
+	height: 60rem;
+	gap: 1.2rem;
+`;
 
 type FormValues = {
 	email: string;
@@ -36,22 +46,35 @@ const LoginForm = () => {
 	};
 
 	return (
-		<Form onSubmit={handleSubmit(onSubmit)}>
-			<Label>Email:</Label>
-			<Input
+		<StyledLoginForm onSubmit={handleSubmit(onSubmit)}>
+			<LoginFormField<FormValues>
+				name="email"
 				type="email"
-				{...register("email", emailValidation)}
+				label="Email"
+				register={register}
+				validation={emailValidation}
+				errors={errors.email}
 			/>
-			{errors.email && <p>{errors.email?.message}</p>}
-			<Label>Password:</Label>
-			<Input
+			<LoginFormField<FormValues>
+				name="password"
 				type="password"
-				{...register("password", passwordValidation)}
+				label="Password"
+				register={register}
+				validation={passwordValidation}
+				errors={errors.password}
 			/>
-			{errors.password && <p>{errors.password?.message}</p>}
 			<Button type="submit">Submit</Button>
-		</Form>
+		</StyledLoginForm>
 	);
 };
 
 export default LoginForm;
+
+/*
+<Label>Email:</Label>
+			<Input
+				type="email"
+				{...register("email", emailValidation)}
+			/>
+			{errors.email && <ErrorMessage>{errors.email?.message}</ErrorMessage>}
+			*/
