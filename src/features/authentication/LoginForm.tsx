@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FormWindow } from "../../ui/FormWindow";
 import FormManager from "./FormManager";
 import { GoogleLogin } from "../../ui/GoogleLogin";
+import { signIn } from "../../services/auth";
 
 const StyledLink = styled(Link)`
 	position: absolute;
@@ -19,8 +20,9 @@ const Reminder = styled.a`
 `;
 
 const LoginForm = () => {
-	const handleSubmit = (data: any) => {
+	const handleLogin = (data: { email: string; password: string }) => {
 		console.log("Login Form:", data);
+		signIn(data);
 	};
 
 	const handleReminder = () => {
@@ -34,7 +36,7 @@ const LoginForm = () => {
 	return (
 		<FormWindow>
 			<FormManager
-				submitHandler={handleSubmit}
+				submitHandler={handleLogin}
 				name="Login"
 			/>
 			<Reminder onClick={handleReminder}>Forgot Username/Password</Reminder>
