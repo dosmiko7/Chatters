@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { User } from "firebase/auth";
+import { toast } from "react-hot-toast";
 //import { useNavigate } from "react-router-dom";
 import { signIn, ISignProps } from "../../services/auth";
-import { User } from "firebase/auth";
 
 export const useLogin = () => {
 	const queryClient = useQueryClient();
@@ -11,14 +12,13 @@ export const useLogin = () => {
 		mutationFn: ({ email, password }: ISignProps) => signIn({ email, password }),
 
 		onSuccess: (user: User) => {
-			// manually set data to react query cache
 			queryClient.setQueryData(["user"], user);
 			//navigate("/dashboard", { replace: true });
 		},
 
 		onError: (err) => {
 			console.error("LOGIN ERROR ", err);
-			//toast.error("Provided email or password are incorrect");
+			toast.error("Provided email or password are incorrect");
 		},
 	});
 
