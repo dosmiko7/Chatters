@@ -18,6 +18,7 @@ const SubmitButton = styled(Button)`
 interface IFormManager {
 	name: string;
 	submitHandler: (data: FormValues) => void;
+	status?: "error" | "idle" | "pending" | "success";
 }
 
 type FormValues = {
@@ -37,7 +38,7 @@ const FormManager = (props: IFormManager) => {
 			password: "Password",
 		},
 	});
-	const { submitHandler, name } = props;
+	const { submitHandler, name, status } = props;
 
 	const onSubmit: SubmitHandler<FormValues> = (data) => submitHandler(data);
 
@@ -81,7 +82,12 @@ const FormManager = (props: IFormManager) => {
 				validation={passwordValidation}
 				errors={errors.password}
 			/>
-			<SubmitButton type="submit">{name}</SubmitButton>
+			<SubmitButton
+				disabled={status === "pending"}
+				type="submit"
+			>
+				{name}
+			</SubmitButton>
 		</StyledForm>
 	);
 };

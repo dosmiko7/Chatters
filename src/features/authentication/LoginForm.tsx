@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { ISignProps } from "../../services/auth";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+
 import { FormWindow } from "../../ui/FormWindow";
 import FormManager from "./FormManager";
 import { GoogleLogin } from "../../ui/GoogleLogin";
-import { signIn } from "../../services/auth";
+import { useLogin } from "./useLogin";
 
 const StyledLink = styled(Link)`
 	position: absolute;
@@ -20,9 +22,11 @@ const Reminder = styled.a`
 `;
 
 const LoginForm = () => {
-	const handleLogin = (data: { email: string; password: string }) => {
-		console.log("Login Form:", data);
-		signIn(data);
+	const { login, status } = useLogin();
+
+	const handleLogin = (data: ISignProps) => {
+		if (!data) return;
+		login(data);
 	};
 
 	const handleReminder = () => {
@@ -38,6 +42,7 @@ const LoginForm = () => {
 			<FormManager
 				submitHandler={handleLogin}
 				name="Login"
+				status={status}
 			/>
 			<Reminder onClick={handleReminder}>Forgot Username/Password</Reminder>
 			<GoogleLogin onClick={handleGoogleLogin}>
