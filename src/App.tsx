@@ -40,6 +40,7 @@ const App = () => {
 						path="register"
 						element={<RegisterForm />}
 					/>
+					<Route />
 				</Routes>
 			</BrowserRouter>
 			<Toaster
