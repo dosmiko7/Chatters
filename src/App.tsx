@@ -7,7 +7,7 @@ import GlobalStyles from "./style/GlobalStyles";
 import RegisterForm from "./features/authentication/RegisterForm";
 import LoginForm from "./features/authentication/LoginForm";
 import { Toaster } from "react-hot-toast";
-import ProtectedRoute from "./ui/ProtectedRoute";
+//import ProtectedRoute from "./ui/ProtectedRoute"; TODO: Add as wrapper to Route with <AppLayout/>
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./ui/Dashboard";
 
@@ -26,13 +26,7 @@ const App = () => {
 			<GlobalStyles />
 			<BrowserRouter>
 				<Routes>
-					<Route
-						element={
-							<ProtectedRoute>
-								<AppLayout />
-							</ProtectedRoute>
-						}
-					>
+					<Route element={<AppLayout />}>
 						<Route
 							index
 							element={

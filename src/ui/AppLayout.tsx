@@ -6,7 +6,7 @@ import Chats from "../features/chats/Chats";
 
 const StyledAppLayout = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 3fr 7fr;
+	grid-template-columns: 0.6fr 2fr 10fr;
 	height: 100vh;
 `;
 
