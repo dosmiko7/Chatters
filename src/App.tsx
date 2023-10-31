@@ -7,6 +7,9 @@ import GlobalStyles from "./style/GlobalStyles";
 import RegisterForm from "./features/authentication/RegisterForm";
 import LoginForm from "./features/authentication/LoginForm";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import AppLayout from "./ui/AppLayout";
+import Dashboard from "./ui/Dashboard";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -24,14 +27,26 @@ const App = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route
-						index
 						element={
-							<Navigate
-								replace
-								to="login"
-							/>
+							<ProtectedRoute>
+								<AppLayout />
+							</ProtectedRoute>
 						}
-					/>
+					>
+						<Route
+							index
+							element={
+								<Navigate
+									replace
+									to="dashboard"
+								/>
+							}
+						/>
+						<Route
+							path="dashboard"
+							element={<Dashboard />}
+						/>
+					</Route>
 					<Route
 						path="login"
 						element={<LoginForm />}
@@ -40,7 +55,6 @@ const App = () => {
 						path="register"
 						element={<RegisterForm />}
 					/>
-					<Route />
 				</Routes>
 			</BrowserRouter>
 			<Toaster

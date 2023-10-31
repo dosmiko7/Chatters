@@ -14,16 +14,6 @@ export const signIn = async (props: ISignProps): Promise<User> => {
 		.catch((error) => {
 			throw error;
 		});
-
-	// signInWithEmailAndPassword(auth, email, password)
-	// 	.then((userCredential) => {
-	// 		const user = userCredential.user;
-	// 		console.log("signIn: ", user);
-	// 		return user;
-	// 	})
-	// 	.catch((error) => {
-	// 		throw error;
-	// 	});
 };
 
 export const signUp = (props: ISignProps) => {
