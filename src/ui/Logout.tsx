@@ -5,7 +5,10 @@ import { Button } from "./Button";
 
 const Logout = () => {
 	return (
-		<Button variant="menu">
+		<Button
+			variant="menu"
+			size="medium"
+		>
 			<BiSolidLogOut />
 		</Button>
 	);

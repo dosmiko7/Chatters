@@ -18,7 +18,14 @@ const Heading = styled.h1<HeadingProps>`
 		props.as === "h2" &&
 		css`
 			font-size: 2rem;
-			font-weight: var(--font-weight-regular);
+			font-weight: var(--font-weight-bold);
+		`}
+
+	${(props) =>
+		props.as === "h3" &&
+		css`
+			font-size: 1.6rem;
+			font-weight: var(--font-weight-medium);
 		`}
 
     ${(props) =>

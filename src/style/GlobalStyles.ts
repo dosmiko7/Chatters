@@ -35,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
             --border-radius-sm: 10px;
             --border-radius-md: 20px;
 
+            --padding-xsm: 0.5rem;
             --padding-sm: 1rem;
             --padding-md: 2rem;
 

@@ -9,7 +9,10 @@ const StyledButton = styled(Button)`
 //TODO: If user click on this button in Chats should show option to search for other users
 const SearchUsers = () => {
 	return (
-		<StyledButton variant="menu">
+		<StyledButton
+			variant="menu"
+			size="medium"
+		>
 			<BiUserPlus />
 		</StyledButton>
 	);

@@ -3,6 +3,7 @@ import { flexCentered } from "../style/Templates";
 
 interface ButtonProps {
 	variant?: string;
+	size?: string;
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -16,10 +17,22 @@ export const Button = styled.button<ButtonProps>`
 		props.variant === "menu" &&
 		css`
 			${flexCentered};
-			font-size: 1.8rem;
 			background-color: transparent;
 		`}
 
+	${(props) =>
+		props.size === "medium" &&
+		css`
+			font-size: 1.8rem;
+		`}	
+
+	${(props) =>
+		props.size === "small" &&
+		css`
+			padding: var(--padding-xsm);
+			font-size: 1.6rem;
+		`}
+		
 	transition: all 0.3s;
 
 	&:hover {
