@@ -5,11 +5,13 @@ import { flexColumn } from "../style/Templates";
 import { Wrapper } from "./Wrapper";
 import { Avatar } from "./Avatar";
 import Logout from "./Logout";
+import Logo from "./Logo";
+import SearchUsers from "./SearchUsers";
 
 const StyledSidebar = styled(Container)`
 	${flexColumn};
 	align-items: center;
-	border-right: 1px solid var(--color-primary-200);
+	justify-content: space-between;
 `;
 
 const Box = styled(Wrapper)`
@@ -22,6 +24,10 @@ const Box = styled(Wrapper)`
 const Sidebar = () => {
 	return (
 		<StyledSidebar>
+			<Box>
+				<Logo />
+				<SearchUsers />
+			</Box>
 			<Box>
 				<Avatar />
 				<Logout />

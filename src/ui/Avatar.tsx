@@ -10,7 +10,7 @@ const Image = styled.img`
 `;
 
 // TODO: Change avatar's image to the one downloaded from the server
-
+// TODO: Clicking on Avatar moves user to his profile
 export const Avatar = () => {
 	return (
 		<StyledAvatar>
