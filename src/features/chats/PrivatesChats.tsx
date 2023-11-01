@@ -6,6 +6,7 @@ import { Wrapper } from "../../ui/Wrapper";
 import Heading from "../../ui/Heading";
 import { flexRow } from "../../style/Templates";
 import { Button } from "../../ui/Button";
+import PrivateChatsList from "./PrivateChatsList";
 
 const StyledPrivateChats = styled(Wrapper)``;
 
@@ -18,7 +19,7 @@ const Box = styled(Wrapper)`
 const PrivateChats = () => {
 	const [listDisplayed, setListDisplayed] = useState<boolean>(true);
 
-	const buttonSymbol = listDisplayed ? <BiChevronUp /> : <BiChevronDown />;
+	const buttonSymbol = listDisplayed ? <BiChevronDown /> : <BiChevronUp />;
 
 	const handleOnClick = () => {
 		setListDisplayed((prev) => !prev);
@@ -36,6 +37,7 @@ const PrivateChats = () => {
 					{buttonSymbol}
 				</Button>
 			</Box>
+			{listDisplayed && <PrivateChatsList />}
 		</StyledPrivateChats>
 	);
 };

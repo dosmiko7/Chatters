@@ -3,6 +3,7 @@ import { flexCentered } from "../style/Templates";
 
 const StyledAvatar = styled.div`
 	${flexCentered};
+	width: 4rem;
 `;
 
 const Image = styled.img`

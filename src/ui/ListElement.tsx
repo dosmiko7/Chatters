@@ -4,4 +4,5 @@ import { flexRow } from "../style/Templates";
 export const ListElement = styled.li`
 	${flexRow};
 	align-items: center;
+	padding: var(--padding-sm);
 `;

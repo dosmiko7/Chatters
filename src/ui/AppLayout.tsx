@@ -6,13 +6,12 @@ import Chats from "../features/chats/Chats";
 
 const StyledAppLayout = styled.div`
 	display: grid;
-	grid-template-columns: 0.6fr 2fr 10fr;
+	grid-template-columns: 0.6fr minmax(0, 3fr) 11fr;
 	height: 100vh;
+	width: 100vw;
 `;
 
-const Main = styled.div`
-	min-width: 100%;
-`;
+const Main = styled.div``;
 
 const AppLayout = () => {
 	return (

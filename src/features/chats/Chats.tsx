@@ -4,7 +4,9 @@ import Heading from "../../ui/Heading";
 import SearchBar from "../../ui/SearchBar";
 import PrivateChats from "./PrivatesChats";
 
-const StyledChats = styled(Container)``;
+const StyledChats = styled(Container)`
+	max-width: 100%;
+`;
 
 const Chats = () => {
 	return (

@@ -28,6 +28,13 @@ const Heading = styled.h1<HeadingProps>`
 			font-weight: var(--font-weight-medium);
 		`}
 
+	${(props) =>
+		props.as === "h4" &&
+		css`
+			font-size: 1.4rem;
+			font-weight: var(--font-weight-medium);
+		`}
+
     ${(props) =>
 		props.center &&
 		css`
