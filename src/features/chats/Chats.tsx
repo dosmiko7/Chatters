@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container } from "../../ui/Container";
 import Heading from "../../ui/Heading";
 import SearchBar from "../../ui/SearchBar";
-import PrivateChats from "./PrivatesChats";
+import PrivatesChatsContainer from "./PrivatesChatsContainer";
 
 const StyledChats = styled(Container)`
 	max-width: 100%;
@@ -13,7 +13,7 @@ const Chats = () => {
 		<StyledChats>
 			<Heading as="h2">Chats</Heading>
 			<SearchBar />
-			<PrivateChats />
+			<PrivatesChatsContainer />
 		</StyledChats>
 	);
 };

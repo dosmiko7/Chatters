@@ -25,6 +25,7 @@ const StyledInput = styled(Input)`
 	}
 `;
 
+// TODO: Add searching
 const SearchBar = () => {
 	return (
 		<StyledSearchBar>

@@ -16,7 +16,7 @@ const Box = styled(Wrapper)`
 	justify-content: space-between;
 `;
 
-const PrivateChats = () => {
+const PrivatesChatsContainer = () => {
 	const [listDisplayed, setListDisplayed] = useState<boolean>(true);
 
 	const buttonSymbol = listDisplayed ? <BiChevronDown /> : <BiChevronUp />;
@@ -42,4 +42,4 @@ const PrivateChats = () => {
 	);
 };
 
-export default PrivateChats;
+export default PrivatesChatsContainer;

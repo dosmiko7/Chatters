@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import List from "../../ui/List";
 import PrivateChatsElement from "./PrivateChatsElement";
 
-export interface IChatProps {
+export interface IUserProps {
+	uid: number;
 	nickname: string;
 	avatar?: string;
 	status: string;
@@ -10,14 +12,23 @@ export interface IChatProps {
 }
 
 const PRIVATE_CHATS = [
-	{ nickname: "Zbychu", avatar: "some_url", status: "active", lastMessege: "Hello Mr. Obama", newMessege: true },
 	{
+		uid: 1,
+		nickname: "Zbychu",
+		avatar: "some_url",
+		status: "active",
+		lastMessege: "Hello Mr. Obama",
+		newMessege: true,
+	},
+	{
+		uid: 2,
 		nickname: "Stachu",
 		status: "unavailable",
 		lastMessege: "What is going on man? You dont respond. Give me a sign.",
 		newMessege: true,
 	},
 	{
+		uid: 3,
 		nickname: "Roman",
 		status: "unavailable",
 		lastMessege:
@@ -29,18 +40,21 @@ const PRIVATE_CHATS = [
 // TODO: Chats should be sorted descending by date
 // TODO: Get private chats from server
 const PrivateChatsList = () => {
+	const navigate = useNavigate();
+
 	return (
-		<List<IChatProps>
+		<List<IUserProps>
 			data={PRIVATE_CHATS}
-			render={(chat: IChatProps) => {
+			render={(user: IUserProps) => {
 				return (
 					<PrivateChatsElement
-						key={Math.random()}
-						nickname={chat.nickname}
-						avatar={chat.avatar}
-						status={chat.status}
-						lastMessege={chat.lastMessege}
-						newMessege={chat.newMessege}
+						onClickHandler={() => navigate(`privateChat/${user.uid}`)}
+						key={user.uid}
+						nickname={user.nickname}
+						avatar={user.avatar}
+						status={user.status}
+						lastMessege={user.lastMessege}
+						newMessege={user.newMessege}
 					/>
 				);
 			}}

@@ -5,7 +5,6 @@ import { Wrapper } from "../../ui/Wrapper";
 import { flexColumn } from "../../style/Templates";
 import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
-import { IChatProps } from "./PrivateChatsList";
 
 const StyledListElement = styled(ListElement)`
 	&:hover {
@@ -62,11 +61,20 @@ const Message = styled.p`
 	text-overflow: ellipsis;
 `;
 
+export interface IPrivChatEl {
+	onClickHandler: () => void;
+	nickname: string;
+	avatar?: string;
+	status: string;
+	lastMessege: string;
+	newMessege: boolean;
+}
+
 // TODO: Displaying last message. If it is not readen - color: white
-const PrivateChatsElement = (props: IChatProps) => {
-	const { nickname, avatar, status, lastMessege = "", newMessege } = props;
+const PrivateChatsElement = (props: IPrivChatEl) => {
+	const { onClickHandler, nickname, avatar, status, lastMessege = "", newMessege } = props;
 	return (
-		<StyledListElement>
+		<StyledListElement onClick={onClickHandler}>
 			<StyledAvatar
 				src={avatar}
 				status={status}
