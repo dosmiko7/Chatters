@@ -18,14 +18,9 @@ export const signIn = async (props: ISignProps): Promise<User> => {
 
 export const signUp = (props: ISignProps) => {
 	const { email, password } = props;
-	createUserWithEmailAndPassword(auth, email, password)
-		.then((userCredential) => {
-			const user = userCredential.user;
-			console.log("signUp: ", user);
-		})
+	return createUserWithEmailAndPassword(auth, email, password)
+		.then((userCredential) => userCredential.user)
 		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			console.log("signUp: ", errorCode, errorMessage);
+			throw error;
 		});
 };

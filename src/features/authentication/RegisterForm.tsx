@@ -1,16 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import { FormWindow } from "../../ui/FormWindow";
 import FormManager from "./FormManager";
-import { ISignProps, signUp } from "../../services/auth";
+import { ISignProps } from "../../services/auth";
+import useRegister from "./useRegister";
 
 const RegisterForm = () => {
-	const navigate = useNavigate();
+	const { register, status } = useRegister();
 
-	// TODO: Handling errors if register was not successful
 	const submitHandler = (data: ISignProps) => {
-		console.log("Register Form:", data);
-		signUp(data);
-		navigate("/login");
+		if (!data) return;
+		register(data);
 	};
 
 	return (
@@ -18,6 +16,7 @@ const RegisterForm = () => {
 			<FormManager
 				submitHandler={submitHandler}
 				name="Register"
+				status={status}
 			/>
 		</FormWindow>
 	);
