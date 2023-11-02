@@ -11,8 +11,13 @@ const StyledForm = styled(Form)`
 	gap: 1.2rem;
 `;
 
+const StyledHeading = styled(Heading)`
+	color: var(--color-primary-500);
+`;
+
 const SubmitButton = styled(Button)`
 	margin-top: 1.2rem;
+	color: var(--color-primary-0);
 `;
 
 interface IFormManager {
@@ -60,12 +65,12 @@ const FormManager = (props: IFormManager) => {
 
 	return (
 		<StyledForm onSubmit={handleSubmit(onSubmit)}>
-			<Heading
+			<StyledHeading
 				as="h1"
 				center
 			>
 				{name}
-			</Heading>
+			</StyledHeading>
 			<FormField<FormValues>
 				name="email"
 				type="email"

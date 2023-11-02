@@ -6,6 +6,7 @@ import { flexColumn } from "../../style/Templates";
 
 const StyledFormField = styled.div`
 	${flexColumn};
+	color: var(--color-primary-500);
 `;
 
 interface IFormFieldProps<T extends FieldValues> {

@@ -8,6 +8,7 @@ export const GoogleLogin = styled.div`
 	font-weight: var(--font-weight-medium);
 	background-color: var(--color-primary-25);
 	border-radius: var(--border-radius-md);
+	color: var(--color-primary-500);
 	padding: var(--padding-sm);
 	border: 1px solid transparent;
 	gap: 0.6rem;
