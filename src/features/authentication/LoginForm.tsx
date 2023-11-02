@@ -7,6 +7,7 @@ import { FormWindow } from "../../ui/FormWindow";
 import FormManager from "./FormManager";
 import { GoogleLogin } from "../../ui/GoogleLogin";
 import { useLogin } from "./useLogin";
+import useGoogleLogin from "./useGoogleLogin";
 
 const StyledLink = styled(Link)`
 	position: absolute;
@@ -23,6 +24,7 @@ const Reminder = styled.a`
 
 const LoginForm = () => {
 	const { login, status } = useLogin();
+	const { login: googleLogin, status: googleStatus } = useGoogleLogin();
 
 	const handleLogin = (data: ISignProps) => {
 		if (!data) return;
@@ -34,7 +36,7 @@ const LoginForm = () => {
 	};
 
 	const handleGoogleLogin = () => {
-		console.log("Google Login");
+		googleLogin();
 	};
 
 	return (
@@ -42,7 +44,7 @@ const LoginForm = () => {
 			<FormManager
 				submitHandler={handleLogin}
 				name="Login"
-				status={status}
+				statuses={[status, googleStatus]}
 			/>
 			<Reminder onClick={handleReminder}>Forgot Username/Password</Reminder>
 			<GoogleLogin onClick={handleGoogleLogin}>

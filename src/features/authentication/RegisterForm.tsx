@@ -16,7 +16,7 @@ const RegisterForm = () => {
 			<FormManager
 				submitHandler={submitHandler}
 				name="Register"
-				status={status}
+				statuses={[status]}
 			/>
 		</FormWindow>
 	);

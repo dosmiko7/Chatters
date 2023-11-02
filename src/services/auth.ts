@@ -1,4 +1,10 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, User } from "firebase/auth";
+import {
+	signInWithEmailAndPassword,
+	createUserWithEmailAndPassword,
+	User,
+	signInWithPopup,
+	GoogleAuthProvider,
+} from "firebase/auth";
 import { auth } from "../firebase";
 
 export interface ISignProps {
@@ -20,6 +26,16 @@ export const signUp = async (props: ISignProps) => {
 	const { email, password } = props;
 	return createUserWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => userCredential.user)
+		.catch((error) => {
+			throw error;
+		});
+};
+
+export const signInWithGoogle = async () => {
+	const provider = new GoogleAuthProvider();
+
+	return signInWithPopup(auth, provider)
+		.then((result) => result.user)
 		.catch((error) => {
 			throw error;
 		});

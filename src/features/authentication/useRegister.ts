@@ -9,8 +9,7 @@ const useRegister = () => {
 	const navigate = useNavigate();
 
 	const { mutate: register, status } = useMutation({
-		mutationFn: ({ email, password }: ISignProps) =>
-			signUp({ email, password }).then((user: User) => addUser(user.uid)),
+		mutationFn: ({ email, password }: ISignProps) => signUp({ email, password }).then((user: User) => addUser(user)),
 
 		onSuccess: () => {
 			toast.success("Your account has been created!");
