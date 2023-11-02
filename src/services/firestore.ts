@@ -6,7 +6,7 @@ import { User } from "firebase/auth";
 export const addUser = async (user: User) => {
 	const data = {
 		avatar: "gs://chatters---chat-app.appspot.com/avatars/avatar_ivKwYDsLxLkM34cMKDdw.png",
-		nickname: "John Doe",
+		nickname: user.email,
 		friends_list: [],
 	};
 
