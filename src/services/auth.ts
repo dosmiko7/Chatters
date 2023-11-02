@@ -16,7 +16,7 @@ export const signIn = async (props: ISignProps): Promise<User> => {
 		});
 };
 
-export const signUp = (props: ISignProps) => {
+export const signUp = async (props: ISignProps) => {
 	const { email, password } = props;
 	return createUserWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => userCredential.user)
