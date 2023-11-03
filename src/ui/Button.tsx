@@ -21,6 +21,12 @@ export const Button = styled.button<ButtonProps>`
 		`}
 
 	${(props) =>
+		props.size === "large" &&
+		css`
+			font-size: 2.2rem;
+		`}	
+
+	${(props) =>
 		props.size === "medium" &&
 		css`
 			font-size: 1.8rem;

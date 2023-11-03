@@ -1,7 +1,7 @@
 import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import { BiSolidXCircle } from "react-icons/bi";
+import { HiXMark } from "react-icons/hi2";
 
 import { Overlay } from "./Overlay";
 import { Button } from "./Button";
@@ -11,11 +11,21 @@ const StyledModal = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: var(--color-grey-0);
-	border-radius: var(--border-radius-lg);
+	background-color: var(--color-primary-400);
+	border-radius: var(--border-radius-md);
 	box-shadow: var(--shadow-lg);
-	padding: 3.2rem 4rem;
+	padding: var(--padding-md) var(--padding-lg);
 	transition: all 0.5s;
+`;
+
+const StyledButton = styled(Button)`
+	position: absolute;
+	left: 0;
+	top: 0;
+	transform: translate(-40%, -40%);
+	background-color: var(--color-secondary-400);
+	font-weight: var(--font-weight-medium);
+	font-size: 1.8rem;
 `;
 
 type ModalContextType = {
@@ -45,7 +55,6 @@ const Open = ({ children, opens: opensWindowName }: { children: any; opens: stri
 	const { open } = useContext(ModalContext);
 
 	const handleOnClick = () => {
-		console.log("SIEMA");
 		open(opensWindowName);
 	};
 
@@ -62,9 +71,12 @@ const Window = ({ children, name }: { children: any; name: string }) => {
 	return createPortal(
 		<Overlay>
 			<StyledModal>
-				<Button onClick={close}>
-					<BiSolidXCircle />
-				</Button>
+				<StyledButton
+					onClick={close}
+					variant="menu"
+				>
+					<HiXMark />
+				</StyledButton>
 				{children}
 			</StyledModal>
 		</Overlay>,

@@ -3,6 +3,7 @@ import { BiUserPlus } from "react-icons/bi";
 
 import Modal from "../../ui/Modal";
 import { Button } from "../../ui/Button";
+import SearchesWindow from "./SearchesWindow";
 
 const StyledButton = styled(Button)`
 	font-size: 2.2rem;
@@ -20,7 +21,7 @@ const Searches = () => {
 				</StyledButton>
 			</Modal.Open>
 			<Modal.Window name="searches">
-				<div>SearchesWindow</div>
+				<SearchesWindow />
 			</Modal.Window>
 		</Modal>
 	);

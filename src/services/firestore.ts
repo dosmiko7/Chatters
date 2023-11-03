@@ -4,7 +4,8 @@ import { User } from "firebase/auth";
 
 export const addUser = async (user: User) => {
 	const defaultData = {
-		avatar: "gs://chatters---chat-app.appspot.com/avatars/avatar_ivKwYDsLxLkM34cMKDdw.png",
+		avatar:
+			"https://firebasestorage.googleapis.com/v0/b/chatters---chat-app.appspot.com/o/avatars%2FdefaultAvatar.jpg?alt=media&token=a838b971-c827-4429-bea6-09846aff6b84&_gl=1*nsekzg*_ga*MTM5MTY2MzQwMC4xNjk4ODM0MjE5*_ga_CW55HF8NVT*MTY5OTAzMDA5Ny4xMS4xLjE2OTkwMzA2MDAuNDYuMC4w",
 		nickname: user.email,
 		email: user.email,
 		friends_list: [],
@@ -19,13 +20,18 @@ export const addUser = async (user: User) => {
 		});
 };
 
-export const findUser = async (key: string) => {
+export interface IFindUsers {
+	id: string;
+	data: DocumentData;
+}
+
+export const findUsers = async (key: string): Promise<IFindUsers[]> => {
 	const q = query(collection(firestore, "users"), or(where("nickname", "==", key), where("email", "==", key)));
 
 	const querySnapshot = await getDocs(q);
-	const foundUsers: DocumentData[] = [];
+	const foundUsers: IFindUsers[] = [];
 	querySnapshot.forEach((doc) => {
-		foundUsers.push(doc.data());
+		foundUsers.push({ id: doc.id, data: doc.data() });
 	});
-	console.log(foundUsers);
+	return foundUsers;
 };

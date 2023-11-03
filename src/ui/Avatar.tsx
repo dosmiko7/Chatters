@@ -4,10 +4,13 @@ import { flexCentered } from "../style/Templates";
 const StyledAvatar = styled.div`
 	${flexCentered};
 	width: 4rem;
+	border-radius: 50%;
+	overflow: hidden;
 `;
 
 const Image = styled.img`
 	max-width: 100%;
+	object-fit: contain;
 `;
 
 // TODO: Change avatar's image to the one downloaded from the server

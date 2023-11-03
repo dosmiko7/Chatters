@@ -10,12 +10,12 @@ const StyledList = styled.ul`
 	}
 `;
 
-interface IList<T> {
+interface IListProps<T> {
 	data: T[];
 	render: (item: T) => any;
 }
 
-const List = <T,>(props: IList<T>) => {
+const List = <T,>(props: IListProps<T>) => {
 	const { data, render } = props;
 
 	return <StyledList>{data.map(render)}</StyledList>;
