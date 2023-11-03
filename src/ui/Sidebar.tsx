@@ -6,7 +6,7 @@ import { Wrapper } from "./Wrapper";
 import { Avatar } from "./Avatar";
 import Logout from "./Logout";
 import Logo from "./Logo";
-import SearchUsers from "./SearchUsers";
+import Searches from "../features/searches/Searches";
 
 const StyledSidebar = styled(Container)`
 	${flexColumn};
@@ -26,7 +26,7 @@ const Sidebar = () => {
 		<StyledSidebar>
 			<Box>
 				<Logo />
-				<SearchUsers />
+				<Searches />
 			</Box>
 			<Box>
 				<Avatar />
