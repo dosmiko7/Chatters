@@ -4,15 +4,22 @@ import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
 import useSearchUsers from "./useSearchUsers";
+import { useModal } from "../../ui/Modal";
 
 const SearchesList = ({ query }: { query: string }) => {
 	const { data, status } = useSearchUsers(query);
 	const navigate = useNavigate();
+	const { close } = useModal();
 
 	if (status === "error") return <div>Sorry. Something went wrong.</div>;
 	else if (status === "pending") {
 		return <Spinner />;
 	}
+
+	const handleOnClick = (userId: string) => {
+		navigate(`profile/${userId}`);
+		close();
+	};
 
 	return (
 		<List<IFindUsers>
@@ -23,7 +30,7 @@ const SearchesList = ({ query }: { query: string }) => {
 						key={user.id}
 						avatar={user.data.avatar}
 						nickname={user.data.nickname}
-						onClickHandler={() => navigate(`profile/${user.id}`)}
+						onClickHandler={() => handleOnClick(user.id)}
 					/>
 				);
 			}}
