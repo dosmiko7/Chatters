@@ -10,6 +10,11 @@ const StyledSearchesElement = styled(ListElement)`
 	justify-content: space-between;
 `;
 
+const Nickname = styled(Heading)`
+	text-align: center;
+	padding: 0 2px;
+`;
+
 interface ISearchesElementProps {
 	avatar: string;
 	nickname: string;
@@ -19,7 +24,7 @@ const SearchesElement = ({ avatar, nickname }: ISearchesElementProps) => {
 	return (
 		<StyledSearchesElement>
 			<Avatar src={avatar} />
-			<Heading as="h3">{nickname}</Heading>
+			<Nickname as="h3">{nickname}</Nickname>
 			<Button
 				variant="menu"
 				size="large"

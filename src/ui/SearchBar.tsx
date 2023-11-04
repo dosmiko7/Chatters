@@ -33,17 +33,18 @@ const StyledInput = styled(Input)`
 `;
 
 interface ISearchBarProps {
+	placeholder?: string;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	onClick: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 // TODO: Add searching
-const SearchBar = ({ onChange, onClick }: ISearchBarProps) => {
+const SearchBar = ({ placeholder = "Search", onChange, onClick }: ISearchBarProps) => {
 	return (
 		<StyledSearchBar>
 			<SearchIcon onClick={onClick} />
 			<StyledInput
-				placeholder="Search"
+				placeholder={placeholder}
 				type="text"
 				onChange={onChange}
 			/>

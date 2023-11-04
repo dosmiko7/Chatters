@@ -53,7 +53,10 @@ const GlobalStyles = createGlobalStyle`
     *::after {
         box-sizing: border-box;
         padding: 0;
-        margin: 0;    
+        margin: 0;
+        
+        scrollbar-width: thin;
+	    scrollbar-color: var(--color-secondary-400) transparent;
     }
 
     html {
@@ -64,7 +67,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'Ubuntu', sans-serif;
         color: var(--color-primary-25);
-
+        
         transition: color 0.3s, background-color 0.3s;
         min-height: 100vh;
         line-height: 1.5;

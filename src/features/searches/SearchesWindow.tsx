@@ -10,6 +10,11 @@ const StyledSearchesWindow = styled.div`
 	height: 60rem;
 `;
 
+const ListContainer = styled.div`
+	max-height: 90%;
+	overflow-y: scroll;
+`;
+
 const SearchesWindow = () => {
 	const [input, setInput] = useState<string>("");
 	const [query, setQuery] = useState<string>("");
@@ -27,12 +32,12 @@ const SearchesWindow = () => {
 		<StyledSearchesWindow>
 			<Form onSubmit={handleOnSubmit}>
 				<SearchBar
+					placeholder="Type nickname/email"
 					onChange={handleInputChange}
 					onClick={handleOnSubmit}
 				/>
 			</Form>
-
-			{query !== "" && <SearchesList query={query} />}
+			<ListContainer>{query !== "" && <SearchesList query={query} />}</ListContainer>
 		</StyledSearchesWindow>
 	);
 };

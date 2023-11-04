@@ -11,7 +11,7 @@ const SearchesList = ({ query }: { query: string }) => {
 	else if (status === "pending") {
 		return <Spinner />;
 	}
-	console.log(data);
+
 	return (
 		<List<IFindUsers>
 			data={data || []}
