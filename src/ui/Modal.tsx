@@ -26,6 +26,10 @@ const StyledButton = styled(Button)`
 	background-color: var(--color-secondary-400);
 	font-weight: var(--font-weight-medium);
 	font-size: 1.8rem;
+
+	&:hover {
+		font-size: 2rem;
+	}
 `;
 
 type ModalContextType = {

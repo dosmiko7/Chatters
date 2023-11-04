@@ -1,17 +1,19 @@
 import { useNavigate } from "react-router-dom";
+
 import { IFindUsers } from "../../services/firestore";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
 import useSearchUsers from "./useSearchUsers";
 import { useModal } from "../../hooks/useModal";
+import Heading from "../../ui/Heading";
 
 const SearchesList = ({ query }: { query: string }) => {
 	const { data, status } = useSearchUsers(query);
 	const navigate = useNavigate();
 	const { close } = useModal();
 
-	if (status === "error") return <div>Sorry. Something went wrong.</div>;
+	if (status === "error") return <Heading as="h3">Sorry. Something went wrong.</Heading>;
 	else if (status === "pending") {
 		return <Spinner />;
 	}
@@ -20,6 +22,8 @@ const SearchesList = ({ query }: { query: string }) => {
 		navigate(`profile/${userId}`);
 		close();
 	};
+
+	if (data?.length === 0) return <Heading as="h3">There is no such user.</Heading>;
 
 	return (
 		<List<IFindUsers>

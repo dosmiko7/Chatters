@@ -33,8 +33,8 @@ const SearchesWindow = () => {
 			<Form onSubmit={handleOnSubmit}>
 				<SearchBar
 					placeholder="Type nickname/email"
-					onChange={handleInputChange}
-					onClick={handleOnSubmit}
+					onChangeHandler={handleInputChange}
+					onIconClickHandler={handleOnSubmit}
 				/>
 			</Form>
 			<ListContainer>{query !== "" && <SearchesList query={query} />}</ListContainer>
