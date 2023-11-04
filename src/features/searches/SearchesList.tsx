@@ -4,7 +4,7 @@ import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
 import useSearchUsers from "./useSearchUsers";
-import { useModal } from "../../ui/Modal";
+import { useModal } from "../../hooks/useModal";
 
 const SearchesList = ({ query }: { query: string }) => {
 	const { data, status } = useSearchUsers(query);

@@ -40,7 +40,7 @@ const initialModalContext: ModalContextType = {
 	open: () => {},
 };
 
-const ModalContext = createContext(initialModalContext);
+export const ModalContext = createContext(initialModalContext);
 
 const Modal = ({ children }: { children: any[] }) => {
 	const [openName, setOpenName] = useState("");
@@ -82,15 +82,6 @@ const Window = ({ children, name }: { children: any; name: string }) => {
 		</Overlay>,
 		document.body
 	);
-};
-
-export const useModal = () => {
-	const context = useContext(ModalContext);
-	if (context === undefined) {
-		throw new Error("ModalContext was used outside of ModalProvider");
-	}
-
-	return context;
 };
 
 Modal.Open = Open;
