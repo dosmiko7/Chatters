@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 //import ProtectedRoute from "./ui/ProtectedRoute"; TODO: Add as wrapper to Route with <AppLayout/>
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./ui/Dashboard";
+import Profile from "./features/profiles/Profile";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -39,6 +40,10 @@ const App = () => {
 						<Route
 							path="dashboard"
 							element={<Dashboard />}
+						/>
+						<Route
+							path="profile/:userId"
+							element={<Profile />}
 						/>
 					</Route>
 					<Route

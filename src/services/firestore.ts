@@ -1,4 +1,4 @@
-import { doc, setDoc, getDocs, collection, query, where, or, DocumentData } from "firebase/firestore";
+import { doc, setDoc, getDocs, collection, query, where, or, DocumentData, getDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
 
@@ -34,4 +34,16 @@ export const findUsers = async (key: string): Promise<IFindUsers[]> => {
 		foundUsers.push({ id: doc.id, data: doc.data() });
 	});
 	return foundUsers;
+};
+
+export const getUser = async (userId: string | undefined): Promise<DocumentData> => {
+	if (userId === undefined) throw new Error("Something went wrong");
+	const docRef = doc(firestore, "users", `${userId}`);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists()) {
+		return docSnap.data();
+	} else {
+		throw new Error("Something went wrong");
+	}
 };

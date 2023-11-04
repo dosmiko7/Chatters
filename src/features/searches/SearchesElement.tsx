@@ -1,36 +1,43 @@
 import styled from "styled-components";
-import { BiSolidUserPlus } from "react-icons/bi";
+import { useRef } from "react";
 
 import { ListElement } from "../../ui/ListElement";
-import { Button } from "../../ui/Button";
 import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
+import useWaveAnimation from "../../hooks/useWaveAnimation";
 
 const StyledSearchesElement = styled(ListElement)`
-	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		background-color: var(--color-primary-300);
+	}
 `;
 
 const Nickname = styled(Heading)`
 	text-align: center;
-	padding: 0 2px;
+	margin: 0 auto;
 `;
-
 interface ISearchesElementProps {
 	avatar: string;
 	nickname: string;
+	onClickHandler: () => void;
 }
 
-const SearchesElement = ({ avatar, nickname }: ISearchesElementProps) => {
+const SearchesElement = ({ onClickHandler, avatar, nickname }: ISearchesElementProps) => {
+	const elRef = useRef<HTMLLIElement | null>(null);
+	const { waves, handleAnimation } = useWaveAnimation(elRef);
+
 	return (
-		<StyledSearchesElement>
+		<StyledSearchesElement
+			onMouseDown={handleAnimation}
+			onClick={onClickHandler}
+			ref={elRef}
+		>
+			{waves}
 			<Avatar src={avatar} />
 			<Nickname as="h3">{nickname}</Nickname>
-			<Button
-				variant="menu"
-				size="large"
-			>
-				<BiSolidUserPlus />
-			</Button>
 		</StyledSearchesElement>
 	);
 };
