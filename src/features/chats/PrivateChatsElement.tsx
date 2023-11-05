@@ -78,6 +78,7 @@ const PrivateChatsElement = (props: IPrivChatEl) => {
 			<StyledAvatar
 				src={avatar}
 				status={status}
+				width="4rem"
 			/>
 			<Box newMessege={newMessege}>
 				<Heading as="h4">{nickname}</Heading>

@@ -39,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
             --padding-sm: 1rem;
             --padding-md: 2rem;
             --padding-lg: 3rem;
+            --padding-xlg: 4rem;
 
             --image-grayscale: 0;
             --image-opacity: 100%;

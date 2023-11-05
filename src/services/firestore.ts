@@ -6,6 +6,8 @@ export const addUser = async (user: User) => {
 	const defaultData = {
 		avatar:
 			"https://firebasestorage.googleapis.com/v0/b/chatters---chat-app.appspot.com/o/avatars%2FdefaultAvatar.jpg?alt=media&token=a838b971-c827-4429-bea6-09846aff6b84&_gl=1*nsekzg*_ga*MTM5MTY2MzQwMC4xNjk4ODM0MjE5*_ga_CW55HF8NVT*MTY5OTAzMDA5Ny4xMS4xLjE2OTkwMzA2MDAuNDYuMC4w",
+		background:
+			"https://firebasestorage.googleapis.com/v0/b/chatters---chat-app.appspot.com/o/backgrounds%2Fbackground_default.jpg?alt=media&token=5d04ac8d-a3a4-4fc3-bd0c-686c987092c3&_gl=1*q68j4h*_ga*MTM5MTY2MzQwMC4xNjk4ODM0MjE5*_ga_CW55HF8NVT*MTY5OTE4NDAyOS4xNS4xLjE2OTkxODQxMTIuNDUuMC4w",
 		nickname: user.email,
 		email: user.email,
 		friends_list: [],
@@ -44,6 +46,6 @@ export const getUser = async (userId: string | undefined): Promise<DocumentData>
 	if (docSnap.exists()) {
 		return docSnap.data();
 	} else {
-		throw new Error("Something went wrong");
+		throw new Error("User with such id doesnt exist");
 	}
 };

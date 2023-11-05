@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { flexCentered } from "../style/Templates";
 
-const StyledAvatar = styled.div`
+interface IStyledAvatarProps {
+	width: string;
+}
+
+const StyledAvatar = styled.div<IStyledAvatarProps>`
 	${flexCentered};
-	width: 4rem;
+	width: ${(props) => props.width};
 	border-radius: 50%;
 	overflow: hidden;
 `;
@@ -17,14 +21,15 @@ const Image = styled.img`
 // TODO: Clicking on Avatar moves user to Avatar's owner's profile
 // TODO: If user is currently active change border to green
 interface IAvatar {
+	width: string;
 	src?: string;
 }
 
 export const Avatar = (props: IAvatar) => {
-	const { src } = props;
+	const { width, src } = props;
 
 	return (
-		<StyledAvatar>
+		<StyledAvatar width={width}>
 			<Image
 				src={src || "avatar-default.png"}
 				alt="Avatar"
