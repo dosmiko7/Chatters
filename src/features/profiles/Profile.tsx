@@ -1,7 +1,9 @@
 import styled from "styled-components";
+
 import useProfile from "./useProfile";
 import ProfileInformation from "./ProfileInformation";
 import ProfileFriends from "./ProfileFriends";
+import Spinner from "../../ui/Spinner";
 
 const StyledProfile = styled.div`
 	display: grid;
@@ -10,16 +12,18 @@ const StyledProfile = styled.div`
 	background-color: var(--color-primary-300);
 `;
 
+// TODO: Add Pen button to edit information if it is our own profile
+// TODO: Add contact button (disabled/non seen if it is our profile)
 const Profile = () => {
 	const { profileData, status } = useProfile();
-	console.log(profileData);
 
-	if (status === "error" || !profileData) return <div>Error</div>;
+	if (status === "error" || profileData === undefined) return <div>Error</div>;
+	else if (status === "pending") return <Spinner />;
 
 	return (
 		<StyledProfile>
-			<ProfileInformation profileData={profileData} />
-			<ProfileFriends />
+			<ProfileInformation profileData={profileData.data} />
+			<ProfileFriends friends={profileData.data.friends_list} />
 		</StyledProfile>
 	);
 };

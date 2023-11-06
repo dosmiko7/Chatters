@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, ReactNode } from "react";
-import useUser from "../features/authentication/useUser";
+import useLoggedUser from "../features/authentication/useLoggedUser";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 	const navigate = useNavigate();
-	const { data: userData } = useUser();
+	const { data: userData } = useLoggedUser();
 
 	useEffect(() => {
 		if (!userData) navigate("/login");

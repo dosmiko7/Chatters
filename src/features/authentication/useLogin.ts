@@ -12,7 +12,7 @@ export const useLogin = () => {
 		mutationFn: ({ email, password }: ISignProps) => signIn({ email, password }),
 
 		onSuccess: (user: User) => {
-			queryClient.setQueryData(["user"], user);
+			queryClient.setQueryData(["loggedUser"], user);
 			navigate("/dashboard", { replace: true });
 		},
 

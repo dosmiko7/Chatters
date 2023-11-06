@@ -13,7 +13,7 @@ const useGoogleLogin = () => {
 		mutationFn: () => signInWithGoogle().then((user: User) => addUser(user)),
 
 		onSuccess: (user: User) => {
-			queryClient.setQueryData(["user"], user);
+			queryClient.setQueryData(["loggedUser"], user);
 			navigate("/dashboard", { replace: true });
 		},
 

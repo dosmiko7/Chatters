@@ -1,6 +1,38 @@
-import { doc, setDoc, getDocs, collection, query, where, or, DocumentData, getDoc } from "firebase/firestore";
+import {
+	doc,
+	setDoc,
+	getDocs,
+	collection,
+	query,
+	where,
+	or,
+	DocumentData,
+	getDoc,
+	Timestamp,
+} from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
+
+export interface IFriend {
+	friendID: string;
+	messages: {
+		created_at: Timestamp;
+		message: string;
+	}[];
+}
+export interface IUserData {
+	nickname: string;
+	avatar: string;
+	background: string;
+	description: string;
+	email: string;
+	friends_list: IFriend[];
+	socials: {
+		github: string;
+		linkedin: string;
+		twitter: string;
+	};
+}
 
 export const addUser = async (user: User) => {
 	const defaultData = {
@@ -44,7 +76,7 @@ export const getUser = async (userId: string | undefined): Promise<DocumentData>
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.exists()) {
-		return docSnap.data();
+		return { id: docSnap.id, data: docSnap.data() };
 	} else {
 		throw new Error("User with such id doesnt exist");
 	}
