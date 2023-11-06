@@ -6,7 +6,7 @@ const StyledList = styled.ul`
 	max-width: 100%;
 
 	& > :not(:last-child) {
-		border-bottom: 1px solid var(--color-primary-200);
+		border-bottom: var(--border-thin);
 	}
 `;
 

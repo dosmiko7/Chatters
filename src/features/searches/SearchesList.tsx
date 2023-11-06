@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { IFindUsers } from "../../services/firestore";
+import { IDocumentData } from "../../services/firestore";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
@@ -26,9 +26,9 @@ const SearchesList = ({ query }: { query: string }) => {
 	if (data?.length === 0) return <Heading as="h3">There is no such user.</Heading>;
 
 	return (
-		<List<IFindUsers>
+		<List<IDocumentData>
 			data={data || []}
-			render={(user: IFindUsers) => {
+			render={(user: IDocumentData) => {
 				return (
 					<SearchesElement
 						key={user.id}

@@ -3,12 +3,13 @@ import { flexCentered } from "../style/Templates";
 
 interface IStyledAvatarProps {
 	width: string;
+	square?: boolean;
 }
 
 const StyledAvatar = styled.div<IStyledAvatarProps>`
 	${flexCentered};
 	width: ${(props) => props.width};
-	border-radius: 50%;
+	border-radius: ${(props) => (props.square ? "0" : "50%")};
 	overflow: hidden;
 `;
 
@@ -22,14 +23,18 @@ const Image = styled.img`
 // TODO: If user is currently active change border to green
 interface IAvatar {
 	width: string;
+	square?: boolean;
 	src?: string;
 }
 
 export const Avatar = (props: IAvatar) => {
-	const { width, src } = props;
+	const { width, src, square } = props;
 
 	return (
-		<StyledAvatar width={width}>
+		<StyledAvatar
+			width={width}
+			square={square}
+		>
 			<Image
 				src={src || "avatar-default.png"}
 				alt="Avatar"

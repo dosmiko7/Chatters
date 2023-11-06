@@ -22,7 +22,7 @@ const MainInformation = styled.div<IBackground>`
 	flex: 1;
 	gap: 0.4rem;
 	position: relative;
-	background-image: linear-gradient(170deg, transparent 0%, transparent 30%, var(--color-primary-300) 40%),
+	background-image: linear-gradient(170deg, transparent 0%, transparent 40%, var(--color-primary-300) 47%),
 		url(${(props) => props.src});
 `;
 
@@ -34,7 +34,7 @@ const AdditionalInformation = styled.div`
 `;
 
 const ProfileInformation = ({ profileData }: { profileData: DocumentData }) => {
-	const { avatar, background, nickname, email, description, socials } = profileData;
+	const { avatar, background, nickname, email, description, socials } = profileData.data;
 
 	return (
 		<StyledProfileInformation>

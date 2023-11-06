@@ -1,6 +1,6 @@
 import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { IFriend, IUserData, getUser } from "../../services/firestore";
+import { IDocumentData, IFriend, getUser } from "../../services/firestore";
 import getUsersID from "../../utils/getUsersID";
 
 const useFriends = (friends: IFriend[]) => {
@@ -22,9 +22,12 @@ const useFriends = (friends: IFriend[]) => {
 
 	const friendsQuries = queryKeys.filter((arr) => arr[0] === "user" && arr[arr.length - 1] === `${userId}`);
 
-	const friendsData: (IUserData | undefined)[] = [];
+	const friendsData: IDocumentData[] = [];
 	friendsQuries.forEach((query) => {
-		friendsData.push(queryClient.getQueryData(query));
+		const data = queryClient.getQueryData<IDocumentData | undefined>(query);
+		if (data) {
+			friendsData.push(data);
+		}
 	});
 
 	return friendsData;

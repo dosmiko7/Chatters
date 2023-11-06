@@ -22,8 +22,8 @@ const Profile = () => {
 
 	return (
 		<StyledProfile>
-			<ProfileInformation profileData={profileData.data} />
-			<ProfileFriends friends={profileData.data.friends_list} />
+			<ProfileInformation profileData={profileData} />
+			<ProfileFriends profileData={profileData} />
 		</StyledProfile>
 	);
 };

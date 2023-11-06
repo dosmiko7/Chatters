@@ -32,6 +32,10 @@ const GlobalStyles = createGlobalStyle`
             --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
             
+            --border-thin: 1px solid var(--color-primary-200);
+            --border-normal: 2px solid var(--color-primary-200); 
+
+            --border-radius-xsm: 5px;
             --border-radius-sm: 10px;
             --border-radius-md: 20px;
 
