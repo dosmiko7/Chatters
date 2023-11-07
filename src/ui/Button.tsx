@@ -39,7 +39,7 @@ export const Button = styled.button<ButtonProps>`
 			font-size: 1.6rem;
 		`}
 		
-	transition: all 0.3s;
+	transition: var(--transition-all-3);
 
 	&:hover {
 		background-color: var(--color-secondary-100);

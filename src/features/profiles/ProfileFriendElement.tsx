@@ -10,12 +10,14 @@ const StyledElement = styled.div`
 	border-radius: var(--border-radius-xsm);
 	background-color: var(--color-primary-400);
 	padding-bottom: var(--padding-sm);
-	width: 16rem;
-	height: 24rem;
+	width: 30%;
+	height: 40%;
 	overflow: hidden;
+	transition: var(--transition-all-3);
 
 	&:hover {
 		cursor: pointer;
+		background-color: var(--color-primary-300);
 	}
 `;
 

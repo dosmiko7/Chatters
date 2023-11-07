@@ -47,6 +47,9 @@ const GlobalStyles = createGlobalStyle`
 
             --image-grayscale: 0;
             --image-opacity: 100%;
+
+            --transition-all-3: 0.3s all;
+            --transition-all-5: 0.5s all;
         }
     
         &.light-mode {

@@ -15,7 +15,7 @@ const StyledModal = styled.div`
 	border-radius: var(--border-radius-md);
 	box-shadow: var(--shadow-lg);
 	padding: var(--padding-md) var(--padding-lg);
-	transition: all 0.5s;
+	transition: var(--transition-all-5);
 `;
 
 const StyledButton = styled(Button)`

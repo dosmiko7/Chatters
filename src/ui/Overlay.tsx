@@ -9,5 +9,5 @@ export const Overlay = styled.div`
 	background-color: var(--backdrop-color);
 	backdrop-filter: blur(4px);
 	z-index: 1000;
-	transition: all 0.5s;
+	transition: var(--transition-all-5);
 `;

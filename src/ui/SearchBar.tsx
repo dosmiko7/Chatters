@@ -14,7 +14,7 @@ const SearchIcon = styled(BiSearch)`
 	top: 50%;
 	transform: translateY(-50%);
 	border-radius: 50%;
-	transition: all 0.3s;
+	transition: var(--transition-all-3);
 
 	&:hover {
 		font-size: 2rem;
