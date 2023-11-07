@@ -6,6 +6,7 @@ import Paragraph from "../../ui/Paragraph";
 import { Avatar } from "../../ui/Avatar";
 import ProfileSocials from "./ProfileSocials";
 import { IDocumentData } from "../../services/firestore";
+import ProfileAdd from "./ProfileAdd";
 
 const StyledProfileInformation = styled.div`
 	${flexColumn};
@@ -46,6 +47,7 @@ const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => 
 				<Heading as="h2">{nickname}</Heading>
 				<Heading as="h3">{email}</Heading>
 				<ProfileSocials socials={socials} />
+				<ProfileAdd />
 			</MainInformation>
 			<AdditionalInformation>
 				<Heading as="h3">Description</Heading>
