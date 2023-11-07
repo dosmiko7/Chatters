@@ -1,15 +1,49 @@
 import styled from "styled-components";
 import { flexRow } from "../../style/Templates";
-import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
+import { SocialIcon } from "react-social-icons";
 
 const StyledSocials = styled.div`
 	${flexRow}
+	padding: var(--padding-sm);
+	gap: var(--padding-sm);
 `;
 
-const Social = styled.a``;
+const Social = styled.a`
+	position: relative;
 
-const ProfileSocials = ({ socials }: any) => {
-	const { linkedin, github, twitter } = socials;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 0;
+		height: 0;
+		transform: translate(-5%, -5%);
+		border-radius: var(--border-radius-circle);
+		background-color: var(--color-secondary-100);
+		transition: var(--transition-all-3);
+	}
+
+	&:hover {
+		&::before {
+			height: 110%;
+			width: 110%;
+			top: 0;
+		}
+	}
+`;
+
+interface ISocials {
+	socials: {
+		github: string;
+		linkedin: string;
+		twitter: string;
+	};
+}
+
+const ProfileSocials = ({ socials }: ISocials) => {
+	const { github, linkedin, twitter } = socials;
+
 	return (
 		<StyledSocials>
 			{linkedin && (
@@ -17,7 +51,11 @@ const ProfileSocials = ({ socials }: any) => {
 					href={linkedin}
 					target="_blank"
 				>
-					<FaLinkedin />
+					<SocialIcon
+						network="linkedin"
+						style={{ height: 40, width: 40 }}
+						label="Linkedin"
+					/>
 				</Social>
 			)}
 			{github && (
@@ -25,7 +63,11 @@ const ProfileSocials = ({ socials }: any) => {
 					href={github}
 					target="_blank"
 				>
-					<FaGithub />
+					<SocialIcon
+						network="github"
+						style={{ height: 40, width: 40 }}
+						label="GitHub"
+					/>
 				</Social>
 			)}
 			{twitter && (
@@ -33,7 +75,11 @@ const ProfileSocials = ({ socials }: any) => {
 					href={twitter}
 					target="_blank"
 				>
-					<FaXTwitter />
+					<SocialIcon
+						network="x"
+						style={{ height: 40, width: 40 }}
+						label="X"
+					/>
 				</Social>
 			)}
 		</StyledSocials>

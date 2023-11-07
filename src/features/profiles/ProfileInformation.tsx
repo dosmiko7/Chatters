@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { DocumentData } from "firebase/firestore";
 
 import { flexColumn } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
 import { Avatar } from "../../ui/Avatar";
 import ProfileSocials from "./ProfileSocials";
+import { IDocumentData } from "../../services/firestore";
 
 const StyledProfileInformation = styled.div`
 	${flexColumn};
@@ -33,7 +33,7 @@ const AdditionalInformation = styled.div`
 	max-height: 40%;
 `;
 
-const ProfileInformation = ({ profileData }: { profileData: DocumentData }) => {
+const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => {
 	const { avatar, background, nickname, email, description, socials } = profileData.data;
 
 	return (

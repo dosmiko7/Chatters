@@ -9,6 +9,7 @@ export interface IFriend {
 		message: string;
 	}[];
 }
+
 export interface IUserData {
 	nickname: string;
 	avatar: string;

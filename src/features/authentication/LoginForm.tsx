@@ -8,6 +8,7 @@ import FormManager from "./FormManager";
 import { GoogleLogin } from "../../ui/GoogleLogin";
 import { useLogin } from "./useLogin";
 import useGoogleLogin from "./useGoogleLogin";
+import { ephasis } from "../../style/Templates";
 
 const StyledLink = styled(Link)`
 	position: absolute;
@@ -20,6 +21,7 @@ const Reminder = styled.a`
 	display: block;
 	width: fit-content;
 	margin: 5px auto;
+	${ephasis}
 `;
 
 const LoginForm = () => {

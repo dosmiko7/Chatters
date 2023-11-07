@@ -38,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
             --border-radius-xsm: 5px;
             --border-radius-sm: 10px;
             --border-radius-md: 20px;
+            --border-radius-circle: 50%;
 
             --padding-xsm: 0.5rem;
             --padding-sm: 1rem;
@@ -104,29 +105,8 @@ const GlobalStyles = createGlobalStyle`
     }
 
     a {
-        position: relative;
-        color: var(--color-primary-50);
         text-decoration: none;
         cursor: pointer;
-        
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 1px;
-            width: 0;
-            background-color: var(--color-primary-500);
-            transition: width 0.3s ease-in;
-        }
-
-        &:hover {
-            color: var(--color-primary-500);
-
-            &::after {
-                width: 100%;
-            }
-        }
     }
 
     ul {
