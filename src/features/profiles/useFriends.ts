@@ -1,7 +1,7 @@
 import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { IDocumentData, IFriend, getUser } from "../../services/firestore";
-import getUsersID from "../../utils/getUsersID";
+import { getUsersID } from "../../utils/getUsersID";
 import { getQueryKeys, getSpecificQueriesData } from "../../utils/getQuery";
 
 const useFriends = (friends: IFriend[]) => {

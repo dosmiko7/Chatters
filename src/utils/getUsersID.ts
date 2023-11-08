@@ -1,6 +1,6 @@
 import { IFriend } from "../services/firestore";
 
-const getUsersID = (friendsList: IFriend[]) => {
+export const getUsersID = (friendsList: IFriend[]) => {
 	const usersID: string[] = [];
 
 	friendsList.forEach((friend) => {
@@ -9,5 +9,3 @@ const getUsersID = (friendsList: IFriend[]) => {
 
 	return usersID;
 };
-
-export default getUsersID;

@@ -17,10 +17,16 @@ export interface IUserData {
 	description: string;
 	email: string;
 	friends_list: IFriend[];
+	personals: {
+		name?: string;
+		surname?: string;
+		birthday?: Date;
+		city?: string;
+	};
 	socials: {
-		github: string;
-		linkedin: string;
-		twitter: string;
+		github?: string;
+		linkedin?: string;
+		twitter?: string;
 	};
 }
 
@@ -39,11 +45,8 @@ export const addUser = async (user: User) => {
 		description: "",
 		email: user.email || "",
 		friends_list: [],
-		socials: {
-			github: "",
-			linkedin: "",
-			twitter: "",
-		},
+		personals: {},
+		socials: {},
 	};
 
 	const userIdRef = doc(firestore, "users", user.uid);

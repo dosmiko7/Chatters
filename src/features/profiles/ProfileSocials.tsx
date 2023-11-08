@@ -1,11 +1,16 @@
 import styled from "styled-components";
-import { flexRow } from "../../style/Templates";
+import { flexColumn, flexRow } from "../../style/Templates";
 import { SocialIcon } from "react-social-icons";
+import Heading from "../../ui/Heading";
 
 const StyledSocials = styled.div`
 	${flexRow}
 	padding: var(--padding-sm);
 	gap: var(--padding-sm);
+`;
+
+const StyledProfileSocials = styled.div`
+	${flexColumn}
 `;
 
 const Social = styled.div`
@@ -35,16 +40,17 @@ const Social = styled.div`
 
 interface ISocials {
 	socials: {
-		github: string;
-		linkedin: string;
-		twitter: string;
+		github?: string;
+		linkedin?: string;
+		twitter?: string;
 	};
 }
 
 const ProfileSocials = ({ socials }: ISocials) => {
 	const { github, linkedin, twitter } = socials;
 
-	return (
+	const noSocials = <div>User did not provide his social media.</div>;
+	const hasSocials = (
 		<StyledSocials>
 			{linkedin && (
 				<Social>
@@ -80,6 +86,18 @@ const ProfileSocials = ({ socials }: ISocials) => {
 				</Social>
 			)}
 		</StyledSocials>
+	);
+
+	return (
+		<StyledProfileSocials>
+			<Heading
+				as="h3"
+				center
+			>
+				Socials
+			</Heading>
+			{Object.keys(socials).length ? hasSocials : noSocials}
+		</StyledProfileSocials>
 	);
 };
 

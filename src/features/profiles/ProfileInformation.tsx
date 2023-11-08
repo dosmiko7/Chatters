@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-import { flexColumn } from "../../style/Templates";
+import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
 import { Avatar } from "../../ui/Avatar";
-import ProfileSocials from "./ProfileSocials";
 import { IDocumentData } from "../../services/firestore";
-import ProfileAdd from "./ProfileAdd";
+import ProfileSocials from "./ProfileSocials";
+import ProfileButtons from "./ProfileButtons";
+import ProfilePersonals from "./ProfilePersonals";
 
 const StyledProfileInformation = styled.div`
 	${flexColumn};
@@ -16,7 +17,7 @@ interface IBackground {
 	src: string;
 }
 
-const MainInformation = styled.div<IBackground>`
+const Main = styled.div<IBackground>`
 	${flexColumn};
 	align-items: center;
 	padding-top: 20%;
@@ -27,7 +28,11 @@ const MainInformation = styled.div<IBackground>`
 		url(${(props) => props.src});
 `;
 
-const AdditionalInformation = styled.div`
+const Row = styled.div`
+	${flexRow}
+`;
+
+const Addition = styled.div`
 	${flexColumn};
 	flex: 1;
 	padding: 0 var(--padding-lg);
@@ -35,24 +40,27 @@ const AdditionalInformation = styled.div`
 `;
 
 const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => {
-	const { avatar, background, nickname, email, description, socials } = profileData.data;
+	const { avatar, background, nickname, email, description, personals, socials } = profileData.data;
 
 	return (
 		<StyledProfileInformation>
-			<MainInformation src={background}>
+			<Main src={background}>
 				<Avatar
 					width="12rem"
 					src={avatar}
 				/>
 				<Heading as="h2">{nickname}</Heading>
 				<Heading as="h3">{email}</Heading>
-				<ProfileSocials socials={socials} />
-				<ProfileAdd />
-			</MainInformation>
-			<AdditionalInformation>
+				<Row>
+					<ProfileSocials socials={socials} />
+					<ProfilePersonals personals={personals} />
+					<ProfileButtons />
+				</Row>
+			</Main>
+			<Addition>
 				<Heading as="h3">Description</Heading>
 				<Paragraph>{description}</Paragraph>
-			</AdditionalInformation>
+			</Addition>
 		</StyledProfileInformation>
 	);
 };

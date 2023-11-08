@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { flexCentered } from "../style/Templates";
 
-interface ButtonProps {
+export interface ButtonProps {
 	variant?: string;
 	size?: string;
 }
