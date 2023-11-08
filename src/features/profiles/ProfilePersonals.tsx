@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { flexColumn } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import { formatDate } from "../../utils/formatDate";
+import { Timestamp } from "firebase/firestore";
 
 const StyledPersonals = styled.div`
 	${flexColumn};
@@ -17,7 +18,7 @@ interface IPersonals {
 	personals: {
 		name?: string;
 		surname?: string;
-		birthday?: Date;
+		birthday?: Timestamp;
 		city?: string;
 	};
 }

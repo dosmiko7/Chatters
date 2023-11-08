@@ -20,7 +20,7 @@ export interface IUserData {
 	personals: {
 		name?: string;
 		surname?: string;
-		birthday?: Date;
+		birthday?: Timestamp;
 		city?: string;
 	};
 	socials: {
