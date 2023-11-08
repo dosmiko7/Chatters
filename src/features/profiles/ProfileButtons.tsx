@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import ProfileAdd from "./ProfileButtonAdd";
-import { flexColumn } from "../../style/Templates";
+import { flexRow } from "../../style/Templates";
 import ProfileButtonMessage from "./ProfileButtonMessage";
 
 const StyledButtons = styled.div`
-	${flexColumn}
+	${flexRow};
+	gap: 1rem;
 `;
 
 const ProfileButtons = () => {

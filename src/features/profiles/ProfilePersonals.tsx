@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { flexColumn } from "../../style/Templates";
+import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import { formatDate } from "../../utils/formatDate";
 import { Timestamp } from "firebase/firestore";
@@ -12,7 +12,14 @@ const StyledPersonals = styled.div`
 const Column = styled.div`
 	${flexColumn}
 `;
-const Personal = styled.span``;
+
+const Personal = styled.div`
+	${flexRow}
+	align-items: center;
+`;
+const PersonalInfo = styled.span`
+	padding-left: var(--padding-xsm);
+`;
 
 interface IPersonals {
 	personals: {
@@ -32,26 +39,26 @@ const ProfilePersonals = ({ personals }: IPersonals) => {
 		<Column>
 			{name && (
 				<Personal>
-					<Heading as="h4">Name: </Heading>
-					{name}
+					<Heading as="h3">Name: </Heading>
+					<PersonalInfo>{name}</PersonalInfo>
 				</Personal>
 			)}
 			{surname && (
 				<Personal>
-					<Heading as="h4">Surname: </Heading>
-					{surname}
+					<Heading as="h3">Surname: </Heading>
+					<PersonalInfo>{surname}</PersonalInfo>
 				</Personal>
 			)}
 			{formattedBirthday && (
 				<Personal>
-					<Heading as="h4">Birthday: </Heading>
-					{formattedBirthday}
+					<Heading as="h3">Birthday: </Heading>
+					<PersonalInfo>{formattedBirthday}</PersonalInfo>
 				</Personal>
 			)}
 			{city && (
 				<Personal>
-					<Heading as="h4">City: </Heading>
-					{city}
+					<Heading as="h3">City: </Heading>
+					<PersonalInfo>{city}</PersonalInfo>
 				</Personal>
 			)}
 		</Column>

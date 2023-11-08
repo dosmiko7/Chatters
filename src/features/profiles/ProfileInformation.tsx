@@ -29,7 +29,9 @@ const Main = styled.div<IBackground>`
 `;
 
 const Row = styled.div`
-	${flexRow}
+	${flexRow};
+	width: 80%;
+	justify-content: space-between;
 `;
 
 const Addition = styled.div`
@@ -52,10 +54,10 @@ const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => 
 				<Heading as="h2">{nickname}</Heading>
 				<Heading as="h3">{email}</Heading>
 				<Row>
-					<ProfileSocials socials={socials} />
 					<ProfilePersonals personals={personals} />
-					<ProfileButtons />
+					<ProfileSocials socials={socials} />
 				</Row>
+				<ProfileButtons />
 			</Main>
 			<Addition>
 				<Heading as="h3">Description</Heading>
