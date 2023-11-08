@@ -4,6 +4,7 @@ import { useState } from "react";
 import SearchBar from "../../ui/SearchBar";
 import SearchesList from "./SearchesList";
 import { Form } from "../../ui/Form";
+import Heading from "../../ui/Heading";
 
 const StyledSearchesWindow = styled.div`
 	width: 40rem;
@@ -11,7 +12,7 @@ const StyledSearchesWindow = styled.div`
 `;
 
 const ListContainer = styled.div`
-	max-height: 90%;
+	max-height: 80%;
 	overflow-y: scroll;
 `;
 
@@ -30,6 +31,7 @@ const SearchesWindow = () => {
 
 	return (
 		<StyledSearchesWindow>
+			<Heading as="h2">Find a user</Heading>
 			<Form onSubmit={handleOnSubmit}>
 				<SearchBar
 					placeholder="Type nickname/email"
