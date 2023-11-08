@@ -3,6 +3,7 @@ import { flexCentered } from "../style/Templates";
 
 const StyledLogo = styled.div`
 	${flexCentered}
+	width: 5rem;
 `;
 const Image = styled.img`
 	max-width: 100%;

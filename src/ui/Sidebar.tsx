@@ -29,7 +29,7 @@ const Sidebar = () => {
 				<Searches />
 			</Box>
 			<Box>
-				<Avatar />
+				<Avatar width="4rem" />
 				<Logout />
 			</Box>
 		</StyledSidebar>

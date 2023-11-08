@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BiUserPlus } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 
 import Modal from "../../ui/Modal";
 import { Button } from "../../ui/Button";
@@ -17,7 +17,7 @@ const Searches = () => {
 					variant="menu"
 					size="medium"
 				>
-					<BiUserPlus />
+					<BiSearch />
 				</StyledButton>
 			</Modal.Open>
 			<Modal.Window name="searches">
