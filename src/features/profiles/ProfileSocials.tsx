@@ -8,7 +8,7 @@ const StyledSocials = styled.div`
 	gap: var(--padding-sm);
 `;
 
-const Social = styled.a`
+const Social = styled.div`
 	position: relative;
 
 	&::before {
@@ -47,38 +47,35 @@ const ProfileSocials = ({ socials }: ISocials) => {
 	return (
 		<StyledSocials>
 			{linkedin && (
-				<Social
-					href={linkedin}
-					target="_blank"
-				>
+				<Social>
 					<SocialIcon
 						network="linkedin"
 						style={{ height: 40, width: 40 }}
 						label="Linkedin"
+						href={linkedin}
+						target="_blank"
 					/>
 				</Social>
 			)}
 			{github && (
-				<Social
-					href={github}
-					target="_blank"
-				>
+				<Social>
 					<SocialIcon
 						network="github"
 						style={{ height: 40, width: 40 }}
 						label="GitHub"
+						href={github}
+						target="_blank"
 					/>
 				</Social>
 			)}
 			{twitter && (
-				<Social
-					href={twitter}
-					target="_blank"
-				>
+				<Social>
 					<SocialIcon
 						network="x"
 						style={{ height: 40, width: 40 }}
 						label="X"
+						href={twitter}
+						target="_blank"
 					/>
 				</Social>
 			)}
