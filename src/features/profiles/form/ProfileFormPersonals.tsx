@@ -3,7 +3,7 @@ import { FieldValues, Path } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
 import { Input } from "../../../ui/Input";
-import { IProfileFormFieldProps } from "./ProfileForm";
+import { IProfileFormFieldProps } from "./ProfileFormWindow";
 import { Wrapper } from "../../../ui/Wrapper";
 
 const Grid = styled.div`
@@ -14,6 +14,7 @@ const Grid = styled.div`
 
 const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldProps<T>) => {
 	const { register, errors } = props;
+	console.log(errors["name"]?.message); // it works
 
 	return (
 		<div>
