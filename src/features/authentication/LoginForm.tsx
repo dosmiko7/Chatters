@@ -24,6 +24,7 @@ const Reminder = styled.a`
 	${ephasis}
 `;
 
+// TODO: Reminder
 const LoginForm = () => {
 	const { login, status } = useLogin();
 	const { login: googleLogin, status: googleStatus } = useGoogleLogin();
