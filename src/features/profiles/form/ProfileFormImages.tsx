@@ -4,27 +4,46 @@ import styled from "styled-components";
 import { IProfileFormFieldProps } from "./ProfileFormWindow";
 import { flexRow } from "../../../style/Templates";
 import { Wrapper } from "../../../ui/Wrapper";
+import { BiPencil } from "react-icons/bi";
+import useFilePreview from "./useFilePreview";
 
 const StyledImages = styled.div`
 	${flexRow}
 	justify-content: space-between;
 `;
 
-const ProfileFormImages = <T extends FieldValues>(props: IProfileFormFieldProps<T>) => {
-	const { register, errors } = props;
+export interface IProfileFormImagesProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
+	avatarWatcher: File[];
+	backgroundWatcher: File[];
+}
+
+// TODO: Maybe split Inputs to separate components
+const ProfileFormImages = <T extends FieldValues>(props: IProfileFormImagesProps<T>) => {
+	const { register, errors, avatarWatcher, backgroundWatcher } = props;
+	const { imgSrc: avatarSrc } = useFilePreview(avatarWatcher);
+	const { imgSrc: backgroundSrc } = useFilePreview(backgroundWatcher);
 
 	const fileSizeValidation = (value: File[]) => {
-		console.log(value[0]);
 		const file = value[0];
 		const maxSizeInBytes = 1024 * 1024;
 
 		return file.size <= maxSizeInBytes || "File size should be less than 1 MB";
 	};
 
+	// TODO: Instead default values get values from server
+	const currentAvatarSrc = avatarSrc || "/avatar-default.png";
+	const currentBackgroundSrc = backgroundSrc || "/background-default.jpg";
+
 	return (
 		<StyledImages>
 			<Wrapper>
-				<label htmlFor="avatarUpload">Avatar</label>
+				<img
+					src={currentAvatarSrc}
+					style={{ width: "30px", height: "30px" }}
+				/>
+				<label htmlFor="avatarUpload">
+					<BiPencil />
+				</label>
 				<input
 					id="avatarUpload"
 					type="file"
@@ -36,7 +55,13 @@ const ProfileFormImages = <T extends FieldValues>(props: IProfileFormFieldProps<
 				{errors["avatar"] && <p>{errors["avatar"].message?.toString()}</p>}
 			</Wrapper>
 			<Wrapper>
-				<label htmlFor="backgroundUpload">Background</label>
+				<img
+					src={currentBackgroundSrc}
+					style={{ width: "30px", height: "30px" }}
+				/>
+				<label htmlFor="backgroundUpload">
+					<BiPencil />
+				</label>
 				<input
 					id="backgroundUpload"
 					type="file"

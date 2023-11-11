@@ -7,8 +7,8 @@ import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
 
 interface IProfileFormImages {
-	avatar: string;
-	background: string;
+	avatar: File[];
+	background: File[];
 }
 
 interface IProfileFormPersonals {
@@ -43,8 +43,13 @@ const ProfileFormWindow = () => {
 	const {
 		register,
 		handleSubmit,
+		watch,
 		formState: { errors },
 	} = useForm<IProfileFormInput>({ mode: "onBlur" });
+
+	const avatarWatch = watch("avatar");
+	const backgroundWatch = watch("background");
+
 	const onSubmit: SubmitHandler<IProfileFormInput> = (data) => console.log(data);
 
 	return (
@@ -52,6 +57,8 @@ const ProfileFormWindow = () => {
 			<ProfileFormImages<IProfileFormInput>
 				register={register}
 				errors={errors}
+				avatarWatcher={avatarWatch}
+				backgroundWatcher={backgroundWatch}
 			/>
 			<ProfileFormPersonals<IProfileFormInput>
 				register={register}
