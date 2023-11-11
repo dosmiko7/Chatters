@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
+import { FieldValues, Path } from "react-hook-form";
 
-import { FieldValues } from "react-hook-form";
 import Heading from "../../../ui/Heading";
 import { IProfileFormFieldProps } from "./ProfileFormWindow";
 import { flexColumn } from "../../../style/Templates";
@@ -30,6 +30,13 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 		fontSize: "2rem",
 	};
 
+	const linkValidation = {
+		pattern: {
+			value: /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i,
+			message: "Invalid URL format",
+		},
+	};
+
 	return (
 		<div>
 			<Heading as="h3">Socials</Heading>
@@ -37,23 +44,38 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 				<FlexColumn>
 					<InputContainer>
 						<FaLinkedin style={iconStyle} />
-						<StyledInput />
+						<StyledInput
+							type="url"
+							placeholder="Linkedin"
+							{...register("linkedin" as Path<T>, linkValidation)}
+						/>
 					</InputContainer>
+					{errors["linkedin"] && <p>{errors["linkedin"].message?.toString()}</p>}
 				</FlexColumn>
 
 				<FlexColumn>
 					<InputContainer>
 						<FaGithub style={iconStyle} />
-						<StyledInput />
+						<StyledInput
+							type="url"
+							placeholder="Github"
+							{...register("github" as Path<T>, linkValidation)}
+						/>
 					</InputContainer>
+					{errors["github"] && <p>{errors["github"].message?.toString()}</p>}
 				</FlexColumn>
 
 				<FlexColumn>
 					<InputContainer>
 						<FaXTwitter style={iconStyle} />
-						<StyledInput />
+						<StyledInput
+							type="url"
+							placeholder="Twitter"
+							{...register("twitter" as Path<T>, linkValidation)}
+						/>
 					</InputContainer>
 				</FlexColumn>
+				{errors["twitter"] && <p>{errors["twitter"].message?.toString()}</p>}
 			</FlexColumn>
 		</div>
 	);
