@@ -14,13 +14,17 @@ const InputDescription = styled(InputProfileForm).attrs({
 const ProfileFormDescription = <T extends FieldValues>(props: IProfileFormFieldProps<T>) => {
 	const { register, errors } = props;
 
+	const descrValidation = {
+		maxLength: { value: 700, message: "No more than 700 characters" },
+	};
+
 	return (
 		<StyledDescription>
 			<Heading as="h3">Description</Heading>
 			<InputDescription
 				type="text"
 				placeholder="Description"
-				{...register("description" as Path<T>)}
+				{...register("description" as Path<T>, descrValidation)}
 			/>
 			{errors["description"] && <p>{errors["description"].message?.toString()}</p>}
 		</StyledDescription>
