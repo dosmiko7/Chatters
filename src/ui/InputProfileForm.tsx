@@ -16,17 +16,3 @@ const InputProfileForm = styled.input`
 `;
 
 export default InputProfileForm;
-
-/*&[type="date"]::before {
-		content: "SIEMA" !important;
-		position: absolute;
-		top: 0;
-		left: 0;
-		color: #aaa;
-		margin-right: 0.5em;
-	}
-
-	&[type="date"]:focus::before,
-	&[type="date"]:valid::before {
-		content: "";
-	}*/
