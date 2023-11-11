@@ -7,6 +7,8 @@ import { IProfileFormFieldProps } from "./ProfileFormWindow";
 import { flexColumn } from "../../../style/Templates";
 import InputProfileForm from "../../../ui/InputProfileForm";
 
+const StyledSocials = styled.div``;
+
 const FlexColumn = styled.div`
 	${flexColumn};
 `;
@@ -38,7 +40,7 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 	};
 
 	return (
-		<div>
+		<StyledSocials>
 			<Heading as="h3">Socials</Heading>
 			<FlexColumn>
 				<FlexColumn>
@@ -77,7 +79,7 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 				</FlexColumn>
 				{errors["twitter"] && <p>{errors["twitter"].message?.toString()}</p>}
 			</FlexColumn>
-		</div>
+		</StyledSocials>
 	);
 };
 

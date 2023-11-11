@@ -6,6 +6,8 @@ import { IProfileFormFieldProps } from "./ProfileFormWindow";
 import { Wrapper } from "../../../ui/Wrapper";
 import InputProfileForm from "../../../ui/InputProfileForm";
 
+const StyledPersonals = styled.div``;
+
 const Grid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -24,7 +26,7 @@ const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldPro
 	};
 
 	return (
-		<div>
+		<StyledPersonals>
 			<Heading as="h3">Personals</Heading>
 			<Grid>
 				<Wrapper>
@@ -65,7 +67,7 @@ const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldPro
 					{errors["city"] && <p>{errors["city"].message?.toString()}</p>}
 				</Wrapper>
 			</Grid>
-		</div>
+		</StyledPersonals>
 	);
 };
 
