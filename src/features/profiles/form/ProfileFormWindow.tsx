@@ -4,6 +4,12 @@ import { Form } from "../../../ui/Form";
 import ProfileFormPersonals from "./ProfileFormPersonals";
 import ProfileFormSocials from "./ProfileFormSocials";
 import ProfileFormDescription from "./ProfileFormDescription";
+import ProfileFormImages from "./ProfileFormImages";
+
+interface IProfileFormImages {
+	avatar: string;
+	background: string;
+}
 
 interface IProfileFormPersonals {
 	name: string;
@@ -22,7 +28,11 @@ interface IProfileFormDescription {
 	description: string;
 }
 
-interface IProfileFormInput extends IProfileFormPersonals, IProfileFormSocials, IProfileFormDescription {}
+interface IProfileFormInput
+	extends IProfileFormImages,
+		IProfileFormPersonals,
+		IProfileFormSocials,
+		IProfileFormDescription {}
 
 export interface IProfileFormFieldProps<T extends FieldValues> {
 	register: UseFormRegister<T>;
@@ -39,6 +49,10 @@ const ProfileFormWindow = () => {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
+			<ProfileFormImages<IProfileFormInput>
+				register={register}
+				errors={errors}
+			/>
 			<ProfileFormPersonals<IProfileFormInput>
 				register={register}
 				errors={errors}
