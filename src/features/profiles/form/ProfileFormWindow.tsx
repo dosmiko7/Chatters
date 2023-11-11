@@ -1,6 +1,7 @@
 import { FieldErrors, FieldValues, SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
 import { Form } from "../../../ui/Form";
 import ProfileFormPersonals from "./ProfileFormPersonals";
+import ProfileFormSocials from "./ProfileFormSocials";
 
 interface IProfileFormPersonals {
 	name: string;
@@ -37,6 +38,10 @@ const ProfileFormWindow = () => {
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
 			<ProfileFormPersonals<IProfileFormInput>
+				register={register}
+				errors={errors}
+			/>
+			<ProfileFormSocials<IProfileFormInput>
 				register={register}
 				errors={errors}
 			/>
