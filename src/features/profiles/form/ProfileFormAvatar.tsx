@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BiPencil } from "react-icons/bi";
 
 import useFilePreview from "./useFilePreview";
-import { IProfileFormAvatarProps } from "./ProfileFormImages";
+import { IProfileFormImageProps } from "./ProfileFormImages";
 import { Wrapper } from "../../../ui/Wrapper";
 
 const EditorContainer = styled.div``;
@@ -15,10 +15,10 @@ const AvatarPreview = styled.img`
 `;
 
 const ProfileFormAvatar = <T extends FieldValues>(
-	props: IProfileFormAvatarProps<T> & { validation: (value: File[]) => true | string }
+	props: IProfileFormImageProps<T> & { validation: (value: File[]) => true | string }
 ) => {
-	const { register, errors, avatarWatcher, validation } = props;
-	const { imgSrc: avatarSrc } = useFilePreview(avatarWatcher);
+	const { register, errors, watcher, validation } = props;
+	const { imgSrc: avatarSrc } = useFilePreview(watcher);
 
 	// TODO: Instead default values get values from server
 	const currentAvatarSrc = avatarSrc || "/avatar-default.png";

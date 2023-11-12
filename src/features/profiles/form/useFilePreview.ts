@@ -5,8 +5,10 @@ const useFilePreview = (file: File[]) => {
 
 	useEffect(() => {
 		if (file && file[0]) {
-			const newUrl = URL.createObjectURL(file[0]);
-			setImgSrc(newUrl);
+			if (file[0].type === "image/jpeg" || file[0].type === "image/png") {
+				const newUrl = URL.createObjectURL(file[0]);
+				setImgSrc(newUrl);
+			}
 		}
 	}, [file]);
 

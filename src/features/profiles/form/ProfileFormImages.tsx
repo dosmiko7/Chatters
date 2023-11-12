@@ -16,29 +16,26 @@ interface IProfileFormImagesProps<T extends FieldValues> extends IProfileFormFie
 	backgroundWatcher: File[];
 }
 
-export interface IProfileFormAvatarProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
-	avatarWatcher: File[];
-}
-
-export interface IProfileFormBackgroundProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
-	backgroundWatcher: File[];
+export interface IProfileFormImageProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
+	watcher: File[];
 }
 
 const ProfileFormImages = <T extends FieldValues>(props: IProfileFormImagesProps<T>) => {
 	const { register, errors, avatarWatcher, backgroundWatcher } = props;
 
 	const fileValidation = (value: File[]) => {
-		const file = value[0];
+		if (value.length) {
+			const file = value[0];
+			const maxSizeInBytes = 1024 * 1024;
+			const allowedExtensions = ["jpg", "jpeg", "png"];
 
-		const maxSizeInBytes = 1024 * 1024;
-		const allowedExtensions = ["jpg", "jpeg", "png"];
+			if (!isFileExtensionValid(file.name, allowedExtensions)) {
+				return "Only JPG and PNG are allowed.";
+			}
 
-		if (!isFileExtensionValid(file.name, allowedExtensions)) {
-			return "Invalid file extension. Only JPG and PNG are allowed.";
-		}
-
-		if (file.size > maxSizeInBytes) {
-			return "File size should be less than 1 MB";
+			if (file.size > maxSizeInBytes) {
+				return "File size should be less than 1 MB";
+			}
 		}
 
 		return true;
@@ -49,13 +46,13 @@ const ProfileFormImages = <T extends FieldValues>(props: IProfileFormImagesProps
 			<ProfileFormAvatar<T>
 				register={register}
 				errors={errors}
-				avatarWatcher={avatarWatcher}
+				watcher={avatarWatcher}
 				validation={fileValidation}
 			/>
 			<ProfileFormBackground<T>
 				register={register}
 				errors={errors}
-				backgroundWatcher={backgroundWatcher}
+				watcher={backgroundWatcher}
 				validation={fileValidation}
 			/>
 		</StyledImages>
