@@ -1,12 +1,15 @@
 import { FieldValues, Path } from "react-hook-form";
 import styled from "styled-components";
-import { BiPencil } from "react-icons/bi";
 
 import useFilePreview from "./useFilePreview";
 import { IProfileFormImageProps } from "./ProfileFormImages";
 import { Wrapper } from "../../../ui/Wrapper";
+import Heading from "../../../ui/Heading";
+import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 
-const EditorContainer = styled.div``;
+const StyledContainer = styled(ContainerImageEditor)`
+	border-radius: var(--border-radius-md);
+`;
 
 const BackgroundPreview = styled.img`
 	width: 20rem;
@@ -25,10 +28,11 @@ const ProfileFormBackground = <T extends FieldValues>(
 
 	return (
 		<Wrapper>
-			<EditorContainer>
+			<Heading as="h3">Background</Heading>
+			<StyledContainer>
 				<BackgroundPreview src={currentBackgroundSrc} />
 				<label htmlFor="backgroundUpload">
-					<BiPencil />
+					<span>Edit</span>
 				</label>
 				<input
 					id="backgroundUpload"
@@ -38,7 +42,7 @@ const ProfileFormBackground = <T extends FieldValues>(
 					style={{ display: "none" }}
 					{...register("background" as Path<T>, { validate: validation })}
 				/>
-			</EditorContainer>
+			</StyledContainer>
 
 			{errors["background"] && <p>{errors["background"].message?.toString()}</p>}
 		</Wrapper>

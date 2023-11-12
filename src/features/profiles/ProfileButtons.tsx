@@ -5,6 +5,7 @@ import ProfileButtonMessage from "./ProfileButtonMessage";
 import ProfileFormModal from "./form/ProfileFormModal";
 
 const StyledButtons = styled.div`
+	margin-top: 1rem;
 	${flexRow};
 	gap: 1rem;
 `;

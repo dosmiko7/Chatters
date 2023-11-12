@@ -1,12 +1,15 @@
 import { FieldValues, Path } from "react-hook-form";
 import styled from "styled-components";
-import { BiPencil } from "react-icons/bi";
 
 import useFilePreview from "./useFilePreview";
 import { IProfileFormImageProps } from "./ProfileFormImages";
 import { Wrapper } from "../../../ui/Wrapper";
+import Heading from "../../../ui/Heading";
+import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 
-const EditorContainer = styled.div``;
+const StyledContainer = styled(ContainerImageEditor)`
+	border-radius: var(--border-radius-circle);
+`;
 
 const AvatarPreview = styled.img`
 	width: 12rem;
@@ -25,10 +28,11 @@ const ProfileFormAvatar = <T extends FieldValues>(
 
 	return (
 		<Wrapper>
-			<EditorContainer>
+			<Heading as="h3">Avatar</Heading>
+			<StyledContainer>
 				<AvatarPreview src={currentAvatarSrc} />
 				<label htmlFor="avatarUpload">
-					<BiPencil />
+					<span>Edit</span>
 				</label>
 				<input
 					id="avatarUpload"
@@ -38,7 +42,7 @@ const ProfileFormAvatar = <T extends FieldValues>(
 					style={{ display: "none" }}
 					{...register("avatar" as Path<T>, { validate: validation })}
 				/>
-			</EditorContainer>
+			</StyledContainer>
 
 			{errors["avatar"] && <p>{errors["avatar"].message?.toString()}</p>}
 		</Wrapper>
