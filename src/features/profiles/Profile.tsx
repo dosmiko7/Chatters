@@ -4,7 +4,6 @@ import useProfile from "./useProfile";
 import ProfileInformation from "./ProfileInformation";
 import ProfileFriends from "./ProfileFriends";
 import Spinner from "../../ui/Spinner";
-import ProfileFormModal from "./form/ProfileFormModal";
 
 const StyledProfile = styled.div`
 	position: relative;
@@ -12,13 +11,6 @@ const StyledProfile = styled.div`
 	grid-template-columns: 1fr 1fr;
 	height: 100%;
 	background-color: var(--color-primary-300);
-`;
-
-const Edit = styled.div`
-	position: absolute;
-	left: 0;
-	top: 0;
-	transform: translate(50%, 50%);
 `;
 
 // TODO: Add Pen button to edit information if it is our own profile
@@ -33,9 +25,6 @@ const Profile = () => {
 		<StyledProfile>
 			<ProfileInformation profileData={profileData} />
 			<ProfileFriends profileData={profileData} />
-			<Edit>
-				<ProfileFormModal />
-			</Edit>
 		</StyledProfile>
 	);
 };

@@ -5,7 +5,7 @@ import { BiUserPlus } from "react-icons/bi";
 import ButtonProfile from "../../ui/ButtonProfile";
 
 // TODO: Logic for adding friends
-const ProfileAdd = () => {
+const ProfileButtonAdd = () => {
 	// const { data } = useLoggedUser();
 	// const { userId } = useParams();
 
@@ -19,4 +19,4 @@ const ProfileAdd = () => {
 	);
 };
 
-export default ProfileAdd;
+export default ProfileButtonAdd;
