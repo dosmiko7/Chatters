@@ -12,19 +12,19 @@ const StyledImages = styled.div`
 	justify-content: space-between;
 `;
 interface IProfileFormImagesProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
-	avatarWatcher: File[];
-	backgroundWatcher: File[];
+	avatarWatcher: File[] | null;
+	backgroundWatcher: File[] | null;
 }
 
 export interface IProfileFormImageProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
-	watcher: File[];
+	watcher: File[] | null;
 }
 
 const ProfileFormImages = <T extends FieldValues>(props: IProfileFormImagesProps<T>) => {
 	const { register, errors, avatarWatcher, backgroundWatcher } = props;
 
-	const fileValidation = (value: File[]) => {
-		if (value.length) {
+	const fileValidation = (value: File[] | null) => {
+		if (value?.length) {
 			const file = value[0];
 			const maxSizeInBytes = 1024 * 1024;
 			const allowedExtensions = ["jpg", "jpeg", "png"];

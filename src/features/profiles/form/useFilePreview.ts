@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useFilePreview = (file: File[]) => {
-	const [imgSrc, setImgSrc] = useState<string>("");
+const useFilePreview = (file: File[] | null) => {
+	const [imgSrc, setImgSrc] = useState<string | null>("");
 
 	useEffect(() => {
 		if (file && file[0]) {
@@ -9,7 +9,7 @@ const useFilePreview = (file: File[]) => {
 				const newUrl = URL.createObjectURL(file[0]);
 				setImgSrc(newUrl);
 			}
-		}
+		} else setImgSrc(null);
 	}, [file]);
 
 	return { imgSrc };

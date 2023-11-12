@@ -13,11 +13,25 @@ export const Button = styled.button<ButtonProps>`
 	background-color: var(--color-secondary-400);
 	font-weight: var(--font-weight-medium);
 
+	&:hover {
+		background-color: var(--color-secondary-100);
+	}
+
 	${(props) =>
 		props.variant === "menu" &&
 		css`
 			${flexCentered};
 			background-color: transparent;
+		`}
+
+	${(props) =>
+		props.variant === "danger" &&
+		css`
+			background-color: var(--color-red-100);
+
+			&:hover {
+				background-color: var(--color-red-200);
+			}
 		`}
 
 	${(props) =>
@@ -40,8 +54,4 @@ export const Button = styled.button<ButtonProps>`
 		`}
 		
 	transition: var(--transition-all-3);
-
-	&:hover {
-		background-color: var(--color-secondary-100);
-	}
 `;

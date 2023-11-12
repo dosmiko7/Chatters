@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
             --color-purple-100: #7752FE;
 
             --color-red-100: #b91c1c;
+            --color-red-200: #c74949;
 
             --font-weight-light: 300;
             --font-weight-regular: 400;

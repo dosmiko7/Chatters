@@ -5,10 +5,10 @@ import ProfileFormPersonals from "./ProfileFormPersonals";
 import ProfileFormSocials from "./ProfileFormSocials";
 import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
-import { Button } from "../../../ui/Button";
+import ProfileFormButtons from "./ProfileFormButtons";
 
 interface IProfileFormImages {
-	avatar: File[];
+	avatar: File[] | null;
 	background: File[];
 }
 
@@ -44,6 +44,7 @@ const ProfileForm = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		watch,
 		formState: { errors },
 	} = useForm<IProfileFormInput>({ mode: "all" });
@@ -73,7 +74,7 @@ const ProfileForm = () => {
 				register={register}
 				errors={errors}
 			/>
-			<Button type="submit">Submit</Button>
+			<ProfileFormButtons reset={reset} />
 		</Form>
 	);
 };

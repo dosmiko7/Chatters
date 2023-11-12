@@ -14,12 +14,15 @@ const ContainerImageEditor = styled.div`
 		display: none;
 	}
 
-	&:hover img {
-		filter: blur(2px);
-	}
+	&:hover {
+		& img {
+			filter: blur(2px);
+		}
 
-	&:hover label {
-		display: block;
+		& label {
+			display: block;
+			cursor: pointer;
+		}
 	}
 `;
 
