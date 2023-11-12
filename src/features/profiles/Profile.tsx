@@ -4,7 +4,7 @@ import useProfile from "./useProfile";
 import ProfileInformation from "./ProfileInformation";
 import ProfileFriends from "./ProfileFriends";
 import Spinner from "../../ui/Spinner";
-import ProfileForm from "./form/ProfileForm";
+import ProfileFormModal from "./form/ProfileFormModal";
 
 const StyledProfile = styled.div`
 	position: relative;
@@ -34,7 +34,7 @@ const Profile = () => {
 			<ProfileInformation profileData={profileData} />
 			<ProfileFriends profileData={profileData} />
 			<Edit>
-				<ProfileForm />
+				<ProfileFormModal />
 			</Edit>
 		</StyledProfile>
 	);

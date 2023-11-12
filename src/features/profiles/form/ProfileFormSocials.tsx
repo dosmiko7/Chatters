@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
 import { FieldValues, Path } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
-import { IProfileFormFieldProps } from "./ProfileFormWindow";
+import { IProfileFormFieldProps } from "./ProfileForm";
 import { flexColumn } from "../../../style/Templates";
 import InputProfileForm from "../../../ui/InputProfileForm";
 

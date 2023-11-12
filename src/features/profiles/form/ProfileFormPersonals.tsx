@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FieldValues, Path } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
-import { IProfileFormFieldProps } from "./ProfileFormWindow";
+import { IProfileFormFieldProps } from "./ProfileForm";
 import { Wrapper } from "../../../ui/Wrapper";
 import InputProfileForm from "../../../ui/InputProfileForm";
 

@@ -1,6 +1,6 @@
 import { FieldValues, Path } from "react-hook-form";
 
-import { IProfileFormFieldProps } from "./ProfileFormWindow";
+import { IProfileFormFieldProps } from "./ProfileForm";
 import styled from "styled-components";
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";

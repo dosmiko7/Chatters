@@ -1,7 +1,7 @@
 import { FieldValues } from "react-hook-form";
 import styled from "styled-components";
 
-import { IProfileFormFieldProps } from "./ProfileFormWindow";
+import { IProfileFormFieldProps } from "./ProfileForm";
 import { flexRow } from "../../../style/Templates";
 import isFileExtensionValid from "../../../utils/isFileExtensionValid";
 import ProfileFormAvatar from "./ProfileFormAvatar";
