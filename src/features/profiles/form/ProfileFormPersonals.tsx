@@ -21,13 +21,25 @@ const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldPro
 
 	const nameValidation = {
 		pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
-		minLength: { value: 1, message: "The name should consist of at least 1 character" },
+		minLength: { value: 1, message: "At least 1 character" },
 		maxLength: { value: 20, message: "No more than 20 characters" },
 	};
 
 	return (
 		<StyledPersonals>
 			<Heading as="h3">Personals</Heading>
+			<Wrapper>
+				<InputProfileForm
+					type="text"
+					placeholder="Nickname"
+					{...register("nickname" as Path<T>, {
+						pattern: { value: /^[a-zA-Z0-9 ]+$/, message: "Special characters are not allowed" },
+						minLength: { value: 5, message: "At least 5 characters" },
+						maxLength: { value: 20, message: "No more than 20 characters" },
+					})}
+				/>
+				{errors["nickname"] && <p>{errors["nickname"].message?.toString()}</p>}
+			</Wrapper>
 			<Grid>
 				<Wrapper>
 					<InputProfileForm
@@ -60,7 +72,7 @@ const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldPro
 						placeholder="City"
 						{...register("city" as Path<T>, {
 							pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
-							minLength: { value: 1, message: "The city should consist of at least 1 character" },
+							minLength: { value: 1, message: "At least 1 character" },
 							maxLength: { value: 100, message: "No more than 100 characters" },
 						})}
 					/>

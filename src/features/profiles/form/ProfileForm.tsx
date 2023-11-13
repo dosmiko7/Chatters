@@ -6,13 +6,15 @@ import ProfileFormSocials from "./ProfileFormSocials";
 import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
 import ProfileFormButtons from "./ProfileFormButtons";
+import { updateUser } from "../../../services/firestore";
 
 interface IProfileFormImages {
 	avatar: File[] | null;
-	background: File[];
+	background: File[] | null;
 }
 
 interface IProfileFormPersonals {
+	nickname: string;
 	name: string;
 	surname: string;
 	city: string;
@@ -29,7 +31,7 @@ interface IProfileFormDescription {
 	description: string;
 }
 
-interface IProfileFormInput
+export interface IProfileFormInput
 	extends IProfileFormImages,
 		IProfileFormPersonals,
 		IProfileFormSocials,
@@ -52,7 +54,14 @@ const ProfileForm = () => {
 	const avatarWatch = watch("avatar");
 	const backgroundWatch = watch("background");
 
-	const onSubmit: SubmitHandler<IProfileFormInput> = (data) => console.log(data);
+	const onSubmit: SubmitHandler<IProfileFormInput> = (data: IProfileFormInput) => {
+		const avatarData = data.avatar?.length ? data.avatar : null;
+		const backgroundData = data.background?.length ? data.background : null;
+
+		const updatedData = { ...data, avatar: avatarData, background: backgroundData };
+
+		updateUser({ data: updatedData, userID: "updateTest" });
+	};
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
