@@ -10,6 +10,7 @@ import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
 import ProfileFormButtons from "./ProfileFormButtons";
 import { flexCentered } from "../../../style/Templates";
+import ThreeDots from "../../../ui/ThreeDots";
 
 const StatusContainer = styled.div`
 	position: absolute;
@@ -17,8 +18,6 @@ const StatusContainer = styled.div`
 	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	color: var(--color-white-100);
-	border-radius: var(--border-radius-circle);
 	font-size: 2.2rem;
 `;
 
@@ -99,9 +98,11 @@ const ProfileForm = () => {
 				errors={errors}
 			/>
 			<ProfileFormButtons reset={reset} />
+
 			<StatusContainer>
-				{status === "success" && <FaCheck />}
-				{status === "error" && <FaCircleXmark />}
+				{status === "success" && <FaCheck style={{ color: "var(--color-green-100)" }} />}
+				{status === "pending" && <ThreeDots />}
+				{status === "error" && <FaCircleXmark style={{ color: "var(--color-red-100)" }} />}
 			</StatusContainer>
 		</Form>
 	);
