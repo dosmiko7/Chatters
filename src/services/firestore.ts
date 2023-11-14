@@ -68,11 +68,11 @@ export const updateUser = async ({ data, userID }: { data: IProfileFormInput; us
 		Object.entries(data).filter(([, value]) => value !== undefined && value !== null && value !== "")
 	);
 
-	if (filteredData.avatar[0]) {
+	if (filteredData.avatar) {
 		await uploadAvatar({ avatarFile: filteredData.avatar[0], userID });
 		await getImageURL(`avatars/avatar_${userID}.png`).then((url) => (filteredData.avatar = url));
 	}
-	if (filteredData.background[0]) {
+	if (filteredData.background) {
 		await uploadBackground({ backgroundFile: filteredData.background[0], userID });
 		await getImageURL(`backgrounds/background_${userID}.png`).then((url) => (filteredData.background = url));
 	}

@@ -16,9 +16,10 @@ const GlobalStyles = createGlobalStyle`
             --color-secondary-200: #005b41;
             --color-secondary-300: #00513a;
             --color-secondary-400: #004834;
-
-            --color-purple-100: #7752FE;
-
+            
+            --color-white-100: #fff;
+            --color-purple-100: #7752fe;
+            --color-green-100: #006600;
             --color-red-100: #b91c1c;
             --color-red-200: #c74949;
 

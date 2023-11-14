@@ -1,12 +1,26 @@
 import { FieldErrors, FieldValues, SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
+import styled from "styled-components";
+import { FaCheck, FaCircleXmark } from "react-icons/fa6";
 
+import useProfileFormSubmit from "./useProfileFormSubmit";
 import { Form } from "../../../ui/Form";
 import ProfileFormPersonals from "./ProfileFormPersonals";
 import ProfileFormSocials from "./ProfileFormSocials";
 import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
 import ProfileFormButtons from "./ProfileFormButtons";
-import { updateUser } from "../../../services/firestore";
+import { flexCentered } from "../../../style/Templates";
+
+const StatusContainer = styled.div`
+	position: absolute;
+	${flexCentered}
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--color-white-100);
+	border-radius: var(--border-radius-circle);
+	font-size: 2.2rem;
+`;
 
 interface IProfileFormImages {
 	avatar: File[] | null;
@@ -50,6 +64,7 @@ const ProfileForm = () => {
 		watch,
 		formState: { errors },
 	} = useForm<IProfileFormInput>({ mode: "all" });
+	const { submit, status } = useProfileFormSubmit();
 
 	const avatarWatch = watch("avatar");
 	const backgroundWatch = watch("background");
@@ -60,7 +75,7 @@ const ProfileForm = () => {
 
 		const updatedData = { ...data, avatar: avatarData, background: backgroundData };
 
-		updateUser({ data: updatedData, userID: "updateTest" });
+		submit({ data: updatedData, userID: "updateTest" });
 	};
 
 	return (
@@ -84,6 +99,10 @@ const ProfileForm = () => {
 				errors={errors}
 			/>
 			<ProfileFormButtons reset={reset} />
+			<StatusContainer>
+				{status === "success" && <FaCheck />}
+				{status === "error" && <FaCircleXmark />}
+			</StatusContainer>
 		</Form>
 	);
 };
