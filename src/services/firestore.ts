@@ -1,6 +1,8 @@
-import { doc, setDoc, getDocs, collection, query, where, or, getDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, getDocs, collection, query, where, or, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
+import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
+import { getImageURL, uploadAvatar, uploadBackground } from "./storage";
 
 export interface IFriend {
 	friendID: string;
@@ -56,6 +58,28 @@ export const addUser = async (user: User) => {
 		.catch((error) => {
 			throw error;
 		});
+};
+
+// TODO: Use it in custom hook to provide result to user (Toast)
+export const updateUser = async ({ data, userID }: { data: IProfileFormInput; userID: string }): Promise<void> => {
+	const userRef = doc(firestore, "users", `${userID}`);
+
+	const filteredData = Object.fromEntries(
+		Object.entries(data).filter(([, value]) => value !== undefined && value !== null && value !== "")
+	);
+
+	if (filteredData.avatar[0]) {
+		await uploadAvatar({ avatarFile: filteredData.avatar[0], userID });
+		await getImageURL(`avatars/avatar_${userID}.png`).then((url) => (filteredData.avatar = url));
+	}
+	if (filteredData.background[0]) {
+		await uploadBackground({ backgroundFile: filteredData.background[0], userID });
+		await getImageURL(`backgrounds/background_${userID}.png`).then((url) => (filteredData.background = url));
+	}
+
+	if (Object.keys(filteredData).length > 0) {
+		await updateDoc(userRef, filteredData);
+	}
 };
 
 export const findUsers = async (key: string): Promise<IDocumentData[]> => {
