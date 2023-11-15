@@ -7,25 +7,28 @@ import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
 import { IFormattedFriend } from "../../utils/formatFriendsList";
 
-const StyledListElement = styled(ListElement)`
+interface IStatus {
+	status: "active" | "nonActive";
+}
+
+const StyledListElement = styled(ListElement)<IStatus>`
+	position: relative;
+
 	&:hover {
 		background-color: var(--color-primary-300);
 	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 3px;
+		height: 80%;
+		background-color: ${(props) => (props.status === "active" ? "var(--color-green-100)" : "transparent")};
+	}
 `;
-
-interface IAvatar {
-	status?: string;
-}
-
-const StyledAvatar = styled(Avatar)<IAvatar>`
-	border: 1px solid transparent;
-	${(props) =>
-		props.status === "active" &&
-		css`
-			border: 1px solid var(--color-green-100);
-		`}
-`;
-
 interface IBox {
 	newMessege?: boolean;
 }
@@ -63,12 +66,15 @@ interface IPrivChatEl extends IFormattedFriend {
 // TODO: Displaying last message. If it is not readen - color: white
 const PrivateChatsElement = (props: IPrivChatEl) => {
 	const { onClickHandler, nickname, avatar, lastMessage, status } = props;
+
 	return (
-		<StyledListElement onClick={onClickHandler}>
-			<StyledAvatar
+		<StyledListElement
+			onClick={onClickHandler}
+			status={status}
+		>
+			<Avatar
 				src={avatar}
 				width="4rem"
-				status={status}
 			/>
 			<Box>
 				<Heading as="h4">{nickname}</Heading>
