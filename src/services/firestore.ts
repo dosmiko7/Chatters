@@ -30,6 +30,8 @@ export interface IUserData {
 		linkedin?: string;
 		twitter?: string;
 	};
+	lastLoggedIn?: Timestamp;
+	lastLoggedOut?: Timestamp;
 }
 
 export interface IDocumentData {
@@ -37,6 +39,8 @@ export interface IDocumentData {
 	data: IUserData;
 }
 
+// TODO: update lastLoggedIn when user is login
+// TODO: update lastLoggedOut when user in logout (also automatically)
 export const addUser = async (user: User) => {
 	const defaultData: IUserData = {
 		nickname: user.email || "",
@@ -60,7 +64,6 @@ export const addUser = async (user: User) => {
 		});
 };
 
-// TODO: Use it in custom hook to provide result to user (Toast)
 export const updateUser = async ({ data, userID }: { data: IProfileFormInput; userID: string }): Promise<void> => {
 	const userRef = doc(firestore, "users", `${userID}`);
 
@@ -103,4 +106,13 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	} else {
 		throw new Error("User with such id doesnt exist");
 	}
+};
+
+export const getFriendsList = async (userID: string | undefined) => {
+	if (!userID) throw new Error("There is no userID for getting his friends list");
+	const userData = await getUser(userID);
+
+	const friendsList = userData.data.friends_list;
+
+	return friendsList;
 };
