@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./ui/Dashboard";
 import Profile from "./features/profiles/Profile";
+import Chat from "./features/chats/Chat";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -44,6 +45,10 @@ const App = () => {
 						<Route
 							path="profile/:userId"
 							element={<Profile />}
+						/>
+						<Route
+							path="chat/:userId"
+							element={<Chat />}
 						/>
 					</Route>
 					<Route

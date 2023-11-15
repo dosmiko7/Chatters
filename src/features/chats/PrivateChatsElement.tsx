@@ -5,6 +5,7 @@ import { Wrapper } from "../../ui/Wrapper";
 import { flexColumn } from "../../style/Templates";
 import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
+import { IFormattedFriend } from "../../utils/formatFriendsList";
 
 const StyledListElement = styled(ListElement)`
 	&:hover {
@@ -13,26 +14,20 @@ const StyledListElement = styled(ListElement)`
 `;
 
 interface IAvatar {
-	status: string;
+	status?: string;
 }
 
 const StyledAvatar = styled(Avatar)<IAvatar>`
 	border: 1px solid transparent;
 	${(props) =>
-		props.status === "read" &&
+		props.status === "active" &&
 		css`
-			border: 1px solid var(--color-secondary-100);
-		`}
-
-	${(props) =>
-		props.status === "unread" &&
-		css`
-			border: 1px solid var(--color-secondary-100);
+			border: 1px solid var(--color-green-100);
 		`}
 `;
 
 interface IBox {
-	newMessege: boolean;
+	newMessege?: boolean;
 }
 
 const Box = styled(Wrapper)<IBox>`
@@ -61,28 +56,23 @@ const Message = styled.p`
 	text-overflow: ellipsis;
 `;
 
-export interface IPrivChatEl {
+interface IPrivChatEl extends IFormattedFriend {
 	onClickHandler: () => void;
-	nickname: string;
-	avatar?: string;
-	status: string;
-	lastMessege: string;
-	newMessege: boolean;
 }
 
 // TODO: Displaying last message. If it is not readen - color: white
 const PrivateChatsElement = (props: IPrivChatEl) => {
-	const { onClickHandler, nickname, avatar, status, lastMessege = "", newMessege } = props;
+	const { onClickHandler, nickname, avatar, lastMessage, status } = props;
 	return (
 		<StyledListElement onClick={onClickHandler}>
 			<StyledAvatar
 				src={avatar}
-				status={status}
 				width="4rem"
+				status={status}
 			/>
-			<Box newMessege={newMessege}>
+			<Box>
 				<Heading as="h4">{nickname}</Heading>
-				<Message>{lastMessege}</Message>
+				<Message>{lastMessage}</Message>
 			</Box>
 		</StyledListElement>
 	);

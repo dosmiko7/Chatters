@@ -55,6 +55,7 @@ export interface IProfileFormFieldProps<T extends FieldValues> {
 	errors: FieldErrors<T>;
 }
 
+// TODO: Get profile's (so current, cuz other way we should not edit profile) userID from Query
 const ProfileForm = () => {
 	const {
 		register,

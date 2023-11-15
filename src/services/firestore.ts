@@ -3,6 +3,7 @@ import { firestore } from "../firebase";
 import { User } from "firebase/auth";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 import { getImageURL, uploadAvatar, uploadBackground } from "./storage";
+import formatFriendList, { IFormattedFriend } from "../utils/formatFriendsList";
 
 export interface IFriend {
 	friendID: string;
@@ -108,11 +109,13 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	}
 };
 
-export const getFriendsList = async (userID: string | undefined) => {
+export const getFriendsList = async (userID: string | undefined): Promise<IFormattedFriend[]> => {
 	if (!userID) throw new Error("There is no userID for getting his friends list");
-	const userData = await getUser(userID);
 
+	const userData = await getUser(userID);
 	const friendsList = userData.data.friends_list;
 
-	return friendsList;
+	const formattedUserFriendList = await formatFriendList({ friendsList, currentUserID: userID });
+
+	return formattedUserFriendList;
 };

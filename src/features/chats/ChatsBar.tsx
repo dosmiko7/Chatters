@@ -4,18 +4,18 @@ import Heading from "../../ui/Heading";
 import SearchBar from "../../ui/SearchBar";
 import PrivatesChatsContainer from "./PrivatesChatsContainer";
 
-const StyledChats = styled(Container)`
+const StyledChatsBar = styled(Container)`
 	max-width: 100%;
 `;
 
-const Chats = () => {
+const ChatsBar = () => {
 	return (
-		<StyledChats>
+		<StyledChatsBar>
 			<Heading as="h2">Chats</Heading>
 			<SearchBar />
 			<PrivatesChatsContainer />
-		</StyledChats>
+		</StyledChatsBar>
 	);
 };
 
-export default Chats;
+export default ChatsBar;

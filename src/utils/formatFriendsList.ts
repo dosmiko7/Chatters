@@ -1,50 +1,50 @@
 import { IFriend, getUser } from "../services/firestore";
 
-interface IFormattedFriends {
+export interface IFormattedFriend {
 	id: string;
 	avatar: string;
 	nickname: string;
-	status: string;
+	status: "active" | "nonActive";
 	lastMessage: string;
 }
 
-const formatFriendList = ({
+const formatFriendList = async ({
 	friendsList,
 	currentUserID,
 }: {
 	friendsList: IFriend[];
 	currentUserID: string;
-}): IFormattedFriends[] => {
-	const formattedUserFriendList: IFormattedFriends[] = [];
+}): Promise<IFormattedFriend[]> => {
+	const formattedUserFriendList: IFormattedFriend[] = await Promise.all(
+		friendsList.map(async (userFriend) => {
+			const userFriendData = await getUser(userFriend.friendID);
+			const lastUserToFriendMessage = userFriend.messages[userFriend.messages.length - 1];
+			const friendToUser = userFriendData.data.friends_list.find((obj) => obj.friendID === currentUserID);
+			const lastFriendToUserMessage = friendToUser?.messages[friendToUser?.messages.length - 1];
+			let lastMessage = lastUserToFriendMessage.message;
 
-	friendsList.forEach(async (userFriend) => {
-		const userFriendData = await getUser(userFriend.friendID);
-		const lastUserToFriendMessage = userFriend.messages[userFriend.messages.length - 1];
-		const friendToUser = userFriendData.data.friends_list.find((obj) => obj.friendID === currentUserID);
-		const lastFriendToUserMessage = friendToUser?.messages[friendToUser?.messages.length - 1];
+			if (lastFriendToUserMessage) {
+				lastMessage =
+					lastUserToFriendMessage.created_at.seconds > lastFriendToUserMessage.created_at.seconds
+						? lastUserToFriendMessage.message
+						: lastFriendToUserMessage.message;
+			}
 
-		let lastMessage = "to: " + lastUserToFriendMessage.message;
-		if (lastFriendToUserMessage) {
-			lastMessage =
-				lastUserToFriendMessage.created_at.seconds > lastFriendToUserMessage?.created_at.seconds
-					? "to: " + lastUserToFriendMessage.message
-					: "from: " + lastFriendToUserMessage.message;
-		}
+			let status: "active" | "nonActive" = "nonActive";
+			if (userFriendData.data.lastLoggedIn && userFriendData.data.lastLoggedOut) {
+				status =
+					userFriendData.data.lastLoggedIn.seconds > userFriendData.data.lastLoggedOut.seconds ? "active" : "nonActive";
+			}
 
-		let status = "unavailable";
-		if (userFriendData.data.lastLoggedIn && userFriendData.data.lastLoggedOut) {
-			status =
-				userFriendData.data.lastLoggedIn.seconds > userFriendData.data.lastLoggedOut.seconds ? "active" : "unavailable";
-		}
-
-		formattedUserFriendList.push({
-			id: userFriendData.id,
-			avatar: userFriendData.data.avatar,
-			nickname: userFriendData.data.nickname,
-			status: status,
-			lastMessage: lastMessage,
-		});
-	});
+			return {
+				id: userFriendData.id,
+				avatar: userFriendData.data.avatar,
+				nickname: userFriendData.data.nickname,
+				status: status,
+				lastMessage: lastMessage,
+			};
+		})
+	);
 
 	return formattedUserFriendList;
 };
