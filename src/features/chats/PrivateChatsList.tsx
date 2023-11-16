@@ -16,7 +16,6 @@ export interface IUserProps {
 	newMessege: boolean;
 }
 
-// TODO: Chats should be sorted descending by date
 // TODO: Get private chats from server
 const PrivateChatsList = () => {
 	const navigate = useNavigate();
@@ -27,12 +26,13 @@ const PrivateChatsList = () => {
 
 	return (
 		<List<IFormattedFriend>
-			data={friendsList}
+			data={friendsList.sort((a, b) => a.dateOfLastMessage - b.dateOfLastMessage)}
 			render={(friend: IFormattedFriend) => {
 				return (
 					<PrivateChatsElement
 						onClickHandler={() => navigate(`chat/${friend.id}`)}
 						id={friend.id}
+						dateOfLastMessage={friend.dateOfLastMessage}
 						key={friend.id}
 						nickname={friend.nickname}
 						avatar={friend.avatar}

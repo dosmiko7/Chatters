@@ -6,6 +6,7 @@ export interface IFormattedFriend {
 	nickname: string;
 	status: "active" | "nonActive";
 	lastMessage: string;
+	dateOfLastMessage: number;
 }
 
 const formatFriendList = async ({
@@ -22,12 +23,13 @@ const formatFriendList = async ({
 			const friendToUser = userFriendData.data.friends_list.find((obj) => obj.friendID === currentUserID);
 			const lastFriendToUserMessage = friendToUser?.messages[friendToUser?.messages.length - 1];
 			let lastMessage = lastUserToFriendMessage.message;
+			let dateOfLastMessage = lastUserToFriendMessage.created_at.seconds;
 
 			if (lastFriendToUserMessage) {
-				lastMessage =
-					lastUserToFriendMessage.created_at.seconds > lastFriendToUserMessage.created_at.seconds
-						? lastUserToFriendMessage.message
-						: lastFriendToUserMessage.message;
+				if (lastFriendToUserMessage.created_at.seconds > lastUserToFriendMessage.created_at.seconds) {
+					lastMessage = lastFriendToUserMessage.message;
+					dateOfLastMessage = lastFriendToUserMessage.created_at.seconds;
+				}
 			}
 
 			let status: "active" | "nonActive" = "nonActive";
@@ -42,6 +44,7 @@ const formatFriendList = async ({
 				nickname: userFriendData.data.nickname,
 				status: status,
 				lastMessage: lastMessage,
+				dateOfLastMessage: dateOfLastMessage,
 			};
 		})
 	);
