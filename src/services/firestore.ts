@@ -109,13 +109,18 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	}
 };
 
-export const getFriendsList = async (userID: string | undefined): Promise<IFormattedFriend[]> => {
-	if (!userID) throw new Error("There is no userID for getting his friends list");
+export const getFriendsList = async (userId: string | undefined): Promise<IFriend[]> => {
+	if (!userId) throw new Error("There is no userID for getting his friends list");
 
-	const userData = await getUser(userID);
+	const userData = await getUser(userId);
 	const friendsList = userData.data.friends_list;
 
-	const formattedUserFriendList = await formatFriendList({ friendsList, currentUserID: userID });
+	return friendsList;
+};
+
+export const getFormattedFriendsList = async (userId: string): Promise<IFormattedFriend[]> => {
+	const friendsList = await getFriendsList(userId);
+	const formattedUserFriendList = await formatFriendList({ friendsList, currentUserID: userId });
 
 	return formattedUserFriendList;
 };
