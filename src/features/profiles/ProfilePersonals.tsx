@@ -17,6 +17,7 @@ const Personal = styled.div`
 `;
 const PersonalInfo = styled.span`
 	padding-left: var(--padding-xsm);
+	margin-bottom: 0.6rem;
 `;
 
 interface IPersonals {
