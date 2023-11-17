@@ -74,7 +74,7 @@ const PrivateChatsElement = (props: IPrivChatEl) => {
 		>
 			<Avatar
 				src={avatar}
-				width="4rem"
+				size="4rem"
 			/>
 			<Box>
 				<Heading as="h4">{nickname}</Heading>

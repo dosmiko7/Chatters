@@ -26,6 +26,8 @@ const Main = styled.div<IBackground>`
 	position: relative;
 	background-image: linear-gradient(170deg, transparent 0%, transparent 40%, var(--color-primary-300) 47%),
 		url(${(props) => props.src});
+	background-size: contain;
+	background-repeat: no-repeat;
 `;
 
 const Row = styled.div`
@@ -48,7 +50,7 @@ const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => 
 		<StyledProfileInformation>
 			<Main src={background}>
 				<Avatar
-					width="12rem"
+					size="12rem"
 					src={avatar}
 				/>
 				<Heading as="h2">{nickname}</Heading>
