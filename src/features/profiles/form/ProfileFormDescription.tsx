@@ -1,6 +1,5 @@
-import { FieldValues, Path } from "react-hook-form";
+import { get, useFormContext } from "react-hook-form";
 
-import { IProfileFormFieldProps } from "./ProfileForm";
 import styled from "styled-components";
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
@@ -11,8 +10,8 @@ const InputDescription = styled(InputProfileForm).attrs({
 	as: "textarea",
 })``;
 
-const ProfileFormDescription = <T extends FieldValues>(props: IProfileFormFieldProps<T>) => {
-	const { register, errors } = props;
+const ProfileFormDescription = () => {
+	const { register, formState } = useFormContext();
 
 	const descrValidation = {
 		maxLength: { value: 700, message: "No more than 700 characters" },
@@ -24,9 +23,9 @@ const ProfileFormDescription = <T extends FieldValues>(props: IProfileFormFieldP
 			<InputDescription
 				type="text"
 				placeholder="Description"
-				{...register("description" as Path<T>, descrValidation)}
+				{...register("description", descrValidation)}
 			/>
-			{errors["description"] && <p>{errors["description"].message?.toString()}</p>}
+			{formState.errors["description"] && <p>{get(formState.errors, "description").message}</p>}
 		</StyledDescription>
 	);
 };

@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
-import { formatDate } from "../../utils/formatDate";
-import { Timestamp } from "firebase/firestore";
 
 const StyledPersonals = styled.div`
 	${flexColumn};
@@ -25,14 +23,13 @@ interface IPersonals {
 	personals: {
 		name?: string;
 		surname?: string;
-		birthday?: Timestamp;
+		birthday?: string;
 		city?: string;
 	};
 }
 
 const ProfilePersonals = ({ personals }: IPersonals) => {
 	const { name, surname, birthday, city } = personals;
-	const formattedBirthday = birthday ? formatDate(birthday) : undefined;
 
 	const noPersonals = <div>No personal details</div>;
 	const hasPersonals = (
@@ -49,10 +46,10 @@ const ProfilePersonals = ({ personals }: IPersonals) => {
 					<PersonalInfo>{surname}</PersonalInfo>
 				</Personal>
 			)}
-			{formattedBirthday && (
+			{birthday && (
 				<Personal>
 					<Heading as="h3">Birthday: </Heading>
-					<PersonalInfo>{formattedBirthday}</PersonalInfo>
+					<PersonalInfo>{birthday}</PersonalInfo>
 				</Personal>
 			)}
 			{city && (

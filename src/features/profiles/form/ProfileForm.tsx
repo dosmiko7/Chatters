@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues, SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import styled from "styled-components";
 import { FaCheck, FaCircleXmark } from "react-icons/fa6";
 
@@ -28,16 +28,20 @@ interface IProfileFormImages {
 
 interface IProfileFormPersonals {
 	nickname: string;
-	name: string;
-	surname: string;
-	city: string;
-	birthday: Date;
+	personals: {
+		name: string;
+		surname: string;
+		city: string;
+		birthday: Date;
+	};
 }
 
 interface IProfileFormSocials {
-	linkedin: string;
-	github: string;
-	twitter: string;
+	socials: {
+		linkedin: string;
+		github: string;
+		twitter: string;
+	};
 }
 
 interface IProfileFormDescription {
@@ -50,62 +54,43 @@ export interface IProfileFormInput
 		IProfileFormSocials,
 		IProfileFormDescription {}
 
-export interface IProfileFormFieldProps<T extends FieldValues> {
-	register: UseFormRegister<T>;
-	errors: FieldErrors<T>;
-}
-
 // TODO: Get profile's (so current, cuz other way we should not edit profile) userID from Query
 const ProfileForm = () => {
-	const {
-		register,
-		handleSubmit,
-		reset,
-		watch,
-		formState: { errors },
-	} = useForm<IProfileFormInput>({ mode: "all" });
+	const methods = useForm<IProfileFormInput>({ mode: "all" });
+	const { handleSubmit, reset, watch } = methods;
+
 	const { submit, status } = useProfileFormSubmit();
 
 	const avatarWatch = watch("avatar");
 	const backgroundWatch = watch("background");
 
-	const onSubmit: SubmitHandler<IProfileFormInput> = (data: IProfileFormInput) => {
-		const avatarData = data.avatar?.length ? data.avatar : null;
-		const backgroundData = data.background?.length ? data.background : null;
+	const onSubmit: SubmitHandler<IProfileFormInput> = (input: IProfileFormInput) => {
+		const avatarData = input.avatar?.length ? input.avatar : null;
+		const backgroundData = input.background?.length ? input.background : null;
 
-		const updatedData = { ...data, avatar: avatarData, background: backgroundData };
+		const correctedInput = { ...input, avatar: avatarData, background: backgroundData };
 
-		submit({ data: updatedData, userID: "updateTest" });
+		submit(correctedInput);
 	};
 
 	return (
-		<Form onSubmit={handleSubmit(onSubmit)}>
-			<ProfileFormImages<IProfileFormInput>
-				register={register}
-				errors={errors}
-				avatarWatcher={avatarWatch}
-				backgroundWatcher={backgroundWatch}
-			/>
-			<ProfileFormPersonals<IProfileFormInput>
-				register={register}
-				errors={errors}
-			/>
-			<ProfileFormSocials<IProfileFormInput>
-				register={register}
-				errors={errors}
-			/>
-			<ProfileFormDescription
-				register={register}
-				errors={errors}
-			/>
-			<ProfileFormButtons reset={reset} />
-
-			<StatusContainer>
-				{status === "success" && <FaCheck style={{ color: "var(--color-green-100)" }} />}
-				{status === "pending" && <ThreeDots />}
-				{status === "error" && <FaCircleXmark style={{ color: "var(--color-red-100)" }} />}
-			</StatusContainer>
-		</Form>
+		<FormProvider {...methods}>
+			<Form onSubmit={handleSubmit(onSubmit)}>
+				<ProfileFormImages
+					avatarWatcher={avatarWatch}
+					backgroundWatcher={backgroundWatch}
+				/>
+				<ProfileFormPersonals />
+				<ProfileFormSocials />
+				<ProfileFormDescription />
+				<ProfileFormButtons reset={reset} />
+				<StatusContainer>
+					{status === "success" && <FaCheck style={{ color: "var(--color-green-100)" }} />}
+					{status === "pending" && <ThreeDots />}
+					{status === "error" && <FaCircleXmark style={{ color: "var(--color-red-100)" }} />}
+				</StatusContainer>
+			</Form>
+		</FormProvider>
 	);
 };
 

@@ -1,8 +1,7 @@
-import { FieldValues, Path } from "react-hook-form";
+import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import useFilePreview from "./useFilePreview";
-import { IProfileFormImageProps } from "./ProfileFormImages";
 import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
@@ -17,10 +16,10 @@ const AvatarPreview = styled.img`
 	border-radius: var(--border-radius-circle);
 `;
 
-const ProfileFormAvatar = <T extends FieldValues>(
-	props: IProfileFormImageProps<T> & { validation: (value: File[]) => true | string }
-) => {
-	const { register, errors, watcher, validation } = props;
+const ProfileFormAvatar = (props: { watcher: File[] | null; validation: (value: File[]) => true | string }) => {
+	const { watcher, validation } = props;
+
+	const { register, formState } = useFormContext();
 	const { imgSrc: avatarSrc } = useFilePreview(watcher);
 
 	// TODO: Instead default values get values from server
@@ -40,11 +39,11 @@ const ProfileFormAvatar = <T extends FieldValues>(
 					placeholder="Avatar"
 					accept="image/jpeg, image/png"
 					style={{ display: "none" }}
-					{...register("avatar" as Path<T>, { validate: validation })}
+					{...register("avatar", { validate: validation })}
 				/>
 			</StyledContainer>
 
-			{errors["avatar"] && <p>{errors["avatar"].message?.toString()}</p>}
+			{formState.errors["avatar"] && <p>{get(formState.errors, "avatar").message}</p>}
 		</Wrapper>
 	);
 };

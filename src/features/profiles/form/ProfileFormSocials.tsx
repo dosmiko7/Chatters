@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
-import { FieldValues, Path } from "react-hook-form";
+import { get, useFormContext } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
-import { IProfileFormFieldProps } from "./ProfileForm";
 import { flexColumn } from "../../../style/Templates";
 import InputProfileForm from "../../../ui/InputProfileForm";
 
@@ -21,8 +20,9 @@ const StyledInput = styled(InputProfileForm)`
 	padding-left: 4rem;
 `;
 
-const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps<T>) => {
-	const { register, errors } = props;
+const ProfileFormSocials = () => {
+	const { register, formState } = useFormContext();
+	const socialsErrors = formState.errors.socials;
 
 	const iconStyle = {
 		position: "absolute",
@@ -49,10 +49,10 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 						<StyledInput
 							type="url"
 							placeholder="Linkedin"
-							{...register("linkedin" as Path<T>, linkValidation)}
+							{...register("socials.linkedin", linkValidation)}
 						/>
 					</InputContainer>
-					{errors["linkedin"] && <p>{errors["linkedin"].message?.toString()}</p>}
+					{socialsErrors && <p>{get(socialsErrors, "linkedin")?.message}</p>}
 				</FlexColumn>
 
 				<FlexColumn>
@@ -61,10 +61,10 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 						<StyledInput
 							type="url"
 							placeholder="Github"
-							{...register("github" as Path<T>, linkValidation)}
+							{...register("socials.github", linkValidation)}
 						/>
 					</InputContainer>
-					{errors["github"] && <p>{errors["github"].message?.toString()}</p>}
+					{socialsErrors && <p>{get(socialsErrors, "github")?.message}</p>}
 				</FlexColumn>
 
 				<FlexColumn>
@@ -73,11 +73,11 @@ const ProfileFormSocials = <T extends FieldValues>(props: IProfileFormFieldProps
 						<StyledInput
 							type="url"
 							placeholder="Twitter"
-							{...register("twitter" as Path<T>, linkValidation)}
+							{...register("socials.twitter", linkValidation)}
 						/>
 					</InputContainer>
 				</FlexColumn>
-				{errors["twitter"] && <p>{errors["twitter"].message?.toString()}</p>}
+				{socialsErrors && <p>{get(socialsErrors, "twitter")?.message}</p>}
 			</FlexColumn>
 		</StyledSocials>
 	);

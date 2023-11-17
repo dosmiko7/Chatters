@@ -1,7 +1,5 @@
-import { FieldValues } from "react-hook-form";
 import styled from "styled-components";
 
-import { IProfileFormFieldProps } from "./ProfileForm";
 import { flexRow } from "../../../style/Templates";
 import isFileExtensionValid from "../../../utils/isFileExtensionValid";
 import ProfileFormAvatar from "./ProfileFormAvatar";
@@ -11,17 +9,13 @@ const StyledImages = styled.div`
 	${flexRow}
 	justify-content: space-between;
 `;
-interface IProfileFormImagesProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
+interface IProfileFormImagesProps {
 	avatarWatcher: File[] | null;
 	backgroundWatcher: File[] | null;
 }
 
-export interface IProfileFormImageProps<T extends FieldValues> extends IProfileFormFieldProps<T> {
-	watcher: File[] | null;
-}
-
-const ProfileFormImages = <T extends FieldValues>(props: IProfileFormImagesProps<T>) => {
-	const { register, errors, avatarWatcher, backgroundWatcher } = props;
+const ProfileFormImages = (props: IProfileFormImagesProps) => {
+	const { avatarWatcher, backgroundWatcher } = props;
 
 	const fileValidation = (value: File[] | null) => {
 		if (value?.length) {
@@ -43,15 +37,11 @@ const ProfileFormImages = <T extends FieldValues>(props: IProfileFormImagesProps
 
 	return (
 		<StyledImages>
-			<ProfileFormAvatar<T>
-				register={register}
-				errors={errors}
+			<ProfileFormAvatar
 				watcher={avatarWatcher}
 				validation={fileValidation}
 			/>
-			<ProfileFormBackground<T>
-				register={register}
-				errors={errors}
+			<ProfileFormBackground
 				watcher={backgroundWatcher}
 				validation={fileValidation}
 			/>

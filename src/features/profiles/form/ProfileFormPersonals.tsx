@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { FieldValues, Path } from "react-hook-form";
+import { useFormContext, get } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
-import { IProfileFormFieldProps } from "./ProfileForm";
 import { Wrapper } from "../../../ui/Wrapper";
 import InputProfileForm from "../../../ui/InputProfileForm";
 
@@ -16,8 +15,9 @@ const Grid = styled.div`
 `;
 
 // TODO: Make an error/warning element
-const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldProps<T>) => {
-	const { register, errors } = props;
+const ProfileFormPersonals = () => {
+	const { register, formState } = useFormContext();
+	const personalErrors = formState.errors.personals;
 
 	const nameValidation = {
 		pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
@@ -32,51 +32,51 @@ const ProfileFormPersonals = <T extends FieldValues>(props: IProfileFormFieldPro
 				<InputProfileForm
 					type="text"
 					placeholder="Nickname"
-					{...register("nickname" as Path<T>, {
+					{...register("nickname", {
 						pattern: { value: /^[a-zA-Z0-9 ]+$/, message: "Special characters are not allowed" },
 						minLength: { value: 5, message: "At least 5 characters" },
 						maxLength: { value: 20, message: "No more than 20 characters" },
 					})}
 				/>
-				{errors["nickname"] && <p>{errors["nickname"].message?.toString()}</p>}
+				{formState.errors["nickname"] && <p>{get(formState.errors, "nickname").message}</p>}
 			</Wrapper>
 			<Grid>
 				<Wrapper>
 					<InputProfileForm
 						type="text"
 						placeholder="Name"
-						{...register("name" as Path<T>, nameValidation)}
+						{...register("personals.name", nameValidation)}
 					/>
-					{errors["name"] && <p>{errors["name"].message?.toString()}</p>}
+					{personalErrors && <p>{get(personalErrors, "name")?.message}</p>}
 				</Wrapper>
 				<Wrapper>
 					<InputProfileForm
 						type="text"
 						placeholder="Surname"
-						{...register("surname" as Path<T>, nameValidation)}
+						{...register("personals.surname", nameValidation)}
 					/>
-					{errors["surname"] && <p>{errors["surname"].message?.toString()}</p>}
+					{personalErrors && <p>{get(personalErrors, "surname")?.message}</p>}
 				</Wrapper>
 				<Wrapper>
 					<InputProfileForm
 						type="text"
 						placeholder="Birthday"
 						onFocus={(e) => (e.target.type = "date")}
-						{...register("birthday" as Path<T>)}
+						{...register("personals.birthday")}
 					/>
-					{errors["data"] && <p>{errors["data"].message?.toString()}</p>}
+					{personalErrors && <p>{get(personalErrors, "birthday")?.message}</p>}
 				</Wrapper>
 				<Wrapper>
 					<InputProfileForm
 						type="text"
 						placeholder="City"
-						{...register("city" as Path<T>, {
+						{...register("personals.city", {
 							pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
 							minLength: { value: 1, message: "At least 1 character" },
 							maxLength: { value: 100, message: "No more than 100 characters" },
 						})}
 					/>
-					{errors["city"] && <p>{errors["city"].message?.toString()}</p>}
+					{personalErrors && <p>{get(personalErrors, "city")?.message}</p>}
 				</Wrapper>
 			</Grid>
 		</StyledPersonals>

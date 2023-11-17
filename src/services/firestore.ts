@@ -4,6 +4,7 @@ import { User } from "firebase/auth";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 import { getImageURL, uploadAvatar, uploadBackground } from "./storage";
 import formatFriendList, { IFormattedFriend } from "../utils/formatFriendsList";
+import formatSubmit from "../utils/formatSubmit";
 
 export interface IFriend {
 	friendID: string;
@@ -23,7 +24,7 @@ export interface IUserData {
 	personals: {
 		name?: string;
 		surname?: string;
-		birthday?: Timestamp;
+		birthday?: string;
 		city?: string;
 	};
 	socials: {
@@ -65,24 +66,31 @@ export const addUser = async (user: User) => {
 		});
 };
 
-export const updateUser = async ({ data, userID }: { data: IProfileFormInput; userID: string }): Promise<void> => {
-	const userRef = doc(firestore, "users", `${userID}`);
+export const updateUser = async ({
+	input,
+	userId,
+	data,
+}: {
+	input: IProfileFormInput;
+	userId: string | undefined;
+	data: IUserData | undefined;
+}): Promise<void> => {
+	if (!userId || !data) throw new Error("There is no user to update");
+	const userRef = doc(firestore, "users", `${userId}`);
 
-	const filteredData = Object.fromEntries(
-		Object.entries(data).filter(([, value]) => value !== undefined && value !== null && value !== "")
-	);
+	const formattedData = formatSubmit(input, data);
 
-	if (filteredData.avatar) {
-		await uploadAvatar({ avatarFile: filteredData.avatar[0], userID });
-		await getImageURL(`avatars/avatar_${userID}.png`).then((url) => (filteredData.avatar = url));
+	if (formattedData.avatar) {
+		await uploadAvatar({ avatarFile: formattedData.avatar[0], userId });
+		await getImageURL(`avatars/avatar_${userId}.png`).then((url) => (formattedData.avatar = url));
 	}
-	if (filteredData.background) {
-		await uploadBackground({ backgroundFile: filteredData.background[0], userID });
-		await getImageURL(`backgrounds/background_${userID}.png`).then((url) => (filteredData.background = url));
+	if (formattedData.background) {
+		await uploadBackground({ backgroundFile: formattedData.background[0], userId });
+		await getImageURL(`backgrounds/background_${userId}.png`).then((url) => (formattedData.background = url));
 	}
 
-	if (Object.keys(filteredData).length > 0) {
-		await updateDoc(userRef, filteredData);
+	if (Object.keys(formattedData).length > 0) {
+		await updateDoc(userRef, formattedData);
 	}
 };
 

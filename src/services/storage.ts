@@ -1,19 +1,19 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../firebase";
 
-export const uploadAvatar = async ({ avatarFile, userID }: { avatarFile: File; userID: string }): Promise<void> => {
-	const avatarRef = ref(storage, `avatars/avatar_${userID}.png`);
+export const uploadAvatar = async ({ avatarFile, userId }: { avatarFile: File; userId: string }): Promise<void> => {
+	const avatarRef = ref(storage, `avatars/avatar_${userId}.png`);
 	await uploadBytes(avatarRef, avatarFile);
 };
 
 export const uploadBackground = async ({
 	backgroundFile,
-	userID,
+	userId,
 }: {
 	backgroundFile: File;
-	userID: string;
+	userId: string;
 }): Promise<void> => {
-	const backgroundRef = ref(storage, `backgrounds/background_${userID}.png`);
+	const backgroundRef = ref(storage, `backgrounds/background_${userId}.png`);
 	await uploadBytes(backgroundRef, backgroundFile);
 };
 

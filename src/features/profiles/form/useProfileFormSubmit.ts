@@ -1,15 +1,16 @@
-import { useMutation } from "@tanstack/react-query";
-import { updateUser } from "../../../services/firestore";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+
+import { IUserData, updateUser } from "../../../services/firestore";
 import { IProfileFormInput } from "./ProfileForm";
 
-interface ISubmit {
-	data: IProfileFormInput;
-	userID: string;
-}
-
 const useProfileFormSubmit = () => {
+	const { userId } = useParams();
+	const queryClient = useQueryClient();
+	const profileData: { id: string; data: IUserData } | undefined = queryClient.getQueryData(["profile", userId]);
+
 	const { mutate: submit, status } = useMutation({
-		mutationFn: (props: ISubmit) => updateUser(props),
+		mutationFn: (input: IProfileFormInput) => updateUser({ input, userId, data: profileData?.data }),
 
 		onError: (err) => {
 			console.error("SUBMIT ERROR ", err);

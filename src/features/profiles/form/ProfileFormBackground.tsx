@@ -1,8 +1,8 @@
-import { FieldValues, Path } from "react-hook-form";
+import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import useFilePreview from "./useFilePreview";
-import { IProfileFormImageProps } from "./ProfileFormImages";
+
 import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
@@ -17,10 +17,10 @@ const BackgroundPreview = styled.img`
 	border-radius: var(--border-radius-md);
 `;
 
-const ProfileFormBackground = <T extends FieldValues>(
-	props: IProfileFormImageProps<T> & { validation: (value: File[]) => true | string }
-) => {
-	const { register, errors, watcher, validation } = props;
+const ProfileFormBackground = (props: { watcher: File[] | null; validation: (value: File[]) => true | string }) => {
+	const { watcher, validation } = props;
+
+	const { register, formState } = useFormContext();
 	const { imgSrc: backgroundSrc } = useFilePreview(watcher);
 
 	// TODO: Instead default values get values from server
@@ -40,11 +40,11 @@ const ProfileFormBackground = <T extends FieldValues>(
 					placeholder="Background"
 					accept="image/jpeg, image/png"
 					style={{ display: "none" }}
-					{...register("background" as Path<T>, { validate: validation })}
+					{...register("background", { validate: validation })}
 				/>
 			</StyledContainer>
 
-			{errors["background"] && <p>{errors["background"].message?.toString()}</p>}
+			{formState.errors["background"] && <p>{get(formState.errors, "background").message}</p>}
 		</Wrapper>
 	);
 };
