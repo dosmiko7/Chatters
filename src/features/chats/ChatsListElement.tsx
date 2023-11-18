@@ -64,7 +64,7 @@ interface IPrivChatEl extends IFormattedFriend {
 }
 
 // TODO: Displaying last message. If it is not readen - color: white
-const PrivateChatsElement = (props: IPrivChatEl) => {
+const ChatsListElement = (props: IPrivChatEl) => {
 	const { onClickHandler, nickname, avatar, lastMessage, status } = props;
 
 	return (
@@ -84,4 +84,4 @@ const PrivateChatsElement = (props: IPrivChatEl) => {
 	);
 };
 
-export default PrivateChatsElement;
+export default ChatsListElement;

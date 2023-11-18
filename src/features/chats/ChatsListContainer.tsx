@@ -6,9 +6,9 @@ import { Wrapper } from "../../ui/Wrapper";
 import Heading from "../../ui/Heading";
 import { flexRow } from "../../style/Templates";
 import { Button } from "../../ui/Button";
-import PrivateChatsList from "./PrivateChatsList";
+import ChatsList from "./ChatsList";
 
-const StyledPrivateChats = styled(Wrapper)``;
+const StyledChatsContainer = styled(Wrapper)``;
 
 const Box = styled(Wrapper)`
 	${flexRow};
@@ -16,7 +16,7 @@ const Box = styled(Wrapper)`
 	justify-content: space-between;
 `;
 
-const PrivatesChatsContainer = () => {
+const ChatsListContainer = () => {
 	const [listDisplayed, setListDisplayed] = useState<boolean>(true);
 
 	const buttonSymbol = listDisplayed ? <BiChevronDown /> : <BiChevronUp />;
@@ -26,7 +26,7 @@ const PrivatesChatsContainer = () => {
 	};
 
 	return (
-		<StyledPrivateChats>
+		<StyledChatsContainer>
 			<Box>
 				<Heading as="h3">Private Chats</Heading>
 				<Button
@@ -37,9 +37,9 @@ const PrivatesChatsContainer = () => {
 					{buttonSymbol}
 				</Button>
 			</Box>
-			{listDisplayed && <PrivateChatsList />}
-		</StyledPrivateChats>
+			{listDisplayed && <ChatsList />}
+		</StyledChatsContainer>
 	);
 };
 
-export default PrivatesChatsContainer;
+export default ChatsListContainer;

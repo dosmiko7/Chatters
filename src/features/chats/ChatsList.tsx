@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import List from "../../ui/List";
-import PrivateChatsElement from "./PrivateChatsElement";
+import ChatsListElement from "./ChatsListElement";
 import useFriendsList from "./useFriendsList";
 import { IFormattedFriend } from "../../utils/formatFriendsList";
 import Spinner from "../../ui/Spinner";
@@ -17,7 +17,7 @@ export interface IUserProps {
 }
 
 // TODO: Get private chats from server
-const PrivateChatsList = () => {
+const ChatsList = () => {
 	const navigate = useNavigate();
 	const { friendsList, status } = useFriendsList();
 
@@ -29,7 +29,7 @@ const PrivateChatsList = () => {
 			data={friendsList.sort((a, b) => a.dateOfLastMessage - b.dateOfLastMessage)}
 			render={(friend: IFormattedFriend) => {
 				return (
-					<PrivateChatsElement
+					<ChatsListElement
 						onClickHandler={() => navigate(`chat/${friend.id}`)}
 						id={friend.id}
 						dateOfLastMessage={friend.dateOfLastMessage}
@@ -45,4 +45,4 @@ const PrivateChatsList = () => {
 	);
 };
 
-export default PrivateChatsList;
+export default ChatsList;
