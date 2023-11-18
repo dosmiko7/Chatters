@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import { IDocumentData } from "../../services/firestore";
+import { IFriendData } from "../../services/firestore";
 import { flexRow } from "../../style/Templates";
 import ProfileFriendElement from "./ProfileFriendElement";
 
@@ -12,7 +12,7 @@ const Grid = styled.div`
 	gap: 1rem;
 `;
 
-const ProfileFriendsGrid = ({ friendsData }: { friendsData: IDocumentData[] }) => {
+const ProfileFriendsGrid = ({ friendsData }: { friendsData: IFriendData[] }) => {
 	const navigate = useNavigate();
 
 	return (
@@ -21,8 +21,8 @@ const ProfileFriendsGrid = ({ friendsData }: { friendsData: IDocumentData[] }) =
 				return (
 					<ProfileFriendElement
 						key={friend.id}
-						avatar={friend.data.avatar}
-						nickname={friend.data.nickname}
+						avatar={friend.avatar}
+						nickname={friend.nickname}
 						onClickHandler={() => navigate(`/profile/${friend.id}`)}
 					/>
 				);

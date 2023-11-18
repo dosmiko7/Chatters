@@ -1,29 +1,17 @@
-import { useQueries, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { IDocumentData, IFriend, getUser } from "../../services/firestore";
-import { getUsersID } from "../../utils/getUsersID";
-import { getQueryKeys, getSpecificQueriesData } from "../../utils/getQuery";
+import { getFriends } from "../../services/firestore";
 
-const useFriends = (friends: IFriend[]) => {
+const useFriends = (friends: string[]) => {
 	const { userId } = useParams();
-	const queryClient = useQueryClient();
-	const usersId = getUsersID(friends);
 
-	useQueries({
-		queries: usersId.map((id) => {
-			return {
-				queryKey: ["user", id, userId],
-				queryFn: () => getUser(id),
-			};
-		}),
+	const { data: friendsData, status } = useQuery({
+		queryKey: ["friends", userId],
+		queryFn: () => getFriends(friends),
+		retry: false,
 	});
 
-	const queryKeys = getQueryKeys(queryClient);
-
-	const friendsQuries = queryKeys.filter((arr) => arr[0] === "user" && arr[arr.length - 1] === `${userId}`);
-	const friendsData = getSpecificQueriesData<IDocumentData>(queryClient, friendsQuries);
-
-	return friendsData;
+	return { friendsData, status };
 };
 
 export default useFriends;

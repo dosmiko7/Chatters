@@ -19,13 +19,18 @@ export interface IUserProps {
 // TODO: Get private chats from server
 const ChatsList = () => {
 	const navigate = useNavigate();
-	const { friendsList, status } = useFriendsList();
+	// const { friendsList, status } = useFriendsList();
 
-	if (status === "pending") return <Spinner />;
-	if (status === "error") return <div>Something went wrong.</div>;
+	// if (status === "pending") return <Spinner />;
+	// if (status === "error") return <div>Something went wrong.</div>;
 
-	return (
-		<List<IFormattedFriend>
+	return <div>ChatsList</div>;
+};
+
+export default ChatsList;
+
+/*
+<List<IFormattedFriend>
 			data={friendsList.sort((a, b) => a.dateOfLastMessage - b.dateOfLastMessage)}
 			render={(friend: IFormattedFriend) => {
 				return (
@@ -43,6 +48,4 @@ const ChatsList = () => {
 			}}
 		/>
 	);
-};
-
-export default ChatsList;
+	*/

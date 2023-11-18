@@ -1,17 +1,26 @@
-import { doc, setDoc, getDocs, collection, query, where, or, getDoc, Timestamp, updateDoc } from "firebase/firestore";
+import {
+	doc,
+	setDoc,
+	getDocs,
+	collection,
+	query,
+	where,
+	or,
+	getDoc,
+	Timestamp,
+	updateDoc,
+	onSnapshot,
+} from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 import { getImageURL, uploadAvatar, uploadBackground } from "./storage";
-import formatFriendList, { IFormattedFriend } from "../utils/formatFriendsList";
 import formatSubmit from "../utils/formatSubmit";
 
-export interface IFriend {
-	friendID: string;
-	messages: {
-		created_at: Timestamp;
-		message: string;
-	}[];
+export interface IFriendData {
+	id: string;
+	avatar: string;
+	nickname: string;
 }
 
 export interface IUserData {
@@ -20,7 +29,7 @@ export interface IUserData {
 	background: string;
 	description: string;
 	email: string;
-	friends_list: IFriend[];
+	friends_list: string[];
 	personals: {
 		name?: string;
 		surname?: string;
@@ -122,18 +131,33 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	}
 };
 
-export const getFriendsList = async (userId: string | undefined): Promise<IFriend[]> => {
-	if (!userId) throw new Error("There is no userID for getting his friends list");
+export const getFriends = async (friends: string[]): Promise<IFriendData[]> => {
+	try {
+		const promises = friends.map(async (friendId) => {
+			const user = await getUser(friendId);
+			return {
+				id: friendId,
+				avatar: user.data.avatar,
+				nickname: user.data.nickname,
+			};
+		});
 
-	const userData = await getUser(userId);
-	const friendsList = userData.data.friends_list;
+		const friendsData = await Promise.all(promises);
+		const friendsElements: IFriendData[] = [];
+		friendsElements.push(...friendsData);
 
-	return friendsList;
+		return friendsElements;
+	} catch (err) {
+		throw new Error("Error fetching friends");
+	}
 };
 
-export const getFormattedFriendsList = async (userId: string): Promise<IFormattedFriend[]> => {
-	const friendsList = await getFriendsList(userId);
-	const formattedUserFriendList = await formatFriendList({ friendsList, currentUserID: userId });
+export const getMessages = ({ userId, friendId }: { userId: string; friendId: string }) => {
+	const combindedId: string = userId > friendId ? `${userId}${friendId}` : `${friendId}${userId}`;
 
-	return formattedUserFriendList;
+	const unsub = onSnapshot(doc(firestore, "chats", combindedId), (doc) => {
+		console.log("Current data: ", doc.data());
+	});
+
+	return () => unsub();
 };
