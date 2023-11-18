@@ -12,6 +12,11 @@ const useProfileFormSubmit = () => {
 	const { mutate: submit, status } = useMutation({
 		mutationFn: (input: IProfileFormInput) => updateUser({ input, userId, data: profileData?.data }),
 
+		// TODO: On succes edit query for profile
+		onSuccess: (data) => {
+			queryClient.setQueryData(["profile", userId], { id: userId, data });
+		},
+
 		onError: (err) => {
 			console.error("SUBMIT ERROR ", err);
 		},

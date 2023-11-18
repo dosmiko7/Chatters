@@ -38,7 +38,7 @@ const SearchesElement = ({ onClickHandler, avatar, nickname }: ISearchesElementP
 			{waves}
 			<Avatar
 				src={avatar}
-				width="4rem"
+				size="4rem"
 			/>
 			<Nickname as="h3">{nickname}</Nickname>
 		</StyledSearchesElement>

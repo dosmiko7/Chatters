@@ -74,24 +74,29 @@ export const updateUser = async ({
 	input: IProfileFormInput;
 	userId: string | undefined;
 	data: IUserData | undefined;
-}): Promise<void> => {
+}): Promise<IUserData> => {
 	if (!userId || !data) throw new Error("There is no user to update");
 	const userRef = doc(firestore, "users", `${userId}`);
 
-	const formattedData = formatSubmit(input, data);
+	let avatarUrl: string = "";
+	if (input.avatar) {
+		await uploadAvatar({ avatarFile: input.avatar[0], userId });
+		await getImageURL(`avatars/avatar_${userId}.png`).then((url) => (avatarUrl = url));
+	}
 
-	if (formattedData.avatar) {
-		await uploadAvatar({ avatarFile: formattedData.avatar[0], userId });
-		await getImageURL(`avatars/avatar_${userId}.png`).then((url) => (formattedData.avatar = url));
+	let backgroundUrl: string = "";
+	if (input.background) {
+		await uploadBackground({ backgroundFile: input.background[0], userId });
+		await getImageURL(`backgrounds/background_${userId}.png`).then((url) => (backgroundUrl = url));
 	}
-	if (formattedData.background) {
-		await uploadBackground({ backgroundFile: formattedData.background[0], userId });
-		await getImageURL(`backgrounds/background_${userId}.png`).then((url) => (formattedData.background = url));
-	}
+
+	const formattedData = formatSubmit({ ...input, avatar: avatarUrl, background: backgroundUrl }, data);
 
 	if (Object.keys(formattedData).length > 0) {
 		await updateDoc(userRef, formattedData);
 	}
+
+	return formattedData;
 };
 
 export const findUsers = async (key: string): Promise<IDocumentData[]> => {
