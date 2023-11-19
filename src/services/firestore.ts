@@ -209,7 +209,6 @@ export const updateChats = async ({
 	if (chatSnap.exists()) {
 		const chatDoc = chatSnap.data();
 		const updatedMessages = [...chatDoc.messages, newMessage];
-		console.log({ messages: updatedMessages });
 		await updateDoc(chatRef, { messages: updatedMessages }).catch((error) => {
 			throw error;
 		});

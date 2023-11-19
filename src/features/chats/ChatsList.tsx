@@ -13,7 +13,7 @@ const ChatsList = () => {
 
 	return (
 		<List<IChatsListElement>
-			data={chats.sort((a, b) => a.createdAt.seconds - b.createdAt.seconds)}
+			data={chats.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)}
 			render={(friend: IChatsListElement) => {
 				const combinedId =
 					loggedUserId > friend.userId ? `${loggedUserId}${friend.userId}` : `${friend.userId}${loggedUserId}`;
