@@ -8,6 +8,7 @@ const StyledChatsBar = styled(Container)`
 	max-width: 100%;
 `;
 
+//TODO: SearchBar should let display friends which nicknames contain input
 const ChatsBar = () => {
 	return (
 		<StyledChatsBar>

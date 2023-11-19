@@ -1,14 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { ListElement } from "../../ui/ListElement";
 import { Wrapper } from "../../ui/Wrapper";
 import { flexColumn } from "../../style/Templates";
 import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
-import { IFormattedFriend } from "../../utils/formatFriendsList";
 
 interface IStatus {
-	status: "active" | "nonActive";
+	isActive: boolean;
 }
 
 const StyledListElement = styled(ListElement)<IStatus>`
@@ -26,31 +25,16 @@ const StyledListElement = styled(ListElement)<IStatus>`
 		transform: translateY(-50%);
 		width: 3px;
 		height: 80%;
-		background-color: ${(props) => (props.status === "active" ? "var(--color-green-100)" : "transparent")};
+		background-color: ${(props) => (props.isActive ? "var(--color-green-100)" : "transparent")};
 	}
 `;
-interface IBox {
-	newMessege?: boolean;
-}
 
-const Box = styled(Wrapper)<IBox>`
+const Box = styled(Wrapper)`
 	${flexColumn};
 	width: 70%;
 	flex: 1 1;
 	white-space: nowrap;
 	padding-left: var(--padding-sm);
-
-	${(props) =>
-		props.newMessege &&
-		css`
-			color: var(--color-primary-0);
-		`}
-
-	${(props) =>
-		!props.newMessege &&
-		css`
-			color: inherit;
-		`}
 `;
 
 const Message = styled.p`
@@ -59,18 +43,22 @@ const Message = styled.p`
 	text-overflow: ellipsis;
 `;
 
-interface IPrivChatEl extends IFormattedFriend {
+interface IPrivChatEl {
 	onClickHandler: () => void;
+	isActive: boolean;
+	avatar: string;
+	nickname: string;
+	lastMessage: string;
 }
 
 // TODO: Displaying last message. If it is not readen - color: white
 const ChatsListElement = (props: IPrivChatEl) => {
-	const { onClickHandler, nickname, avatar, lastMessage, status } = props;
+	const { onClickHandler, avatar, lastMessage, nickname, isActive } = props;
 
 	return (
 		<StyledListElement
 			onClick={onClickHandler}
-			status={status}
+			isActive={isActive}
 		>
 			<Avatar
 				src={avatar}

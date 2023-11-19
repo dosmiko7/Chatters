@@ -41,8 +41,8 @@ export interface IUserData {
 		linkedin?: string;
 		twitter?: string;
 	};
-	lastLoggedIn?: Timestamp;
-	lastLoggedOut?: Timestamp;
+	lastLoggedIn: Timestamp;
+	lastLoggedOut: Timestamp;
 }
 
 export interface IDocumentData {
@@ -64,6 +64,8 @@ export const addUser = async (user: User) => {
 		friends_list: [],
 		personals: {},
 		socials: {},
+		lastLoggedIn: Timestamp.fromDate(new Date()),
+		lastLoggedOut: Timestamp.fromDate(new Date()),
 	};
 
 	const userIdRef = doc(firestore, "users", user.uid);
@@ -121,7 +123,7 @@ export const findUsers = async (key: string): Promise<IDocumentData[]> => {
 
 export const getUser = async (userId: string | undefined): Promise<IDocumentData> => {
 	if (userId === undefined) throw new Error("Something went wrong");
-	const docRef = doc(firestore, "users", `${userId}`);
+	const docRef = doc(firestore, "users", userId);
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.exists()) {

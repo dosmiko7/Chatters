@@ -1,30 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import List from "../../ui/List";
 import ChatsListElement from "./ChatsListElement";
-import useFriendsList from "./useFriendsList";
-import { IFormattedFriend } from "../../utils/formatFriendsList";
-import Spinner from "../../ui/Spinner";
-// import Spinner from "../../ui/Spinner";
-// import Link from "../../ui/Link";
+import { IChatsListElement } from "./useChatsList";
+import useChatsList from "./useChatsList";
 
-export interface IUserProps {
-	uid: number;
-	nickname: string;
-	avatar: string;
-	status: string;
-	lastMessege: string;
-	newMessege: boolean;
-}
-
-// TODO: Get private chats from server
 const ChatsList = () => {
 	const navigate = useNavigate();
-	// const { friendsList, status } = useFriendsList();
+	const { chats, error } = useChatsList();
+	if (error) return <div>Something went wrong.</div>;
 
-	// if (status === "pending") return <Spinner />;
-	// if (status === "error") return <div>Something went wrong.</div>;
-
-	return <div>ChatsList</div>;
+	return (
+		<List<IChatsListElement>
+			data={chats.sort((a, b) => a.createdAt.seconds - b.createdAt.seconds)}
+			render={(friend: IChatsListElement) => {
+				return (
+					<ChatsListElement
+						key={friend.userId}
+						onClickHandler={() => navigate(`chat/${friend.userId}`)}
+						avatar={friend.avatar}
+						nickname={friend.nickname}
+						isActive={friend.isActive}
+						lastMessage={friend.lastMessage}
+					/>
+				);
+			}}
+		/>
+	);
 };
 
 export default ChatsList;
