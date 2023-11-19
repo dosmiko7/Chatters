@@ -1,5 +1,5 @@
 import ChatWindow from "./ChatWindow";
-import ChatForm from "./ChatForm";
+import ChatForm from "./form/ChatForm";
 
 const Chat = () => {
 	return (

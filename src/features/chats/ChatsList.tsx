@@ -4,19 +4,23 @@ import ChatsListElement from "./ChatsListElement";
 import { IChatsListElement } from "./useChatsList";
 import useChatsList from "./useChatsList";
 
+// TODO: Change for dynamic currentId
 const ChatsList = () => {
 	const navigate = useNavigate();
 	const { chats, error } = useChatsList();
+	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
 	if (error) return <div>Something went wrong.</div>;
 
 	return (
 		<List<IChatsListElement>
 			data={chats.sort((a, b) => a.createdAt.seconds - b.createdAt.seconds)}
 			render={(friend: IChatsListElement) => {
+				const combinedId =
+					loggedUserId > friend.userId ? `${loggedUserId}${friend.userId}` : `${friend.userId}${loggedUserId}`;
 				return (
 					<ChatsListElement
 						key={friend.userId}
-						onClickHandler={() => navigate(`chat/${friend.userId}`)}
+						onClickHandler={() => navigate(`chat/${combinedId}`)}
 						avatar={friend.avatar}
 						nickname={friend.nickname}
 						isActive={friend.isActive}

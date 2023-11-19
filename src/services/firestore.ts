@@ -1,21 +1,16 @@
-import {
-	doc,
-	setDoc,
-	getDocs,
-	collection,
-	query,
-	where,
-	or,
-	getDoc,
-	Timestamp,
-	updateDoc,
-	onSnapshot,
-} from "firebase/firestore";
+import { doc, setDoc, getDocs, collection, query, where, or, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 import { getImageURL, uploadAvatar, uploadBackground } from "./storage";
 import formatSubmit from "../utils/formatSubmit";
+import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
+
+interface IUserChat {
+	userId: string;
+	created_at: Timestamp;
+	message: string;
+}
 
 export interface IFriendData {
 	id: string;
@@ -52,6 +47,8 @@ export interface IDocumentData {
 
 // TODO: update lastLoggedIn when user is login
 // TODO: update lastLoggedOut when user in logout (also automatically)
+
+// users collection
 export const addUser = async (user: User) => {
 	const defaultData: IUserData = {
 		nickname: user.email || "",
@@ -104,7 +101,9 @@ export const updateUser = async ({
 	const formattedData = formatSubmit({ ...input, avatar: avatarUrl, background: backgroundUrl }, data);
 
 	if (Object.keys(formattedData).length > 0) {
-		await updateDoc(userRef, formattedData);
+		await updateDoc(userRef, formattedData).catch((error) => {
+			throw error;
+		});
 	}
 
 	return formattedData;
@@ -154,12 +153,76 @@ export const getFriends = async (friends: string[]): Promise<IFriendData[]> => {
 	}
 };
 
-export const getMessages = ({ userId, friendId }: { userId: string; friendId: string }) => {
-	const combindedId: string = userId > friendId ? `${userId}${friendId}` : `${friendId}${userId}`;
+// userChats Collection
+const updateUserChats = async ({
+	userAId,
+	userBId,
+	message,
+}: {
+	userAId: string;
+	userBId: string;
+	message: { created_at: Timestamp; last_message: string; userId: string };
+}) => {
+	const userAChatRef = doc(firestore, "userChats", userAId);
+	const userAChatSnap = await getDoc(userAChatRef);
 
-	const unsub = onSnapshot(doc(firestore, "chats", combindedId), (doc) => {
-		console.log("Current data: ", doc.data());
-	});
+	if (userAChatSnap.exists()) {
+		const userChatDoc = userAChatSnap.data();
+		const updatedChats = userChatDoc.chats.map((chat: IUserChat) => {
+			if (chat.userId === userBId) {
+				return message;
+			}
+			return chat;
+		});
+		await updateDoc(userAChatRef, { chats: updatedChats }).catch((error) => {
+			throw error;
+		});
+	} else {
+		await setDoc(userAChatRef, { chats: [message] }).catch((error) => {
+			throw error;
+		});
+	}
+};
 
-	return () => unsub();
+// chats collection
+export const updateChats = async ({
+	chatId,
+	senderId,
+	message,
+}: {
+	chatId: string | undefined;
+	senderId: string;
+	message: string;
+}) => {
+	if (chatId === undefined) throw new Error("Something went wrong with chat update.");
+	const chatRef = doc(firestore, "chats", chatId);
+	const chatSnap = await getDoc(chatRef);
+
+	const messageTimestamp = Timestamp.fromDate(new Date());
+	const newMessage = {
+		created_at: messageTimestamp,
+		message: message,
+		userId: senderId,
+	};
+
+	// Update chats
+	if (chatSnap.exists()) {
+		const chatDoc = chatSnap.data();
+		const updatedMessages = [...chatDoc.messages, newMessage];
+		console.log({ messages: updatedMessages });
+		await updateDoc(chatRef, { messages: updatedMessages }).catch((error) => {
+			throw error;
+		});
+	} else {
+		await setDoc(chatRef, { messages: [newMessage] }).catch((error) => {
+			throw error;
+		});
+	}
+
+	// Update userChats
+	const { message: last_message, ...rest } = newMessage;
+	const lastMessage = { last_message, ...rest };
+	const receiverId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: senderId });
+	await updateUserChats({ userAId: senderId, userBId: receiverId, message: { ...lastMessage, userId: receiverId } });
+	await updateUserChats({ userAId: receiverId, userBId: senderId, message: { ...lastMessage, userId: senderId } });
 };

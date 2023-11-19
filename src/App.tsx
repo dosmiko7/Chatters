@@ -47,7 +47,7 @@ const App = () => {
 							element={<Profile />}
 						/>
 						<Route
-							path="chat/:userId"
+							path="chat/:combinedId"
 							element={<Chat />}
 						/>
 					</Route>
