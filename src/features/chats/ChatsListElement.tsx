@@ -15,6 +15,7 @@ const StyledListElement = styled(ListElement)<IStatus>`
 
 	&:hover {
 		background-color: var(--color-primary-300);
+		cursor: pointer;
 	}
 
 	&::before {

@@ -7,6 +7,10 @@ const StyledMessageInput = styled(Input)`
 	background-color: var(--color-primary-300);
 	height: 80%;
 	flex-grow: 1;
+
+	&:hover {
+		background-color: var(--color-primary-300);
+	}
 `;
 
 const ChatFormMessage = ({ status }: { status: string }) => {
