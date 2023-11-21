@@ -4,7 +4,7 @@ import { firestore } from "../../firebase";
 import { useParams } from "react-router-dom";
 import { IChatData, getUser } from "../../services/firestore";
 
-interface IChatElement {
+export interface IChatElement {
 	userId: string;
 	createdAt: Timestamp;
 	nickname: string;
