@@ -3,6 +3,7 @@ import ChatWindow from "./ChatWindow";
 import ChatForm from "./form/ChatForm";
 import { flexColumn } from "../../style/Templates";
 import { Container } from "../../ui/Container";
+import ChatTitle from "./ChatTitle";
 
 const StyledChat = styled(Container)`
 	${flexColumn};
@@ -12,6 +13,7 @@ const StyledChat = styled(Container)`
 const Chat = () => {
 	return (
 		<StyledChat>
+			<ChatTitle />
 			<ChatWindow />
 			<ChatForm />
 		</StyledChat>
