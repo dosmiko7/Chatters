@@ -35,7 +35,7 @@ const useChatsList = () => {
 								userId: chat.userId,
 								createdAt: chat.created_at,
 								nickname: user.data.nickname,
-								lastMessage: chat.last_message,
+								lastMessage: chat.message,
 								avatar: user.data.avatar,
 								isActive: user.data.lastLoggedOut > user.data.lastLoggedIn,
 							};

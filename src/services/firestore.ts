@@ -167,7 +167,7 @@ const updateUserChats = async ({
 }: {
 	userAId: string;
 	userBId: string;
-	message: { created_at: Timestamp; last_message: string; userId: string };
+	message: { created_at: Timestamp; message: string; userId: string };
 }) => {
 	const userAChatRef = doc(firestore, "userChats", userAId);
 	const userAChatSnap = await getDoc(userAChatRef);
@@ -225,9 +225,7 @@ export const updateChats = async ({
 	}
 
 	// Update userChats
-	const { message: last_message, ...rest } = newMessage;
-	const lastMessage = { last_message, ...rest };
 	const receiverId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: senderId });
-	await updateUserChats({ userAId: senderId, userBId: receiverId, message: { ...lastMessage, userId: receiverId } });
-	await updateUserChats({ userAId: receiverId, userBId: senderId, message: { ...lastMessage, userId: senderId } });
+	await updateUserChats({ userAId: senderId, userBId: receiverId, message: { ...newMessage, userId: receiverId } });
+	await updateUserChats({ userAId: receiverId, userBId: senderId, message: { ...newMessage, userId: senderId } });
 };
