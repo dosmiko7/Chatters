@@ -12,6 +12,12 @@ interface IUserChat {
 	message: string;
 }
 
+export interface IChatData {
+	userId: string;
+	created_at: Timestamp;
+	message: string;
+}
+
 export interface IFriendData {
 	id: string;
 	avatar: string;

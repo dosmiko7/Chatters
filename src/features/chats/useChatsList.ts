@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
-import { getUser } from "../../services/firestore";
+import { IChatData, getUser } from "../../services/firestore";
 import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../firebase";
-
-interface IChatData {
-	created_at: Timestamp;
-	userId: string;
-	last_message: string;
-}
 
 export interface IChatsListElement {
 	createdAt: Timestamp;

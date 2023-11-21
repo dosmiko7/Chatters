@@ -1,7 +1,8 @@
+import styled from "styled-components";
+
 import { BsThreeDots } from "react-icons/bs";
 import { Button } from "../../ui/Button";
 import Heading from "../../ui/Heading";
-import styled from "styled-components";
 import { flexRow } from "../../style/Templates";
 
 const StyledChatTitle = styled.div`
