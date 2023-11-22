@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useChat, { IChatElement } from "./useChat";
 import List from "../../ui/List";
 import ChatMessage from "./ChatMessage";
+import { toast } from "react-hot-toast";
 
 const StyledChatWindow = styled.div`
 	flex-grow: 1;
@@ -12,6 +13,8 @@ const StyledChatWindow = styled.div`
 const ChatWindow = () => {
 	const currentUser = "ivKwYDsLxLkM34cMKDdw";
 	const { chat, error } = useChat();
+
+	if (error) toast.error("Something went wrong with fetching messages.");
 
 	return (
 		<StyledChatWindow>
