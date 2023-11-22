@@ -1,9 +1,21 @@
+import styled from "styled-components";
+import { ListElement } from "../../ui/ListElement";
 import { IChatElement } from "./useChat";
 
-const ChatMessage = ({ props: IChatElement, logg }) => {
-	const { userId, createdAt, nickname, avatar } = props;
+const StyledMessage = styled.div`
+	max-width: 45%;
+`;
 
-	return <div>ChatMessage</div>;
+interface IChatMessageProps extends IChatElement {
+	currentUser: string;
+	renderPhoto: boolean;
+}
+
+const ChatMessage = (props: IChatMessageProps) => {
+	const { userId, createdAt, nickname, avatar, currentUser, renderPhoto } = props;
+	const position = userId === currentUser ? { justifyContent: "flex-end" } : { justifyContent: "flex-start" };
+
+	return <ListElement style={position}>ChatMessage</ListElement>;
 };
 
 export default ChatMessage;

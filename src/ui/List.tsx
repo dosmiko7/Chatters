@@ -12,7 +12,7 @@ const StyledList = styled.ul`
 
 interface IListProps<T> {
 	data: T[];
-	render: (item: T) => any;
+	render: (item: T, index: number) => JSX.Element;
 }
 
 const List = <T,>(props: IListProps<T>) => {
