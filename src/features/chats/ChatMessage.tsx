@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ListElement } from "../../ui/ListElement";
 import { IChatElement } from "./useChat";
 import { Avatar } from "../../ui/Avatar";
+import { useNavigate } from "react-router-dom";
 
 const MessageContainer = styled(ListElement)``;
 
@@ -14,6 +15,10 @@ const StyledMessage = styled.div`
 const AvatarContainer = styled.div`
 	position: absolute;
 	bottom: 0;
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const Content = styled.div`
@@ -27,6 +32,7 @@ interface IChatMessageProps extends IChatElement {
 }
 
 const ChatMessage = (props: IChatMessageProps) => {
+	const navigate = useNavigate();
 	const { userId, createdAt, nickname, avatar, currentUser, renderPhoto, message } = props;
 
 	const isLeftMessage = userId !== currentUser;
@@ -39,9 +45,15 @@ const ChatMessage = (props: IChatMessageProps) => {
 		: { backgroundColor: "var(--color-secondary-400)" };
 
 	return (
-		<MessageContainer style={position}>
+		<MessageContainer
+			style={position}
+			nonBorder={true}
+		>
 			<StyledMessage>
-				<AvatarContainer style={display}>
+				<AvatarContainer
+					style={display}
+					onClick={() => navigate(`profile/${userId}`)}
+				>
 					<Avatar
 						size="4rem"
 						src={avatar}

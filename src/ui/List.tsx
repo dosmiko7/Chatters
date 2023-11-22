@@ -5,8 +5,8 @@ const StyledList = styled.ul`
 	${flexColumn};
 	max-width: 100%;
 
-	& > :not(:last-child) {
-		border-bottom: var(--border-thin);
+	& > :last-child {
+		border-bottom: none;
 	}
 `;
 
