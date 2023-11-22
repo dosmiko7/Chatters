@@ -5,6 +5,7 @@ import ChatMessage from "./ChatMessage";
 
 const StyledChatWindow = styled.div`
 	flex-grow: 1;
+	padding: 0 5rem;
 `;
 
 // TODO: Change for current logged user id
@@ -17,11 +18,7 @@ const ChatWindow = () => {
 			<List<IChatElement>
 				data={chat}
 				render={(message: IChatElement, index: number) => {
-					const renderPhoto =
-						(index === chat.length && chat[index].userId !== currentUser) ||
-						(index + 1 < chat.length && chat[index + 1].userId === currentUser)
-							? true
-							: false;
+					const renderPhoto = index + 1 === chat.length || chat[index].userId !== chat[index + 1].userId;
 					return (
 						<ChatMessage
 							key={message.createdAt.nanoseconds}
@@ -31,6 +28,7 @@ const ChatWindow = () => {
 							createdAt={message.createdAt}
 							nickname={message.nickname}
 							avatar={message.avatar}
+							message={message.message}
 						/>
 					);
 				}}
