@@ -1,18 +1,32 @@
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
+import { toast } from "react-hot-toast";
+
 import useChat, { IChatElement } from "./useChat";
 import List from "../../ui/List";
 import ChatMessage from "./ChatMessage";
-import { toast } from "react-hot-toast";
 
 const StyledChatWindow = styled.div`
+	height: 100%;
 	flex-grow: 1;
 	padding: 0 5rem;
+	overflow-y: scroll;
 `;
 
 // TODO: Change for current logged user id
 const ChatWindow = () => {
 	const currentUser = "ivKwYDsLxLkM34cMKDdw";
 	const { chat, error } = useChat();
+	const bottomRef = useRef<null | HTMLDivElement>(null);
+
+	useEffect(() => {
+		const scrollElement = () => {
+			if (bottomRef.current) {
+				bottomRef.current.scrollIntoView();
+			}
+		};
+		scrollElement();
+	}, [bottomRef, chat]);
 
 	if (error) toast.error("Something went wrong with fetching messages.");
 
@@ -36,6 +50,7 @@ const ChatWindow = () => {
 					);
 				}}
 			/>
+			<div ref={bottomRef}></div>
 		</StyledChatWindow>
 	);
 };

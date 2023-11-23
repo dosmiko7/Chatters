@@ -1,22 +1,29 @@
 import styled from "styled-components";
 import ChatWindow from "./ChatWindow";
 import ChatForm from "./form/ChatForm";
-import { flexColumn } from "../../style/Templates";
+import { flexColumn, flexRow } from "../../style/Templates";
 import { Container } from "../../ui/Container";
+import { Wrapper } from "../../ui/Wrapper";
 import ChatTitle from "./ChatTitle";
+
+const StyledWrapper = styled(Wrapper)`
+	${flexRow};
+`;
 
 const StyledChat = styled(Container)`
 	${flexColumn};
-	height: 100%;
+	max-height: 100vh;
 `;
 
 const Chat = () => {
 	return (
-		<StyledChat>
-			<ChatTitle />
-			<ChatWindow />
-			<ChatForm />
-		</StyledChat>
+		<StyledWrapper>
+			<StyledChat>
+				<ChatTitle />
+				<ChatWindow />
+				<ChatForm />
+			</StyledChat>
+		</StyledWrapper>
 	);
 };
 
