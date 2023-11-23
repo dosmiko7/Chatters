@@ -13,9 +13,7 @@ const StyledChatWindow = styled.div`
 	overflow-y: scroll;
 `;
 
-// TODO: Change for current logged user id
-const ChatWindow = () => {
-	const currentUser = "ivKwYDsLxLkM34cMKDdw";
+const ChatWindow = ({ currentUser }: { currentUser: string }) => {
 	const { chat, error } = useChat();
 	const bottomRef = useRef<null | HTMLDivElement>(null);
 

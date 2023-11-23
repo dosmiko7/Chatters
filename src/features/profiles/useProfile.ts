@@ -2,8 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../services/firestore";
 
-const useProfile = () => {
-	const { userId } = useParams();
+interface IUseProfileProps {
+	passedUserId?: string;
+}
+
+const useProfile = (props: IUseProfileProps = {}) => {
+	const { passedUserId } = props;
+	const { userId: paramsUserId } = useParams();
+	console.log(passedUserId, " ", paramsUserId);
+	const userId = passedUserId || paramsUserId;
 
 	const { data: profileData, status } = useQuery({
 		queryKey: ["profile", userId],

@@ -11,11 +11,21 @@ const StyledChatTitle = styled.div`
 	border-bottom: 1px solid var(--color-primary-500);
 `;
 
-const ChatTitle = () => {
+interface ChatTitleProps {
+	nickname: string | undefined;
+	handlerOpen: () => void;
+}
+
+const ChatTitle = ({ nickname, handlerOpen }: ChatTitleProps) => {
+	const defaultNickname = "friend";
+
 	return (
 		<StyledChatTitle>
-			<Heading as="h2">Chat with X</Heading>
-			<Button variant="menu">
+			<Heading as="h2">Chat with {nickname || defaultNickname}</Heading>
+			<Button
+				variant="menu"
+				onClick={handlerOpen}
+			>
 				<BsThreeDots style={{ fontSize: "2rem" }} />
 			</Button>
 		</StyledChatTitle>
