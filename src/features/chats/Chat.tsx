@@ -14,6 +14,7 @@ import ChatMore from "./ChatMore";
 
 const StyledWrapper = styled(Wrapper)`
 	${flexRow};
+	height: 100%;
 `;
 
 const StyledChat = styled(Container)`
