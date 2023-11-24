@@ -37,7 +37,7 @@ const useChatsList = () => {
 								nickname: user.data.nickname,
 								lastMessage: chat.message,
 								avatar: user.data.avatar,
-								isActive: user.data.lastLoggedOut > user.data.lastLoggedIn,
+								isActive: user.data.lastLoggedIn > user.data.lastLoggedOut,
 							};
 						});
 						const chatsListData = await Promise.all(promises);
