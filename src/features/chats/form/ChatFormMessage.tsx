@@ -8,17 +8,22 @@ import { HiXMark } from "react-icons/hi2";
 
 const MessageContainer = styled.div`
 	border-radius: var(--border-radius-md);
+	padding: var(--padding-xsm);
 	background-color: var(--color-primary-300);
+	overflow: hidden;
 	flex-grow: 1;
 `;
 
 const Box = styled.div`
 	${flexRow};
-	position: relative;
-	background-color: var(--color-primary-400);
+	align-items: center;
+	gap: 0.4rem;
+	background-color: var(--color-primary-300);
 `;
 
-const FileRemove = styled(Button)``;
+const FileRemove = styled(Button)`
+	padding: var(--padding-xsm);
+`;
 
 const FileName = styled.p``;
 
@@ -30,11 +35,19 @@ const FilePreview = styled.img`
 
 const StyledMessageInput = styled(Input)`
 	background-color: inherit;
+	border: none;
 	width: 100%;
 	height: 80%;
 
 	&:hover {
 		background-color: var(--color-primary-300);
+		border: none;
+		outline: none;
+	}
+
+	&:focus {
+		border: none;
+		outline: none;
 	}
 `;
 
