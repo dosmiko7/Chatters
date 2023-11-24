@@ -5,6 +5,7 @@ import { flexRow } from "../../../style/Templates";
 
 const StyledFilesInputs = styled.div`
 	${flexRow};
+	align-items: center;
 	gap: 1rem;
 	padding: var(--padding-sm);
 	font-size: 2.2rem;

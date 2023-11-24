@@ -3,7 +3,10 @@ import { Button } from "../../../ui/Button";
 
 const ChatFormGIF = () => {
 	return (
-		<Button variant="menu">
+		<Button
+			type="button"
+			variant="menu"
+		>
 			<TbGif />
 		</Button>
 	);

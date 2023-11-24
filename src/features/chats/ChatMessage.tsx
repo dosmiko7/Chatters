@@ -33,7 +33,7 @@ interface IChatMessageProps extends IChatElement {
 
 const ChatMessage = (props: IChatMessageProps) => {
 	const navigate = useNavigate();
-	const { userId, createdAt, nickname, avatar, currentUser, renderPhoto, message } = props;
+	const { userId, avatar, currentUser, renderPhoto, message } = props;
 
 	const isLeftMessage = userId !== currentUser;
 	const display = renderPhoto

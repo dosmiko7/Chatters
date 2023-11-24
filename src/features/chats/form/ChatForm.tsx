@@ -13,17 +13,16 @@ const StyledChatForm = styled(Form)`
 
 interface IChatFormInput {
 	message: string;
-	image: File[] | null;
+	file: File[] | null;
 }
 
 const ChatForm = () => {
 	const methods = useForm<IChatFormInput>();
 	const { sendMessage, status } = useSendMessage();
-	const { handleSubmit } = methods;
-	// 1. Input message
-	// 1b. How to handle images/gifs/videos?
-	// 2. Send message to chats collection
-	// 3. Update object in userChats collectione
+	const { watch, handleSubmit } = methods;
+
+	const fileWatch = watch("file");
+
 	const onSubmit: SubmitHandler<IChatFormInput> = (input: IChatFormInput) => {
 		sendMessage(input.message);
 	};
@@ -32,7 +31,10 @@ const ChatForm = () => {
 		<FormProvider {...methods}>
 			<StyledChatForm onSubmit={handleSubmit(onSubmit)}>
 				<ChatFormAdditional />
-				<ChatFormMessage status={status} />
+				<ChatFormMessage
+					watcher={fileWatch}
+					status={status}
+				/>
 			</StyledChatForm>
 		</FormProvider>
 	);
