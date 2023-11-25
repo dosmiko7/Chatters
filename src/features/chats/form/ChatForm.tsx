@@ -11,13 +11,13 @@ const StyledChatForm = styled(Form)`
 	align-items: center;
 `;
 
-interface IChatFormInput {
+export interface IChatFormInput {
 	message: string;
-	file: File[] | null;
+	file: FileList | null;
 }
 
 const ChatForm = () => {
-	const methods = useForm<IChatFormInput>();
+	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null } });
 	const { sendMessage, status } = useSendMessage();
 	const { watch, handleSubmit } = methods;
 
@@ -25,7 +25,8 @@ const ChatForm = () => {
 
 	const onSubmit: SubmitHandler<IChatFormInput> = (input: IChatFormInput) => {
 		console.log(input);
-		//sendMessage(input.message);
+		if (input.message.length) sendMessage(input.message);
+		if (input.file?.length) sendMessage(input.file);
 	};
 
 	return (

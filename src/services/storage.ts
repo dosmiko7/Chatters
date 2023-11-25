@@ -1,13 +1,9 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../firebase";
 
-const METADATA = {
-	contentType: "image/png",
-};
-
 export const uploadAvatar = async ({ avatarFile, userId }: { avatarFile: File; userId: string }): Promise<void> => {
 	const avatarRef = ref(storage, `avatars/avatar_${userId}.png`);
-	await uploadBytes(avatarRef, avatarFile, METADATA);
+	await uploadBytes(avatarRef, avatarFile, { contentType: avatarFile.type });
 };
 
 export const uploadBackground = async ({
@@ -18,7 +14,7 @@ export const uploadBackground = async ({
 	userId: string;
 }): Promise<void> => {
 	const backgroundRef = ref(storage, `backgrounds/background_${userId}.png`);
-	await uploadBytes(backgroundRef, backgroundFile, METADATA);
+	await uploadBytes(backgroundRef, backgroundFile, { contentType: backgroundFile.type });
 };
 
 export const uploadChatFile = async ({
@@ -29,12 +25,12 @@ export const uploadChatFile = async ({
 	chatId: string;
 	fileName: string;
 	chatFile: File;
-}) => {
+}): Promise<void> => {
 	const chatFileRef = ref(storage, `chatFiles/${chatId}/${fileName}`);
-	await uploadBytes(chatFileRef, chatFile);
+	await uploadBytes(chatFileRef, chatFile, { contentType: chatFile.type });
 };
 
-export const getImageURL = async (path: string): Promise<string> => {
+export const getFileURL = async (path: string): Promise<string> => {
 	const result = getDownloadURL(ref(storage, path));
 	return result;
 };

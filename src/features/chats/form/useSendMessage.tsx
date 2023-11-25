@@ -9,7 +9,7 @@ const useSendMessage = () => {
 	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
 	const { combinedId } = useParams();
 	const { mutate: sendMessage, status } = useMutation({
-		mutationFn: (input: string) => updateChats({ chatId: combinedId, senderId: loggedUserId, message: input }),
+		mutationFn: (input: FileList | string) => updateChats({ chatId: combinedId, senderId: loggedUserId, input }),
 
 		onError: (err) => {
 			console.error("SEND MESSAGE ERROR ", err);

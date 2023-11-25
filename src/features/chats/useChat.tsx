@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { IChatData, getUser } from "../../services/firestore";
 
 export interface IChatElement {
+	type: string;
 	message: string;
 	userId: string;
 	createdAt: Timestamp;
@@ -33,6 +34,7 @@ const useChat = () => {
 							const promises = messages.map(async (message) => {
 								const user = await getUser(message.userId);
 								return {
+									type: message.type,
 									userId: message.userId,
 									createdAt: message.created_at,
 									nickname: user.data.nickname,

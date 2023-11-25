@@ -22,8 +22,8 @@ const StatusContainer = styled.div`
 `;
 
 interface IProfileFormImages {
-	avatar: File[] | null;
-	background: File[] | null;
+	avatar: FileList | null;
+	background: FileList | null;
 }
 
 interface IProfileFormPersonals {

@@ -51,7 +51,7 @@ const StyledMessageInput = styled(Input)`
 	}
 `;
 
-const ChatFormMessage = ({ watcher, status }: { watcher: File[] | null; status: string }) => {
+const ChatFormMessage = ({ watcher, status }: { watcher: FileList | null; status: string }) => {
 	const { register, setValue } = useFormContext();
 	const { imgSrc } = useFilePreview(watcher);
 

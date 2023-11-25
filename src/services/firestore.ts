@@ -1,10 +1,10 @@
 import { doc, setDoc, getDocs, collection, query, where, or, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
-import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
-import { getImageURL, uploadAvatar, uploadBackground } from "./storage";
+import { getFileURL, uploadAvatar, uploadBackground, uploadChatFile } from "./storage";
 import formatSubmit from "../utils/formatSubmit";
 import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
+import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 
 interface IUserChat {
 	userId: string;
@@ -13,6 +13,7 @@ interface IUserChat {
 }
 
 export interface IChatData {
+	type: string;
 	userId: string;
 	created_at: Timestamp;
 	message: string;
@@ -95,13 +96,13 @@ export const updateUser = async ({
 	let avatarUrl: string = "";
 	if (input.avatar) {
 		await uploadAvatar({ avatarFile: input.avatar[0], userId });
-		await getImageURL(`avatars/avatar_${userId}.png`).then((url) => (avatarUrl = url));
+		await getFileURL(`avatars/avatar_${userId}.png`).then((url) => (avatarUrl = url));
 	}
 
 	let backgroundUrl: string = "";
 	if (input.background) {
 		await uploadBackground({ backgroundFile: input.background[0], userId });
-		await getImageURL(`backgrounds/background_${userId}.png`).then((url) => (backgroundUrl = url));
+		await getFileURL(`backgrounds/background_${userId}.png`).then((url) => (backgroundUrl = url));
 	}
 
 	const formattedData = formatSubmit({ ...input, avatar: avatarUrl, background: backgroundUrl }, data);
@@ -192,23 +193,36 @@ const updateUserChats = async ({
 
 // chats collection
 export const updateChats = async ({
-	type,
 	chatId,
 	senderId,
-	message,
+	input,
 }: {
-	type: "text" | "file" | "gif";
 	chatId: string | undefined;
 	senderId: string;
-	message: string;
+	input: FileList | string;
 }) => {
 	if (chatId === undefined) throw new Error("Something went wrong with chat update.");
 	const chatRef = doc(firestore, "chats", chatId);
 	const chatSnap = await getDoc(chatRef);
 
-	//If type of message is file. We need to update this file to our storage and make a url to it
-
 	const messageTimestamp = Timestamp.fromDate(new Date());
+	let type = "text";
+	let message: string;
+	let userChatMessage: string;
+
+	// If input is a file
+	if (input instanceof FileList) {
+		const fileSeed = Date.now().toString();
+		const fileName = `${fileSeed}_${input[0].name}`;
+		await uploadChatFile({ chatId, fileName, chatFile: input[0] });
+		message = await getFileURL(`chatFiles/${chatId}/${fileName}`);
+		userChatMessage = "The file has been sent.";
+		type = input[0].type;
+	} else {
+		message = input;
+		userChatMessage = message;
+	}
+
 	const newMessage = {
 		type: type,
 		created_at: messageTimestamp,
@@ -229,26 +243,16 @@ export const updateChats = async ({
 		});
 	}
 
-	// If type of message is file. Instead normal message we want to set it for "The file has been sent."
-
 	// Update userChats
 	const receiverId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: senderId });
-	await updateUserChats({ userAId: senderId, userBId: receiverId, message: { ...newMessage, userId: receiverId } });
-	await updateUserChats({ userAId: receiverId, userBId: senderId, message: { ...newMessage, userId: senderId } });
+	await updateUserChats({
+		userAId: senderId,
+		userBId: receiverId,
+		message: { ...newMessage, message: userChatMessage, userId: receiverId },
+	});
+	await updateUserChats({
+		userAId: receiverId,
+		userBId: senderId,
+		message: { ...newMessage, message: userChatMessage, userId: senderId },
+	});
 };
-
-// TODO: How to send files and gifs
-// Add type of message type = "file" | "gif" | "text"
-// Just file
-// 1. Upload file to chatFiles/{chatId}
-// 1b. If folder doesnt exist - create it
-// 2. Get url for this file
-// 3. Save object to chats collection
-// 4. Save object to userChats collection with message "{User nickname} sent file."
-
-// File with message
-// Split to two messages - just file and just text. Do same as above
-
-// Just gif
-// Just like file
-// 4. "{User nickname sent gif}"

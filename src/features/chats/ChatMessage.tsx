@@ -4,6 +4,7 @@ import { ListElement } from "../../ui/ListElement";
 import { IChatElement } from "./useChat";
 import { Avatar } from "../../ui/Avatar";
 import { useNavigate } from "react-router-dom";
+import ChatMessageDownload from "./ChatMessageDownload";
 
 const MessageContainer = styled(ListElement)``;
 
@@ -26,6 +27,12 @@ const Content = styled.div`
 	padding: var(--padding-sm);
 `;
 
+const ImageContent = styled.img`
+	max-height: 28rem;
+	width: auto;
+	max-width: 100%;
+`;
+
 interface IChatMessageProps extends IChatElement {
 	currentUser: string;
 	renderPhoto: boolean;
@@ -33,8 +40,9 @@ interface IChatMessageProps extends IChatElement {
 
 const ChatMessage = (props: IChatMessageProps) => {
 	const navigate = useNavigate();
-	const { userId, avatar, currentUser, renderPhoto, message } = props;
+	const { userId, type, avatar, currentUser, renderPhoto, message } = props;
 
+	// Styling element
 	const isLeftMessage = userId !== currentUser;
 	const display = renderPhoto
 		? { display: "block", left: isLeftMessage ? "-5rem" : "unset", right: isLeftMessage ? "unset" : "-5rem" }
@@ -43,6 +51,13 @@ const ChatMessage = (props: IChatMessageProps) => {
 	const color = isLeftMessage
 		? { backgroundColor: "var(--color-primary-200)" }
 		: { backgroundColor: "var(--color-secondary-400)" };
+
+	// Type of message
+	let renderMessage;
+
+	if (type === "text") renderMessage = <p>{message}</p>;
+	else if (type.includes("image")) renderMessage = <ImageContent src={message} />;
+	else renderMessage = <ChatMessageDownload filename={message} />;
 
 	return (
 		<MessageContainer
@@ -59,7 +74,7 @@ const ChatMessage = (props: IChatMessageProps) => {
 						src={avatar}
 					/>
 				</AvatarContainer>
-				<Content style={color}>{message}</Content>
+				<Content style={color}>{renderMessage}</Content>
 			</StyledMessage>
 		</MessageContainer>
 	);

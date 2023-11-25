@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 const ChatFormFile = () => {
 	const { register, setValue } = useFormContext();
 
-	const fileValidation = (value: File[] | null) => {
+	const fileValidation = (value: FileList | null) => {
 		if (value?.length) {
 			const file = value[0];
 			const maxSizeInBytes = 4 * 1024 * 1024;

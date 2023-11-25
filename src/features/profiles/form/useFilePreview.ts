@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFilePreview = (file: File[] | null) => {
+const useFilePreview = (file: FileList | null) => {
 	const [imgSrc, setImgSrc] = useState<string | null>("");
 
 	useEffect(() => {

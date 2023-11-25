@@ -17,7 +17,7 @@ const BackgroundPreview = styled.img`
 	border-radius: var(--border-radius-md);
 `;
 
-const ProfileFormBackground = (props: { watcher: File[] | null; validation: (value: File[]) => true | string }) => {
+const ProfileFormBackground = (props: { watcher: FileList | null; validation: (value: FileList) => true | string }) => {
 	const { watcher, validation } = props;
 
 	const { register, formState } = useFormContext();

@@ -10,14 +10,14 @@ const StyledImages = styled.div`
 	justify-content: space-between;
 `;
 interface IProfileFormImagesProps {
-	avatarWatcher: File[] | null;
-	backgroundWatcher: File[] | null;
+	avatarWatcher: FileList | null;
+	backgroundWatcher: FileList | null;
 }
 
 const ProfileFormImages = (props: IProfileFormImagesProps) => {
 	const { avatarWatcher, backgroundWatcher } = props;
 
-	const fileValidation = (value: File[] | null) => {
+	const fileValidation = (value: FileList | null) => {
 		if (value?.length) {
 			const file = value[0];
 			const maxSizeInBytes = 1024 * 1024;

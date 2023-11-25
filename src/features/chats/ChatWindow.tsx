@@ -37,6 +37,7 @@ const ChatWindow = ({ currentUser }: { currentUser: string }) => {
 					return (
 						<ChatMessage
 							key={message.createdAt.nanoseconds}
+							type={message.type}
 							currentUser={currentUser}
 							userId={message.userId}
 							renderPhoto={renderPhoto}

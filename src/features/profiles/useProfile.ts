@@ -9,7 +9,6 @@ interface IUseProfileProps {
 const useProfile = (props: IUseProfileProps = {}) => {
 	const { passedUserId } = props;
 	const { userId: paramsUserId } = useParams();
-	console.log(passedUserId, " ", paramsUserId);
 	const userId = passedUserId || paramsUserId;
 
 	const { data: profileData, status } = useQuery({
