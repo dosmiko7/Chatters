@@ -6,6 +6,7 @@ import { IChatData, getUser } from "../../services/firestore";
 
 export interface IChatElement {
 	type: string;
+	fileName: string | undefined;
 	message: string;
 	userId: string;
 	createdAt: Timestamp;
@@ -35,6 +36,7 @@ const useChat = () => {
 								const user = await getUser(message.userId);
 								return {
 									type: message.type,
+									fileName: message.fileName,
 									userId: message.userId,
 									createdAt: message.created_at,
 									nickname: user.data.nickname,

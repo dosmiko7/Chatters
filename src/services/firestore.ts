@@ -14,6 +14,7 @@ interface IUserChat {
 
 export interface IChatData {
 	type: string;
+	fileName?: string;
 	userId: string;
 	created_at: Timestamp;
 	message: string;
@@ -207,28 +208,31 @@ export const updateChats = async ({
 
 	const messageTimestamp = Timestamp.fromDate(new Date());
 	let type = "text";
+	let fileName = "";
 	let message: string;
 	let userChatMessage: string;
 
 	// If input is a file
 	if (input instanceof FileList) {
 		const fileSeed = Date.now().toString();
-		const fileName = `${fileSeed}_${input[0].name}`;
-		await uploadChatFile({ chatId, fileName, chatFile: input[0] });
-		message = await getFileURL(`chatFiles/${chatId}/${fileName}`);
-		userChatMessage = "The file has been sent.";
+		const fileSrc = `${fileSeed}_${input[0].name}`;
+		await uploadChatFile({ chatId, fileName: fileSrc, chatFile: input[0] });
+		message = await getFileURL(`chatFiles/${chatId}/${fileSrc}`);
+		fileName = input[0].name;
+		userChatMessage = `${fileName} has been sent.`;
 		type = input[0].type;
 	} else {
 		message = input;
 		userChatMessage = message;
 	}
 
-	const newMessage = {
+	const newMessage: IChatData = {
 		type: type,
 		created_at: messageTimestamp,
 		message: message,
 		userId: senderId,
 	};
+	if (fileName.length) newMessage["fileName"] = fileName;
 
 	// Update chats
 	if (chatSnap.exists()) {

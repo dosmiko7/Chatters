@@ -40,7 +40,7 @@ interface IChatMessageProps extends IChatElement {
 
 const ChatMessage = (props: IChatMessageProps) => {
 	const navigate = useNavigate();
-	const { userId, type, avatar, currentUser, renderPhoto, message } = props;
+	const { userId, type, fileName, avatar, currentUser, renderPhoto, message } = props;
 
 	// Styling element
 	const isLeftMessage = userId !== currentUser;
@@ -54,10 +54,9 @@ const ChatMessage = (props: IChatMessageProps) => {
 
 	// Type of message
 	let renderMessage;
-
 	if (type === "text") renderMessage = <p>{message}</p>;
 	else if (type.includes("image")) renderMessage = <ImageContent src={message} />;
-	else renderMessage = <ChatMessageDownload filename={message} />;
+	else renderMessage = <ChatMessageDownload filename={fileName} />;
 
 	return (
 		<MessageContainer
