@@ -21,6 +21,19 @@ export const uploadBackground = async ({
 	await uploadBytes(backgroundRef, backgroundFile, METADATA);
 };
 
+export const uploadChatFile = async ({
+	chatId,
+	fileName,
+	chatFile,
+}: {
+	chatId: string;
+	fileName: string;
+	chatFile: File;
+}) => {
+	const chatFileRef = ref(storage, `chatFiles/${chatId}/${fileName}`);
+	await uploadBytes(chatFileRef, chatFile);
+};
+
 export const getImageURL = async (path: string): Promise<string> => {
 	const result = getDownloadURL(ref(storage, path));
 	return result;

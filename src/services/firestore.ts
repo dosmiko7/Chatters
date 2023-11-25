@@ -192,10 +192,12 @@ const updateUserChats = async ({
 
 // chats collection
 export const updateChats = async ({
+	type,
 	chatId,
 	senderId,
 	message,
 }: {
+	type: "text" | "file" | "gif";
 	chatId: string | undefined;
 	senderId: string;
 	message: string;
@@ -204,8 +206,11 @@ export const updateChats = async ({
 	const chatRef = doc(firestore, "chats", chatId);
 	const chatSnap = await getDoc(chatRef);
 
+	//If type of message is file. We need to update this file to our storage and make a url to it
+
 	const messageTimestamp = Timestamp.fromDate(new Date());
 	const newMessage = {
+		type: type,
 		created_at: messageTimestamp,
 		message: message,
 		userId: senderId,
@@ -223,6 +228,8 @@ export const updateChats = async ({
 			throw error;
 		});
 	}
+
+	// If type of message is file. Instead normal message we want to set it for "The file has been sent."
 
 	// Update userChats
 	const receiverId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: senderId });
