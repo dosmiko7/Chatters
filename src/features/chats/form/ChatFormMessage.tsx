@@ -29,7 +29,7 @@ const FileName = styled.p``;
 
 const FilePreview = styled.img`
 	width: auto;
-	height: 6rem;
+	height: 5rem;
 	border-radius: var(--border-radius-sm);
 `;
 
@@ -67,6 +67,7 @@ const ChatFormMessage = ({ watcher, status }: { watcher: File[] | null; status: 
 				<Box>
 					<FileRemove
 						variant="menu"
+						type="button"
 						onClick={handleOnRemove}
 					>
 						<HiXMark style={{ fontSize: "2rem" }} />

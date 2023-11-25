@@ -229,3 +229,19 @@ export const updateChats = async ({
 	await updateUserChats({ userAId: senderId, userBId: receiverId, message: { ...newMessage, userId: receiverId } });
 	await updateUserChats({ userAId: receiverId, userBId: senderId, message: { ...newMessage, userId: senderId } });
 };
+
+// TODO: How to send files and gifs
+// Add type of message type = "file" | "gif" | "text"
+// Just file
+// 1. Upload file to chatFiles/{chatId}
+// 1b. If folder doesnt exist - create it
+// 2. Get url for this file
+// 3. Save object to chats collection
+// 4. Save object to userChats collection with message "{User nickname} sent file."
+
+// File with message
+// Split to two messages - just file and just text. Do same as above
+
+// Just gif
+// Just like file
+// 4. "{User nickname sent gif}"

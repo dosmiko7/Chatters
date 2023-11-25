@@ -24,7 +24,8 @@ const ChatForm = () => {
 	const fileWatch = watch("file");
 
 	const onSubmit: SubmitHandler<IChatFormInput> = (input: IChatFormInput) => {
-		sendMessage(input.message);
+		console.log(input);
+		//sendMessage(input.message);
 	};
 
 	return (

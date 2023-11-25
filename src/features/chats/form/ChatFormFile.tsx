@@ -3,9 +3,10 @@ import { TbFile } from "react-icons/tb";
 
 import { Wrapper } from "../../../ui/Wrapper";
 import IconContainerForLabel from "../../../ui/IconContainerForLabel";
+import { toast } from "react-hot-toast";
 
 const ChatFormFile = () => {
-	const { register } = useFormContext();
+	const { register, setValue } = useFormContext();
 
 	const fileValidation = (value: File[] | null) => {
 		if (value?.length) {
@@ -13,7 +14,8 @@ const ChatFormFile = () => {
 			const maxSizeInBytes = 4 * 1024 * 1024;
 
 			if (file.size > maxSizeInBytes) {
-				return "File size should be less than 1 MB";
+				setValue("file", null);
+				toast.error("File size should be less than 1 MB");
 			}
 		}
 
