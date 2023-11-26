@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 
 const StyledAudio = styled.audio`
@@ -7,8 +8,17 @@ const StyledAudio = styled.audio`
 `;
 
 const ChatMessageMusic = ({ fileSrc, type }: { fileSrc: string; type: string }) => {
+	const defaultVolume = useCallback((audioElement: HTMLAudioElement | null) => {
+		if (audioElement) {
+			audioElement.volume = 0.5;
+		}
+	}, []);
+
 	return (
-		<StyledAudio controls>
+		<StyledAudio
+			controls
+			ref={defaultVolume}
+		>
 			<source
 				src={fileSrc}
 				type={type}

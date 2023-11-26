@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 import Sidebar from "./Sidebar";
-import ChatsBar from "../features/chats/ChatsBar";
+import ChatsBar from "../features/chats/chatsList/ChatsBar";
 
 const StyledAppLayout = styled.div`
 	display: grid;

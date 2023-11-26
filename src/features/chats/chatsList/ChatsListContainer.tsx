@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useState } from "react";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
 
-import { Wrapper } from "../../ui/Wrapper";
-import Heading from "../../ui/Heading";
-import { flexRow } from "../../style/Templates";
-import { Button } from "../../ui/Button";
+import { Wrapper } from "../../../ui/Wrapper";
+import Heading from "../../../ui/Heading";
+import { flexRow } from "../../../style/Templates";
+import { Button } from "../../../ui/Button";
 import ChatsList from "./ChatsList";
 
 const StyledChatsContainer = styled(Wrapper)``;

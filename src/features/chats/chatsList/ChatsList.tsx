@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import List from "../../ui/List";
+import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
 import { IChatsListElement } from "./useChatsList";
 import useChatsList from "./useChatsList";

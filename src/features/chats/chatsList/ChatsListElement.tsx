@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import { ListElement } from "../../ui/ListElement";
-import { Wrapper } from "../../ui/Wrapper";
-import { flexColumn } from "../../style/Templates";
-import { Avatar } from "../../ui/Avatar";
-import Heading from "../../ui/Heading";
+import { ListElement } from "../../../ui/ListElement";
+import { Wrapper } from "../../../ui/Wrapper";
+import { flexColumn } from "../../../style/Templates";
+import { Avatar } from "../../../ui/Avatar";
+import Heading from "../../../ui/Heading";
 
 interface IStatus {
 	isActive: boolean;
