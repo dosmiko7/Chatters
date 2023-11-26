@@ -56,7 +56,13 @@ const ChatMessage = (props: IChatMessageProps) => {
 	let renderMessage;
 	if (type === "text") renderMessage = <p>{message}</p>;
 	else if (type.includes("image")) renderMessage = <ImageContent src={message} />;
-	else renderMessage = <ChatMessageDownload filename={fileName} />;
+	else
+		renderMessage = (
+			<ChatMessageDownload
+				fileUrl={message}
+				filename={fileName}
+			/>
+		);
 
 	return (
 		<MessageContainer

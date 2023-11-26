@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { flexRow } from "../../style/Templates";
 import { Button } from "../../ui/Button";
+import useDownloadFile from "./useDownloadFile";
 
 const StyledDownloadMessage = styled.div`
 	${flexRow};
@@ -18,12 +19,23 @@ const FileName = styled.p`
 	text-overflow: ellipsis;
 `;
 
-const ChatMessageDownload = ({ filename }: { filename: string | undefined }) => {
+const ChatMessageDownload = ({ fileUrl, filename }: { fileUrl: string; filename: string | undefined }) => {
+	const { download, status } = useDownloadFile();
+	// TODO: Implement download option
+	// TODO: Implement video player
+	// TODO: Implement music player
+
+	const handleOnDownload = () => {
+		download(fileUrl);
+	};
+
 	return (
 		<StyledDownloadMessage>
 			<Button
 				type="button"
 				variant="menu"
+				disabled={status === "pending"}
+				onClick={handleOnDownload}
 			>
 				<BiDownload />
 			</Button>

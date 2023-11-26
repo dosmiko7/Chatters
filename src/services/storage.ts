@@ -31,6 +31,19 @@ export const uploadChatFile = async ({
 };
 
 export const getFileURL = async (path: string): Promise<string> => {
-	const result = getDownloadURL(ref(storage, path));
+	const result = await getDownloadURL(ref(storage, path));
 	return result;
+};
+
+export const downloadFile = async (filePath: string) => {
+	try {
+		const url = await getFileURL(filePath);
+		const link = document.createElement("a");
+		link.href = url;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	} catch (err) {
+		return err;
+	}
 };
