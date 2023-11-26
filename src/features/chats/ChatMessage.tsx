@@ -5,6 +5,7 @@ import { IChatElement } from "./useChat";
 import { Avatar } from "../../ui/Avatar";
 import { useNavigate } from "react-router-dom";
 import ChatMessageDownload from "./ChatMessageDownload";
+import ChatMessageMusic from "./ChatMessageMusic";
 
 const MessageContainer = styled(ListElement)``;
 
@@ -56,6 +57,13 @@ const ChatMessage = (props: IChatMessageProps) => {
 	let renderMessage;
 	if (type === "text") renderMessage = <p>{message}</p>;
 	else if (type.includes("image")) renderMessage = <ImageContent src={message} />;
+	else if (type.includes("audio"))
+		renderMessage = (
+			<ChatMessageMusic
+				fileSrc={message}
+				type={type}
+			/>
+		);
 	else
 		renderMessage = (
 			<ChatMessageDownload

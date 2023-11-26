@@ -21,7 +21,6 @@ const FileName = styled.p`
 
 const ChatMessageDownload = ({ fileUrl, filename }: { fileUrl: string; filename: string | undefined }) => {
 	const { download, status } = useDownloadFile();
-	// TODO: Implement download option
 	// TODO: Implement video player
 	// TODO: Implement music player
 
