@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import useGifs from "./useGifs";
@@ -23,7 +22,7 @@ const AbsoluteBox = styled(Container)`
 `;
 
 const KeyInput = styled.input`
-	position: fixed;
+	position: sticky;
 	font-size: 1.6rem;
 	border-radius: var(--border-radius-sm);
 	padding: var(--padding-xsm);
@@ -31,6 +30,7 @@ const KeyInput = styled.input`
 `;
 
 const ListContainer = styled.div`
+	margin-top: 1rem;
 	overflow-y: scroll;
 `;
 
@@ -41,14 +41,25 @@ const EmptyInfo = styled.div`
 `;
 
 const GIFElement = styled(ListElement)`
-	width: 6rem;
-	height: 6rem;
+	width: 100%;
+	height: auto;
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const ChatFormGIFList = () => {
-	const { register } = useForm();
-	const [offset, setOffset] = useState<number>(0);
+	const [value, setValue] = useState<string>("");
+	const [offset, setOffset] = useState<number>(-1);
 	const { gifs, getGifs, status } = useGifs();
+
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === "Enter") {
+			console.log(value);
+			setOffset((prev) => prev + 1);
+			getGifs({ key: value, offset });
+		}
+	};
 
 	let renderElement = !gifs.length ? (
 		<EmptyInfo>
@@ -60,7 +71,7 @@ const ChatFormGIFList = () => {
 				data={gifs}
 				render={(gifSrc: string) => {
 					return (
-						<GIFElement>
+						<GIFElement key={gifSrc}>
 							<img src={gifSrc} />
 						</GIFElement>
 					);
@@ -75,7 +86,8 @@ const ChatFormGIFList = () => {
 			<KeyInput
 				placeholder="GIF about..."
 				type="text"
-				{...register("gifKey")}
+				onChange={(event) => setValue(event.target.value)}
+				onKeyDown={handleKeyDown}
 			/>
 			{renderElement}
 		</AbsoluteBox>
