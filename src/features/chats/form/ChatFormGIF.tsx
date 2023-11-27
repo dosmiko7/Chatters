@@ -1,14 +1,22 @@
 import { TbGif } from "react-icons/tb";
+
 import { Button } from "../../../ui/Button";
+import styled from "styled-components";
+
+const RelativeBox = styled.div`
+	position: relative;
+`;
 
 const ChatFormGIF = () => {
 	return (
-		<Button
-			type="button"
-			variant="menu"
-		>
-			<TbGif />
-		</Button>
+		<RelativeBox>
+			<Button
+				type="button"
+				variant="menu"
+			>
+				<TbGif />
+			</Button>
+		</RelativeBox>
 	);
 };
 
