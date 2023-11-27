@@ -5,6 +5,7 @@ import fetchGifs, { IFetchGifsProps } from "../../../services/giphy";
 
 const useGifs = () => {
 	const [gifs, setGifs] = useState<string[]>([]);
+	const reset = () => setGifs([]);
 
 	const { mutate: getGifs, status } = useMutation({
 		mutationFn: ({ key, offset }: IFetchGifsProps): Promise<string[]> => fetchGifs({ key, offset }),
@@ -14,7 +15,7 @@ const useGifs = () => {
 		},
 	});
 
-	return { gifs, getGifs, status };
+	return { gifs, getGifs, reset, status };
 };
 
 export default useGifs;

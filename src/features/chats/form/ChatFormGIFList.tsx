@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import useGifs from "./useGifs";
@@ -52,17 +52,26 @@ const GIF = styled.img`
 `;
 
 const ChatFormGIFList = () => {
-	const [value, setValue] = useState<string>("");
-	const [offset, setOffset] = useState<number>(-1);
-	const { gifs, getGifs, status } = useGifs();
+	const [input, setInput] = useState<string>("");
+	const [currentKey, setCurrentKey] = useState<string>("");
+	const [offset, setOffset] = useState<number>(0);
+	const { gifs, getGifs, reset, status } = useGifs();
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === "Enter") {
-			console.log(value);
-			setOffset((prev) => prev + 1);
-			getGifs({ key: value, offset });
+			if (input !== currentKey) {
+				setOffset(0);
+				reset();
+				setCurrentKey(input);
+			}
 		}
 	};
+
+	// TODO: Increase offset when user reach end of list
+
+	useEffect(() => {
+		getGifs({ key: currentKey, offset });
+	}, [currentKey, offset, getGifs]);
 
 	let renderElement = !gifs.length ? (
 		<EmptyInfo>
@@ -89,7 +98,7 @@ const ChatFormGIFList = () => {
 			<KeyInput
 				placeholder="GIF about..."
 				type="text"
-				onChange={(event) => setValue(event.target.value)}
+				onChange={(event) => setInput(event.target.value)}
 				onKeyDown={handleKeyDown}
 			/>
 			{renderElement}
