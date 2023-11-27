@@ -7,7 +7,7 @@ const useGifs = () => {
 	const [gifs, setGifs] = useState<string[]>([]);
 
 	const { mutate: getGifs, status } = useMutation({
-		mutationFn: ({key, offset, endpoint}: IFetchGifsProps): Promise<string[]> => fetchGifs({ key, offset, endpoint }),
+		mutationFn: ({ key, offset }: IFetchGifsProps): Promise<string[]> => fetchGifs({ key, offset }),
 
 		onSuccess: (gifs) => {
 			setGifs((prev) => [...prev, ...gifs]);

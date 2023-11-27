@@ -9,7 +9,8 @@ export const centeredAbsolute = css`
 
 export const flexCentered = css`
 	display: flex;
-	place-items: center;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const flexColumn = css`
