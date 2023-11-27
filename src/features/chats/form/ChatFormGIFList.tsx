@@ -9,11 +9,11 @@ import { flexCentered, flexColumn } from "../../../style/Templates";
 import Spinner from "../../../ui/Spinner";
 
 const AbsoluteBox = styled(Container)`
-	position: absolute;
-	top: -30rem;
-	height: 30rem;
-	width: 25rem;
 	${flexColumn};
+	position: absolute;
+	top: -40rem;
+	height: 40rem;
+	width: 30rem;
 	align-items: center;
 	background-color: var(--color-primary-300);
 	box-shadow: var(--shadow-md);
@@ -24,12 +24,14 @@ const AbsoluteBox = styled(Container)`
 const KeyInput = styled.input`
 	position: sticky;
 	font-size: 1.6rem;
+	width: 100%;
 	border-radius: var(--border-radius-sm);
 	padding: var(--padding-xsm);
 	background-color: var(--color-primary-400);
 `;
 
 const ListContainer = styled.div`
+	width: 100%;
 	margin-top: 1rem;
 	overflow-y: scroll;
 `;
@@ -40,9 +42,10 @@ const EmptyInfo = styled.div`
 	height: 100%;
 `;
 
-const GIFElement = styled(ListElement)`
+const GIF = styled.img`
 	width: 100%;
 	height: auto;
+
 	&:hover {
 		cursor: pointer;
 	}
@@ -71,9 +74,9 @@ const ChatFormGIFList = () => {
 				data={gifs}
 				render={(gifSrc: string) => {
 					return (
-						<GIFElement key={gifSrc}>
-							<img src={gifSrc} />
-						</GIFElement>
+						<ListElement key={gifSrc}>
+							<GIF src={gifSrc} />
+						</ListElement>
 					);
 				}}
 			/>
