@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
 
 import useGifs from "./useGifs";
@@ -6,7 +6,6 @@ import List from "../../../ui/List";
 import { ListElement } from "../../../ui/ListElement";
 import { Container } from "../../../ui/Container";
 import { flexCentered, flexColumn } from "../../../style/Templates";
-import Spinner from "../../../ui/Spinner";
 
 const AbsoluteBox = styled(Container)`
 	${flexColumn};
@@ -55,7 +54,9 @@ const ChatFormGIFList = () => {
 	const [input, setInput] = useState<string>("");
 	const [currentKey, setCurrentKey] = useState<string>("");
 	const [offset, setOffset] = useState<number>(0);
-	const { gifs, getGifs, reset, status } = useGifs();
+	const containerRef = useRef<HTMLDivElement | null>(null);
+	const [scrollPosition, setScrollPosition] = useState<number>(0);
+	const { gifs, getGifs, reset } = useGifs();
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === "Enter") {
@@ -69,8 +70,10 @@ const ChatFormGIFList = () => {
 
 	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
 		const target = e.target as HTMLDivElement;
+		console.log(target);
 		const bottom = Math.abs(target.scrollHeight - target.clientHeight - target.scrollTop) < 1;
 		if (bottom) {
+			setScrollPosition(target.scrollTop);
 			setOffset((prev) => prev + 6);
 		}
 	};
@@ -79,12 +82,19 @@ const ChatFormGIFList = () => {
 		getGifs({ key: currentKey, offset });
 	}, [currentKey, offset, getGifs]);
 
-	let renderElement = !gifs.length ? (
+	useLayoutEffect(() => {
+		containerRef.current?.scrollTo({ top: scrollPosition });
+	});
+
+	const renderElement = !gifs.length ? (
 		<EmptyInfo>
 			<p>Such empty 😔</p>
 		</EmptyInfo>
 	) : (
-		<ListContainer onScroll={handleScroll}>
+		<ListContainer
+			onScroll={handleScroll}
+			ref={containerRef}
+		>
 			<List<string>
 				data={gifs}
 				render={(gifSrc: string) => {
@@ -97,7 +107,6 @@ const ChatFormGIFList = () => {
 			/>
 		</ListContainer>
 	);
-	renderElement = status === "pending" ? <Spinner /> : renderElement;
 
 	return (
 		<AbsoluteBox>
