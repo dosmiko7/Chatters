@@ -67,7 +67,13 @@ const ChatFormGIFList = () => {
 		}
 	};
 
-	// TODO: Increase offset when user reach end of list
+	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+		const target = e.target as HTMLDivElement;
+		const bottom = Math.abs(target.scrollHeight - target.clientHeight - target.scrollTop) < 1;
+		if (bottom) {
+			setOffset((prev) => prev + 6);
+		}
+	};
 
 	useEffect(() => {
 		getGifs({ key: currentKey, offset });
@@ -78,7 +84,7 @@ const ChatFormGIFList = () => {
 			<p>Such empty 😔</p>
 		</EmptyInfo>
 	) : (
-		<ListContainer>
+		<ListContainer onScroll={handleScroll}>
 			<List<string>
 				data={gifs}
 				render={(gifSrc: string) => {

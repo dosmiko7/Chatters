@@ -18,5 +18,4 @@ const fetchGifs = async ({ key, offset }: IFetchGifsProps) => {
 	return gifs;
 };
 
-
 export default fetchGifs;
