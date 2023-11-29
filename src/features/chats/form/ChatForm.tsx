@@ -26,6 +26,7 @@ const ChatForm = () => {
 		console.log(input);
 		// if (input.message.length) sendMessage(input.message);
 		// if (input.file?.length) sendMessage(input.file);
+		if (input.gif.length) sendMessage({ type: "image/gif", message: input.gif });
 	};
 
 	return (

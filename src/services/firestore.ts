@@ -193,6 +193,11 @@ const updateUserChats = async ({
 };
 
 // chats collection
+export interface GIFMessage {
+	type: "image/gif";
+	message: string;
+}
+
 export const updateChats = async ({
 	chatId,
 	senderId,
@@ -200,13 +205,12 @@ export const updateChats = async ({
 }: {
 	chatId: string | undefined;
 	senderId: string;
-	input: FileList | string;
+	input: FileList | string | GIFMessage;
 }) => {
 	if (chatId === undefined) throw new Error("Something went wrong with chat update.");
 	const chatRef = doc(firestore, "chats", chatId);
 	const chatSnap = await getDoc(chatRef);
 
-	const messageTimestamp = Timestamp.fromDate(new Date());
 	let type = "text";
 	let fileName = "";
 	let message: string;
@@ -214,21 +218,30 @@ export const updateChats = async ({
 
 	// If input is a file
 	if (input instanceof FileList) {
+		const [file] = input;
 		const fileSeed = Date.now().toString();
-		const fileSrc = `${fileSeed}_${input[0].name}`;
-		await uploadChatFile({ chatId, fileName: fileSrc, chatFile: input[0] });
+		const fileSrc = `${fileSeed}_${file.name}`;
+		await uploadChatFile({ chatId, fileName: fileSrc, chatFile: file });
 		message = await getFileURL(`chatFiles/${chatId}/${fileSrc}`);
-		fileName = input[0].name;
+		fileName = file.name;
 		userChatMessage = `${fileName} has been sent.`;
-		type = input[0].type;
-	} else {
+		type = file.type;
+	}
+	// If input is normal message
+	else if (typeof input === "string") {
 		message = input;
 		userChatMessage = message;
+	}
+	// If input is a gif from Giphy
+	else {
+		type = input.type;
+		message = input.message;
+		userChatMessage = "GIF has been sent.";
 	}
 
 	const newMessage: IChatData = {
 		type: type,
-		created_at: messageTimestamp,
+		created_at: Timestamp.fromDate(new Date()),
 		message: message,
 		userId: senderId,
 	};
