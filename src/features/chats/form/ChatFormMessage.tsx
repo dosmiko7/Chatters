@@ -5,8 +5,10 @@ import useFilePreview from "../../profiles/form/useFilePreview";
 import { flexRow } from "../../../style/Templates";
 import { Button } from "../../../ui/Button";
 import { HiXMark } from "react-icons/hi2";
+import ThreeDots from "../../../ui/ThreeDots";
 
 const MessageContainer = styled.div`
+	position: relative;
 	border-radius: var(--border-radius-md);
 	padding: var(--padding-xsm);
 	background-color: var(--color-primary-300);
@@ -51,6 +53,15 @@ const StyledMessageInput = styled(Input)`
 	}
 `;
 
+const SendingMessageLoading = styled.div`
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(3px) grayscale(30%);
+`;
+
 const ChatFormMessage = ({ status }: { status: string }) => {
 	const { register, setValue } = useFormContext();
 	const watcher: FileList = useWatch({ name: "file" });
@@ -76,6 +87,11 @@ const ChatFormMessage = ({ status }: { status: string }) => {
 					<FileName>{watcher[0].name}</FileName>
 					<FilePreview src={currentFileSrc} />
 				</Box>
+			)}
+			{status === "pending" && (
+				<SendingMessageLoading>
+					<ThreeDots />
+				</SendingMessageLoading>
 			)}
 			<StyledMessageInput
 				disabled={status === "pending"}
