@@ -20,13 +20,17 @@ export interface IChatFormInput {
 const ChatForm = () => {
 	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
 	const { sendMessage, status } = useSendMessage();
-	const { handleSubmit } = methods;
+	const { handleSubmit, reset, resetField } = methods;
 
-	const onSubmit: SubmitHandler<IChatFormInput> = (input: IChatFormInput) => {
-		console.log(input);
-		// if (input.message.length) sendMessage(input.message);
-		// if (input.file?.length) sendMessage(input.file);
-		if (input.gif.length) sendMessage({ type: "image/gif", message: input.gif });
+	const onSubmit: SubmitHandler<IChatFormInput> = async (input: IChatFormInput) => {
+		if (input.gif.length) {
+			await sendMessage({ type: "image/gif", message: input.gif });
+			resetField("gif");
+		} else {
+			if (input.message.length) await sendMessage(input.message);
+			if (input.file?.length) await sendMessage(input.file);
+			reset();
+		}
 	};
 
 	return (

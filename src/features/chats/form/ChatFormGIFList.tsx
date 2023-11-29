@@ -25,11 +25,11 @@ const ChatFormGIFList = ({ gifs }: { gifs: string[] }) => {
 			data={gifs}
 			render={(gifSrc: string) => {
 				return (
-					<ListElement
-						key={gifSrc}
-						onClick={() => setValue("gif", gifSrc)}
-					>
-						<GIFElement htmlFor={gifSrc}>
+					<ListElement key={gifSrc}>
+						<GIFElement
+							htmlFor={gifSrc}
+							onClick={() => setValue("gif", gifSrc)}
+						>
 							<GIF src={gifSrc} />
 						</GIFElement>
 						<input

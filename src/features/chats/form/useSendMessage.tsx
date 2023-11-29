@@ -8,7 +8,7 @@ import { GIFMessage, updateChats } from "../../../services/firestore";
 const useSendMessage = () => {
 	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
 	const { combinedId } = useParams();
-	const { mutate: sendMessage, status } = useMutation({
+	const { mutateAsync: sendMessage, status } = useMutation({
 		mutationFn: (input: FileList | string | GIFMessage) =>
 			updateChats({ chatId: combinedId, senderId: loggedUserId, input }),
 
