@@ -14,14 +14,13 @@ const StyledChatForm = styled(Form)`
 export interface IChatFormInput {
 	message: string;
 	file: FileList | null;
+	gif: string;
 }
 
 const ChatForm = () => {
-	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null } });
+	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
 	const { sendMessage, status } = useSendMessage();
-	const { watch, handleSubmit } = methods;
-
-	const fileWatch = watch("file");
+	const { handleSubmit } = methods;
 
 	const onSubmit: SubmitHandler<IChatFormInput> = (input: IChatFormInput) => {
 		console.log(input);
@@ -33,10 +32,7 @@ const ChatForm = () => {
 		<FormProvider {...methods}>
 			<StyledChatForm onSubmit={handleSubmit(onSubmit)}>
 				<ChatFormAdditional />
-				<ChatFormMessage
-					watcher={fileWatch}
-					status={status}
-				/>
+				<ChatFormMessage status={status} />
 			</StyledChatForm>
 		</FormProvider>
 	);

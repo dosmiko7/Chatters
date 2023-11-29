@@ -32,8 +32,8 @@ const ChatFormGIFList = () => {
 	const [input, setInput] = useState<string>("");
 	const [currentKey, setCurrentKey] = useState<string>("");
 	const [offset, setOffset] = useState<number>(0);
-	const containerRef = useRef<HTMLDivElement | null>(null);
 	const [scrollPosition, setScrollPosition] = useState<number>(0);
+	const containerRef = useRef<HTMLDivElement | null>(null);
 	const { gifs, getGifs, reset } = useGifs();
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

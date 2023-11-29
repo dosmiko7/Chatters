@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { Input } from "../../../ui/Input";
 import styled from "styled-components";
 import useFilePreview from "../../profiles/form/useFilePreview";
@@ -51,8 +51,9 @@ const StyledMessageInput = styled(Input)`
 	}
 `;
 
-const ChatFormMessage = ({ watcher, status }: { watcher: FileList | null; status: string }) => {
+const ChatFormMessage = ({ status }: { status: string }) => {
 	const { register, setValue } = useFormContext();
+	const watcher = useWatch({ name: "file" });
 	const { imgSrc } = useFilePreview(watcher);
 
 	const currentFileSrc = imgSrc || "/fileIcon.png";
