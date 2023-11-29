@@ -63,6 +63,7 @@ const ChatFormGIFList = () => {
 			if (input !== currentKey) {
 				setOffset(0);
 				reset();
+				setScrollPosition(0);
 				setCurrentKey(input);
 			}
 		}
@@ -70,7 +71,6 @@ const ChatFormGIFList = () => {
 
 	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
 		const target = e.target as HTMLDivElement;
-		console.log(target);
 		const bottom = Math.abs(target.scrollHeight - target.clientHeight - target.scrollTop) < 1;
 		if (bottom) {
 			setScrollPosition(target.scrollTop);
