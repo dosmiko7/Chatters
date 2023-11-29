@@ -24,8 +24,8 @@ const ChatForm = () => {
 
 	const onSubmit: SubmitHandler<IChatFormInput> = (input: IChatFormInput) => {
 		console.log(input);
-		if (input.message.length) sendMessage(input.message);
-		if (input.file?.length) sendMessage(input.file);
+		// if (input.message.length) sendMessage(input.message);
+		// if (input.file?.length) sendMessage(input.file);
 	};
 
 	return (

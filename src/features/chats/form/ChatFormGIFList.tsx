@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
+import { useFormContext } from "react-hook-form";
 
 import useGifs from "./useGifs";
 import List from "../../../ui/List";
@@ -19,6 +20,10 @@ const EmptyInfo = styled.div`
 	height: 100%;
 `;
 
+const GIFElement = styled.label`
+	width: 100%;
+`;
+
 const GIF = styled.img`
 	width: 100%;
 	height: auto;
@@ -29,6 +34,7 @@ const GIF = styled.img`
 `;
 
 const ChatFormGIFList = () => {
+	const { register, setValue } = useFormContext();
 	const [input, setInput] = useState<string>("");
 	const [currentKey, setCurrentKey] = useState<string>("");
 	const [offset, setOffset] = useState<number>(0);
@@ -77,8 +83,20 @@ const ChatFormGIFList = () => {
 				data={gifs}
 				render={(gifSrc: string) => {
 					return (
-						<ListElement key={gifSrc}>
-							<GIF src={gifSrc} />
+						<ListElement
+							key={gifSrc}
+							onClick={() => setValue("gif", gifSrc)}
+						>
+							<GIFElement htmlFor={gifSrc}>
+								<GIF src={gifSrc} />
+							</GIFElement>
+							<input
+								{...register("gif")}
+								type="submit"
+								id={gifSrc}
+								value={gifSrc}
+								style={{ display: "none" }}
+							/>
 						</ListElement>
 					);
 				}}
