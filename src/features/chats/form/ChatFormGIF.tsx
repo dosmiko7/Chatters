@@ -3,7 +3,7 @@ import { TbGif } from "react-icons/tb";
 
 import { Button } from "../../../ui/Button";
 import styled from "styled-components";
-import ChatFormGIFList from "./ChatFormGIFList";
+import ChatFormGIFContainer from "./ChatFormGIFContainer";
 
 const RelativeBox = styled.div`
 	position: relative;
@@ -18,7 +18,7 @@ const ChatFormGIF = () => {
 
 	return (
 		<>
-			{openGIFList && <ChatFormGIFList />}
+			{openGIFList && <ChatFormGIFContainer />}
 			<RelativeBox>
 				<Button
 					type="button"
