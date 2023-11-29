@@ -4,30 +4,8 @@ import styled from "styled-components";
 import useGifs from "./useGifs";
 import List from "../../../ui/List";
 import { ListElement } from "../../../ui/ListElement";
-import { Container } from "../../../ui/Container";
-import { flexCentered, flexColumn } from "../../../style/Templates";
-
-const AbsoluteBox = styled(Container)`
-	${flexColumn};
-	position: absolute;
-	top: -40rem;
-	height: 40rem;
-	width: 30rem;
-	align-items: center;
-	background-color: var(--color-primary-300);
-	box-shadow: var(--shadow-md);
-	border-radius: var(--border-radius-sm);
-	border-right: none;
-`;
-
-const KeyInput = styled.input`
-	position: sticky;
-	font-size: 1.6rem;
-	width: 100%;
-	border-radius: var(--border-radius-sm);
-	padding: var(--padding-xsm);
-	background-color: var(--color-primary-400);
-`;
+import { flexCentered } from "../../../style/Templates";
+import GIFWindow, { GIFKeyInput } from "../../../ui/GIFWindow";
 
 const ListContainer = styled.div`
 	width: 100%;
@@ -109,15 +87,15 @@ const ChatFormGIFList = () => {
 	);
 
 	return (
-		<AbsoluteBox>
-			<KeyInput
+		<GIFWindow>
+			<GIFKeyInput
 				placeholder="GIF about..."
 				type="text"
 				onChange={(event) => setInput(event.target.value)}
 				onKeyDown={handleKeyDown}
 			/>
 			{renderElement}
-		</AbsoluteBox>
+		</GIFWindow>
 	);
 };
 
