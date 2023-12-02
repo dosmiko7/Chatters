@@ -26,7 +26,10 @@ const App = () => {
 	return (
 		<DarkThemeProvider>
 			<QueryClientProvider client={queryClient}>
-				<ReactQueryDevtools initialIsOpen={false} />
+				<ReactQueryDevtools
+					initialIsOpen={false}
+					buttonPosition="bottom-left"
+				/>
 				<GlobalStyles />
 				<BrowserRouter>
 					<Routes>

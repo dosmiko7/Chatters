@@ -6,6 +6,7 @@ import { Form } from "../../../ui/Form";
 import ChatFormMessage from "./ChatFormMessage";
 import ChatFormAdditional from "./ChatFormAdditional";
 import ChatFormInputsContainer from "./ChatFormInputsContainer";
+import ChatFormEmoji from "./ChatFormEmoji";
 
 const StyledChatForm = styled(Form)`
 	width: 100%;
@@ -23,14 +24,15 @@ const ChatForm = () => {
 	const { handleSubmit, reset, resetField } = methods;
 
 	const onSubmit: SubmitHandler<IChatFormInput> = async (input: IChatFormInput) => {
-		if (input.gif.length) {
-			await sendMessage({ type: "image/gif", message: input.gif });
-			resetField("gif");
-		} else {
-			if (input.message.length) await sendMessage(input.message);
-			if (input.file?.length) await sendMessage(input.file);
-			reset();
-		}
+		console.log(input);
+		// if (input.gif.length) {
+		// 	await sendMessage({ type: "image/gif", message: input.gif });
+		// 	resetField("gif");
+		// } else {
+		// 	if (input.message.length) await sendMessage(input.message);
+		// 	if (input.file?.length) await sendMessage(input.file);
+		// 	reset();
+		// }
 	};
 
 	return (
@@ -39,6 +41,7 @@ const ChatForm = () => {
 				<ChatFormInputsContainer status={status}>
 					<ChatFormAdditional />
 					<ChatFormMessage status={status} />
+					<ChatFormEmoji />
 				</ChatFormInputsContainer>
 			</StyledChatForm>
 		</FormProvider>
