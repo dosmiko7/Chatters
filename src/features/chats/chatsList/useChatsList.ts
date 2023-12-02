@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { IChatData, getUser } from "../../../services/firestore";
+import { IUserChat, getUser } from "../../../services/firestore";
 import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../../firebase";
 
@@ -25,7 +25,7 @@ const useChatsList = () => {
 			const unsub = onSnapshot(
 				doc(firestore, "userChats", userId),
 				async (doc) => {
-					const data = doc.data() as { chats: IChatData[] };
+					const data = doc.data() as { chats: IUserChat[] };
 					if (data) {
 						const chats = data?.chats;
 
@@ -34,8 +34,8 @@ const useChatsList = () => {
 							return {
 								userId: chat.userId,
 								createdAt: chat.created_at,
-								nickname: user.data.nickname,
 								lastMessage: chat.message,
+								nickname: user.data.nickname,
 								avatar: user.data.avatar,
 								isActive: user.data.lastLoggedIn > user.data.lastLoggedOut,
 							};

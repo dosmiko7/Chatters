@@ -2,7 +2,7 @@ import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { firestore } from "../../firebase";
 import { useParams } from "react-router-dom";
-import { IChatData, getUser } from "../../services/firestore";
+import { IChatData } from "../../services/firestore";
 
 export interface IChatElement {
 	type: string;
@@ -20,6 +20,8 @@ const useChat = () => {
 	//const userID = data?.uid;
 	const { combinedId: chatId } = useParams();
 	const [chat, setChat] = useState<IChatElement[]>([]);
+	const [emoji, setEmoji] = useState<string>("💪");
+	const [theme, setTheme] = useState<string>("default");
 	const [error, setError] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -28,28 +30,25 @@ const useChat = () => {
 				const unsub = onSnapshot(
 					doc(firestore, "chats", chatId),
 					async (doc) => {
-						const data = doc.data() as { messages: IChatData[] };
+						const data = doc.data() as IChatData;
 						if (data) {
-							const messages = data?.messages;
-
-							const promises = messages.map(async (message) => {
-								const user = await getUser(message.userId);
+							const messagesData = data?.messages;
+							const messages = messagesData.map((message) => {
 								return {
 									type: message.type,
 									fileName: message.fileName,
 									userId: message.userId,
 									createdAt: message.created_at,
-									nickname: user.data.nickname,
-									avatar: user.data.avatar,
+									nickname: message.nickname,
+									avatar: message.avatar,
 									message: message.message,
 								};
 							});
-							const messagesData = await Promise.all(promises);
-							const messagesElements: IChatElement[] = [];
-							messagesElements.push(...messagesData);
 
 							setError(false);
-							setChat(messagesElements);
+							setChat(messages);
+							setEmoji(data.emoji);
+							setTheme(data.theme);
 						}
 					},
 					() => {
@@ -63,7 +62,7 @@ const useChat = () => {
 		chatId && getChat();
 	}, [chatId]);
 
-	return { chat, error };
+	return { chat, emoji, theme, error };
 };
 
 export default useChat;

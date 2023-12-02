@@ -6,18 +6,26 @@ import formatSubmit from "../utils/formatSubmit";
 import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 
-interface IUserChat {
+export interface IUserChat {
+	userId: string;
+	created_at: Timestamp;
+	message: string;
+}
+
+interface IChatMessagesData {
+	nickname: string;
+	avatar: string;
+	type: string;
+	fileName?: string;
 	userId: string;
 	created_at: Timestamp;
 	message: string;
 }
 
 export interface IChatData {
-	type: string;
-	fileName?: string;
-	userId: string;
-	created_at: Timestamp;
-	message: string;
+	emoji: string;
+	theme: string;
+	messages: IChatMessagesData[];
 }
 
 export interface IFriendData {
@@ -210,6 +218,7 @@ export const updateChats = async ({
 	if (chatId === undefined) throw new Error("Something went wrong with chat update.");
 	const chatRef = doc(firestore, "chats", chatId);
 	const chatSnap = await getDoc(chatRef);
+	const user = await getUser(senderId);
 
 	let type = "text";
 	let fileName = "";
@@ -239,7 +248,9 @@ export const updateChats = async ({
 		userChatMessage = "GIF has been sent.";
 	}
 
-	const newMessage: IChatData = {
+	const newMessage: IChatMessagesData = {
+		nickname: user.data.nickname,
+		avatar: user.data.avatar,
 		type: type,
 		created_at: Timestamp.fromDate(new Date()),
 		message: message,
