@@ -5,10 +5,10 @@ import { Form } from "../../../ui/Form";
 import ChatFormMessage from "./ChatFormMessage";
 import styled from "styled-components";
 import ChatFormAdditional from "./ChatFormAdditional";
+import ChatFormInputsContainer from "../../../ui/ChatFormInputsContainer";
 
 const StyledChatForm = styled(Form)`
-	flex-direction: row;
-	align-items: center;
+	width: 100%;
 `;
 
 export interface IChatFormInput {
@@ -36,8 +36,10 @@ const ChatForm = () => {
 	return (
 		<FormProvider {...methods}>
 			<StyledChatForm onSubmit={handleSubmit(onSubmit)}>
-				<ChatFormAdditional />
-				<ChatFormMessage status={status} />
+				<ChatFormInputsContainer status={status}>
+					<ChatFormAdditional />
+					<ChatFormMessage status={status} />
+				</ChatFormInputsContainer>
 			</StyledChatForm>
 		</FormProvider>
 	);
