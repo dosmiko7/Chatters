@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
-import useChat, { IChatElement } from "./useChat";
+import { IChatElement } from "./useChat";
 import List from "../../ui/List";
 import ChatMessage from "./ChatMessage";
 
@@ -13,8 +13,7 @@ const StyledChatWindow = styled.div`
 	overflow-y: scroll;
 `;
 
-const ChatWindow = ({ currentUser }: { currentUser: string }) => {
-	const { chat, error } = useChat();
+const ChatWindow = ({ currentUser, chat, error }: { currentUser: string; chat: IChatElement[]; error: boolean }) => {
 	const bottomRef = useRef<null | HTMLDivElement>(null);
 
 	useEffect(() => {

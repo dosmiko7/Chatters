@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 
-import { IUserData } from "../../services/firestore";
-import formatDate from "../../utils/formatDate";
 import { Container } from "../../ui/Container";
 import { flexCentered, flexColumn } from "../../style/Templates";
 import { Avatar } from "../../ui/Avatar";
@@ -33,15 +31,16 @@ const Info = styled.div`
 `;
 
 interface IChatMoreProps {
-	data: IUserData | undefined;
+	data: { avatar: string; nickname: string; isActive: boolean; lastSeen: string };
 	handlerClose: () => void;
 }
 
 const ChatMore = ({ data, handlerClose }: IChatMoreProps) => {
 	if (!data) return <Error>Something went wrong 😓</Error>;
 
-	const activeStatus =
-		data.lastLoggedIn > data.lastLoggedOut ? "🟢 Active now" : `🔴 Last seen ${formatDate(data.lastLoggedOut)}`;
+	const { avatar, nickname, isActive, lastSeen } = data;
+
+	const activeStatus = isActive ? "🟢 Active now" : `🔴 Last seen ${lastSeen}`;
 
 	return (
 		<StyledChatMoreInfo>
@@ -54,9 +53,9 @@ const ChatMore = ({ data, handlerClose }: IChatMoreProps) => {
 			<Info>
 				<Avatar
 					size="6rem"
-					src={data.avatar}
+					src={avatar}
 				/>
-				<Heading as="h3">{data.nickname}</Heading>
+				<Heading as="h3">{nickname}</Heading>
 				<Heading as="h4">{activeStatus}</Heading>
 			</Info>
 			<ChatMoreOptions />

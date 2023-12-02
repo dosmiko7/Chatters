@@ -14,10 +14,7 @@ export interface IChatElement {
 	avatar: string;
 }
 
-// TODO: If user will send file - add property for this (isFile or sth like this)
 const useChat = () => {
-	//const { data } = useLoggedUser();
-	//const userID = data?.uid;
 	const { combinedId: chatId } = useParams();
 	const [chat, setChat] = useState<IChatElement[]>([]);
 	const [emoji, setEmoji] = useState<string>("💪");

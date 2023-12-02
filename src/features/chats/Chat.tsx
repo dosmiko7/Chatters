@@ -1,14 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import useProfile from "../profiles/useProfile";
-import getSecondPartOfCombinedString from "../../utils/getSecondPartOfCombinedString";
-import ChatWindow from "./ChatWindow";
-import ChatForm from "./form/ChatForm";
+import useChat from "./useChat";
 import { flexColumn, flexRow } from "../../style/Templates";
+import ChatForm from "./form/ChatForm";
 import { Container } from "../../ui/Container";
 import { Wrapper } from "../../ui/Wrapper";
+import ChatWindow from "./ChatWindow";
 import ChatTitle from "./ChatTitle";
 import ChatMore from "./ChatMore";
 
@@ -27,11 +26,11 @@ const StyledChat = styled(Container)`
 // TODO: Change for current logged user id
 // TODO: Add users' id to chats collection
 const Chat = () => {
-	const { combinedId } = useParams();
 	const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
-	const currentUser = "ivKwYDsLxLkM34cMKDdw";
-	const friendId = getSecondPartOfCombinedString({ combinedString: combinedId || "", knownPart: currentUser });
-	const { profileData } = useProfile({ passedUserId: friendId });
+	const location = useLocation();
+	const { chat, emoji, theme, error } = useChat();
+	const { nickname, avatar, isActive, lastSeen, friendId, userId } = location.state;
+	const data = { nickname, avatar, isActive, lastSeen, friendId };
 
 	const handleOpenMore = () => {
 		setIsMoreOpen((prev) => !prev);
@@ -42,15 +41,19 @@ const Chat = () => {
 			<StyledChat>
 				<ChatTitle
 					handlerOpen={handleOpenMore}
-					nickname={profileData?.data.nickname}
+					nickname={nickname}
 				/>
-				<ChatWindow currentUser={currentUser} />
+				<ChatWindow
+					currentUser={userId}
+					chat={chat}
+					error={error}
+				/>
 				<ChatForm />
 			</StyledChat>
 			{isMoreOpen && (
 				<ChatMore
 					handlerClose={handleOpenMore}
-					data={profileData?.data}
+					data={data}
 				/>
 			)}
 		</StyledWrapper>

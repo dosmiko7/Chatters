@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+
 import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
 import { IChatsListElement } from "./useChatsList";
@@ -20,7 +21,18 @@ const ChatsList = () => {
 				return (
 					<ChatsListElement
 						key={friend.userId}
-						onClickHandler={() => navigate(`chat/${combinedId}`)}
+						onClickHandler={() =>
+							navigate(`chat/${combinedId}`, {
+								state: {
+									nickname: friend.nickname,
+									avatar: friend.avatar,
+									isActive: friend.isActive,
+									friendId: friend.userId,
+									userId: loggedUserId,
+									lastSeen: friend.lastSeen,
+								},
+							})
+						}
 						avatar={friend.avatar}
 						nickname={friend.nickname}
 						isActive={friend.isActive}

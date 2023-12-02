@@ -25,14 +25,14 @@ const ChatForm = () => {
 
 	const onSubmit: SubmitHandler<IChatFormInput> = async (input: IChatFormInput) => {
 		console.log(input);
-		// if (input.gif.length) {
-		// 	await sendMessage({ type: "image/gif", message: input.gif });
-		// 	resetField("gif");
-		// } else {
-		// 	if (input.message.length) await sendMessage(input.message);
-		// 	if (input.file?.length) await sendMessage(input.file);
-		// 	reset();
-		// }
+		if (input.gif.length) {
+			await sendMessage({ type: "image/gif", message: input.gif });
+			resetField("gif");
+		} else {
+			if (input.message.length) await sendMessage(input.message);
+			if (input.file?.length) await sendMessage(input.file);
+			reset();
+		}
 	};
 
 	return (

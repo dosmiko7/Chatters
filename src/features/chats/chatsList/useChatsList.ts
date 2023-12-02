@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { IUserChat, getUser } from "../../../services/firestore";
 import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../../firebase";
+
+import { IUserChat, getUser } from "../../../services/firestore";
+import formatDate from "../../../utils/formatDate";
 
 export interface IChatsListElement {
 	createdAt: Timestamp;
@@ -10,6 +12,7 @@ export interface IChatsListElement {
 	nickname: string;
 	avatar: string;
 	isActive: boolean;
+	lastSeen: string;
 }
 
 // TODO: Change for dynamic logged user's data
@@ -38,6 +41,7 @@ const useChatsList = () => {
 								nickname: user.data.nickname,
 								avatar: user.data.avatar,
 								isActive: user.data.lastLoggedIn > user.data.lastLoggedOut,
+								lastSeen: formatDate(user.data.lastLoggedOut),
 							};
 						});
 						const chatsListData = await Promise.all(promises);
