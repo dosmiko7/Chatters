@@ -32,10 +32,11 @@ const Info = styled.div`
 
 interface IChatMoreProps {
 	data: { avatar: string; nickname: string; isActive: boolean; lastSeen: string };
+	emoji: string;
 	handlerClose: () => void;
 }
 
-const ChatMore = ({ data, handlerClose }: IChatMoreProps) => {
+const ChatMore = ({ data, emoji, handlerClose }: IChatMoreProps) => {
 	if (!data) return <Error>Something went wrong 😓</Error>;
 
 	const { avatar, nickname, isActive, lastSeen } = data;
@@ -58,7 +59,7 @@ const ChatMore = ({ data, handlerClose }: IChatMoreProps) => {
 				<Heading as="h3">{nickname}</Heading>
 				<Heading as="h4">{activeStatus}</Heading>
 			</Info>
-			<ChatMoreOptions />
+			<ChatMoreOptions emoji={emoji} />
 		</StyledChatMoreInfo>
 	);
 };

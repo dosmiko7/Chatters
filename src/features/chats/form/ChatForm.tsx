@@ -18,7 +18,7 @@ export interface IChatFormInput {
 	gif: string;
 }
 
-const ChatForm = () => {
+const ChatForm = ({ emoji }: { emoji: string }) => {
 	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
 	const { sendMessage, status } = useSendMessage();
 	const { handleSubmit, reset, resetField } = methods;
@@ -41,7 +41,7 @@ const ChatForm = () => {
 				<ChatFormInputsContainer status={status}>
 					<ChatFormAdditional />
 					<ChatFormMessage status={status} />
-					<ChatFormEmoji />
+					<ChatFormEmoji emoji={emoji} />
 				</ChatFormInputsContainer>
 			</StyledChatForm>
 		</FormProvider>

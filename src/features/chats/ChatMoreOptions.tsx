@@ -10,9 +10,7 @@ const Option = styled.li`
 	gap: 0.4rem;
 `;
 
-const ChatMoreOptions = () => {
-	const currentEmoji = "🎨";
-
+const ChatMoreOptions = ({ emoji }: { emoji: string }) => {
 	const onEmojiClickHandler = (emoji: EmojiClickData) => {
 		console.log(emoji);
 	};
@@ -22,7 +20,7 @@ const ChatMoreOptions = () => {
 			<Heading as="h3">Chat customization</Heading>
 			<ul>
 				<Option>
-					<Button variant="menu">{currentEmoji}</Button>
+					<Button variant="menu">{emoji}</Button>
 					<p>Change emoji</p>
 				</Option>
 			</ul>

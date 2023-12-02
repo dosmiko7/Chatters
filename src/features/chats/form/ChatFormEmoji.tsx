@@ -5,8 +5,8 @@ const StyledButton = styled(Button)`
 	margin-left: 1rem;
 `;
 
-const ChatFormEmoji = () => {
-	return <StyledButton variant="menu">💪</StyledButton>;
+const ChatFormEmoji = ({ emoji }: { emoji: string }) => {
+	return <StyledButton variant="menu">{emoji}</StyledButton>;
 };
 
 export default ChatFormEmoji;
