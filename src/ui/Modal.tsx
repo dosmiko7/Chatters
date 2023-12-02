@@ -16,6 +16,8 @@ const StyledModal = styled.div`
 	box-shadow: var(--shadow-lg);
 	padding: var(--padding-md) var(--padding-lg);
 	transition: var(--transition-all-5);
+	width: 45rem;
+	height: 55rem;
 `;
 
 const StyledButton = styled(Button)`

@@ -143,16 +143,23 @@ const GlobalStyles = createGlobalStyle`
         max-width: 100%;
     }
 
-    .EmojiPickerReact.epr-dark-theme {
-        --epr-bg-color: var(--color-primary-500);
-        --epr-category-label-bg-color: var(--color-primary-500);
-        --epr-search-input-bg-color: var(--color-primary-400);
-        --epr-search-input-bg-color-active: var(--color-primary-500);
-        --epr-search-border-color: var(--color-secondary-100);
+    aside.EmojiPickerReact {
+        --epr-dark-category-icon-active-color: var(--color-secondary-100);
+
+        &.epr-dark-theme {
+            border: none;
+            --epr-bg-color: transparent;
+            --epr-category-label-bg-color: var(--color-primary-400);
+            --epr-search-input-bg-color: var(--color-primary-500);
+            --epr-search-input-bg-color-active: var(--color-primary-500);
+            --epr-search-border-color: var(--color-secondary-100);
+            --epr-picker-border-color: transparent;
+
+            & .epr-cat-btn {
+                
+            }
+        }
     }
-
-    .EmojiPickerReact {}
-
 `;
 
 export default GlobalStyles;
