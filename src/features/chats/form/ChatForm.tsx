@@ -1,11 +1,11 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import styled from "styled-components";
 
 import useSendMessage from "./useSendMessage";
 import { Form } from "../../../ui/Form";
 import ChatFormMessage from "./ChatFormMessage";
-import styled from "styled-components";
 import ChatFormAdditional from "./ChatFormAdditional";
-import ChatFormInputsContainer from "../../../ui/ChatFormInputsContainer";
+import ChatFormInputsContainer from "./ChatFormInputsContainer";
 
 const StyledChatForm = styled(Form)`
 	width: 100%;
