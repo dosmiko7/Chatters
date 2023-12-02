@@ -143,6 +143,16 @@ const GlobalStyles = createGlobalStyle`
         max-width: 100%;
     }
 
+    .EmojiPickerReact.epr-dark-theme {
+        --epr-bg-color: var(--color-primary-500);
+        --epr-category-label-bg-color: var(--color-primary-500);
+        --epr-search-input-bg-color: var(--color-primary-400);
+        --epr-search-input-bg-color-active: var(--color-primary-500);
+        --epr-search-border-color: var(--color-secondary-100);
+    }
+
+    .EmojiPickerReact {}
+
 `;
 
 export default GlobalStyles;
