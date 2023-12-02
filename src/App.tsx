@@ -12,6 +12,7 @@ import AppLayout from "./ui/AppLayout";
 import Dashboard from "./ui/Dashboard";
 import Profile from "./features/profiles/Profile";
 import Chat from "./features/chats/Chat";
+import DarkThemeProvider from "./context/DarkThemeContext";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -23,65 +24,67 @@ const queryClient = new QueryClient({
 
 const App = () => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ReactQueryDevtools initialIsOpen={false} />
-			<GlobalStyles />
-			<BrowserRouter>
-				<Routes>
-					<Route element={<AppLayout />}>
+		<DarkThemeProvider>
+			<QueryClientProvider client={queryClient}>
+				<ReactQueryDevtools initialIsOpen={false} />
+				<GlobalStyles />
+				<BrowserRouter>
+					<Routes>
+						<Route element={<AppLayout />}>
+							<Route
+								index
+								element={
+									<Navigate
+										replace
+										to="dashboard"
+									/>
+								}
+							/>
+							<Route
+								path="dashboard"
+								element={<Dashboard />}
+							/>
+							<Route
+								path="profile/:userId"
+								element={<Profile />}
+							/>
+							<Route
+								path="chat/:combinedId"
+								element={<Chat />}
+							/>
+						</Route>
 						<Route
-							index
-							element={
-								<Navigate
-									replace
-									to="dashboard"
-								/>
-							}
+							path="login"
+							element={<LoginForm />}
 						/>
 						<Route
-							path="dashboard"
-							element={<Dashboard />}
+							path="register"
+							element={<RegisterForm />}
 						/>
-						<Route
-							path="profile/:userId"
-							element={<Profile />}
-						/>
-						<Route
-							path="chat/:combinedId"
-							element={<Chat />}
-						/>
-					</Route>
-					<Route
-						path="login"
-						element={<LoginForm />}
-					/>
-					<Route
-						path="register"
-						element={<RegisterForm />}
-					/>
-				</Routes>
-			</BrowserRouter>
-			<Toaster
-				position="top-center"
-				gutter={12}
-				containerStyle={{ margin: "8px" }}
-				toastOptions={{
-					success: {
-						duration: 3000,
-					},
-					error: {
-						duration: 5000,
-					},
-					style: {
-						fontSize: "16px",
-						maxWidth: "500px",
-						padding: "16px 24px",
-						backgroundColor: "var(--color-primary-25)",
-						color: "var(--color-primary-500)",
-					},
-				}}
-			/>
-		</QueryClientProvider>
+					</Routes>
+				</BrowserRouter>
+				<Toaster
+					position="top-center"
+					gutter={12}
+					containerStyle={{ margin: "8px" }}
+					toastOptions={{
+						success: {
+							duration: 3000,
+						},
+						error: {
+							duration: 5000,
+						},
+						style: {
+							fontSize: "16px",
+							maxWidth: "500px",
+							padding: "16px 24px",
+							backgroundColor: "var(--color-primary-25)",
+							color: "var(--color-primary-500)",
+						},
+					}}
+				/>
+			</QueryClientProvider>
+		</DarkThemeProvider>
 	);
 };
 

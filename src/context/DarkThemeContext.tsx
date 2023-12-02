@@ -12,7 +12,7 @@ const defaultValues: DarkThemeContextProps = {
 
 export const DarkThemeContext = createContext(defaultValues);
 
-const DarkThemeProvider = ({ children }: { children: ReactNode[] }) => {
+const DarkThemeProvider = ({ children }: { children: ReactNode }) => {
 	const [isDarkTheme, setIsDarkTheme] = useState(true);
 
 	const toggleDarkTheme = () => {

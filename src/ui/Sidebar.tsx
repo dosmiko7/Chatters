@@ -7,6 +7,7 @@ import { Avatar } from "./Avatar";
 import Logout from "./Logout";
 import Logo from "./Logo";
 import Searches from "../features/searches/Searches";
+import ThemeChanger from "./ThemeChanger";
 
 const StyledSidebar = styled(Container)`
 	${flexColumn};
@@ -29,7 +30,8 @@ const Sidebar = () => {
 				<Searches />
 			</Box>
 			<Box>
-				<Avatar width="4rem" />
+				<ThemeChanger />
+				<Avatar size="4rem" />
 				<Logout />
 			</Box>
 		</StyledSidebar>
