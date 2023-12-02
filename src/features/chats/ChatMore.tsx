@@ -8,6 +8,7 @@ import { flexCentered, flexColumn } from "../../style/Templates";
 import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
 import { Button } from "../../ui/Button";
+import ChatMoreOptions from "./ChatMoreOptions";
 
 const StyledChatMoreInfo = styled(Container)`
 	${flexColumn};
@@ -58,6 +59,7 @@ const ChatMore = ({ data, handlerClose }: IChatMoreProps) => {
 				<Heading as="h3">{data.nickname}</Heading>
 				<Heading as="h4">{activeStatus}</Heading>
 			</Info>
+			<ChatMoreOptions />
 		</StyledChatMoreInfo>
 	);
 };
