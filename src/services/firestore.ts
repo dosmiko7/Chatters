@@ -206,7 +206,7 @@ export interface GIFMessage {
 	message: string;
 }
 
-export const updateChats = async ({
+export const updateChatsMessages = async ({
 	chatId,
 	senderId,
 	input,
@@ -283,4 +283,29 @@ export const updateChats = async ({
 		userBId: senderId,
 		message: { ...newMessage, message: userChatMessage, userId: senderId },
 	});
+};
+
+export const updateChatsCustomization = async ({
+	chatId,
+	emoji,
+	theme,
+}: {
+	chatId: string | undefined;
+	emoji?: string;
+	theme?: string;
+}) => {
+	if (chatId === undefined) throw new Error("Something went wrong with chat customization update.");
+	const chatRef = doc(firestore, "chats", chatId);
+
+	if (emoji) {
+		await updateDoc(chatRef, { emoji }).catch((error) => {
+			throw error;
+		});
+	}
+
+	if (theme) {
+		await updateDoc(chatRef, { theme }).catch((error) => {
+			throw error;
+		});
+	}
 };
