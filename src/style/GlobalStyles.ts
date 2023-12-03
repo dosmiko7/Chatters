@@ -53,6 +53,8 @@ const GlobalStyles = createGlobalStyle`
 
             --transition-all-3: 0.3s all;
             --transition-all-5: 0.5s all;
+
+            /* Chat Themes */
         }
     
         &.light-theme {
