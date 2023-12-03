@@ -1,6 +1,6 @@
-import Modal from "../../ui/Modal";
-import { Button } from "../../ui/Button";
-import Heading from "../../ui/Heading";
+import Modal from "../../../ui/Modal";
+import { Button } from "../../../ui/Button";
+import Heading from "../../../ui/Heading";
 import ChatMoreEmojiPicker from "./ChatMoreEmojiPicker";
 
 const ChatMoreGIFPicker = ({ emoji }: { emoji: string }) => {

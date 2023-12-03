@@ -9,7 +9,7 @@ import { Container } from "../../ui/Container";
 import { Wrapper } from "../../ui/Wrapper";
 import ChatWindow from "./ChatWindow";
 import ChatTitle from "./ChatTitle";
-import ChatMore from "./ChatMore";
+import ChatMore from "./more/ChatMore";
 
 const StyledWrapper = styled(Wrapper)`
 	${flexRow};

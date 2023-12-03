@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import { updateChatsCustomization } from "../../services/firestore";
+import { updateChatsCustomization } from "../../../services/firestore";
 
 const useChatCustomization = () => {
 	const { combinedId } = useParams();

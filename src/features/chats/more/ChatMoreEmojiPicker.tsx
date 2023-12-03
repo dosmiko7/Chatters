@@ -1,7 +1,7 @@
 import EmojiPicker, { Theme, EmojiClickData } from "emoji-picker-react";
 
 import useChatCustomization from "./useChatCustomization";
-import { useModal } from "../../hooks/useModal";
+import { useModal } from "../../../hooks/useModal";
 
 const ChatMoreEmojiPicker = () => {
 	const { changeCustomization } = useChatCustomization();

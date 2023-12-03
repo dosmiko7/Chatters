@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 
-import { Container } from "../../ui/Container";
-import { flexCentered, flexColumn } from "../../style/Templates";
-import { Avatar } from "../../ui/Avatar";
-import Heading from "../../ui/Heading";
-import { Button } from "../../ui/Button";
+import { Container } from "../../../ui/Container";
+import { flexCentered, flexColumn } from "../../../style/Templates";
+import { Avatar } from "../../../ui/Avatar";
+import Heading from "../../../ui/Heading";
+import { Button } from "../../../ui/Button";
 import ChatMoreOptions from "./ChatMoreOptions";
 
 const StyledChatMoreInfo = styled(Container)`
