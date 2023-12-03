@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Heading from "../../ui/Heading";
 import { flexRow } from "../../style/Templates";
-import ChatMoreGIFPicker from "./ChatMoreGIFPicker";
+import ChatMoreGIFPicker from "./ChatMoreModalEmoji";
 
 const Option = styled.li`
 	${flexRow}

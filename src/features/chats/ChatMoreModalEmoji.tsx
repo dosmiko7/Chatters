@@ -1,17 +1,9 @@
-import EmojiPicker, { Theme, EmojiClickData } from "emoji-picker-react";
-
-import useChatCustomization from "./useChatCustomization";
 import Modal from "../../ui/Modal";
 import { Button } from "../../ui/Button";
 import Heading from "../../ui/Heading";
+import ChatMoreEmojiPicker from "./ChatMoreEmojiPicker";
 
 const ChatMoreGIFPicker = ({ emoji }: { emoji: string }) => {
-	const { changeCustomization } = useChatCustomization();
-
-	const onEmojiClickHandler = (emoji: EmojiClickData) => {
-		changeCustomization({ emoji: emoji.emoji });
-	};
-
 	return (
 		<Modal>
 			<Modal.Open opens="gifPicker">
@@ -24,12 +16,7 @@ const ChatMoreGIFPicker = ({ emoji }: { emoji: string }) => {
 				>
 					Emoji
 				</Heading>
-				<EmojiPicker
-					onEmojiClick={onEmojiClickHandler}
-					theme={Theme.DARK}
-					width="100%"
-					height="90%"
-				/>
+				<ChatMoreEmojiPicker />
 			</Modal.Window>
 		</Modal>
 	);
