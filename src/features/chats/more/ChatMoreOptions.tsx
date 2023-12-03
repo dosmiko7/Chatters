@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Heading from "../../../ui/Heading";
 import { flexRow } from "../../../style/Templates";
-import ChatMoreGIFPicker from "./ChatMoreModalEmoji";
+import ChatMoreModalEmoji from "./ChatMoreModalEmoji";
 
 const Option = styled.li`
 	${flexRow}
@@ -16,7 +16,7 @@ const ChatMoreOptions = ({ emoji }: { emoji: string }) => {
 			<Heading as="h3">Chat customization</Heading>
 			<ul>
 				<Option>
-					<ChatMoreGIFPicker emoji={emoji} />
+					<ChatMoreModalEmoji emoji={emoji} />
 					<p>Change emoji</p>
 				</Option>
 			</ul>

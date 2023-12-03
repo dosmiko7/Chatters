@@ -3,7 +3,7 @@ import { Button } from "../../../ui/Button";
 import Heading from "../../../ui/Heading";
 import ChatMoreEmojiPicker from "./ChatMoreEmojiPicker";
 
-const ChatMoreGIFPicker = ({ emoji }: { emoji: string }) => {
+const ChatMoreModalEmoji = ({ emoji }: { emoji: string }) => {
 	return (
 		<Modal>
 			<Modal.Open opens="gifPicker">
@@ -22,4 +22,4 @@ const ChatMoreGIFPicker = ({ emoji }: { emoji: string }) => {
 	);
 };
 
-export default ChatMoreGIFPicker;
+export default ChatMoreModalEmoji;
