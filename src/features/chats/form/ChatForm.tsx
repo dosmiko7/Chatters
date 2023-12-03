@@ -16,6 +16,7 @@ export interface IChatFormInput {
 	message: string;
 	file: FileList | null;
 	gif: string;
+	emoji: string;
 }
 
 const ChatForm = ({ emoji }: { emoji: string }) => {
@@ -28,6 +29,9 @@ const ChatForm = ({ emoji }: { emoji: string }) => {
 		if (input.gif.length) {
 			await sendMessage({ type: "image/gif", message: input.gif });
 			resetField("gif");
+		} else if (input.emoji.length) {
+			await sendMessage({ type: "emoji", message: input.emoji });
+			resetField("emoji");
 		} else {
 			if (input.message.length) await sendMessage(input.message);
 			if (input.file?.length) await sendMessage(input.file);

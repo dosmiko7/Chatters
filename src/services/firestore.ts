@@ -201,8 +201,8 @@ const updateUserChats = async ({
 };
 
 // chats collection
-export interface GIFMessage {
-	type: "image/gif";
+export interface TypeMessage {
+	type: "image/gif" | "emoji";
 	message: string;
 }
 
@@ -213,7 +213,7 @@ export const updateChatsMessages = async ({
 }: {
 	chatId: string | undefined;
 	senderId: string;
-	input: FileList | string | GIFMessage;
+	input: FileList | string | TypeMessage;
 }) => {
 	if (chatId === undefined) throw new Error("Something went wrong with chat update.");
 	const chatRef = doc(firestore, "chats", chatId);
@@ -241,11 +241,11 @@ export const updateChatsMessages = async ({
 		message = input;
 		userChatMessage = message;
 	}
-	// If input is a gif from Giphy
+	// If input is a gif from Giphy or it is Emoji
 	else {
 		type = input.type;
 		message = input.message;
-		userChatMessage = "GIF has been sent.";
+		userChatMessage = input.type === "emoji" ? message : "GIF has been sent.";
 	}
 
 	const newMessage: IChatMessagesData = {
