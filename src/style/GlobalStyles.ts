@@ -1,4 +1,18 @@
 import { createGlobalStyle } from "styled-components";
+import { themes } from "../data/themes";
+
+const generateThemesVariables = () => {
+	let css = "";
+
+	themes.forEach((theme) => {
+		const variableEntries = Object.entries(theme.variables);
+		css += `
+          ${variableEntries.map(([property, value]) => `${property}: ${value};`).join("\n")}
+      `;
+	});
+
+	return css;
+};
 
 const GlobalStyles = createGlobalStyle`
     :root {
@@ -55,6 +69,7 @@ const GlobalStyles = createGlobalStyle`
             --transition-all-5: 0.5s all;
 
             /* Chat Themes */
+            ${generateThemesVariables()}
         }
     
         &.light-theme {
