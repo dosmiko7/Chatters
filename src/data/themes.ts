@@ -9,7 +9,7 @@ const generateTheme = (theme: string, hexLeftColor: string, hexRightColor: strin
 	const left = `${prefix}-left`;
 	const right = `${prefix}-right`;
 
-	const background = `linear-gradient(45deg, var(${left}) 50%, var(${right}) 100%);`;
+	const background = `linear-gradient(45deg, var(${left}) 40%, var(${right}) 100%);`;
 	const variables = {
 		[left]: `${hexLeftColor}`,
 		[right]: `${hexRightColor}`,
@@ -25,7 +25,7 @@ const generateTheme = (theme: string, hexLeftColor: string, hexRightColor: strin
 export const themes: ThemeData[] = [
 	{
 		theme: "default",
-		background: "linear-gradient(45deg, var(--default-chat-left) 50%, var(--default-chat-right) 100%);",
+		background: "linear-gradient(45deg, var(--default-chat-left) 40%, var(--default-chat-right) 100%);",
 		variables: {
 			"--default-chat-left": "var(--color-primary-200)",
 			"--default-chat-right": "var(--color-secondary-400)",
@@ -34,23 +34,3 @@ export const themes: ThemeData[] = [
 	generateTheme("grape", "#84afcc", "#402e57"),
 	generateTheme("redish", "#5b2c2c", "#881332"),
 ];
-
-/*			
-		{
-		theme: "grape",
-		background: "linear-gradient(45deg, var(--grape-chat-left) 50%, var(--grape-chat-right) 100%);",
-		variables: {
-			"--grape-chat-left": "#84afcc",
-			"--grape-chat-right": "#402e57",
-			}
-		}
-
-		{
-		theme: "redish",
-		background: "linear-gradient(45deg, var(--redish-chat-left) 50%, var(--redish-chat-right) 100%);",
-		variables: {
-			"--redish-chat-left": "#5b2c2c",
-			"--redish-chat-right": "#881332",
-			},
-		},
-			*/

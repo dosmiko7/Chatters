@@ -10,12 +10,7 @@ const ChatMoreModalEmoji = ({ emoji }: { emoji: string }) => {
 				<Button variant="menu">{emoji}</Button>
 			</Modal.Open>
 			<Modal.Window name="gifPicker">
-				<Heading
-					as="h2"
-					center
-				>
-					Emoji
-				</Heading>
+				<Heading as="h2">Emoji</Heading>
 				<ChatMoreEmojiPicker />
 			</Modal.Window>
 		</Modal>
