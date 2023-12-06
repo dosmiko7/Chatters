@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { themes } from "../../../data/themes";
+import useChatCustomization from "./useChatCustomization";
+import { useModal } from "../../../hooks/useModal";
 
 interface IPickerProps {
 	background: string;
@@ -46,11 +48,24 @@ const Grid = styled.div`
 `;
 
 const ChatMoreThemePicker = () => {
+	const { changeCustomization } = useChatCustomization();
+	const { close } = useModal();
+
+	const onThemeClickHandler = (theme: string) => {
+		changeCustomization({ theme });
+		close();
+	};
+
 	return (
 		<Box>
 			<Grid>
 				{themes.map((theme) => {
-					return <Picker background={theme.background} />;
+					return (
+						<Picker
+							background={theme.background}
+							onClick={() => onThemeClickHandler(theme.theme)}
+						/>
+					);
 				})}
 			</Grid>
 		</Box>

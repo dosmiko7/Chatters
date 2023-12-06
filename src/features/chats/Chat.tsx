@@ -27,7 +27,7 @@ const StyledChat = styled(Container)`
 const Chat = () => {
 	const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
 	const location = useLocation();
-	const { chat, emoji, error } = useChat();
+	const { chat, emoji, theme, error } = useChat();
 	const { nickname, avatar, isActive, lastSeen, friendId, userId } = location.state;
 	const data = { nickname, avatar, isActive, lastSeen, friendId };
 
@@ -54,6 +54,7 @@ const Chat = () => {
 					handlerClose={handleOpenMore}
 					data={data}
 					emoji={emoji}
+					theme={theme}
 				/>
 			)}
 		</StyledWrapper>

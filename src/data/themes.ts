@@ -9,7 +9,7 @@ const generateTheme = (theme: string, hexLeftColor: string, hexRightColor: strin
 	const left = `${prefix}-left`;
 	const right = `${prefix}-right`;
 
-	const background = `linear-gradient(45deg, var(${left}) 40%, var(${right}) 100%);`;
+	const background = `linear-gradient(45deg, var(${left}) 40%, var(${right}) 100%)`;
 	const variables = {
 		[left]: `${hexLeftColor}`,
 		[right]: `${hexRightColor}`,
@@ -25,7 +25,7 @@ const generateTheme = (theme: string, hexLeftColor: string, hexRightColor: strin
 export const themes: ThemeData[] = [
 	{
 		theme: "default",
-		background: "linear-gradient(45deg, var(--default-chat-left) 40%, var(--default-chat-right) 100%);",
+		background: "linear-gradient(45deg, var(--default-chat-left) 40%, var(--default-chat-right) 100%)",
 		variables: {
 			"--default-chat-left": "var(--color-primary-200)",
 			"--default-chat-right": "var(--color-secondary-400)",
