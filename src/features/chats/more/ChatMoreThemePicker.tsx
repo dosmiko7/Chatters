@@ -62,6 +62,7 @@ const ChatMoreThemePicker = () => {
 				{themes.map((theme) => {
 					return (
 						<Picker
+							key={theme.theme}
 							background={theme.background}
 							onClick={() => onThemeClickHandler(theme.theme)}
 						/>
