@@ -16,7 +16,17 @@ const StyledChatWindow = styled.div`
 	-webkit-transform: translateZ(0);
 `;
 
-const ChatWindow = ({ currentUser, chat, error }: { currentUser: string; chat: IChatElement[]; error: boolean }) => {
+const ChatWindow = ({
+	currentUser,
+	chat,
+	theme,
+	error,
+}: {
+	currentUser: string;
+	chat: IChatElement[];
+	theme: string;
+	error: boolean;
+}) => {
 	const bottomRef = useRef<null | HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
@@ -46,11 +56,12 @@ const ChatWindow = ({ currentUser, chat, error }: { currentUser: string; chat: I
 								fileName={message.fileName}
 								currentUser={currentUser}
 								userId={message.userId}
-								renderPhoto={renderPhoto}
 								createdAt={message.createdAt}
 								nickname={message.nickname}
 								avatar={message.avatar}
 								message={message.message}
+								theme={theme}
+								renderPhoto={renderPhoto}
 							/>
 						);
 					}}

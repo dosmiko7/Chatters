@@ -46,6 +46,7 @@ const Chat = () => {
 					currentUser={userId}
 					chat={chat}
 					error={error}
+					theme={theme}
 				/>
 				<ChatForm emoji={emoji} />
 			</StyledChat>

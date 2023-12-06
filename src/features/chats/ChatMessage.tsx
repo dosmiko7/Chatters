@@ -38,11 +38,12 @@ const ImageContent = styled.img`
 interface IChatMessageProps extends IChatElement {
 	currentUser: string;
 	renderPhoto: boolean;
+	theme: string;
 }
 
 const ChatMessage = (props: IChatMessageProps) => {
 	const navigate = useNavigate();
-	const { userId, type, fileName, avatar, currentUser, renderPhoto, message } = props;
+	const { userId, type, fileName, avatar, currentUser, renderPhoto, message, theme } = props;
 
 	// Styling element
 	const isLeftMessage = userId !== currentUser;
@@ -51,12 +52,77 @@ const ChatMessage = (props: IChatMessageProps) => {
 		: { display: "none" };
 	const position = isLeftMessage ? { justifyContent: "flex-start" } : { justifyContent: "flex-end" };
 	const color = isLeftMessage
-		? { backgroundColor: "var(--color-primary-200)" }
-		: { backgroundColor: "var(--color-secondary-400)" };
+		? { backgroundColor: `var(--${theme}-chat-left)` }
+		: { backgroundColor: `var(--${theme}-chat-right)` };
 
 	// Type of message
 	let renderMessage;
-	if (type === "text") {
+	switch (true) {
+		case type.includes("text"):
+			renderMessage = <p>{message}</p>;
+			break;
+
+		case type.includes("emoji"):
+			renderMessage = <p style={{ fontSize: "3rem" }}>{message}</p>;
+			break;
+
+		case type.includes("image"):
+			renderMessage = <ImageContent src={message} />;
+			break;
+
+		case type.includes("audio"):
+			renderMessage = (
+				<ChatMessageMusic
+					fileSrc={message}
+					type={type}
+				/>
+			);
+			break;
+
+		case type.includes("video"):
+			renderMessage = (
+				<ChatMessageVideo
+					fileSrc={message}
+					type={type}
+				/>
+			);
+			break;
+
+		default:
+			renderMessage = (
+				<ChatMessageDownload
+					fileUrl={message}
+					filename={fileName}
+				/>
+			);
+			break;
+	}
+
+	return (
+		<MessageContainer
+			style={position}
+			nonBorder={true}
+		>
+			<StyledMessage>
+				<AvatarContainer
+					style={display}
+					onClick={() => navigate(`profile/${userId}`)}
+				>
+					<Avatar
+						size="4rem"
+						src={avatar}
+					/>
+				</AvatarContainer>
+				<Content style={color}>{renderMessage}</Content>
+			</StyledMessage>
+		</MessageContainer>
+	);
+};
+
+export default ChatMessage;
+
+/*
+if (type.includes("text")) {
 		renderMessage = <p>{message}</p>;
 	} else if (type.includes("emoji")) {
 		renderMessage = <p style={{ fontSize: "3rem" }}>{message}</p>;
@@ -84,26 +150,4 @@ const ChatMessage = (props: IChatMessageProps) => {
 			/>
 		);
 	}
-
-	return (
-		<MessageContainer
-			style={position}
-			nonBorder={true}
-		>
-			<StyledMessage>
-				<AvatarContainer
-					style={display}
-					onClick={() => navigate(`profile/${userId}`)}
-				>
-					<Avatar
-						size="4rem"
-						src={avatar}
-					/>
-				</AvatarContainer>
-				<Content style={color}>{renderMessage}</Content>
-			</StyledMessage>
-		</MessageContainer>
-	);
-};
-
-export default ChatMessage;
+	*/
