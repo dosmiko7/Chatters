@@ -1,4 +1,17 @@
-import { doc, setDoc, getDocs, collection, query, where, or, getDoc, Timestamp, updateDoc } from "firebase/firestore";
+import {
+	doc,
+	setDoc,
+	getDocs,
+	collection,
+	query,
+	where,
+	or,
+	getDoc,
+	Timestamp,
+	updateDoc,
+	DocumentData,
+	DocumentReference,
+} from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
 import { getFileURL, uploadAvatar, uploadBackground, uploadChatFile } from "./storage";
@@ -167,6 +180,47 @@ export const getFriends = async (friends: string[] | undefined): Promise<IFriend
 		return friendsElements;
 	} catch (err) {
 		throw new Error("Error fetching friends");
+	}
+};
+
+export const updateFriendsList = async ({
+	userId,
+	friendId,
+	mode,
+}: {
+	userId: string;
+	friendId: string;
+	mode: "add" | "remove";
+}) => {
+	const userDocRef = doc(firestore, "users", userId);
+	const userDocSnap = await getDoc(userDocRef);
+	const friendDocRef = doc(firestore, "users", friendId);
+	const friendDocSnap = await getDoc(friendDocRef);
+
+	const updateFriendsList = async ({
+		documentRef,
+		data,
+		userIdToChange,
+	}: {
+		documentRef: DocumentReference<DocumentData, DocumentData>;
+		data: DocumentData;
+		userIdToChange: string;
+	}) => {
+		const friendsList = data.friends_list as string[];
+		let updatedFriendsList: string[] = [];
+		if (mode === "add") updatedFriendsList = [userIdToChange, ...friendsList];
+		if (mode === "remove") updatedFriendsList = friendsList.filter((friend) => friend !== userIdToChange);
+		await updateDoc(documentRef, { friends_list: updatedFriendsList }).catch((error) => {
+			throw error;
+		});
+	};
+
+	if (userDocSnap.exists()) {
+		await updateFriendsList({ documentRef: userDocRef, data: userDocSnap.data(), userIdToChange: friendId });
+	}
+
+	if (friendDocSnap.exists()) {
+		await updateFriendsList({ documentRef: friendDocRef, data: friendDocSnap.data(), userIdToChange: userId });
 	}
 };
 
