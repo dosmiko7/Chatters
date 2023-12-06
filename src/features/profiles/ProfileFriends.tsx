@@ -13,8 +13,8 @@ const StyledProfileFriends = styled.div`
 
 // TODO: Make an error UI element for every component where error can occury
 const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
-	const friends = profileData.data.friends_list;
-	const { friendsData, status } = useFriends(friends);
+	const { friendsData, status } = useFriends();
+	const { nickname } = profileData.data;
 
 	let renderEl;
 	if (status === "pending") renderEl = <Spinner />;
@@ -25,14 +25,14 @@ const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
 				as="h3"
 				center
 			>
-				{profileData.data.nickname} has not friends.
+				{nickname} has not friends.
 			</Heading>
 		);
 	else renderEl = <ProfileFriendsGrid friendsData={friendsData} />;
 
 	return (
 		<StyledProfileFriends>
-			<Heading as="h2">Friends of {profileData.data.nickname}</Heading>
+			<Heading as="h2">Friends of {nickname}</Heading>
 			{renderEl}
 		</StyledProfileFriends>
 	);

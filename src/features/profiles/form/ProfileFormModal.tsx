@@ -1,3 +1,4 @@
+//import { useParams } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 
 import Modal from "../../../ui/Modal";
@@ -5,6 +6,8 @@ import ProfileForm from "./ProfileForm";
 import ButtonProfile from "../../../ui/ButtonProfile";
 
 const ProfileFormModal = () => {
+	//const { userId: profileId } = useParams();
+
 	return (
 		<Modal>
 			<Modal.Open opens="profileform">

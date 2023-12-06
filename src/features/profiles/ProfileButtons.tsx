@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import ProfileButtonAdd from "./ProfileButtonAdd";
+
+import ProfileButtonFriend from "./ProfileButtonFriend";
 import { flexRow } from "../../style/Templates";
 import ProfileButtonMessage from "./ProfileButtonMessage";
 import ProfileFormModal from "./form/ProfileFormModal";
@@ -16,7 +17,7 @@ const ProfileButtons = () => {
 	return (
 		<StyledButtons>
 			<ProfileFormModal />
-			<ProfileButtonAdd />
+			<ProfileButtonFriend />
 			<ProfileButtonMessage />
 		</StyledButtons>
 	);

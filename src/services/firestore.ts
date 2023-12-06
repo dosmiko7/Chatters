@@ -148,7 +148,8 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	}
 };
 
-export const getFriends = async (friends: string[]): Promise<IFriendData[]> => {
+export const getFriends = async (friends: string[] | undefined): Promise<IFriendData[]> => {
+	if (friends === undefined) throw new Error("Something went wrong with friends fetching");
 	try {
 		const promises = friends.map(async (friendId) => {
 			const user = await getUser(friendId);
