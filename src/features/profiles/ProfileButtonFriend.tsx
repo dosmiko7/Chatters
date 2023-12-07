@@ -1,10 +1,8 @@
-import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { BiUserMinus, BiUserPlus } from "react-icons/bi";
 
 import useFriendUpdate from "./useFriendUpdate";
 import ButtonProfile from "../../ui/ButtonProfile";
-import { IFriendData } from "../../services/firestore";
 import ProfileFriendWarning from "./ProfileFriendWarning";
 
 const toastOptions = {
@@ -18,12 +16,16 @@ const toastOptions = {
 
 // TODO: Logic for adding friends
 // TODO: Change fixed loggedUserId to dynamic one
-const ProfileButtonFriend = ({ friends }: { friends: IFriendData[] }) => {
-	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
-	const { userId: profileId } = useParams();
+const ProfileButtonFriend = ({
+	isFriend,
+	loggedUserId,
+	profileId,
+}: {
+	isFriend: boolean;
+	loggedUserId: string;
+	profileId: string;
+}) => {
 	const { updateFriend } = useFriendUpdate({ userId: loggedUserId, profileId });
-
-	if (loggedUserId === undefined || profileId === undefined) return null;
 	if (loggedUserId === profileId) return null;
 
 	const onAddFriendHandler = () => {
@@ -42,8 +44,7 @@ const ProfileButtonFriend = ({ friends }: { friends: IFriendData[] }) => {
 		);
 	};
 
-	const containsFriend = friends.some((friend) => friend.id === loggedUserId);
-	if (containsFriend)
+	if (isFriend)
 		return (
 			<ButtonProfile onClick={() => onRemoveFriendHandler()}>
 				<BiUserMinus style={{ fontSize: "2.4rem" }} />

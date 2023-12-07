@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import ProfileButtonFriend from "./ProfileButtonFriend";
@@ -15,11 +16,26 @@ const StyledButtons = styled.div`
 // TODO: Display ProfileAdd and ProfileMessage when its not current user's profile
 // TODO: Display ProfileFormModal if it is current user's profile
 const ProfileButtons = ({ friends }: { friends: IFriendData[] }) => {
+	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
+	const { userId: profileId } = useParams();
+
+	if (loggedUserId === undefined || profileId === undefined) return null;
+
+	const isFriend = friends.some((friend) => friend.id === loggedUserId);
+
 	return (
 		<StyledButtons>
 			<ProfileFormModal />
-			<ProfileButtonFriend friends={friends} />
-			<ProfileButtonMessage />
+			<ProfileButtonFriend
+				isFriend={isFriend}
+				loggedUserId={loggedUserId}
+				profileId={profileId}
+			/>
+			<ProfileButtonMessage
+				isFriend={isFriend}
+				loggedUserId={loggedUserId}
+				profileId={profileId}
+			/>
 		</StyledButtons>
 	);
 };

@@ -42,7 +42,7 @@ const ProfileFriendElement = ({ avatar, nickname, onClickHandler }: IProfileFrie
 	return (
 		<StyledElement onClick={onClickHandler}>
 			<Avatar
-				width="100%"
+				size="100%"
 				src={avatar}
 				square
 			/>
