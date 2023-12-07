@@ -31,6 +31,8 @@ const GlobalStyles = createGlobalStyle`
             --color-secondary-300: #00513a;
             --color-secondary-400: #004834;
             
+            --toaster-font-color: #fff;
+
             --color-white-100: #fff;
             --color-purple-100: #7752fe;
             --color-green-100: #006600;
@@ -86,6 +88,8 @@ const GlobalStyles = createGlobalStyle`
             --color-secondary-200: #5acca3;
             --color-secondary-300: #48b98f;
             --color-secondary-400: #3aa879;
+
+            --toaster-font-color: #000;
         }
     }
 

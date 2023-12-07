@@ -1,9 +1,20 @@
 import { useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import { BiUserMinus, BiUserPlus } from "react-icons/bi";
 
 import useFriendUpdate from "./useFriendUpdate";
 import ButtonProfile from "../../ui/ButtonProfile";
 import { IFriendData } from "../../services/firestore";
+import ProfileFriendWarning from "./ProfileFriendWarning";
+
+const toastOptions = {
+	duration: 14000,
+	style: {
+		backgroundColor: "var(--color-primary-400)",
+		boxShadow: "var(--shadow-sm)",
+		maxWidth: "300px",
+	},
+};
 
 // TODO: Logic for adding friends
 // TODO: Change fixed loggedUserId to dynamic one
@@ -20,7 +31,15 @@ const ProfileButtonFriend = ({ friends }: { friends: IFriendData[] }) => {
 	};
 
 	const onRemoveFriendHandler = () => {
-		updateFriend("remove");
+		toast(
+			(t) => (
+				<ProfileFriendWarning
+					t={t}
+					removeHandler={() => updateFriend("remove")}
+				/>
+			),
+			toastOptions
+		);
 	};
 
 	const containsFriend = friends.some((friend) => friend.id === loggedUserId);
