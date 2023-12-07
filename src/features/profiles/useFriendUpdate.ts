@@ -1,16 +1,22 @@
-import { useMutation } from "@tanstack/react-query";
-import { friendUpdate } from "../../services/firestore";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+
+import { friendUpdate } from "../../services/firestore";
 
 interface IUseFriendUpdateProps {
 	userId: string;
-	friendId: string;
-	mode: "remove" | "add";
+	profileId: string | undefined;
 }
 
-const useFriendUpdate = () => {
+const useFriendUpdate = ({ userId, profileId }: IUseFriendUpdateProps) => {
+	const queryClient = useQueryClient();
+
 	const { mutate: updateFriend, status } = useMutation({
-		mutationFn: ({ userId, friendId, mode }: IUseFriendUpdateProps) => friendUpdate({ userId, friendId, mode }),
+		mutationFn: (mode: "add" | "remove") => friendUpdate({ userId, friendId: profileId, mode }),
+
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["profile", profileId] });
+		},
 
 		onError: (err) => {
 			toast.error("Sorry. Something went wrong.");

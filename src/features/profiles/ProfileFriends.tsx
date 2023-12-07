@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 import { IDocumentData } from "../../services/firestore";
 import Heading from "../../ui/Heading";
-import useFriends from "./useFriends";
 import ProfileFriendsGrid from "./ProfileFriendsGrid";
-import Spinner from "../../ui/Spinner";
 
 const StyledProfileFriends = styled.div`
 	padding: var(--padding-sm);
@@ -13,13 +11,11 @@ const StyledProfileFriends = styled.div`
 
 // TODO: Make an error UI element for every component where error can occury
 const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
-	const { friendsData, status } = useFriends();
-	const { nickname } = profileData.data;
+	const { nickname, friends_list } = profileData.data;
 
 	let renderEl;
-	if (status === "pending") renderEl = <Spinner />;
-	else if (!friendsData || status === "error") renderEl = <div>Something went wrong</div>;
-	else if (!friendsData.length)
+	if (!profileData) renderEl = <div>Something went wrong</div>;
+	else if (!friends_list.length)
 		renderEl = (
 			<Heading
 				as="h3"
@@ -28,7 +24,7 @@ const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
 				{nickname} doesn't have friends.
 			</Heading>
 		);
-	else renderEl = <ProfileFriendsGrid friendsData={friendsData} />;
+	else renderEl = <ProfileFriendsGrid friendsList={friends_list} />;
 
 	return (
 		<StyledProfileFriends>

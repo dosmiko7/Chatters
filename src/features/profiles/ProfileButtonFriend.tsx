@@ -3,24 +3,30 @@ import { BiUserMinus, BiUserPlus } from "react-icons/bi";
 
 import useFriendUpdate from "./useFriendUpdate";
 import ButtonProfile from "../../ui/ButtonProfile";
+import { IFriendData } from "../../services/firestore";
 
 // TODO: Logic for adding friends
 // TODO: Change fixed loggedUserId to dynamic one
-const ProfileButtonFriend = ({ friends }: { friends: string[] }) => {
+const ProfileButtonFriend = ({ friends }: { friends: IFriendData[] }) => {
 	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
-	const { updateFriend } = useFriendUpdate();
 	const { userId: profileId } = useParams();
+	const { updateFriend } = useFriendUpdate({ userId: loggedUserId, profileId });
 
 	if (loggedUserId === undefined || profileId === undefined) return null;
 	if (loggedUserId === profileId) return null;
 
 	const onAddFriendHandler = () => {
-		updateFriend({ userId: loggedUserId, friendId: profileId, mode: "add" });
+		updateFriend("add");
 	};
 
-	if (friends.includes(loggedUserId))
+	const onRemoveFriendHandler = () => {
+		updateFriend("remove");
+	};
+
+	const containsFriend = friends.some((friend) => friend.id === loggedUserId);
+	if (containsFriend)
 		return (
-			<ButtonProfile>
+			<ButtonProfile onClick={() => onRemoveFriendHandler()}>
 				<BiUserMinus style={{ fontSize: "2.4rem" }} />
 				<span>Remove friend</span>
 			</ButtonProfile>

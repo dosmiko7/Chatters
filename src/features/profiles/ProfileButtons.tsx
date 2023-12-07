@@ -4,6 +4,7 @@ import ProfileButtonFriend from "./ProfileButtonFriend";
 import { flexRow } from "../../style/Templates";
 import ProfileButtonMessage from "./ProfileButtonMessage";
 import ProfileFormModal from "./form/ProfileFormModal";
+import { IFriendData } from "../../services/firestore";
 
 const StyledButtons = styled.div`
 	margin-top: 1rem;
@@ -13,7 +14,7 @@ const StyledButtons = styled.div`
 
 // TODO: Display ProfileAdd and ProfileMessage when its not current user's profile
 // TODO: Display ProfileFormModal if it is current user's profile
-const ProfileButtons = ({ friends }: { friends: string[] }) => {
+const ProfileButtons = ({ friends }: { friends: IFriendData[] }) => {
 	return (
 		<StyledButtons>
 			<ProfileFormModal />

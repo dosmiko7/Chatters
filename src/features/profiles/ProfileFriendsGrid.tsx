@@ -12,12 +12,12 @@ const Grid = styled.div`
 	gap: 1rem;
 `;
 
-const ProfileFriendsGrid = ({ friendsData }: { friendsData: IFriendData[] }) => {
+const ProfileFriendsGrid = ({ friendsList }: { friendsList: IFriendData[] }) => {
 	const navigate = useNavigate();
 
 	return (
 		<Grid>
-			{friendsData.map((friend) => {
+			{friendsList.map((friend) => {
 				return (
 					<ProfileFriendElement
 						key={friend.id}

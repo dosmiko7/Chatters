@@ -55,7 +55,7 @@ export interface IUserData {
 	background: string;
 	description: string;
 	email: string;
-	friends_list: string[];
+	friends_list: IFriendData[];
 	personals: {
 		name?: string;
 		surname?: string;
@@ -163,27 +163,27 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	}
 };
 
-export const getFriends = async (friends: string[] | undefined): Promise<IFriendData[]> => {
-	if (friends === undefined) throw new Error("Something went wrong with friends fetching");
-	try {
-		const promises = friends.map(async (friendId) => {
-			const user = await getUser(friendId);
-			return {
-				id: friendId,
-				avatar: user.data.avatar,
-				nickname: user.data.nickname,
-			};
-		});
+// export const getFriends = async (friends: string[] | undefined): Promise<IFriendData[]> => {
+// 	if (friends === undefined) throw new Error("Something went wrong with friends fetching");
+// 	try {
+// 		const promises = friends.map(async (friendId) => {
+// 			const user = await getUser(friendId);
+// 			return {
+// 				id: friendId,
+// 				avatar: user.data.avatar,
+// 				nickname: user.data.nickname,
+// 			};
+// 		});
 
-		const friendsData = await Promise.all(promises);
-		const friendsElements: IFriendData[] = [];
-		friendsElements.push(...friendsData);
+// 		const friendsData = await Promise.all(promises);
+// 		const friendsElements: IFriendData[] = [];
+// 		friendsElements.push(...friendsData);
 
-		return friendsElements;
-	} catch (err) {
-		throw new Error("Error fetching friends");
-	}
-};
+// 		return friendsElements;
+// 	} catch (err) {
+// 		throw new Error("Error fetching friends");
+// 	}
+// };
 
 export const updateFriendsList = async ({
 	userId,
@@ -208,10 +208,18 @@ export const updateFriendsList = async ({
 		data: DocumentData;
 		userIdToChange: string;
 	}) => {
-		const friendsList = data.friends_list as string[];
-		let updatedFriendsList: string[] = [];
-		if (mode === "add") updatedFriendsList = [userIdToChange, ...friendsList];
-		if (mode === "remove") updatedFriendsList = friendsList.filter((friend) => friend !== userIdToChange);
+		const friendsList = data.friends_list as IFriendData[];
+		let updatedFriendsList: IFriendData[] = [];
+		if (mode === "add") {
+			const user = await getUser(userIdToChange);
+			const addedUser: IFriendData = {
+				id: userIdToChange,
+				avatar: user.data.avatar,
+				nickname: user.data.nickname,
+			};
+			updatedFriendsList = [addedUser, ...friendsList];
+		}
+		if (mode === "remove") updatedFriendsList = friendsList.filter((friend) => friend.id !== userIdToChange);
 		await updateDoc(documentRef, { friends_list: updatedFriendsList }).catch((error) => {
 			throw error;
 		});
@@ -327,16 +335,17 @@ export const removeChat = async ({ chatId }: { chatId: string }) => {
 };
 
 // Mixed
-
 export const friendUpdate = async ({
 	userId,
 	friendId,
 	mode,
 }: {
-	userId: string;
-	friendId: string;
+	userId: string | undefined;
+	friendId: string | undefined;
 	mode: "add" | "remove";
 }) => {
+	if (userId === undefined || friendId === undefined) throw new Error("There is no ID for friend update");
+
 	if (mode === "add") {
 		await updateFriendsList({ userId, friendId, mode: "add" });
 	} else if (mode === "remove") {
