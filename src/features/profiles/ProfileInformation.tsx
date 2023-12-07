@@ -44,7 +44,7 @@ const Addition = styled.div`
 `;
 
 const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => {
-	const { avatar, background, nickname, email, description, personals, socials } = profileData.data;
+	const { avatar, background, nickname, email, description, personals, socials, friends_list } = profileData.data;
 
 	return (
 		<StyledProfileInformation>
@@ -59,7 +59,7 @@ const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => 
 					<ProfilePersonals personals={personals} />
 					<ProfileSocials socials={socials} />
 				</Row>
-				<ProfileButtons />
+				<ProfileButtons friends={friends_list} />
 			</Main>
 			<Addition>
 				<Heading as="h3">Description</Heading>

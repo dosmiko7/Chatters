@@ -25,7 +25,7 @@ const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
 				as="h3"
 				center
 			>
-				{nickname} has not friends.
+				{nickname} doesn't have friends.
 			</Heading>
 		);
 	else renderEl = <ProfileFriendsGrid friendsData={friendsData} />;

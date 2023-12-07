@@ -19,6 +19,7 @@ import { getFileURL, uploadAvatar, uploadBackground, uploadChatFile } from "./st
 import formatSubmit from "../utils/formatSubmit";
 import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
+import getCombinedId from "../utils/getCombinedId";
 
 export interface IUserChat {
 	userId: string;
@@ -198,7 +199,7 @@ export const updateFriendsList = async ({
 	const friendDocRef = doc(firestore, "users", friendId);
 	const friendDocSnap = await getDoc(friendDocRef);
 
-	const updateFriendsList = async ({
+	const updateList = async ({
 		documentRef,
 		data,
 		userIdToChange,
@@ -217,11 +218,11 @@ export const updateFriendsList = async ({
 	};
 
 	if (userDocSnap.exists()) {
-		await updateFriendsList({ documentRef: userDocRef, data: userDocSnap.data(), userIdToChange: friendId });
+		await updateList({ documentRef: userDocRef, data: userDocSnap.data(), userIdToChange: friendId });
 	}
 
 	if (friendDocSnap.exists()) {
-		await updateFriendsList({ documentRef: friendDocRef, data: friendDocSnap.data(), userIdToChange: userId });
+		await updateList({ documentRef: friendDocRef, data: friendDocSnap.data(), userIdToChange: userId });
 	}
 };
 
@@ -256,7 +257,96 @@ const updateUserChats = async ({
 	}
 };
 
+export const removeUserChats = async ({ userId, friendId }: { userId: string; friendId: string }) => {
+	const userChatsRef = doc(firestore, "userChats", userId);
+	const userChatsDocSnap = await getDoc(userChatsRef);
+	const friendChatsRef = doc(firestore, "userChats", friendId);
+	const friendChatsDocSnap = await getDoc(friendChatsRef);
+
+	const removeChatElement = async ({
+		documentRef,
+		data,
+		userIdChatToRemove,
+	}: {
+		documentRef: DocumentReference<DocumentData, DocumentData>;
+		data: DocumentData;
+		userIdChatToRemove: string;
+	}) => {
+		const chats = data.chats as IChatMessagesData[];
+		const updatedChats = chats.filter((chat) => chat.userId !== userIdChatToRemove);
+		await updateDoc(documentRef, { chats: updatedChats }).catch((error) => {
+			throw error;
+		});
+	};
+
+	if (userChatsDocSnap.exists()) {
+		await removeChatElement({ documentRef: userChatsRef, data: userChatsDocSnap.data(), userIdChatToRemove: friendId });
+	}
+
+	if (friendChatsDocSnap.exists()) {
+		await removeChatElement({
+			documentRef: friendChatsRef,
+			data: friendChatsDocSnap.data(),
+			userIdChatToRemove: userId,
+		});
+	}
+};
+
 // chats collection
+
+export const updateChatsCustomization = async ({
+	chatId,
+	emoji,
+	theme,
+}: {
+	chatId: string | undefined;
+	emoji?: string;
+	theme?: string;
+}) => {
+	if (chatId === undefined) throw new Error("Something went wrong with chat customization update.");
+	const chatRef = doc(firestore, "chats", chatId);
+
+	if (emoji) {
+		await updateDoc(chatRef, { emoji }).catch((error) => {
+			throw error;
+		});
+	}
+
+	if (theme) {
+		await updateDoc(chatRef, { theme }).catch((error) => {
+			throw error;
+		});
+	}
+};
+
+export const removeChat = async ({ chatId }: { chatId: string }) => {
+	const chatRef = doc(firestore, "chats", chatId);
+	await deleteDoc(chatRef).catch((err: Error) => {
+		throw err;
+	});
+};
+
+// Mixed
+
+export const friendUpdate = async ({
+	userId,
+	friendId,
+	mode,
+}: {
+	userId: string;
+	friendId: string;
+	mode: "add" | "remove";
+}) => {
+	if (mode === "add") {
+		await updateFriendsList({ userId, friendId, mode: "add" });
+	} else if (mode === "remove") {
+		await updateFriendsList({ userId, friendId, mode: "remove" });
+		await removeUserChats({ userId, friendId });
+		const combinedId = getCombinedId(userId, friendId);
+		await removeChat({ chatId: combinedId });
+	}
+};
+
 export interface TypeMessage {
 	type: "image/gif" | "emoji";
 	message: string;
@@ -339,71 +429,4 @@ export const updateChatsMessages = async ({
 		userBId: senderId,
 		message: { ...newMessage, message: userChatMessage, userId: senderId },
 	});
-};
-
-export const updateChatsCustomization = async ({
-	chatId,
-	emoji,
-	theme,
-}: {
-	chatId: string | undefined;
-	emoji?: string;
-	theme?: string;
-}) => {
-	if (chatId === undefined) throw new Error("Something went wrong with chat customization update.");
-	const chatRef = doc(firestore, "chats", chatId);
-
-	if (emoji) {
-		await updateDoc(chatRef, { emoji }).catch((error) => {
-			throw error;
-		});
-	}
-
-	if (theme) {
-		await updateDoc(chatRef, { theme }).catch((error) => {
-			throw error;
-		});
-	}
-};
-
-export const removeChat = async ({ chatId }: { chatId: string }) => {
-	const chatRef = doc(firestore, "chats", chatId);
-	await deleteDoc(chatRef).catch((err: Error) => {
-		throw err;
-	});
-};
-
-export const removeUserChats = async ({ userId, friendId }: { userId: string; friendId: string }) => {
-	const userChatsRef = doc(firestore, "userChats", userId);
-	const userChatsDocSnap = await getDoc(userChatsRef);
-	const friendChatsRef = doc(firestore, "userChats", friendId);
-	const friendChatsDocSnap = await getDoc(friendChatsRef);
-
-	const removeChatElement = async ({
-		documentRef,
-		data,
-		userIdChatToRemove,
-	}: {
-		documentRef: DocumentReference<DocumentData, DocumentData>;
-		data: DocumentData;
-		userIdChatToRemove: string;
-	}) => {
-		const chats = data.chats as IChatMessagesData[];
-		const updatedChats = chats.filter((chat) => chat.userId !== userIdChatToRemove);
-		await updateDoc(documentRef, { chats: updatedChats }).catch((error) => {
-			throw error;
-		});
-	};
-
-	if (userChatsDocSnap.exists()) {
-		await removeChatElement({ documentRef: userChatsRef, data: userChatsDocSnap.data(), userIdChatToRemove: friendId });
-	}
-
-	if (friendChatsDocSnap.exists()) {
-		await removeChatElement({
-			documentRef: friendChatsRef,
-			data: friendChatsDocSnap.data(),
-			userIdChatToRemove: userId,
-		});
-	}
 };
