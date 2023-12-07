@@ -1,22 +1,22 @@
-//import { useParams } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 
 import Modal from "../../../ui/Modal";
 import ProfileForm from "./ProfileForm";
 import ButtonProfile from "../../../ui/ButtonProfile";
 
-const ProfileFormModal = () => {
-	//const { userId: profileId } = useParams();
-
+const ProfileFormModal = ({ isLoggedUserProfile }: { isLoggedUserProfile: boolean }) => {
 	return (
 		<Modal>
-			<Modal.Open opens="profileform">
-				<ButtonProfile>
-					<BiPencil style={{ fontSize: "2.4rem" }} />
-					<span>Edit profil</span>
-				</ButtonProfile>
-			</Modal.Open>
-			<Modal.Window name="profileform">
+			{isLoggedUserProfile && (
+				<Modal.Open opens="profileForm">
+					<ButtonProfile>
+						<BiPencil style={{ fontSize: "2.4rem" }} />
+						<span>Edit profil</span>
+					</ButtonProfile>
+				</Modal.Open>
+			)}
+
+			<Modal.Window name="profileForm">
 				<ProfileForm />
 			</Modal.Window>
 		</Modal>

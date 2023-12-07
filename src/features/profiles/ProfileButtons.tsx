@@ -22,10 +22,11 @@ const ProfileButtons = ({ friends }: { friends: IFriendData[] }) => {
 	if (loggedUserId === undefined || profileId === undefined) return null;
 
 	const isFriend = friends.some((friend) => friend.id === loggedUserId);
+	const isLoggedUserProfile = loggedUserId === profileId;
 
 	return (
 		<StyledButtons>
-			<ProfileFormModal />
+			<ProfileFormModal isLoggedUserProfile={isLoggedUserProfile}/>
 			<ProfileButtonFriend
 				isFriend={isFriend}
 				loggedUserId={loggedUserId}
