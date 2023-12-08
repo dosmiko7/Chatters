@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
+import { IDocumentData } from "../../services/firestore";
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
 import { Avatar } from "../../ui/Avatar";
-import { IDocumentData } from "../../services/firestore";
 import ProfileSocials from "./ProfileSocials";
 import ProfileButtons from "./ProfileButtons";
 import ProfilePersonals from "./ProfilePersonals";
@@ -44,7 +44,7 @@ const Addition = styled.div`
 `;
 
 const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => {
-	const { avatar, background, nickname, email, description, personals, socials, friends_list } = profileData.data;
+	const { avatar, background, nickname, email, description, personals, socials } = profileData.data;
 
 	return (
 		<StyledProfileInformation>
@@ -59,7 +59,7 @@ const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => 
 					<ProfilePersonals personals={personals} />
 					<ProfileSocials socials={socials} />
 				</Row>
-				<ProfileButtons friends={friends_list} />
+				<ProfileButtons profileData={profileData} />
 			</Main>
 			<Addition>
 				<Heading as="h3">Description</Heading>

@@ -1,20 +1,29 @@
 import { BiSolidEnvelope } from "react-icons/bi";
 
 import ButtonProfile from "../../ui/ButtonProfile";
+import getCombinedId from "../../utils/getCombinedId";
+import { useNavigate } from "react-router-dom";
 
-// TODO: Change fixed loggedUserId to dynamic one
-const ProfileButtonMessage = ({
-	isFriend,
-	loggedUserId,
-	profileId,
-}: {
-	isFriend: boolean;
-	loggedUserId: string;
-	profileId: string;
-}) => {
-	if (loggedUserId === profileId) return null;
+interface IChatData {
+	nickname: string;
+	avatar: string;
+	isActive: boolean;
+	lastSeen: string;
+	friendId: string;
+	userId: string;
+}
 
-	const onMessageHandler = () => {};
+const ProfileButtonMessage = ({ isFriend, chatData }: { isFriend: boolean; chatData: IChatData }) => {
+	const navigate = useNavigate();
+	const { friendId, userId } = chatData;
+	if (userId === friendId) return null;
+
+	const onMessageHandler = () => {
+		const chatId = getCombinedId(userId, friendId);
+		navigate(`/chat/${chatId}`, {
+			state: chatData,
+		});
+	};
 
 	if (isFriend)
 		return (

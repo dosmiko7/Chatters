@@ -1,32 +1,41 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import ProfileButtonFriend from "./ProfileButtonFriend";
+import { IDocumentData } from "../../services/firestore";
+import formatDate from "../../utils/formatDate";
 import { flexRow } from "../../style/Templates";
+import ProfileButtonFriend from "./ProfileButtonFriend";
 import ProfileButtonMessage from "./ProfileButtonMessage";
 import ProfileFormModal from "./form/ProfileFormModal";
-import { IFriendData } from "../../services/firestore";
 
 const StyledButtons = styled.div`
 	margin-top: 1rem;
 	${flexRow};
 	gap: 1rem;
 `;
-
-// TODO: Display ProfileAdd and ProfileMessage when its not current user's profile
-// TODO: Display ProfileFormModal if it is current user's profile
-const ProfileButtons = ({ friends }: { friends: IFriendData[] }) => {
+// TODO: Change to dynamic logged user id
+const ProfileButtons = ({ profileData }: { profileData: IDocumentData }) => {
+	const { nickname, avatar, lastLoggedIn, lastLoggedOut, friends_list } = profileData.data;
 	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
 	const { userId: profileId } = useParams();
 
 	if (loggedUserId === undefined || profileId === undefined) return null;
 
-	const isFriend = friends.some((friend) => friend.id === loggedUserId);
+	const chatData = {
+		nickname,
+		avatar,
+		isActive: lastLoggedIn > lastLoggedOut,
+		lastSeen: formatDate(lastLoggedOut),
+		friendId: profileId,
+		userId: loggedUserId,
+	};
+
+	const isFriend = friends_list.some((friend) => friend.id === loggedUserId);
 	const isLoggedUserProfile = loggedUserId === profileId;
 
 	return (
 		<StyledButtons>
-			<ProfileFormModal isLoggedUserProfile={isLoggedUserProfile}/>
+			<ProfileFormModal isLoggedUserProfile={isLoggedUserProfile} />
 			<ProfileButtonFriend
 				isFriend={isFriend}
 				loggedUserId={loggedUserId}
@@ -34,8 +43,7 @@ const ProfileButtons = ({ friends }: { friends: IFriendData[] }) => {
 			/>
 			<ProfileButtonMessage
 				isFriend={isFriend}
-				loggedUserId={loggedUserId}
-				profileId={profileId}
+				chatData={chatData}
 			/>
 		</StyledButtons>
 	);

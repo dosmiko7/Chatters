@@ -11,7 +11,7 @@ const ProfileFormModal = ({ isLoggedUserProfile }: { isLoggedUserProfile: boolea
 				<Modal.Open opens="profileForm">
 					<ButtonProfile>
 						<BiPencil style={{ fontSize: "2.4rem" }} />
-						<span>Edit profil</span>
+						<span>Edit profile</span>
 					</ButtonProfile>
 				</Modal.Open>
 			)}
