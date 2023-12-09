@@ -19,12 +19,12 @@ const StyledChatWindow = styled.div`
 const ChatWindow = ({
 	currentUser,
 	chat,
-	theme,
+	setTheme,
 	error,
 }: {
 	currentUser: string;
 	chat: IChatElement[];
-	theme: string;
+	setTheme: string;
 	error: boolean;
 }) => {
 	const bottomRef = useRef<null | HTMLDivElement>(null);
@@ -60,7 +60,7 @@ const ChatWindow = ({
 								nickname={message.nickname}
 								avatar={message.avatar}
 								message={message.message}
-								theme={theme}
+								theme={setTheme}
 								renderPhoto={renderPhoto}
 							/>
 						);

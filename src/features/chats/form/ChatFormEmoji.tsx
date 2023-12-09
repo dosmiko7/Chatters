@@ -1,33 +1,42 @@
-import { useFormContext } from "react-hook-form";
+import { SubmitHandler, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
-import { Button } from "../../../ui/Button";
+import { IChatFormInput } from "./ChatForm";
+import { Wrapper } from "../../../ui/Wrapper";
+import HiddenInput from "../../../ui/HiddenInput";
 
 const EmojiLabel = styled.label`
-	margin-left: 1rem;
+	margin: 0 1rem;
+	font-size: 2rem;
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
-const ChatFormEmoji = ({ emoji }: { emoji: string }) => {
-	const { register, setValue } = useFormContext();
+const ChatFormEmoji = ({
+	setEmoji,
+	onSubmitHandler,
+}: {
+	setEmoji: string;
+	onSubmitHandler: SubmitHandler<IChatFormInput>;
+}) => {
+	const { register } = useFormContext();
 
 	return (
-		<>
-			<EmojiLabel htmlFor="emoji">
-				<Button
-					variant="menu"
-					onClick={() => setValue("emoji", emoji)}
-				>
-					{emoji}
-				</Button>
+		<Wrapper>
+			<EmojiLabel
+				htmlFor="emoji"
+				onClick={() => onSubmitHandler({ message: "", file: null, gif: "", emoji: setEmoji })}
+			>
+				{setEmoji}
 			</EmojiLabel>
-			<input
+			<HiddenInput
+				id="emoji"
+				type="text"
 				{...register("emoji")}
-				type="submit"
-				id={emoji}
-				value={emoji}
-				style={{ display: "none" }}
 			/>
-		</>
+		</Wrapper>
 	);
 };
 

@@ -120,34 +120,3 @@ const ChatMessage = (props: IChatMessageProps) => {
 };
 
 export default ChatMessage;
-
-/*
-if (type.includes("text")) {
-		renderMessage = <p>{message}</p>;
-	} else if (type.includes("emoji")) {
-		renderMessage = <p style={{ fontSize: "3rem" }}>{message}</p>;
-	} else if (type.includes("image")) {
-		renderMessage = <ImageContent src={message} />;
-	} else if (type.includes("audio")) {
-		renderMessage = (
-			<ChatMessageMusic
-				fileSrc={message}
-				type={type}
-			/>
-		);
-	} else if (type.includes("video")) {
-		renderMessage = (
-			<ChatMessageVideo
-				fileSrc={message}
-				type={type}
-			/>
-		);
-	} else {
-		renderMessage = (
-			<ChatMessageDownload
-				fileUrl={message}
-				filename={fileName}
-			/>
-		);
-	}
-	*/

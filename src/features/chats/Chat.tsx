@@ -46,16 +46,16 @@ const Chat = () => {
 					currentUser={userId}
 					chat={chat}
 					error={error}
-					theme={theme}
+					setTheme={theme}
 				/>
-				<ChatForm emoji={emoji} />
+				<ChatForm setEmoji={emoji} />
 			</StyledChat>
 			{isMoreOpen && (
 				<ChatMore
 					handlerClose={handleOpenMore}
 					data={data}
-					emoji={emoji}
-					theme={theme}
+					setEmoji={emoji}
+					setTheme={theme}
 				/>
 			)}
 		</StyledWrapper>

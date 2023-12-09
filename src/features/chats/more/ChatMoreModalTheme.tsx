@@ -4,8 +4,8 @@ import Modal from "../../../ui/Modal";
 import ChatMoreThemePicker from "./ChatMoreThemePicker";
 import { themes } from "../../../data/themes";
 
-const ChatMoreModalTheme = ({ theme }: { theme: string }) => {
-	const themeObject = themes.find((obj) => obj.theme === `${theme}`);
+const ChatMoreModalTheme = ({ setTheme }: { setTheme: string }) => {
+	const themeObject = themes.find((obj) => obj.theme === `${setTheme}`);
 	const background = themeObject?.background || "white";
 
 	return (

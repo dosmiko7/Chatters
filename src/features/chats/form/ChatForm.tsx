@@ -7,6 +7,7 @@ import ChatFormMessage from "./ChatFormMessage";
 import ChatFormAdditional from "./ChatFormAdditional";
 import ChatFormInputsContainer from "./ChatFormInputsContainer";
 import ChatFormEmoji from "./ChatFormEmoji";
+import HiddenInput from "../../../ui/HiddenInput";
 
 const StyledChatForm = styled(Form)`
 	width: 100%;
@@ -19,13 +20,12 @@ export interface IChatFormInput {
 	emoji: string;
 }
 
-const ChatForm = ({ emoji }: { emoji: string }) => {
-	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
+const ChatForm = ({ setEmoji }: { setEmoji: string }) => {
+	const methods = useForm<IChatFormInput>({ defaultValues: { message: "", file: null, gif: "", emoji: "" } });
 	const { sendMessage, status } = useSendMessage();
 	const { handleSubmit, reset, resetField } = methods;
 
 	const onSubmit: SubmitHandler<IChatFormInput> = async (input: IChatFormInput) => {
-		console.log(input);
 		if (input.gif.length) {
 			await sendMessage({ type: "image/gif", message: input.gif });
 			resetField("gif");
@@ -45,8 +45,12 @@ const ChatForm = ({ emoji }: { emoji: string }) => {
 				<ChatFormInputsContainer status={status}>
 					<ChatFormAdditional />
 					<ChatFormMessage status={status} />
-					<ChatFormEmoji emoji={emoji} />
+					<ChatFormEmoji
+						setEmoji={setEmoji}
+						onSubmitHandler={onSubmit}
+					/>
 				</ChatFormInputsContainer>
+				<HiddenInput type="submit" />
 			</StyledChatForm>
 		</FormProvider>
 	);

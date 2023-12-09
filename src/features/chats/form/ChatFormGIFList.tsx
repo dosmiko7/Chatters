@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import List from "../../../ui/List";
 import { ListElement } from "../../../ui/ListElement";
+import HiddenInput from "../../../ui/HiddenInput";
 
 const GIFElement = styled.label`
 	width: 100%;
@@ -32,12 +33,11 @@ const ChatFormGIFList = ({ gifs }: { gifs: string[] }) => {
 						>
 							<GIF src={gifSrc} />
 						</GIFElement>
-						<input
+						<HiddenInput
 							{...register("gif")}
 							type="submit"
 							id={gifSrc}
 							value={gifSrc}
-							style={{ display: "none" }}
 						/>
 					</ListElement>
 				);

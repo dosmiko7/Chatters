@@ -5,6 +5,7 @@ import useFilePreview from "./useFilePreview";
 import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
+import HiddenInput from "../../../ui/HiddenInput";
 
 const StyledContainer = styled(ContainerImageEditor)`
 	border-radius: var(--border-radius-circle);
@@ -33,12 +34,11 @@ const ProfileFormAvatar = (props: { watcher: FileList | null; validation: (value
 				<label htmlFor="avatarUpload">
 					<span>Edit</span>
 				</label>
-				<input
+				<HiddenInput
 					id="avatarUpload"
 					type="file"
 					placeholder="Avatar"
 					accept="image/jpeg, image/png"
-					style={{ display: "none" }}
 					{...register("avatar", { validate: validation })}
 				/>
 			</StyledContainer>

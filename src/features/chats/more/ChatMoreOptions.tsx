@@ -24,16 +24,16 @@ const Option = styled.li`
 	}
 `;
 
-const ChatMoreOptions = ({ emoji, theme }: { emoji: string; theme: string }) => {
+const ChatMoreOptions = ({ setEmoji, setTheme }: { setEmoji: string; setTheme: string }) => {
 	return (
 		<Options>
 			<Heading as="h3">Chat customization</Heading>
 			<OptionsList>
-				<Option key={emoji}>
-					<ChatMoreModalEmoji emoji={emoji} />
+				<Option key={setEmoji}>
+					<ChatMoreModalEmoji setEmoji={setEmoji} />
 				</Option>
-				<Option key={theme}>
-					<ChatMoreModalTheme theme={theme} />
+				<Option key={setTheme}>
+					<ChatMoreModalTheme setTheme={setTheme} />
 				</Option>
 			</OptionsList>
 		</Options>

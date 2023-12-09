@@ -1,9 +1,21 @@
 import { useFormContext } from "react-hook-form";
 import { TbFile } from "react-icons/tb";
+import styled from "styled-components";
+import { toast } from "react-hot-toast";
 
 import { Wrapper } from "../../../ui/Wrapper";
-import IconContainerForLabel from "../../../ui/IconContainerForLabel";
-import { toast } from "react-hot-toast";
+import HiddenInput from "../../../ui/HiddenInput";
+
+const IconContainerForLabel = styled.div`
+	display: flex;
+	padding: var(--padding-sm);
+	border-radius: var(--border-radius-circle);
+	transition: var(--transition-all-3);
+	&:hover {
+		background-color: var(--color-secondary-100);
+		cursor: pointer;
+	}
+`;
 
 const ChatFormFile = () => {
 	const { register, setValue } = useFormContext();
@@ -29,11 +41,10 @@ const ChatFormFile = () => {
 					<TbFile />
 				</IconContainerForLabel>
 			</label>
-			<input
+			<HiddenInput
 				id="file"
 				type="file"
 				placeholder="File"
-				style={{ display: "none" }}
 				{...register("file", { validate: fileValidation })}
 			/>
 		</Wrapper>

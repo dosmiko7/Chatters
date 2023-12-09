@@ -6,6 +6,7 @@ import useFilePreview from "./useFilePreview";
 import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
+import HiddenInput from "../../../ui/HiddenInput";
 
 const StyledContainer = styled(ContainerImageEditor)`
 	border-radius: var(--border-radius-md);
@@ -34,12 +35,11 @@ const ProfileFormBackground = (props: { watcher: FileList | null; validation: (v
 				<label htmlFor="backgroundUpload">
 					<span>Edit</span>
 				</label>
-				<input
+				<HiddenInput
 					id="backgroundUpload"
 					type="file"
 					placeholder="Background"
 					accept="image/jpeg, image/png"
-					style={{ display: "none" }}
 					{...register("background", { validate: validation })}
 				/>
 			</StyledContainer>

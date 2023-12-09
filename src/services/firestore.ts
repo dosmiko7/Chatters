@@ -301,7 +301,6 @@ export const removeUserChats = async ({ userId, friendId }: { userId: string; fr
 };
 
 // chats collection
-
 export const updateChatsCustomization = async ({
 	chatId,
 	emoji,
@@ -421,7 +420,7 @@ export const updateChatsMessages = async ({
 			throw error;
 		});
 	} else {
-		await setDoc(chatRef, { messages: [newMessage] }).catch((error) => {
+		await setDoc(chatRef, { emoji: "💪", messages: [newMessage], theme: "default" }).catch((error) => {
 			throw error;
 		});
 	}

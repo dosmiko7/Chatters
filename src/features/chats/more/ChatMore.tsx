@@ -32,12 +32,12 @@ const Info = styled.div`
 
 interface IChatMoreProps {
 	data: { avatar: string; nickname: string; isActive: boolean; lastSeen: string };
-	emoji: string;
-	theme: string;
+	setEmoji: string;
+	setTheme: string;
 	handlerClose: () => void;
 }
 
-const ChatMore = ({ data, emoji, theme, handlerClose }: IChatMoreProps) => {
+const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) => {
 	if (!data) return <Error>Something went wrong 😓</Error>;
 
 	const { avatar, nickname, isActive, lastSeen } = data;
@@ -61,8 +61,8 @@ const ChatMore = ({ data, emoji, theme, handlerClose }: IChatMoreProps) => {
 				<Heading as="h4">{activeStatus}</Heading>
 			</Info>
 			<ChatMoreOptions
-				emoji={emoji}
-				theme={theme}
+				setEmoji={setEmoji}
+				setTheme={setTheme}
 			/>
 		</StyledChatMoreInfo>
 	);
