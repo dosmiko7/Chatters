@@ -25,6 +25,9 @@ export interface IUserChat {
 	userId: string;
 	created_at: Timestamp;
 	message: string;
+	avatar: string;
+	nickname: string;
+	type: string;
 }
 
 interface IChatMessagesData {
@@ -242,20 +245,23 @@ const updateUserChats = async ({
 }: {
 	userAId: string;
 	userBId: string;
-	message: { created_at: Timestamp; message: string; userId: string };
+	message: IChatMessagesData;
 }) => {
 	const userAChatRef = doc(firestore, "userChats", userAId);
 	const userAChatSnap = await getDoc(userAChatRef);
 
 	if (userAChatSnap.exists()) {
-		const userChatDoc = userAChatSnap.data();
-		const updatedChats = userChatDoc.chats.map((chat: IUserChat) => {
-			if (chat.userId === userBId) {
-				return message;
+		let userChats = userAChatSnap.data().chats as IUserChat[];
+		let chatChanged = false;
+		for (let i = 0; i < userChats.length; i++) {
+			if (userChats[i].userId === userBId) {
+				userChats[i] = message;
+				chatChanged = true;
+				break;
 			}
-			return chat;
-		});
-		await updateDoc(userAChatRef, { chats: updatedChats }).catch((error) => {
+		}
+		if (!chatChanged) userChats = [...userChats, message];
+		await updateDoc(userAChatRef, { chats: userChats }).catch((error) => {
 			throw error;
 		});
 	} else {
