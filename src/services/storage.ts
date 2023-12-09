@@ -1,4 +1,4 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../firebase";
 
 export const uploadAvatar = async ({ avatarFile, userId }: { avatarFile: File; userId: string }): Promise<void> => {
@@ -46,4 +46,18 @@ export const downloadFile = async (filePath: string) => {
 	} catch (err) {
 		return err;
 	}
+};
+
+export const removeChatFiles = async ({ chatId }: { chatId: string }) => {
+	const chatFolderRef = ref(storage, `chatFiles/${chatId}`);
+
+	await listAll(chatFolderRef)
+		.then((res) => {
+			res.items.forEach((fileRef) => {
+				deleteObject(fileRef);
+			});
+		})
+		.catch((error) => {
+			throw error;
+		});
 };

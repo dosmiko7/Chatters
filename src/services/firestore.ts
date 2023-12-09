@@ -15,7 +15,7 @@ import {
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
-import { getFileURL, uploadAvatar, uploadBackground, uploadChatFile } from "./storage";
+import { getFileURL, removeChatFiles, uploadAvatar, uploadBackground, uploadChatFile } from "./storage";
 import formatSubmit from "../utils/formatSubmit";
 import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
@@ -306,7 +306,6 @@ export const removeUserChats = async ({ userId, friendId }: { userId: string; fr
 	}
 };
 
-// chats collection
 export const updateChatsCustomization = async ({
 	chatId,
 	emoji,
@@ -339,7 +338,6 @@ export const removeChat = async ({ chatId }: { chatId: string }) => {
 	});
 };
 
-// Mixed
 export const friendUpdate = async ({
 	userId,
 	friendId,
@@ -358,6 +356,7 @@ export const friendUpdate = async ({
 		await removeUserChats({ userId, friendId });
 		const combinedId = getCombinedId(userId, friendId);
 		await removeChat({ chatId: combinedId });
+		await removeChatFiles({ chatId: combinedId });
 	}
 };
 
