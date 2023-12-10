@@ -17,21 +17,6 @@ const Buttons = styled.div`
 	margin-top: 1rem;
 `;
 
-interface IToasterButtonProps {
-	color: string;
-}
-
-const ToasterButton = styled(Button)<IToasterButtonProps>`
-	${flexRow}
-	gap: 3px;
-	background-color: ${(props) => props.color};
-
-	&:hover {
-		background-color: ${(props) => props.color};
-		filter: brightness(110%);
-	}
-`;
-
 const ProfileFriendWarning = ({ t, removeHandler }: { t: Toast; removeHandler: () => void }) => {
 	const onRemoveFriend = () => {
 		removeHandler();
@@ -45,20 +30,18 @@ const ProfileFriendWarning = ({ t, removeHandler }: { t: Toast; removeHandler: (
 				<b>Do you want to continue?</b>
 			</span>
 			<Buttons>
-				<ToasterButton
-					color="var(--color-red-200)"
-					variant="menu"
+				<Button
+					variant="danger"
 					onClick={() => onRemoveFriend()}
 				>
 					<BiSolidTrash /> <span>Yes</span>
-				</ToasterButton>
-				<ToasterButton
-					color="var(--color-green-100)"
-					variant="menu"
+				</Button>
+				<Button
+					variant="confirm"
 					onClick={() => toast.dismiss(t.id)}
 				>
 					<BiSolidUpArrowAlt /> <span>No</span>
-				</ToasterButton>
+				</Button>
 			</Buttons>
 		</ToasterContent>
 	);
