@@ -3,16 +3,10 @@ import { BiUserMinus, BiUserPlus } from "react-icons/bi";
 
 import useFriendUpdate from "./useFriendUpdate";
 import ButtonProfile from "../../ui/ButtonProfile";
-import ProfileFriendWarning from "./ProfileFriendWarning";
+import ToasterWarning from "../../ui/ToasterWarning";
+import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
 
-const toastOptions = {
-	duration: 14000,
-	style: {
-		backgroundColor: "var(--color-primary-400)",
-		boxShadow: "var(--shadow-sm)",
-		maxWidth: "300px",
-	},
-};
+const message = "Removing a user from your friends list will also delete all messages with that user.";
 
 // TODO: Logic for adding friends
 // TODO: Change fixed loggedUserId to dynamic one
@@ -35,12 +29,13 @@ const ProfileButtonFriend = ({
 	const onRemoveFriendHandler = () => {
 		toast(
 			(t) => (
-				<ProfileFriendWarning
+				<ToasterWarning
 					t={t}
-					removeHandler={() => updateFriend("remove")}
+					confirmHandler={() => updateFriend("remove")}
+					message={message}
 				/>
 			),
-			toastOptions
+			toasterWarningOptions
 		);
 	};
 

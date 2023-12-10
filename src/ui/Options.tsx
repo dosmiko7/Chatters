@@ -4,7 +4,9 @@ import Heading from "./Heading";
 
 const Container = styled.div``;
 
-const Category = styled(Heading).attrs({ as: "h3" })``;
+const Category = styled(Heading).attrs({ as: "h3" })`
+	margin: 1rem 0;
+`;
 
 const List = styled.ul`
 	display: flex;
@@ -25,7 +27,7 @@ const Option = styled.li`
 
 const Options = {
 	Container,
-    Category,
+	Category,
 	List,
 	Option,
 };

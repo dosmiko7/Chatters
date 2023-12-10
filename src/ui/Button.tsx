@@ -38,7 +38,7 @@ export const Button = styled.button<ButtonProps>`
 		`}
 
 		${(props) =>
-		props.variant === "confirm" &&
+		props.variant === "safe" &&
 		css`
 			background-color: var(--color-green-100);
 
