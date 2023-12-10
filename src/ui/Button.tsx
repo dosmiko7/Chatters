@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { flexCentered } from "../style/Templates";
+import { flexCentered, flexRow } from "../style/Templates";
 
 export interface ButtonProps {
 	variant?: string;
@@ -7,6 +7,9 @@ export interface ButtonProps {
 }
 
 export const Button = styled.button<ButtonProps>`
+	${flexRow};
+	align-items: center;
+	gap: 0.6rem;
 	padding: var(--padding-sm);
 	border-radius: var(--border-radius-md);
 	color: var(--color-primary-0);
@@ -31,6 +34,16 @@ export const Button = styled.button<ButtonProps>`
 
 			&:hover {
 				background-color: var(--color-red-200);
+			}
+		`}
+
+		${(props) =>
+		props.variant === "confirm" &&
+		css`
+			background-color: var(--color-green-100);
+
+			&:hover {
+				background-color: var(--color-green-200);
 			}
 		`}
 
