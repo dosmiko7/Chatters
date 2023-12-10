@@ -41,6 +41,7 @@ const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) =>
 	if (!data) return <Error>Something went wrong 😓</Error>;
 
 	const { avatar, nickname, isActive, lastSeen } = data;
+	const customizationData = { setEmoji, setTheme };
 
 	const activeStatus = isActive ? "🟢 Active now" : `🔴 Last seen ${lastSeen}`;
 
@@ -60,10 +61,7 @@ const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) =>
 				<Heading as="h3">{nickname}</Heading>
 				<Heading as="h4">{activeStatus}</Heading>
 			</Info>
-			<ChatMoreOptions
-				setEmoji={setEmoji}
-				setTheme={setTheme}
-			/>
+			<ChatMoreOptions customizationData={customizationData} />
 		</StyledChatMoreInfo>
 	);
 };
