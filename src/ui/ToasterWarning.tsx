@@ -3,6 +3,7 @@ import { toast, Toast } from "react-hot-toast";
 
 import { flexRow } from "../style/Templates";
 import { Button } from "./Button";
+import Paragraph from "./Paragraph";
 
 const ToasterContent = styled.div`
 	color: var(--toaster-font-color);
@@ -30,7 +31,7 @@ const ToasterWarning = ({ t, message, confirmHandler }: { t: Toast; message: str
 
 	return (
 		<ToasterContent>
-			<p>{message}</p>
+			<Paragraph>{message}</Paragraph>
 			<span>
 				<b>Do you want to continue?</b>
 			</span>

@@ -353,11 +353,19 @@ export const friendUpdate = async ({
 		await updateFriendsList({ userId, friendId, mode: "add" });
 	} else if (mode === "remove") {
 		await updateFriendsList({ userId, friendId, mode: "remove" });
-		await removeUserChats({ userId, friendId });
-		const combinedId = getCombinedId(userId, friendId);
-		await removeChat({ chatId: combinedId });
-		await removeChatFiles({ chatId: combinedId });
+		const chatId = getCombinedId(userId, friendId);
+		await deleteChats({ userId, chatId });
 	}
+};
+
+export const deleteChats = async ({ userId, chatId }: { userId: string | undefined; chatId: string | undefined }) => {
+	if (userId === undefined || chatId === undefined) throw new Error("There is no ID for chat delete");
+
+	const friendId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: userId });
+
+	await removeUserChats({ userId, friendId });
+	await removeChat({ chatId });
+	await removeChatFiles({ chatId });
 };
 
 export interface TypeMessage {

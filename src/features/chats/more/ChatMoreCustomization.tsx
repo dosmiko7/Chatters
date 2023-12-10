@@ -7,7 +7,7 @@ export interface ICustomizationProps {
 	setEmoji: string;
 }
 
-const ChatMoreCustomization = ({ data }: { data: ICustomizationProps }) => {
+const ChatMoreCustomization = ({ data }: { data: ICustomizationProps; }) => {
 	const { setTheme, setEmoji } = data;
 
 	return (
