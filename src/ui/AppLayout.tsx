@@ -11,7 +11,10 @@ const StyledAppLayout = styled.div`
 	width: 100vw;
 `;
 
-const Main = styled.div``;
+const Main = styled.div`
+	position: relative;
+	background-color: var(--color-primary-400);
+`;
 
 const AppLayout = () => {
 	return (

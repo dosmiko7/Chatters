@@ -13,6 +13,7 @@ import Dashboard from "./ui/Dashboard";
 import Profile from "./features/profiles/Profile";
 import Chat from "./features/chats/Chat";
 import DarkThemeProvider from "./context/DarkThemeContext";
+import Chats from "./features/chats/Chats";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -50,6 +51,10 @@ const App = () => {
 							<Route
 								path="profile/:userId"
 								element={<Profile />}
+							/>
+							<Route
+								path="chat"
+								element={<Chats />}
 							/>
 							<Route
 								path="chat/:combinedId"

@@ -23,7 +23,6 @@ const StyledChat = styled(Container)`
 	flex-grow: 1;
 `;
 
-// TODO: Add users' id to chats collection
 const Chat = () => {
 	const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
 	const location = useLocation();
