@@ -14,7 +14,7 @@ import Dashboard from "./ui/Dashboard";
 import Profiles from "./features/profiles/Profiles";
 import Profile from "./features/profiles/Profile";
 import Chats from "./features/chats/Chats";
-import Chat from "./features/chats/Chat";
+import Chat from "./pages/Chat";
 
 const queryClient = new QueryClient({
 	defaultOptions: {

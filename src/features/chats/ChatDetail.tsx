@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
 
 import useChat from "./useChat";
+import { IChatStateProps } from "../../pages/Chat";
 import { flexColumn, flexRow } from "../../style/Templates";
 import ChatForm from "./form/ChatForm";
 import { Container } from "../../ui/Container";
@@ -23,11 +23,11 @@ const StyledChat = styled(Container)`
 	flex-grow: 1;
 `;
 
-const Chat = () => {
+const ChatDetail = ({ state }: { state: IChatStateProps }) => {
 	const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
-	const location = useLocation();
 	const { chat, emoji, theme, error } = useChat();
-	const { nickname, avatar, isActive, lastSeen, friendId, userId } = location.state;
+
+	const { nickname, avatar, isActive, lastSeen, friendId, userId } = state;
 	const data = { nickname, avatar, isActive, lastSeen, friendId };
 
 	const handleOpenMore = () => {
@@ -61,4 +61,4 @@ const Chat = () => {
 	);
 };
 
-export default Chat;
+export default ChatDetail;
