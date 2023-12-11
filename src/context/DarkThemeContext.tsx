@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, ReactNode } from "react";
+import useLocalStorageState from "../hooks/useLocalStorageState";
 
 interface DarkThemeContextProps {
 	isDarkTheme: boolean;
@@ -13,7 +14,7 @@ const defaultValues: DarkThemeContextProps = {
 export const DarkThemeContext = createContext(defaultValues);
 
 const DarkThemeProvider = ({ children }: { children: ReactNode }) => {
-	const [isDarkTheme, setIsDarkTheme] = useState(true);
+	const [isDarkTheme, setIsDarkTheme] = useLocalStorageState<boolean>("isDarkTheme", true);
 
 	const toggleDarkTheme = () => {
 		setIsDarkTheme((prevTheme) => !prevTheme);
