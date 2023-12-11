@@ -15,7 +15,7 @@ const StyledProfile = styled.div`
 
 // TODO: Add Pen button to edit information if it is our own profile
 // TODO: Add contact button (disabled/non seen if it is our profile)
-const Profile = () => {
+const ProfileDetail = () => {
 	const { profileData, status } = useProfile();
 
 	if (status === "error" || profileData === undefined) return <div>Error</div>;
@@ -29,4 +29,4 @@ const Profile = () => {
 	);
 };
 
-export default Profile;
+export default ProfileDetail;

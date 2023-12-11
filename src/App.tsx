@@ -6,15 +6,15 @@ import { Toaster } from "react-hot-toast";
 import GlobalStyles from "./style/GlobalStyles";
 
 import DarkThemeProvider from "./context/DarkThemeContext";
-import RegisterForm from "./features/authentication/RegisterForm";
-import LoginForm from "./features/authentication/LoginForm";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 //import ProtectedRoute from "./ui/ProtectedRoute"; TODO: Add as wrapper to Route with <AppLayout/>
 import AppLayout from "./ui/AppLayout";
-import Dashboard from "./ui/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import Profiles from "./features/profiles/Profiles";
-import Profile from "./features/profiles/Profile";
-import Chats from "./features/chats/Chats";
 import Chat from "./pages/Chat";
+import Chats from "./features/chats/Chats";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -68,11 +68,11 @@ const App = () => {
 						</Route>
 						<Route
 							path="login"
-							element={<LoginForm />}
+							element={<Login />}
 						/>
 						<Route
 							path="register"
-							element={<RegisterForm />}
+							element={<Register />}
 						/>
 					</Routes>
 				</BrowserRouter>
