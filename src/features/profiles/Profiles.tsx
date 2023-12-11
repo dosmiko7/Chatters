@@ -1,10 +1,10 @@
 import { BiSolidUserAccount } from "react-icons/bi";
 
-import NoSelectedLayout from "../../ui/NoSelectedLayout";
+import Empty from "../../ui/Empty";
 
 const Profiles = () => {
 	return (
-		<NoSelectedLayout
+		<Empty
 			message="No profile selected"
 			icon={<BiSolidUserAccount />}
 		/>

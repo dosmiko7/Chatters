@@ -13,7 +13,7 @@ const IconContainer = styled.div`
 	font-size: 12rem;
 `;
 
-const NoSelectedLayout = ({ message, icon }: { message: string; icon: JSX.Element }) => {
+const Empty = ({ message, icon }: { message: string; icon: JSX.Element }) => {
 	return (
 		<StyledLayout>
 			<IconContainer>{icon}</IconContainer>
@@ -22,4 +22,4 @@ const NoSelectedLayout = ({ message, icon }: { message: string; icon: JSX.Elemen
 	);
 };
 
-export default NoSelectedLayout;
+export default Empty;

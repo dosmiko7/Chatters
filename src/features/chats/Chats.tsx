@@ -1,10 +1,10 @@
 import { BiChat } from "react-icons/bi";
 
-import NoSelectedLayout from "../../ui/NoSelectedLayout";
+import Empty from "../../ui/Empty";
 
 const Chats = () => {
 	return (
-		<NoSelectedLayout
+		<Empty
 			message="No chat selected"
 			icon={<BiChat />}
 		/>
