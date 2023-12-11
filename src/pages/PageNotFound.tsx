@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Heading from "../ui/Heading";
 import { Button } from "../ui/Button";
 import { flexCentered, flexColumn } from "../style/Templates";
+import useMoveBack from "../hooks/useMoveBack";
 
 const StyledPageNotFound = styled.div`
 	${flexColumn};
@@ -12,10 +13,12 @@ const StyledPageNotFound = styled.div`
 `;
 
 const PageNotFound = () => {
+	const moveBack = useMoveBack();
+
 	return (
 		<StyledPageNotFound>
 			<Heading as="h1">The page you are looking for could not be found</Heading>
-			<Button>&larr; Go back</Button>
+			<Button onClick={moveBack}>&larr; Go back</Button>
 		</StyledPageNotFound>
 	);
 };
