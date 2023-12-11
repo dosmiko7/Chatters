@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import Profiles from "./features/profiles/Profiles";
 import Chat from "./pages/Chat";
 import Chats from "./features/chats/Chats";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -73,6 +74,10 @@ const App = () => {
 						<Route
 							path="register"
 							element={<Register />}
+						/>
+						<Route
+							path="*"
+							element={<PageNotFound />}
 						/>
 					</Routes>
 				</BrowserRouter>
