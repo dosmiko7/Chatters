@@ -12,6 +12,11 @@ import {
 	DocumentData,
 	DocumentReference,
 	deleteDoc,
+	limit,
+	orderBy,
+	Query,
+	startAfter,
+	QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
@@ -20,6 +25,7 @@ import formatSubmit from "../utils/formatSubmit";
 import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 import getCombinedId from "../utils/getCombinedId";
+import formatDate from "../utils/formatDate";
 
 export interface IUserChat {
 	userId: string;
@@ -450,4 +456,68 @@ export const updateChatsMessages = async ({
 		userBId: senderId,
 		message: { ...newMessage, message: userChatMessage, userId: senderId },
 	});
+};
+
+const PAGINATION_LIMIT = 2;
+interface IOptionsDashboard {
+	order: "desc" | "asc";
+	key?: string;
+}
+
+export interface IPostDataProps {
+	userId: string;
+	avatar: string;
+	nickname: string;
+	message: string;
+	file?: string;
+	type: string;
+	createdAt: string;
+}
+
+interface IDashboardDocDataProps {
+	userId: string;
+	message: string;
+	file?: string;
+	type: string;
+	created_at: Timestamp;
+}
+
+export const getDashboardPosts = async ({
+	options,
+	latestDoc,
+}: {
+	options: IOptionsDashboard;
+	latestDoc?: QueryDocumentSnapshot;
+}) => {
+	let firstQuery: Query<DocumentData, DocumentData> = query(
+		collection(firestore, "dashboard"),
+		orderBy("created_at", options.order),
+		startAfter(latestDoc || 0),
+		limit(PAGINATION_LIMIT)
+	);
+	if (options.key) {
+		firstQuery = query(firstQuery, where("userId", "==", options.key));
+	}
+
+	const documentSnapshots = await getDocs(firstQuery);
+	const promises = documentSnapshots.docs.map(async (doc) => {
+		const docData = doc.data() as IDashboardDocDataProps;
+		const userData = await getUser(docData.userId);
+
+		return {
+			avatar: userData.data.avatar,
+			nickname: userData.data.nickname,
+			userId: docData.userId,
+			message: docData.message,
+			file: docData.file,
+			type: docData.type,
+			createdAt: formatDate(docData.created_at),
+		};
+	});
+
+	const posts: IPostDataProps[] = await Promise.all(promises);
+
+	const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1];
+
+	return { posts, lastVisible };
 };
