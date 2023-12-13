@@ -459,7 +459,7 @@ export const updateChatsMessages = async ({
 };
 
 const PAGINATION_LIMIT = 2;
-interface IOptionsDashboard {
+export interface IOptionsDashboard {
 	order: "desc" | "asc";
 	key?: string;
 }
@@ -487,7 +487,7 @@ export const getDashboardPosts = async ({
 	latestDoc,
 }: {
 	options: IOptionsDashboard;
-	latestDoc?: QueryDocumentSnapshot;
+	latestDoc: QueryDocumentSnapshot | null;
 }) => {
 	let firstQuery: Query<DocumentData, DocumentData> = query(
 		collection(firestore, "dashboard"),
@@ -515,9 +515,9 @@ export const getDashboardPosts = async ({
 		};
 	});
 
-	const posts: IPostDataProps[] = await Promise.all(promises);
+	const currentPosts: IPostDataProps[] = await Promise.all(promises);
 
-	const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1];
+	const lastVisibleDoc = documentSnapshots.docs[documentSnapshots.docs.length - 1];
 
-	return { posts, lastVisible };
+	return { currentPosts, lastVisibleDoc };
 };

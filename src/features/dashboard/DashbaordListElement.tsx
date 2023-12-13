@@ -1,4 +1,4 @@
-import { IPostDataProps } from "./DashboardList";
+import { IPostDataProps } from "../../services/firestore";
 
 const DashboardListElement = ({ postData }: { postData: IPostDataProps }) => {
 	const { userId, avatar, nickname, message, file, type, created_at } = postData;
