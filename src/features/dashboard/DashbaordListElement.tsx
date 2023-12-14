@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import { IPostDataProps } from "../../services/firestore";
-import { Avatar } from "../../ui/Avatar";
 import { flexRow } from "../../style/Templates";
+import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
-import { useNavigate } from "react-router-dom";
+import DashboardListAttachment from "./DashboardListAttachment";
 
 const Post = styled.div`
 	border: 1px solid red;
@@ -14,6 +16,7 @@ const Post = styled.div`
 
 const Header = styled.header`
 	${flexRow};
+	margin-bottom: 1rem;
 `;
 
 const Nickname = styled(Heading).attrs({
@@ -44,9 +47,10 @@ const DashboardListElement = ({ postData }: { postData: IPostDataProps }) => {
 			</Header>
 			<Paragraph>{message}</Paragraph>
 			{file && (
-				<div>
-					{file} + {type}
-				</div>
+				<DashboardListAttachment
+					type={type}
+					file={file}
+				/>
 			)}
 		</Post>
 	);

@@ -1,11 +1,11 @@
 import { BiDownload } from "react-icons/bi";
 import styled from "styled-components";
 
-import { flexRow } from "../../style/Templates";
-import { Button } from "../../ui/Button";
-import useDownloadFile from "./useDownloadFile";
+import { flexRow } from "../style/Templates";
+import useDownloadFile from "../features/chats/useDownloadFile";
+import { Button } from "./Button";
 
-const StyledDownloadMessage = styled.div`
+const StyledFileElement = styled.div`
 	${flexRow};
 	align-items: center;
 	gap: 0.4rem;
@@ -19,7 +19,7 @@ const FileName = styled.p`
 	text-overflow: ellipsis;
 `;
 
-const ChatMessageDownload = ({ fileUrl, filename }: { fileUrl: string; filename: string | undefined }) => {
+const DownloadElement = ({ fileUrl, filename }: { fileUrl: string; filename?: string }) => {
 	const { download, status } = useDownloadFile();
 
 	const handleOnDownload = () => {
@@ -27,7 +27,7 @@ const ChatMessageDownload = ({ fileUrl, filename }: { fileUrl: string; filename:
 	};
 
 	return (
-		<StyledDownloadMessage>
+		<StyledFileElement>
 			<Button
 				type="button"
 				variant="menu"
@@ -36,9 +36,9 @@ const ChatMessageDownload = ({ fileUrl, filename }: { fileUrl: string; filename:
 			>
 				<BiDownload />
 			</Button>
-			<FileName>{filename || "file"}</FileName>
-		</StyledDownloadMessage>
+			{filename && <FileName>{filename}</FileName>}
+		</StyledFileElement>
 	);
 };
 
-export default ChatMessageDownload;
+export default DownloadElement;

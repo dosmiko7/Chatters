@@ -48,3 +48,9 @@ export const ephasis = css`
 		}
 	}
 `;
+
+export const fileElementStyle = css`
+	max-height: 28rem;
+	width: auto;
+	max-width: 100%;
+`;

@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import styled from "styled-components";
 
-const StyledVideo = styled.video`
-	max-height: 28rem;
-	width: auto;
-	max-width: 100%;
+import { fileElementStyle } from "../style/Templates";
+
+const StyledVideoElement = styled.video`
+	${fileElementStyle}
 `;
 
-const ChatMessageVideo = ({ fileSrc, type }: { fileSrc: string; type: string }) => {
+const VideoElement = ({ fileSrc, type }: { fileSrc: string; type: string }) => {
 	const defaultVolume = useCallback((videoElement: HTMLVideoElement | null) => {
 		if (videoElement) {
 			videoElement.volume = 0.5;
@@ -15,7 +15,7 @@ const ChatMessageVideo = ({ fileSrc, type }: { fileSrc: string; type: string }) 
 	}, []);
 
 	return (
-		<StyledVideo
+		<StyledVideoElement
 			controls
 			ref={defaultVolume}
 		>
@@ -24,8 +24,8 @@ const ChatMessageVideo = ({ fileSrc, type }: { fileSrc: string; type: string }) 
 				type={type}
 			/>
 			Your browser does not support the video tag.
-		</StyledVideo>
+		</StyledVideoElement>
 	);
 };
 
-export default ChatMessageVideo;
+export default VideoElement;

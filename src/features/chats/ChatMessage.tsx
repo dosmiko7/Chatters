@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { ListElement } from "../../ui/ListElement";
 import { IChatElement } from "./useChat";
 import { Avatar } from "../../ui/Avatar";
-import { useNavigate } from "react-router-dom";
-import ChatMessageDownload from "./ChatMessageDownload";
-import ChatMessageMusic from "./ChatMessageMusic";
-import ChatMessageVideo from "./ChatMessageVideo";
+import ImageElement from "../../ui/ImageElement";
+import AudioElement from "../../ui/AudioElement";
+import VideoElement from "../../ui/VideoElement";
+import DownloadElement from "../../ui/DownloadElement";
 
 const MessageContainer = styled(ListElement)``;
 
@@ -27,12 +28,6 @@ const AvatarContainer = styled.div`
 const Content = styled.div`
 	border-radius: var(--border-radius-sm);
 	padding: var(--padding-sm);
-`;
-
-const ImageContent = styled.img`
-	max-height: 28rem;
-	width: auto;
-	max-width: 100%;
 `;
 
 interface IChatMessageProps extends IChatElement {
@@ -67,12 +62,12 @@ const ChatMessage = (props: IChatMessageProps) => {
 			break;
 
 		case type.includes("image"):
-			renderMessage = <ImageContent src={message} />;
+			renderMessage = <ImageElement fileUrl={message} />;
 			break;
 
 		case type.includes("audio"):
 			renderMessage = (
-				<ChatMessageMusic
+				<AudioElement
 					fileSrc={message}
 					type={type}
 				/>
@@ -81,7 +76,7 @@ const ChatMessage = (props: IChatMessageProps) => {
 
 		case type.includes("video"):
 			renderMessage = (
-				<ChatMessageVideo
+				<VideoElement
 					fileSrc={message}
 					type={type}
 				/>
@@ -90,7 +85,7 @@ const ChatMessage = (props: IChatMessageProps) => {
 
 		default:
 			renderMessage = (
-				<ChatMessageDownload
+				<DownloadElement
 					fileUrl={message}
 					filename={fileName}
 				/>
