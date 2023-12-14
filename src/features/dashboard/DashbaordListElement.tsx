@@ -9,9 +9,11 @@ import Paragraph from "../../ui/Paragraph";
 import DashboardListAttachment from "./DashboardListAttachment";
 
 const Post = styled.div`
-	border: 1px solid red;
+	border-radius: var(--border-radius-md);
+	background-color: var(--color-primary-300);
 	padding: 2rem;
 	max-width: 70rem;
+	margin-bottom: 2rem;
 `;
 
 const Header = styled.header`

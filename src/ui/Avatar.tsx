@@ -12,6 +12,10 @@ const StyledAvatar = styled.div<IStyledAvatarProps>`
 	height: ${(props) => props.size};
 	border-radius: ${(props) => (props.square ? "0" : "50%")};
 	overflow: hidden;
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const Image = styled.img`

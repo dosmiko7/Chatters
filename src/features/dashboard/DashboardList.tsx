@@ -8,10 +8,9 @@ import DashboardListElement from "./DashbaordListElement";
 import Spinner from "../../ui/Spinner";
 
 const StyledDashbordList = styled.div`
-	max-height: 100vh;
+	height: 100%;
 	max-width: 60%;
 	padding: 0 4rem;
-	overflow-y: scroll;
 `;
 
 const options: IOptionsDashboard = {
