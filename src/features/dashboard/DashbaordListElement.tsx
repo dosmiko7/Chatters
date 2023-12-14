@@ -6,11 +6,12 @@ const DashboardListElement = ({ postData }: { postData: IPostDataProps }) => {
 	return (
 		<div>
 			<div>
-				<img>{avatar}</img>
+				<div>{avatar}</div>
 				<span>{nickname}</span>
 			</div>
 			<div>{message}</div>
 			<div>{file}</div>
+			<div>-----------------------------------------</div>
 		</div>
 	);
 };

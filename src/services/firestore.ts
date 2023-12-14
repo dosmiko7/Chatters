@@ -14,9 +14,10 @@ import {
 	deleteDoc,
 	limit,
 	orderBy,
-	Query,
 	startAfter,
 	QueryDocumentSnapshot,
+	endBefore,
+	startAt,
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
@@ -458,7 +459,7 @@ export const updateChatsMessages = async ({
 	});
 };
 
-const PAGINATION_LIMIT = 2;
+const PAGINATION_LIMIT = 1;
 export interface IOptionsDashboard {
 	order: "desc" | "asc";
 	key?: string;
@@ -487,17 +488,40 @@ export const getDashboardPosts = async ({
 	latestDoc,
 }: {
 	options: IOptionsDashboard;
-	latestDoc: QueryDocumentSnapshot | null;
+	latestDoc: QueryDocumentSnapshot | undefined;
 }) => {
-	let firstQuery: Query<DocumentData, DocumentData> = query(
+	//where("userId", "==", options.key),
+	// console.log(latestDoc);
+	// let firstQuery;
+	// if (options.key) {
+	// 	firstQuery = query(
+	// 		collection(firestore, "dashboard"),
+	// 		orderBy("created_at"),
+	// 		limit(PAGINATION_LIMIT)
+	// 	);
+	// } else {
+	// 	firstQuery = query(
+	// 		collection(firestore, "dashboard"),
+	// 		orderBy("created_at"),
+	// 		limit(PAGINATION_LIMIT)
+	// 	);
+	// }
+	// if (options.order == "asc") query(firstQuery, startAfter(latestDoc || 0));
+	// else query(firstQuery, endBefore(latestDoc || 0));
+
+	// const firstQuery = query(
+	// 	collection(firestore, "dashboard"),
+	// 	orderBy("created_at"),
+	// 	startAfter(latestDoc || 0),
+	// 	limit(1)
+	// );
+	// TODO: create dynamic query
+	const firstQuery = query(
 		collection(firestore, "dashboard"),
-		orderBy("created_at", options.order),
+		orderBy("created_at"),
 		startAfter(latestDoc || 0),
-		limit(PAGINATION_LIMIT)
+		limit(3)
 	);
-	if (options.key) {
-		firstQuery = query(firstQuery, where("userId", "==", options.key));
-	}
 
 	const documentSnapshots = await getDocs(firstQuery);
 	const promises = documentSnapshots.docs.map(async (doc) => {
