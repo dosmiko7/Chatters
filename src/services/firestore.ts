@@ -515,15 +515,21 @@ export const getDashboardPosts = async ({
 	// 	startAfter(latestDoc || 0),
 	// 	limit(1)
 	// );
+
 	// TODO: create dynamic query
-	const firstQuery = query(
+	// if desc and it is first time
+	let currentQuery;
+	currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), endBefore(0), limit(3));
+
+	// if asc or desc but not first time
+	currentQuery = query(
 		collection(firestore, "dashboard"),
-		orderBy("created_at"),
+		orderBy("created_at", "asc"),
 		startAfter(latestDoc || 0),
 		limit(3)
 	);
 
-	const documentSnapshots = await getDocs(firstQuery);
+	const documentSnapshots = await getDocs(currentQuery);
 	const promises = documentSnapshots.docs.map(async (doc) => {
 		const docData = doc.data() as IDashboardDocDataProps;
 		const userData = await getUser(docData.userId);

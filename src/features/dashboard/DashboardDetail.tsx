@@ -1,15 +1,15 @@
-import styled from "styled-components";
 import DashboardButtons from "./DashboardButtons";
 import DashboardList from "./DashboardList";
-
-const StyledDashboard = styled.div``;
+import Heading from "../../ui/Heading";
+import { Container } from "../../ui/Container";
 
 const DashboardDetail = () => {
 	return (
-		<StyledDashboard>
+		<Container>
+			<Heading as="h2">Dashboard</Heading>
 			<DashboardButtons />
 			<DashboardList />
-		</StyledDashboard>
+		</Container>
 	);
 };
 

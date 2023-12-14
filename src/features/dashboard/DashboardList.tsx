@@ -5,6 +5,7 @@ import useDashboard from "./useDashboard";
 import { IOptionsDashboard, IPostDataProps } from "../../services/firestore";
 import List from "../../ui/List";
 import DashboardListElement from "./DashbaordListElement";
+import Spinner from "../../ui/Spinner";
 
 const StyledDashbordList = styled.div`
 	max-height: 100vh;
@@ -35,6 +36,7 @@ const DashboardList = () => {
 				}}
 			/>
 			{!end && <div ref={bottomRef}></div>}
+			{status === "pending" && <Spinner />}
 		</StyledDashbordList>
 	);
 };
