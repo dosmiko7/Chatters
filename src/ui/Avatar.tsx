@@ -26,15 +26,17 @@ interface IAvatar {
 	size: string;
 	square?: boolean;
 	src?: string;
+	onClick?: () => void;
 }
 
 export const Avatar = (props: IAvatar) => {
-	const { size, src, square } = props;
+	const { size, src, square, onClick } = props;
 
 	return (
 		<StyledAvatar
 			size={size}
 			square={square}
+			onClick={onClick}
 		>
 			<Image
 				src={src || "avatar-default.png"}

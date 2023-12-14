@@ -519,7 +519,7 @@ export const getDashboardPosts = async ({
 	// TODO: create dynamic query
 	// if desc and it is first time
 	let currentQuery;
-	currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), endBefore(0), limit(3));
+	// currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), endBefore(0), limit(3));
 
 	// if asc or desc but not first time
 	currentQuery = query(

@@ -9,6 +9,8 @@ import Spinner from "../../ui/Spinner";
 
 const StyledDashbordList = styled.div`
 	max-height: 100vh;
+	max-width: 60%;
+	padding: 0 4rem;
 	overflow-y: scroll;
 `;
 
