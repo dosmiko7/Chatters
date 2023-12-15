@@ -51,7 +51,7 @@ const ChatWindow = ({
 						const renderPhoto = index + 1 === chat.length || chat[index].userId !== chat[index + 1].userId;
 						return (
 							<ChatMessage
-								key={message.createdAt.nanoseconds}
+								key={index}
 								type={message.type}
 								fileName={message.fileName}
 								currentUser={currentUser}

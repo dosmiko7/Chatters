@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import ChatFormFile from "./ChatFormFile";
 import ChatFormGIF from "./ChatFormGIF";
 import { flexRow } from "../../../style/Templates";

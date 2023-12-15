@@ -16,7 +16,7 @@ const DashboardFormModal = () => {
 			</Modal.Open>
 
 			<Modal.Window name="dashboardForm">
-				<Heading as="h2">New post</Heading>
+				<Heading as="h2">Create post</Heading>
 				<DashboardForm />
 			</Modal.Window>
 		</Modal>

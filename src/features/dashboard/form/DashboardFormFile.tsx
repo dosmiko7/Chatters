@@ -1,5 +1,7 @@
+import FileInput from "../../common/FileInput";
+
 const DashboardFormFile = () => {
-	return <div>DashboardFormFile</div>;
+	return <FileInput />;
 };
 
 export default DashboardFormFile;

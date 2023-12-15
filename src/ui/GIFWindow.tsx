@@ -6,7 +6,7 @@ import { Container } from "./Container";
 const GIFWindow = styled(Container)`
 	${flexColumn};
 	position: absolute;
-	top: -40rem;
+	top: -41rem;
 	height: 40rem;
 	width: 30rem;
 	align-items: center;

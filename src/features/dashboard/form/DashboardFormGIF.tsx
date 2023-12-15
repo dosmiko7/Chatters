@@ -1,5 +1,7 @@
+import GIFInput from "../../common/GIFInput";
+
 const DashboardFormGIF = () => {
-	return <div>DashboardFormGIF</div>;
+	return <GIFInput isSubmit={false} />;
 };
 
 export default DashboardFormGIF;
