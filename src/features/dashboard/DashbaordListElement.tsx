@@ -25,6 +25,7 @@ const Nickname = styled(Heading).attrs({
 	as: "h3",
 })`
 	padding-left: 1rem;
+	color: var(--font-color-white);
 `;
 
 const Date = styled.span`

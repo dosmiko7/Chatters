@@ -6,7 +6,7 @@ import { Button } from "./Button";
 import Paragraph from "./Paragraph";
 
 const ToasterContent = styled.div`
-	color: var(--toaster-font-color);
+	color: var(--font-color-white);
 	text-align: center;
 	gap: 0.4rem;
 `;

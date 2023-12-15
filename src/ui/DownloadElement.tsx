@@ -1,8 +1,8 @@
 import { BiDownload } from "react-icons/bi";
 import styled from "styled-components";
 
+import useDownloadFile from "../hooks/useDownloadFile";
 import { flexRow } from "../style/Templates";
-import useDownloadFile from "../features/chats/useDownloadFile";
 import { Button } from "./Button";
 
 const StyledFileElement = styled.div`

@@ -31,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
             --color-secondary-300: #00513a;
             --color-secondary-400: #004834;
             
-            --toaster-font-color: #fff;
+            --font-color-white: #fff;
 
             --color-white-100: #fff;
             --color-purple-100: #7752fe;

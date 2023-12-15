@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { downloadFile } from "../../services/storage";
+import { downloadFile } from "../services/storage";
 import { toast } from "react-hot-toast";
 
 const useDownloadFile = () => {
