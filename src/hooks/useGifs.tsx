@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
-import fetchGifs, { IFetchGifsProps } from "../../../services/giphy";
+import fetchGifs, { IFetchGifsProps } from "../services/giphy";
 
 const useGifs = () => {
 	const [gifs, setGifs] = useState<string[]>([]);

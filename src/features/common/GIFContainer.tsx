@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
 
-import { flexCentered } from "../../style/Templates";
-import useGifs from "../chats/form/useGifs";
-import GIFWindow, { GIFKeyInput } from "../../ui/GIFWindow";
+import { flexCentered, flexColumn } from "../../style/Templates";
+import useGifs from "../../hooks/useGifs";
 import GIFList from "./GIFList";
+import { Container } from "../../ui/Container";
 
 const ListContainer = styled.div`
 	width: 100%;
@@ -16,6 +16,28 @@ const EmptyInfo = styled.div`
 	font-size: 1.6rem;
 	${flexCentered};
 	height: 100%;
+`;
+
+const GIFWindow = styled(Container)`
+	${flexColumn};
+	position: absolute;
+	top: -41rem;
+	height: 40rem;
+	width: 30rem;
+	align-items: center;
+	background-color: var(--color-primary-300);
+	box-shadow: var(--shadow-md);
+	border-radius: var(--border-radius-sm);
+	border-right: none;
+`;
+
+const GIFKeyInput = styled.input`
+	position: sticky;
+	font-size: 1.6rem;
+	width: 100%;
+	border-radius: var(--border-radius-sm);
+	padding: var(--padding-xsm);
+	background-color: var(--color-primary-400);
 `;
 
 const GIFContainer = ({ isSubmit }: { isSubmit: boolean }) => {
