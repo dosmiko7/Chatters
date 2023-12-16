@@ -17,22 +17,22 @@ const IconContainerForLabel = styled.div`
 	}
 `;
 
-const FileInput = () => {
-	const { register, setValue } = useFormContext();
+const fileValidation = (value: FileList | null) => {
+	if (value?.length) {
+		const file = value[0];
+		const maxSizeInBytes = 1 * 1024 * 1024;
 
-	const fileValidation = (value: FileList | null) => {
-		if (value?.length) {
-			const file = value[0];
-			const maxSizeInBytes = 4 * 1024 * 1024;
-
-			if (file.size > maxSizeInBytes) {
-				setValue("file", null);
-				toast.error("File size should be less than 1 MB");
-			}
+		if (file.size > maxSizeInBytes) {
+			toast.error("File size should be less than 1 MB");
+			return false;
 		}
+	}
 
-		return true;
-	};
+	return true;
+};
+
+const FileInput = () => {
+	const { register } = useFormContext();
 
 	return (
 		<Wrapper>

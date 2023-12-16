@@ -1,8 +1,9 @@
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import styled from "styled-components";
 import { FaPaperclip } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
 
+import useFilePreview from "../../../hooks/useFilePreview";
 import { Button } from "../../../ui/Button";
 import { flexCentered } from "../../../style/Templates";
 
@@ -26,7 +27,7 @@ const AttachmentPreview = styled.img`
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	border-radius: var(--border-radius-sm);
+	border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
 `;
 
 const CloseButton = styled(Button)`
@@ -36,8 +37,13 @@ const CloseButton = styled(Button)`
 	right: 10px;
 `;
 
-const DashboardFormAttachment = ({ currentSrc }: { currentSrc: string | null }) => {
+const DashboardFormAttachment = () => {
 	const { resetField } = useFormContext();
+	const fileWatcher: FileList | null = useWatch({ name: "file" });
+	const gifSrc: string = useWatch({ name: "gif" });
+	const { imgSrc } = useFilePreview(fileWatcher);
+
+	const currentSrc = gifSrc || imgSrc;
 
 	const onCloseHandler = () => {
 		resetField("gif");

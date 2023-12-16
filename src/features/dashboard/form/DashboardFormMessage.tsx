@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { useWatch } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import styled from "styled-components";
 
-import useFilePreview from "../../../hooks/useFilePreview";
 import DashboardFormAttachment from "./DashboardFormAttachment";
 import { flexColumn } from "../../../style/Templates";
+
+interface IStyledMessageProps {
+	error: boolean;
+}
 
 const StyledDashboardFormMessage = styled.div`
 	${flexColumn};
@@ -18,7 +20,7 @@ const TextContainer = styled.div`
 	height: 20%;
 `;
 
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<IStyledMessageProps>`
 	background-color: transparent;
 	width: 100%;
 	resize: none;
@@ -27,6 +29,11 @@ const Textarea = styled.textarea`
 
 	&:focus {
 		outline: none;
+	}
+
+	&::placeholder {
+		color: ${(props) => (props.error ? "var(--color-red-200)" : "inherit")};
+		opacity: 0.6;
 	}
 `;
 
@@ -38,28 +45,31 @@ const Counter = styled.div`
 const MAX_CHARS = 200;
 
 const DashboardFormMessage = () => {
-	const fileWatcher: FileList | null = useWatch({ name: "file" });
-	const gifSrc: string = useWatch({ name: "gif" });
-	const [charsCount, setCharsCount] = useState<number>(0);
-	const { imgSrc } = useFilePreview(fileWatcher);
+	const { register, formState } = useFormContext();
+	const messageWatcher: string = useWatch({ name: "message" });
 
-	const currentSrc = gifSrc || imgSrc;
+	const placeholder = formState.errors["message"] ? "Enter some message" : "Post message...";
+
+	console.log();
 
 	return (
 		<StyledDashboardFormMessage>
 			<TextContainer>
 				<Textarea
 					maxLength={MAX_CHARS}
-					onChange={(e) => setCharsCount(e.target.value.length)}
-					placeholder="Post message..."
+					placeholder={placeholder}
+					error={!!formState.errors["message"]}
+					{...register("message", { required: true, maxLength: MAX_CHARS })}
 				/>
 				<Counter>
-					{charsCount} / {MAX_CHARS}
+					{messageWatcher.length} / {MAX_CHARS}
 				</Counter>
 			</TextContainer>
-			<DashboardFormAttachment currentSrc={currentSrc} />
+			<DashboardFormAttachment />
 		</StyledDashboardFormMessage>
 	);
 };
 
 export default DashboardFormMessage;
+
+//onChange={(e) => setCharsCount(e.target.value.length)}
