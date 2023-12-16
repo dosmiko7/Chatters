@@ -13,12 +13,13 @@ const useDashboard = () => {
 		mutationFn: (options: IOptionsDashboard) => getDashboardPosts({ options, latestDoc }),
 
 		onSuccess: ({ currentPosts, lastVisibleDoc }) => {
-			if (currentPosts.length > 2) {
-				setLatestDoc(lastVisibleDoc);
+			if (!end) {
+				if (currentPosts.length > 2) {
+					setLatestDoc(lastVisibleDoc);
+				} else {
+					setEnd(true);
+				}
 				setPosts((prev) => [...prev, ...currentPosts]);
-			} else {
-				setPosts((prev) => [...prev, ...currentPosts]);
-				setEnd(true);
 			}
 		},
 

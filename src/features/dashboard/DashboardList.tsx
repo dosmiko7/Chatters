@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import useDashboard from "./useDashboard";
@@ -6,6 +6,7 @@ import { IOptionsDashboard, IPostDataProps } from "../../services/firestore";
 import List from "../../ui/List";
 import DashboardListElement from "./DashbaordListElement";
 import Spinner from "../../ui/Spinner";
+import useIsVisible from "../../hooks/useIsVisible";
 
 const StyledDashbordList = styled.div`
 	height: 100%;
@@ -21,16 +22,22 @@ const options: IOptionsDashboard = {
 const DashboardList = () => {
 	const { posts, getPosts, status, end } = useDashboard();
 	const bottomRef = useRef<null | HTMLDivElement>(null);
+	const isVisible = useIsVisible(bottomRef);
+
+	useEffect(() => {
+		if (isVisible) {
+			getPosts(options);
+		}
+	}, [getPosts, isVisible]);
 
 	return (
 		<StyledDashbordList>
-			<button onClick={() => getPosts(options)}>Fetch</button>
 			<List<IPostDataProps>
 				data={posts}
-				render={(post: IPostDataProps) => {
+				render={(post: IPostDataProps, index: number) => {
 					return (
 						<DashboardListElement
-							key={post.userId + post.createdAt}
+							key={index}
 							postData={post}
 						/>
 					);
