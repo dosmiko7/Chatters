@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { QueryDocumentSnapshot } from "firebase/firestore";
+import { toast } from "react-hot-toast";
 
 import { IOptionsDashboard, IPostDataProps, getDashboardPosts } from "../../services/firestore";
 
@@ -24,7 +25,8 @@ const useDashboard = () => {
 		},
 
 		onError: (err) => {
-			console.error("DASHBOARD ERROR ", err);
+			console.error("DASHBOARD ERROR", err);
+			toast.error("Something went wrong with dashboard posts fetching");
 		},
 	});
 

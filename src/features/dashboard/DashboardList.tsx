@@ -7,6 +7,7 @@ import List from "../../ui/List";
 import DashboardListElement from "./DashbaordListElement";
 import Spinner from "../../ui/Spinner";
 import useIsVisible from "../../hooks/useIsVisible";
+import Paragraph from "../../ui/Paragraph";
 
 const StyledDashbordList = styled.div`
 	height: 100%;
@@ -32,6 +33,7 @@ const DashboardList = () => {
 
 	return (
 		<StyledDashbordList>
+			{!posts.length && <Paragraph>There are no posts yet</Paragraph>}
 			<List<IPostDataProps>
 				data={posts}
 				render={(post: IPostDataProps, index: number) => {
