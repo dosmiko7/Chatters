@@ -9,7 +9,7 @@ import { flexColumn } from "../../../style/Templates";
 const StyledDashboardFormMessage = styled.div`
 	${flexColumn};
 	width: 100%;
-	max-height: 80%;
+	height: 80%;
 	background-color: var(--color-primary-500);
 	border-radius: var(--border-radius-sm);
 `;
@@ -57,7 +57,7 @@ const DashboardFormMessage = () => {
 					{charsCount} / {MAX_CHARS}
 				</Counter>
 			</TextContainer>
-			{currentSrc && <DashboardFormAttachment currentSrc={currentSrc} />}
+			<DashboardFormAttachment currentSrc={currentSrc} />
 		</StyledDashboardFormMessage>
 	);
 };

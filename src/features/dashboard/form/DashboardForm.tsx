@@ -4,6 +4,7 @@ import { Form } from "../../../ui/Form";
 import DashboardFormMessage from "./DashboardFormMessage";
 import DashboardFormButtons from "./DashboardFormButtons";
 import styled from "styled-components";
+import { useModal } from "../../../hooks/useModal";
 
 const StyledDashboardForm = styled(Form)`
 	height: 100%;
@@ -18,11 +19,13 @@ interface IDashboardFormInput {
 
 const DashboardForm = () => {
 	const methods = useForm<IDashboardFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
+	const { close } = useModal();
 	const { handleSubmit, reset } = methods;
 
 	const onSubmit: SubmitHandler<IDashboardFormInput> = async (input: IDashboardFormInput) => {
 		console.log(input);
 		reset();
+		close();
 	};
 
 	return (
