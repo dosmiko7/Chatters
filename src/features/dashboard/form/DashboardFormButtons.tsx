@@ -7,6 +7,7 @@ import DashboardFormSubmit from "./DashboardFormSubmit";
 
 const StyledDashboardFormButtons = styled.div`
 	${flexRow};
+	font-size: 2rem;
 `;
 
 const DashboardFormButtons = () => {

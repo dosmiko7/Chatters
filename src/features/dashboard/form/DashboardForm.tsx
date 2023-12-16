@@ -17,7 +17,7 @@ interface IDashboardFormInput {
 }
 
 const DashboardForm = () => {
-	const methods = useForm<IDashboardFormInput>({ defaultValues: { message: "", file: null } });
+	const methods = useForm<IDashboardFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
 	const { handleSubmit, reset } = methods;
 
 	const onSubmit: SubmitHandler<IDashboardFormInput> = async (input: IDashboardFormInput) => {

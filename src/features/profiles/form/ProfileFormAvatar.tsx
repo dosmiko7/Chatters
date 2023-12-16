@@ -1,7 +1,7 @@
 import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
-import useFilePreview from "./useFilePreview";
+import useFilePreview from "../../../hooks/useFilePreview";
 import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";

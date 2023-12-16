@@ -3,6 +3,7 @@ import { Button } from "../../../ui/Button";
 
 const StyledButton = styled(Button)`
 	margin-left: auto;
+	font-size: 1.6rem;
 `;
 
 const DashboardFormSubmit = () => {

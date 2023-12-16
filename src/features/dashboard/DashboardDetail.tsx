@@ -8,6 +8,7 @@ import Heading from "../../ui/Heading";
 
 const Main = styled.main`
 	${flexColumn};
+	gap: 2rem;
 	align-items: center;
 `;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 
 import { Input } from "../../../ui/Input";
-import useFilePreview from "../../profiles/form/useFilePreview";
+import useFilePreview from "../../../hooks/useFilePreview";
 import { flexRow } from "../../../style/Templates";
 import { Button } from "../../../ui/Button";
 
