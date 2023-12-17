@@ -11,8 +11,7 @@ import Paragraph from "../../ui/Paragraph";
 
 const StyledDashbordList = styled.div`
 	height: 100%;
-	max-width: 60%;
-	padding: 0 4rem;
+	width: 100%;
 `;
 
 const options: IOptionsDashboard = {

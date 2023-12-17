@@ -4,6 +4,8 @@ import { flexRow } from "../../style/Templates";
 
 const StyledDashboardButtons = styled.div`
 	${flexRow};
+	width: 100%;
+	justify-content: space-between;
 `;
 
 const DashboardButtons = () => {

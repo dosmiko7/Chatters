@@ -10,6 +10,9 @@ const Main = styled.main`
 	${flexColumn};
 	gap: 2rem;
 	align-items: center;
+	margin: 0 auto;
+	width: 60%;
+	max-width: 60%;
 `;
 
 const DashboardDetail = () => {

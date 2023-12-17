@@ -12,7 +12,7 @@ const Post = styled.div`
 	border-radius: var(--border-radius-md);
 	background-color: var(--color-primary-300);
 	padding: 2rem;
-	max-width: 70rem;
+	width: 100%;
 	margin-bottom: 2rem;
 `;
 
