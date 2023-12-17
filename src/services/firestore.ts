@@ -16,8 +16,6 @@ import {
 	orderBy,
 	startAfter,
 	QueryDocumentSnapshot,
-	endBefore,
-	startAt,
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
@@ -459,7 +457,8 @@ export const updateChatsMessages = async ({
 	});
 };
 
-const PAGINATION_LIMIT = 1;
+//TODO: Change pagination limit
+export const PAGINATION_LIMIT = 2;
 export interface IOptionsDashboard {
 	order: "desc" | "asc";
 	key?: string;
@@ -486,48 +485,23 @@ interface IDashboardDocDataProps {
 export const getDashboardPosts = async ({
 	options,
 	latestDoc,
+	pagination,
 }: {
 	options: IOptionsDashboard;
 	latestDoc: QueryDocumentSnapshot | undefined;
+	pagination: number;
 }) => {
-	//where("userId", "==", options.key),
-	// console.log(latestDoc);
-	// let firstQuery;
-	// if (options.key) {
-	// 	firstQuery = query(
-	// 		collection(firestore, "dashboard"),
-	// 		orderBy("created_at"),
-	// 		limit(PAGINATION_LIMIT)
-	// 	);
-	// } else {
-	// 	firstQuery = query(
-	// 		collection(firestore, "dashboard"),
-	// 		orderBy("created_at"),
-	// 		limit(PAGINATION_LIMIT)
-	// 	);
-	// }
-	// if (options.order == "asc") query(firstQuery, startAfter(latestDoc || 0));
-	// else query(firstQuery, endBefore(latestDoc || 0));
-
-	// const firstQuery = query(
-	// 	collection(firestore, "dashboard"),
-	// 	orderBy("created_at"),
-	// 	startAfter(latestDoc || 0),
-	// 	limit(1)
-	// );
-
-	// TODO: create dynamic query
-	// if desc and it is first time
 	let currentQuery;
-	// currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), endBefore(0), limit(3));
-
-	// if asc or desc but not first time
-	currentQuery = query(
-		collection(firestore, "dashboard"),
-		orderBy("created_at", "asc"),
-		startAfter(latestDoc || 0),
-		limit(3)
-	);
+	if (options.order === "desc" && pagination === 1) {
+		currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), limit(PAGINATION_LIMIT));
+	} else {
+		currentQuery = query(
+			collection(firestore, "dashboard"),
+			orderBy("created_at", options.order),
+			startAfter(latestDoc || 0),
+			limit(PAGINATION_LIMIT)
+		);
+	}
 
 	const documentSnapshots = await getDocs(currentQuery);
 	const promises = documentSnapshots.docs.map(async (doc) => {
