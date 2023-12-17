@@ -16,7 +16,6 @@ const StyledDashbordList = styled.div`
 
 const options: IOptionsDashboard = {
 	order: "desc",
-	key: "test3",
 };
 
 const DashboardList = () => {
@@ -25,10 +24,10 @@ const DashboardList = () => {
 	const isVisible = useIsVisible(bottomRef);
 
 	useEffect(() => {
-		if (isVisible) {
+		if (isVisible && status !== "pending") {
 			getPosts(options);
 		}
-	}, [getPosts, isVisible]);
+	}, [getPosts, isVisible, status]);
 
 	return (
 		<StyledDashbordList>
