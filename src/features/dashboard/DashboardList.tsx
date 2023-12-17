@@ -27,7 +27,7 @@ const DashboardList = () => {
 
 	return (
 		<StyledDashbordList>
-			{!posts.length && <Paragraph>There are no posts yet</Paragraph>}
+			{!posts.length && status !== "fetching" && <Paragraph>There are no posts yet</Paragraph>}
 			<List<IPostDataProps>
 				data={posts}
 				render={(post: IPostDataProps, index: number) => {
