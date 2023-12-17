@@ -5,6 +5,7 @@ import { Container } from "../../ui/Container";
 import DashboardButtons from "./DashboardButtons";
 import DashboardList from "./DashboardList";
 import Heading from "../../ui/Heading";
+import DashboardOptionsProvider from "../../context/DashboardOptions";
 
 const Main = styled.main`
 	${flexColumn};
@@ -19,10 +20,12 @@ const DashboardDetail = () => {
 	return (
 		<Container>
 			<Heading as="h2">Dashboard</Heading>
-			<Main>
-				<DashboardButtons />
-				<DashboardList />
-			</Main>
+			<DashboardOptionsProvider>
+				<Main>
+					<DashboardButtons />
+					<DashboardList />
+				</Main>
+			</DashboardOptionsProvider>
 		</Container>
 	);
 };

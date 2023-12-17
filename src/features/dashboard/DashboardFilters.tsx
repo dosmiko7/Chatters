@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import { HiSortDescending, HiSortAscending } from "react-icons/hi";
 
+import { DashboardOptionsContext } from "../../context/DashboardOptions";
 import { flexRow } from "../../style/Templates";
 import { Button } from "../../ui/Button";
 
@@ -18,10 +19,12 @@ const FilterButton = styled(Button)`
 `;
 
 const DashboardFilters = () => {
+	const { setOrder } = useContext(DashboardOptionsContext);
 	const [selectedOption, setSelectedOption] = useState<"asc" | "desc">("desc");
 
 	const onFilterOptionClick = (order: "asc" | "desc") => {
 		setSelectedOption(order);
+		setOrder(order);
 	};
 
 	return (
