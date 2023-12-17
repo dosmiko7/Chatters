@@ -17,7 +17,6 @@ const List = styled.ul`
 const Option = styled.li`
 	${flexRow}
 	align-items: center;
-	justify-content: center;
 	gap: 0.4rem;
 
 	&:hover {
