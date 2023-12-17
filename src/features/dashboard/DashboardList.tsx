@@ -1,33 +1,29 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import useDashboard from "./useDashboard";
-import { IOptionsDashboard, IPostDataProps } from "../../services/firestore";
+import useIsVisible from "../../hooks/useIsVisible";
+import { IPostDataProps } from "../../services/firestore";
 import List from "../../ui/List";
 import DashboardListElement from "./DashbaordListElement";
 import Spinner from "../../ui/Spinner";
-import useIsVisible from "../../hooks/useIsVisible";
 import Paragraph from "../../ui/Paragraph";
+import useDashboard from "./useDashboard";
 
 const StyledDashbordList = styled.div`
 	height: 100%;
 	width: 100%;
 `;
 
-const options: IOptionsDashboard = {
-	order: "desc",
-};
-
 const DashboardList = () => {
-	const { posts, getPosts, status, end } = useDashboard();
-	const bottomRef = useRef<null | HTMLDivElement>(null);
+	const bottomRef = useRef<HTMLDivElement>(null);
 	const isVisible = useIsVisible(bottomRef);
+	const { posts, fetchNextPage, hasNextPage, status } = useDashboard();
 
 	useEffect(() => {
-		if (isVisible && status !== "pending") {
-			getPosts(options);
+		if (isVisible && status !== "fetching" && hasNextPage) {
+			fetchNextPage();
 		}
-	}, [getPosts, isVisible, status]);
+	}, [isVisible, fetchNextPage, status, hasNextPage]);
 
 	return (
 		<StyledDashbordList>
@@ -43,8 +39,8 @@ const DashboardList = () => {
 					);
 				}}
 			/>
-			{!end && <div ref={bottomRef}></div>}
-			{status === "pending" && <Spinner />}
+			<div ref={bottomRef}></div>
+			{status === "fetching" && <Spinner />}
 		</StyledDashbordList>
 	);
 };

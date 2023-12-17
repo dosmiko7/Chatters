@@ -458,7 +458,7 @@ export const updateChatsMessages = async ({
 };
 
 //TODO: Change pagination limit
-export const PAGINATION_LIMIT = 2;
+export const PAGINATION_LIMIT = 7;
 export interface IOptionsDashboard {
 	order: "desc" | "asc";
 	key?: string;
@@ -482,15 +482,13 @@ interface IDashboardDocDataProps {
 	created_at: Timestamp;
 }
 
-export const getDashboardPosts = async ({
-	options,
-	latestDoc,
-	pagination,
-}: {
+interface IGetDashboardPostsProps {
 	options: IOptionsDashboard;
 	latestDoc: QueryDocumentSnapshot | undefined;
 	pagination: number;
-}) => {
+}
+
+export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGetDashboardPostsProps) => {
 	let currentQuery;
 	if (options.order === "desc" && pagination === 1) {
 		currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), limit(PAGINATION_LIMIT));
@@ -523,5 +521,5 @@ export const getDashboardPosts = async ({
 
 	const lastVisibleDoc = documentSnapshots.docs[documentSnapshots.docs.length - 1];
 
-	return { currentPosts, lastVisibleDoc };
+	return { currentPosts, lastVisibleDoc, pagination };
 };
