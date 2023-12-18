@@ -16,15 +16,24 @@ import {
 	orderBy,
 	startAfter,
 	QueryDocumentSnapshot,
+	addDoc,
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { User } from "firebase/auth";
-import { getFileURL, removeChatFiles, uploadAvatar, uploadBackground, uploadChatFile } from "./storage";
+import {
+	getFileURL,
+	removeChatFiles,
+	uploadAvatar,
+	uploadBackground,
+	uploadChatFile,
+	uploadDashboardFile,
+} from "./storage";
 import formatSubmit from "../utils/formatSubmit";
 import getSecondPartOfCombinedString from "../utils/getSecondPartOfCombinedString";
 import { IProfileFormInput } from "../features/profiles/form/ProfileForm";
 import getCombinedId from "../utils/getCombinedId";
 import formatDate from "../utils/formatDate";
+import { IDashboardFormInput } from "../features/dashboard/form/DashboardForm";
 
 export interface IUserChat {
 	userId: string;
@@ -160,7 +169,7 @@ export const findUsers = async (key: string): Promise<IDocumentData[]> => {
 };
 
 export const getUser = async (userId: string | undefined): Promise<IDocumentData> => {
-	if (userId === undefined) throw new Error("Something went wrong");
+	if (userId === undefined) throw new Error("UserId should be defined");
 	const docRef = doc(firestore, "users", userId);
 	const docSnap = await getDoc(docRef);
 
@@ -338,8 +347,8 @@ export const updateChatsCustomization = async ({
 
 export const removeChat = async ({ chatId }: { chatId: string }) => {
 	const chatRef = doc(firestore, "chats", chatId);
-	await deleteDoc(chatRef).catch((err: Error) => {
-		throw err;
+	await deleteDoc(chatRef).catch(() => {
+		throw new Error("Error: removing chat");
 	});
 };
 
@@ -474,7 +483,7 @@ export interface IPostDataProps {
 	createdAt: string;
 }
 
-interface IDashboardDocDataProps {
+export interface IDashboardDocDataProps {
 	userId: string;
 	message: string;
 	file?: string;
@@ -522,4 +531,42 @@ export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGet
 	const lastVisibleDoc = documentSnapshots.docs[documentSnapshots.docs.length - 1];
 
 	return { currentPosts, lastVisibleDoc, pagination };
+};
+
+export const addDashboardPost = async ({
+	input,
+	userId,
+}: {
+	input: IDashboardFormInput;
+	userId: string | undefined;
+}) => {
+	if (userId === undefined) throw new Error("Adding dashboard post: UserId should be defined.");
+
+	let file: string | undefined;
+	let type: string;
+	if (input.file) {
+		const fileUrl = await uploadDashboardFile({ file: input.file[0] });
+		file = fileUrl;
+		type = input.file[0].type;
+	} else {
+		file = undefined;
+		type = "text";
+	}
+
+	if (input.gif.length) {
+		file = input.gif;
+		type = "image/gif";
+	}
+
+	const post: IDashboardDocDataProps = {
+		userId,
+		message: input.message,
+		type,
+		created_at: Timestamp.fromDate(new Date()),
+	};
+	if (file) post["file"] = file;
+
+	await addDoc(collection(firestore, "dashboard"), post).catch(() => {
+		throw new Error("Error: adding dashboard post");
+	});
 };
