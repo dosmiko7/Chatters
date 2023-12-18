@@ -5,13 +5,24 @@ import DashboardFormMessage from "./DashboardFormMessage";
 import DashboardFormButtons from "./DashboardFormButtons";
 import styled from "styled-components";
 import { useModal } from "../../../hooks/useModal";
+import useCreatePost from "./useCreatePost";
+import Spinner from "../../../ui/Spinner";
 
 const StyledDashboardForm = styled(Form)`
+	position: relative;
 	height: 100%;
 	gap: 1.6rem;
 `;
 
-interface IDashboardFormInput {
+const LoadingBox = styled.div`
+	position: absolute;
+	width: 100%;
+	height: calc(100% - 1.6rem);
+	z-index: 100;
+	backdrop-filter: blur(3px);
+`;
+
+export interface IDashboardFormInput {
 	message: string;
 	file: FileList | null;
 	gif: string;
@@ -20,17 +31,27 @@ interface IDashboardFormInput {
 const DashboardForm = () => {
 	const methods = useForm<IDashboardFormInput>({ defaultValues: { message: "", file: null, gif: "" } });
 	const { close } = useModal();
+	const { createPost, status } = useCreatePost();
 	const { handleSubmit, reset } = methods;
 
 	const onSubmit: SubmitHandler<IDashboardFormInput> = async (input: IDashboardFormInput) => {
 		console.log(input);
-		reset();
-		close();
+		createPost(input);
+		console.log(status);
+		if (status === "success") {
+			reset();
+			close();
+		}
 	};
 
 	return (
 		<FormProvider {...methods}>
 			<StyledDashboardForm onSubmit={handleSubmit(onSubmit)}>
+				{status === "pending" && (
+					<LoadingBox>
+						<Spinner />
+					</LoadingBox>
+				)}
 				<DashboardFormMessage />
 				<DashboardFormButtons />
 			</StyledDashboardForm>

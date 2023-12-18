@@ -37,6 +37,7 @@ const CloseButton = styled(Button)`
 	right: 10px;
 `;
 
+// TODO: Support other extensions besides image and video
 const DashboardFormAttachment = () => {
 	const { resetField } = useFormContext();
 	const fileWatcher: FileList | null = useWatch({ name: "file" });

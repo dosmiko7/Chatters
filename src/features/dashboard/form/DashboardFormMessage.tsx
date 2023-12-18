@@ -49,9 +49,6 @@ const DashboardFormMessage = () => {
 	const messageWatcher: string = useWatch({ name: "message" });
 
 	const placeholder = formState.errors["message"] ? "Enter some message" : "Post message...";
-
-	console.log();
-
 	return (
 		<StyledDashboardFormMessage>
 			<TextContainer>

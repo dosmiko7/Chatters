@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// TODO: Add thumbnail for videos
 const useFilePreview = (file: FileList | null) => {
 	const [imgSrc, setImgSrc] = useState<string | null>("");
 
