@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useModal } from "../../../hooks/useModal";
 import useCreatePost from "./useCreatePost";
 import Spinner from "../../../ui/Spinner";
+import { useEffect } from "react";
 
 const StyledDashboardForm = styled(Form)`
 	position: relative;
@@ -35,14 +36,15 @@ const DashboardForm = () => {
 	const { handleSubmit, reset } = methods;
 
 	const onSubmit: SubmitHandler<IDashboardFormInput> = async (input: IDashboardFormInput) => {
-		console.log(input);
 		createPost(input);
-		console.log(status);
+	};
+
+	useEffect(() => {
 		if (status === "success") {
 			reset();
 			close();
 		}
-	};
+	}, [status, reset, close]);
 
 	return (
 		<FormProvider {...methods}>
