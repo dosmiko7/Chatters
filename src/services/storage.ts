@@ -17,6 +17,7 @@ export const uploadBackground = async ({
 	await uploadBytes(backgroundRef, backgroundFile, { contentType: backgroundFile.type });
 };
 
+// TODO: Change for one method?
 export const uploadChatFile = async ({
 	chatId,
 	fileName,
@@ -28,6 +29,14 @@ export const uploadChatFile = async ({
 }): Promise<void> => {
 	const chatFileRef = ref(storage, `chatFiles/${chatId}/${fileName}`);
 	await uploadBytes(chatFileRef, chatFile, { contentType: chatFile.type });
+};
+
+export const uploadDashboardFile = async ({ file }: { file: File }) => {
+	const dashboardFileRef = ref(storage, `dashboard/${file.name}`);
+	const uploadResult = await uploadBytes(dashboardFileRef, file, { contentType: file.type });
+	const path = uploadResult.metadata.fullPath;
+	const result = getFileURL(path);
+	return result;
 };
 
 export const getFileURL = async (path: string): Promise<string> => {
