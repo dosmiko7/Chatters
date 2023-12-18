@@ -2,12 +2,14 @@ import { useFormContext, useWatch } from "react-hook-form";
 import styled from "styled-components";
 import { FaPaperclip } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
+import { BiFileBlank } from "react-icons/bi";
 
 import useFilePreview from "../../../hooks/useFilePreview";
 import { Button } from "../../../ui/Button";
-import { flexCentered } from "../../../style/Templates";
+import { flexCentered, flexColumn } from "../../../style/Templates";
 
 const Attachment = styled.div`
+	${flexCentered};
 	position: relative;
 	height: 70%;
 	width: 100%;
@@ -23,11 +25,25 @@ const NoAttachment = styled.div`
 	width: 100%;
 `;
 
-const AttachmentPreview = styled.img`
+const AttachmentWithImage = styled.img`
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+`;
+
+const AttachmentWithoutImage = styled.div`
+	${flexColumn};
+	align-items: center;
+	font-size: 2.4rem;
+	width: 100%;
+
+	p {
+		width: 80%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 `;
 
 const CloseButton = styled(Button)`
@@ -39,34 +55,43 @@ const CloseButton = styled(Button)`
 
 // TODO: Support other extensions besides image and video
 const DashboardFormAttachment = () => {
-	const { resetField } = useFormContext();
+	const { setValue } = useFormContext();
 	const fileWatcher: FileList | null = useWatch({ name: "file" });
 	const gifSrc: string = useWatch({ name: "gif" });
 	const { imgSrc } = useFilePreview(fileWatcher);
 
 	const currentSrc = gifSrc || imgSrc;
 
-	const onCloseHandler = () => {
-		resetField("gif");
-		resetField("file");
+	const onRemoveHandler = () => {
+		setValue("gif", "");
+		setValue("file", null);
 	};
 
-	if (!currentSrc)
-		return (
+	let attachmentType;
+	if (!currentSrc) {
+		attachmentType = fileWatcher ? (
+			<AttachmentWithoutImage>
+				<BiFileBlank />
+				<p>{fileWatcher[0].name}</p>
+			</AttachmentWithoutImage>
+		) : (
 			<NoAttachment>
 				<FaPaperclip />
 				<p>No attachment</p>
 			</NoAttachment>
 		);
+	} else {
+		attachmentType = <AttachmentWithImage src={currentSrc} />;
+	}
 
 	return (
 		<Attachment>
-			<AttachmentPreview src={currentSrc} />
+			{attachmentType}
 			<CloseButton
 				variant="menu"
 				size="large"
 				type="button"
-				onClick={() => onCloseHandler()}
+				onClick={onRemoveHandler}
 			>
 				<HiXMark />
 			</CloseButton>
