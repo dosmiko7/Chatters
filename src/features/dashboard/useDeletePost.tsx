@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { removeDashboardPost } from "../../services/firestore";
 import { toast } from "react-hot-toast";
+
+import { removeDashboardPost } from "../../services/firestore";
 
 const useDeletePost = () => {
 	const queryClient = useQueryClient();

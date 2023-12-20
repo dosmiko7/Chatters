@@ -7,16 +7,17 @@ import { IDashboardFormInput } from "./DashboardForm";
 // TODO: Change to dynamic user
 const useCreatePost = () => {
 	const queryClient = useQueryClient();
+	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
 	//const { data } = useLoggedUser();
 
 	const { mutate: createPost, status } = useMutation({
-		mutationFn: (input: IDashboardFormInput) => addDashboardPost({ input, userId: "ivKwYDsLxLkM34cMKDdw" }),
+		mutationFn: (input: IDashboardFormInput) => addDashboardPost({ input, userId: loggedUserId }),
 		onSuccess: () => {
-			toast.success("New post created");
+			toast.success("New post created successfully");
 			queryClient.invalidateQueries({ queryKey: ["posts"] });
 		},
 		onError: (error) => {
-			toast.error("Something went wrong");
+			toast.error("Adding a post failed");
 			console.error(error);
 		},
 	});
