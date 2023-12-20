@@ -34,7 +34,7 @@ const DashboardList = () => {
 					return (
 						<DashboardListElement
 							key={index}
-							postData={post}
+							post={post}
 						/>
 					);
 				}}

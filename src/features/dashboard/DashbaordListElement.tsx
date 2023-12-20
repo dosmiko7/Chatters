@@ -7,8 +7,10 @@ import { Avatar } from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
 import DashboardListAttachment from "./DashboardListAttachment";
+import DashboardRemove from "./DashboardRemove";
 
 const Post = styled.div`
+	position: relative;
 	border-radius: var(--border-radius-md);
 	background-color: var(--color-primary-300);
 	padding: 2rem;
@@ -32,9 +34,9 @@ const Date = styled.span`
 	margin-left: auto;
 `;
 
-const DashboardListElement = ({ postData }: { postData: IPostDataProps }) => {
+const DashboardListElement = ({ post }: { post: IPostDataProps }) => {
 	const navigate = useNavigate();
-	const { userId, avatar, nickname, message, file, type, createdAt } = postData;
+	const { userId, avatar, nickname, message, file, type, createdAt } = post.data;
 
 	return (
 		<Post>
@@ -55,6 +57,10 @@ const DashboardListElement = ({ postData }: { postData: IPostDataProps }) => {
 					file={file}
 				/>
 			)}
+			<DashboardRemove
+				postCreatorId={userId}
+				postId={post.postId}
+			/>
 		</Post>
 	);
 };
