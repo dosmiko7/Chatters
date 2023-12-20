@@ -1,6 +1,14 @@
+import styled from "styled-components";
+
 import AudioElement from "../../ui/AudioElement";
 import DownloadElement from "../../ui/DownloadElement";
 import VideoElement from "../../ui/VideoElement";
+import { flexCentered } from "../../style/Templates";
+
+const StyledAttachment = styled.div`
+	${flexCentered};
+	margin-top: 1rem;
+`;
 
 const DashboardListAttachment = ({ type, file }: { type: string; file: string }) => {
 	let renderElement;
@@ -32,7 +40,7 @@ const DashboardListAttachment = ({ type, file }: { type: string; file: string })
 			break;
 	}
 
-	return <div>{renderElement}</div>;
+	return <StyledAttachment>{renderElement}</StyledAttachment>;
 };
 
 export default DashboardListAttachment;
