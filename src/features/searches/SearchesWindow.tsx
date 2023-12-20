@@ -16,7 +16,8 @@ const ListContainer = styled.div`
 	overflow-y: scroll;
 `;
 
-const SearchesWindow = () => {
+// TODO: Change to React Hook Form
+const SearchesWindow = ({ onClickHandler }: { onClickHandler: (userId: string) => void }) => {
 	const [input, setInput] = useState<string>("");
 	const [query, setQuery] = useState<string>("");
 
@@ -34,12 +35,19 @@ const SearchesWindow = () => {
 			<Heading as="h2">Find a user</Heading>
 			<Form onSubmit={handleOnSubmit}>
 				<SearchBar
-					placeholder="Type nickname/email"
+					placeholder="Type nickname"
 					onChangeHandler={handleInputChange}
 					onIconClickHandler={handleOnSubmit}
 				/>
 			</Form>
-			<ListContainer>{query !== "" && <SearchesList query={query} />}</ListContainer>
+			<ListContainer>
+				{query !== "" && (
+					<SearchesList
+						query={query}
+						onClickHandler={onClickHandler}
+					/>
+				)}
+			</ListContainer>
 		</StyledSearchesWindow>
 	);
 };

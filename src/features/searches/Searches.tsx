@@ -9,7 +9,7 @@ const StyledButton = styled(Button)`
 	font-size: 2.2rem;
 `;
 
-const Searches = () => {
+const Searches = ({ onClickHandler }: { onClickHandler: (userId: string) => void }) => {
 	return (
 		<Modal>
 			<Modal.Open opens="searches">
@@ -21,7 +21,7 @@ const Searches = () => {
 				</StyledButton>
 			</Modal.Open>
 			<Modal.Window name="searches">
-				<SearchesWindow />
+				<SearchesWindow onClickHandler={onClickHandler} />
 			</Modal.Window>
 		</Modal>
 	);

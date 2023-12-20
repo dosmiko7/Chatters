@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import { IDocumentData } from "../../services/firestore";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
@@ -8,9 +6,8 @@ import useSearchUsers from "./useSearchUsers";
 import { useModal } from "../../hooks/useModal";
 import Heading from "../../ui/Heading";
 
-const SearchesList = ({ query }: { query: string }) => {
+const SearchesList = ({ query, onClickHandler }: { query: string; onClickHandler: (userId: string) => void }) => {
 	const { data, status } = useSearchUsers(query);
-	const navigate = useNavigate();
 	const { close } = useModal();
 
 	if (status === "error") return <Heading as="h3">Sorry. Something went wrong.</Heading>;
@@ -19,7 +16,7 @@ const SearchesList = ({ query }: { query: string }) => {
 	}
 
 	const handleOnClick = (userId: string) => {
-		navigate(`profile/${userId}`);
+		onClickHandler(userId);
 		close();
 	};
 
