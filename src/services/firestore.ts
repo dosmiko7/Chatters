@@ -474,13 +474,16 @@ export interface IOptionsDashboard {
 }
 
 export interface IPostDataProps {
-	userId: string;
-	avatar: string;
-	nickname: string;
-	message: string;
-	file?: string;
-	type: string;
-	createdAt: string;
+	postId: string;
+	data: {
+		userId: string;
+		avatar: string;
+		nickname: string;
+		message: string;
+		file?: string;
+		type: string;
+		createdAt: string;
+	};
 }
 
 export interface IDashboardDocDataProps {
@@ -518,13 +521,16 @@ export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGet
 		const userData = await getUser(docData.userId);
 
 		return {
-			avatar: userData.data.avatar,
-			nickname: userData.data.nickname,
-			userId: docData.userId,
-			message: docData.message,
-			file: docData.file,
-			type: docData.type,
-			createdAt: formatDate(docData.created_at),
+			postId: doc.id,
+			data: {
+				avatar: userData.data.avatar,
+				nickname: userData.data.nickname,
+				userId: docData.userId,
+				message: docData.message,
+				file: docData.file,
+				type: docData.type,
+				createdAt: formatDate(docData.created_at),
+			},
 		};
 	});
 
@@ -570,5 +576,12 @@ export const addDashboardPost = async ({
 
 	await addDoc(collection(firestore, "dashboard"), post).catch(() => {
 		throw new Error("Error: adding dashboard post");
+	});
+};
+
+export const removeDashboardPost = async (postId: string) => {
+	const dashboardPostRef = doc(firestore, "dashboard", postId);
+	await deleteDoc(dashboardPostRef).catch(() => {
+		throw new Error("Error: removing dashboard post");
 	});
 };
