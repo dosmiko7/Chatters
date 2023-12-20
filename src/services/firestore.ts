@@ -510,6 +510,10 @@ export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGet
 		);
 	}
 
+	if (options.key) {
+		currentQuery = query(currentQuery, where("userId", "==", options.key));
+	}
+
 	const documentSnapshots = await getDocs(currentQuery);
 	const promises = documentSnapshots.docs.map(async (doc) => {
 		const docData = doc.data() as IDashboardDocDataProps;
