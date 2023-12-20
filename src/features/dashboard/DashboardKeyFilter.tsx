@@ -1,10 +1,16 @@
 import { useContext } from "react";
-import { BiSearch } from "react-icons/bi";
+import styled from "styled-components";
+import { BiSearch, BiEraser } from "react-icons/bi";
 
+import { DashboardOptionsContext } from "../../context/DashboardOptions";
+import SearchesWindow from "../searches/SearchesWindow";
 import Modal from "../../ui/Modal";
 import { Button } from "../../ui/Button";
-import SearchesWindow from "../searches/SearchesWindow";
-import { DashboardOptionsContext } from "../../context/DashboardOptions";
+import FlexRow from "../../ui/FlexRow";
+
+const StyledFlexRow = styled(FlexRow)`
+	gap: 0.6rem;
+`;
 
 const DashboardKeyFilter = () => {
 	const { setKey } = useContext(DashboardOptionsContext);
@@ -14,17 +20,26 @@ const DashboardKeyFilter = () => {
 	};
 
 	return (
-		<Modal>
-			<Modal.Open opens="searches">
-				<Button>
-					<BiSearch />
-					<span>Search user's posts</span>
-				</Button>
-			</Modal.Open>
-			<Modal.Window name="searches">
-				<SearchesWindow onClickHandler={getUsersPosts} />
-			</Modal.Window>
-		</Modal>
+		<StyledFlexRow>
+			<Modal>
+				<Modal.Open opens="searches">
+					<Button>
+						<BiSearch />
+						<span>Search user's posts</span>
+					</Button>
+				</Modal.Open>
+				<Modal.Window name="searches">
+					<SearchesWindow onClickHandler={getUsersPosts} />
+				</Modal.Window>
+			</Modal>
+			<Button
+				variant="menu"
+				size="large"
+				onClick={() => setKey(null)}
+			>
+				<BiEraser />
+			</Button>
+		</StyledFlexRow>
 	);
 };
 

@@ -470,7 +470,7 @@ export const updateChatsMessages = async ({
 export const PAGINATION_LIMIT = 2;
 export interface IOptionsDashboard {
 	order: "desc" | "asc";
-	key?: string;
+	key?: string | null;
 }
 
 export interface IPostDataProps {

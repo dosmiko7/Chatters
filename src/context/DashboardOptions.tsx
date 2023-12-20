@@ -4,7 +4,7 @@ import { IOptionsDashboard } from "../services/firestore";
 interface DashboardOptionsContextProps {
 	options: IOptionsDashboard;
 	setOrder: (order: "desc" | "asc") => void;
-	setKey: (key: string) => void;
+	setKey: (key: string | null) => void;
 }
 
 const defaultValues: DashboardOptionsContextProps = {
@@ -25,7 +25,7 @@ const DashboardOptionsProvider = ({ children }: { children: ReactNode }) => {
 		}));
 	};
 
-	const setKey = (key: string) => {
+	const setKey = (key: string | null) => {
 		setOptions((prev) => ({
 			...prev,
 			key,
