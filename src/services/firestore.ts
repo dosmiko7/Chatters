@@ -467,7 +467,7 @@ export const updateChatsMessages = async ({
 };
 
 //TODO: Change pagination limit
-export const PAGINATION_LIMIT = 7;
+export const PAGINATION_LIMIT = 2;
 export interface IOptionsDashboard {
 	order: "desc" | "asc";
 	key?: string;
@@ -498,11 +498,11 @@ interface IGetDashboardPostsProps {
 }
 
 export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGetDashboardPostsProps) => {
-	let currentQuery;
+	let baseQuery;
 	if (options.order === "desc" && pagination === 1) {
-		currentQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), limit(PAGINATION_LIMIT));
+		baseQuery = query(collection(firestore, "dashboard"), orderBy("created_at", "desc"), limit(PAGINATION_LIMIT));
 	} else {
-		currentQuery = query(
+		baseQuery = query(
 			collection(firestore, "dashboard"),
 			orderBy("created_at", options.order),
 			startAfter(latestDoc || 0),
@@ -510,9 +510,7 @@ export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGet
 		);
 	}
 
-	if (options.key) {
-		currentQuery = query(currentQuery, where("userId", "==", options.key));
-	}
+	const currentQuery = options.key ? query(baseQuery, where("userId", "==", options.key)) : baseQuery;
 
 	const documentSnapshots = await getDocs(currentQuery);
 	const promises = documentSnapshots.docs.map(async (doc) => {
