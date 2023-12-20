@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { flexRow } from "../../style/Templates";
 import DashboardFormModal from "./form/DashboardFormModal";
 import DashboardFilters from "./DashboardFilters";
+import DashboardKeyFilter from "./DashboardKeyFilter";
 
 const StyledDashboardButtons = styled.div`
 	${flexRow};
@@ -14,6 +15,7 @@ const DashboardButtons = () => {
 	return (
 		<StyledDashboardButtons>
 			<DashboardFormModal />
+			<DashboardKeyFilter />
 			<DashboardFilters />
 		</StyledDashboardButtons>
 	);

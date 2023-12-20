@@ -26,7 +26,7 @@ const useDashboard = () => {
 		fetchStatus: status,
 		refetch,
 	} = useInfiniteQuery({
-		queryKey: ["posts", options.order],
+		queryKey: ["posts", options.order, options.key],
 		queryFn: ({ pageParam }) => getDashboardPosts({ options, ...pageParam }),
 		initialPageParam: INITIAL_PAGE_PARAM,
 		getNextPageParam: ({ currentPosts, lastVisibleDoc, pagination }) => {

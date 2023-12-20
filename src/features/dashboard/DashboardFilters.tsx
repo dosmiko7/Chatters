@@ -6,7 +6,7 @@ import { DashboardOptionsContext } from "../../context/DashboardOptions";
 import { flexRow } from "../../style/Templates";
 import { Button } from "../../ui/Button";
 
-const StyledDashboardFilters = styled.div`
+const StyledDashboardSortFilters = styled.div`
 	${flexRow};
 	font-size: 2rem;
 	gap: 1rem;
@@ -18,7 +18,7 @@ const FilterButton = styled(Button)`
 	height: 5rem;
 `;
 
-const DashboardFilters = () => {
+const DashboardSortFilters = () => {
 	const { setOrder } = useContext(DashboardOptionsContext);
 	const [selectedOption, setSelectedOption] = useState<"asc" | "desc">("desc");
 
@@ -28,7 +28,7 @@ const DashboardFilters = () => {
 	};
 
 	return (
-		<StyledDashboardFilters>
+		<StyledDashboardSortFilters>
 			<FilterButton
 				variant="menu"
 				style={{ border: `2px solid ${selectedOption === "asc" ? "var(--color-secondary-400)" : "transparent"}` }}
@@ -43,8 +43,8 @@ const DashboardFilters = () => {
 			>
 				<HiSortDescending />
 			</FilterButton>
-		</StyledDashboardFilters>
+		</StyledDashboardSortFilters>
 	);
 };
 
-export default DashboardFilters;
+export default DashboardSortFilters;
