@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { BiSearch, BiEraser } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 
 import { DashboardOptionsContext } from "../../context/DashboardOptions";
 import SearchesWindow from "../searches/SearchesWindow";
 import Modal from "../../ui/Modal";
 import { Button } from "../../ui/Button";
 import FlexRow from "../../ui/FlexRow";
+import DashboardKeyRemove from "./DashboardKeyRemove";
 
 const StyledFlexRow = styled(FlexRow)`
 	gap: 0.6rem;
@@ -32,13 +33,7 @@ const DashboardKeyFilter = () => {
 					<SearchesWindow onClickHandler={getUsersPosts} />
 				</Modal.Window>
 			</Modal>
-			<Button
-				variant="menu"
-				size="large"
-				onClick={() => setKey(null)}
-			>
-				<BiEraser />
-			</Button>
+			<DashboardKeyRemove />
 		</StyledFlexRow>
 	);
 };

@@ -107,6 +107,7 @@ export const displayInfo = ({ message, position }: { message: string; position: 
 
 	&:hover::after {
 		content: "${message}";
+		font-size: 1.6rem;
 		z-index: 1000;
 		position: absolute;
 		${getPositionStyle(position)};

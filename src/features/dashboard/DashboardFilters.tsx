@@ -4,18 +4,13 @@ import { HiSortDescending, HiSortAscending } from "react-icons/hi";
 
 import { DashboardOptionsContext } from "../../context/DashboardOptions";
 import { flexRow } from "../../style/Templates";
-import { Button } from "../../ui/Button";
+import DashboardFilterButton from "./DashboardFilterButton";
 
 const StyledDashboardSortFilters = styled.div`
 	${flexRow};
 	font-size: 2rem;
 	gap: 1rem;
 	color: var(--font-color);
-`;
-
-const FilterButton = styled(Button)`
-	width: 5rem;
-	height: 5rem;
 `;
 
 const DashboardSortFilters = () => {
@@ -29,20 +24,18 @@ const DashboardSortFilters = () => {
 
 	return (
 		<StyledDashboardSortFilters>
-			<FilterButton
-				variant="menu"
-				style={{ border: `2px solid ${selectedOption === "asc" ? "var(--color-secondary-400)" : "transparent"}` }}
-				onClick={() => onFilterOptionClick("asc")}
-			>
-				<HiSortAscending />
-			</FilterButton>
-			<FilterButton
-				variant="menu"
-				style={{ border: `2px solid ${selectedOption === "desc" ? "var(--color-secondary-400)" : "transparent"}` }}
-				onClick={() => onFilterOptionClick("desc")}
-			>
-				<HiSortDescending />
-			</FilterButton>
+			<DashboardFilterButton
+				infoMsg="From oldest"
+				icon={<HiSortAscending />}
+				onClickHandler={() => onFilterOptionClick("asc")}
+				isActive={selectedOption === "asc"}
+			/>
+			<DashboardFilterButton
+				infoMsg="From newest"
+				icon={<HiSortDescending />}
+				onClickHandler={() => onFilterOptionClick("desc")}
+				isActive={selectedOption === "desc"}
+			/>
 		</StyledDashboardSortFilters>
 	);
 };
