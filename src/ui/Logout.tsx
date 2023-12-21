@@ -1,16 +1,22 @@
+import styled from "styled-components";
 import { BiSolidLogOut } from "react-icons/bi";
+
+import { displayInfo } from "../style/Templates";
 import { Button } from "./Button";
 
-// TODO: Add logout logic
+const LogoutButton = styled(Button)`
+	${displayInfo({ message: "Logout", position: "right" })}
+`;
 
+// TODO: Add logout logic
 const Logout = () => {
 	return (
-		<Button
+		<LogoutButton
 			variant="menu"
 			size="medium"
 		>
 			<BiSolidLogOut />
-		</Button>
+		</LogoutButton>
 	);
 };
 

@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 import { Container } from "./Container";
 import { flexColumn } from "../style/Templates";
-import { Wrapper } from "./Wrapper";
-import { Avatar } from "./Avatar";
-import Logout from "./Logout";
 import Logo from "./Logo";
-import ThemeChanger from "./ThemeChanger";
 import ProfileSearches from "../features/profiles/ProfileSearches";
+import ThemeChanger from "./ThemeChanger";
+import ProfileLoggedUser from "../features/profiles/ProfileLoggedUser";
+import Logout from "./Logout";
 
 const StyledSidebar = styled(Container)`
 	${flexColumn};
@@ -15,7 +14,7 @@ const StyledSidebar = styled(Container)`
 	justify-content: space-between;
 `;
 
-const Box = styled(Wrapper)`
+const Box = styled.div`
 	${flexColumn};
 	align-items: center;
 	gap: 0.6rem;
@@ -31,7 +30,7 @@ const Sidebar = () => {
 			</Box>
 			<Box>
 				<ThemeChanger />
-				<Avatar size="4rem" />
+				<ProfileLoggedUser />
 				<Logout />
 			</Box>
 		</StyledSidebar>

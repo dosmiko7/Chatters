@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import Searches from "../searches/Searches";
+import { displayInfo } from "../../style/Templates";
+
+const StyledWrapper = styled.div`
+	${displayInfo({ message: "Search profile", position: "right" })};
+`;
 
 const ProfileSearches = () => {
 	const navigate = useNavigate();
@@ -9,7 +15,11 @@ const ProfileSearches = () => {
 		navigate(`profile/${userId}`);
 	};
 
-	return <Searches onClickHandler={navigateToProfile} />;
+	return (
+		<StyledWrapper>
+			<Searches onClickHandler={navigateToProfile} />
+		</StyledWrapper>
+	);
 };
 
 export default ProfileSearches;

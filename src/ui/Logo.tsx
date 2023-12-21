@@ -1,11 +1,15 @@
-import styled from "styled-components";
-import { flexCentered } from "../style/Templates";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+import { displayInfo, flexCentered } from "../style/Templates";
 
 const StyledLogo = styled.div`
 	${flexCentered}
 	width: 5rem;
+
+	${displayInfo({ message: "Move to dashboard", position: "right" })};
 `;
+
 const Image = styled.img`
 	max-width: 100%;
 
