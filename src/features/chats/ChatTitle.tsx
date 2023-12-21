@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-import { BsThreeDots } from "react-icons/bs";
-import { Button } from "../../ui/Button";
 import Heading from "../../ui/Heading";
 import { flexRow } from "../../style/Templates";
+import ChatMoreOpen from "./more/ChatMoreOpen";
 
 const StyledChatTitle = styled.div`
 	${flexRow};
@@ -16,18 +15,13 @@ interface ChatTitleProps {
 	handlerOpen: () => void;
 }
 
-const ChatTitle = ({ nickname, handlerOpen }: ChatTitleProps) => {
-	const defaultNickname = "friend";
+const defaultNickname = "friend";
 
+const ChatTitle = ({ nickname, handlerOpen }: ChatTitleProps) => {
 	return (
 		<StyledChatTitle>
 			<Heading as="h2">Chat with {nickname || defaultNickname}</Heading>
-			<Button
-				variant="menu"
-				onClick={handlerOpen}
-			>
-				<BsThreeDots style={{ fontSize: "2rem" }} />
-			</Button>
+			<ChatMoreOpen handlerOpen={handlerOpen} />
 		</StyledChatTitle>
 	);
 };

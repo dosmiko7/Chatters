@@ -6,12 +6,11 @@ import { IChatStateProps } from "../../pages/Chat";
 import { flexColumn, flexRow } from "../../style/Templates";
 import ChatForm from "./form/ChatForm";
 import { Container } from "../../ui/Container";
-import { Wrapper } from "../../ui/Wrapper";
 import ChatWindow from "./ChatWindow";
 import ChatTitle from "./ChatTitle";
 import ChatMore from "./more/ChatMore";
 
-const StyledWrapper = styled(Wrapper)`
+const StyledWrapper = styled.div`
 	${flexRow};
 	height: 100%;
 `;
