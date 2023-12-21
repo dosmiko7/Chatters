@@ -5,8 +5,10 @@ import { toast } from "react-hot-toast";
 
 import { Wrapper } from "../../ui/Wrapper";
 import HiddenInput from "../../ui/HiddenInput";
+import { displayInfo } from "../../style/Templates";
 
 const IconContainerForLabel = styled.div`
+	${displayInfo({ message: "File input", position: "right" })}
 	display: flex;
 	padding: var(--padding-sm);
 	border-radius: var(--border-radius-circle);

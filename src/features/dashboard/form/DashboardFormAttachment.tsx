@@ -6,7 +6,7 @@ import { BiFileBlank } from "react-icons/bi";
 
 import useFilePreview from "../../../hooks/useFilePreview";
 import { Button } from "../../../ui/Button";
-import { flexCentered, flexColumn } from "../../../style/Templates";
+import { displayInfo, flexCentered, flexColumn } from "../../../style/Templates";
 
 const Attachment = styled.div`
 	${flexCentered};
@@ -47,13 +47,13 @@ const AttachmentWithoutImage = styled.div`
 `;
 
 const CloseButton = styled(Button)`
+	${displayInfo({ message: "Remove attachment", position: "left" })}
 	background-color: var(--color-primary-500);
 	position: absolute;
 	top: 10px;
 	right: 10px;
 `;
 
-// TODO: Support other extensions besides image and video
 const DashboardFormAttachment = () => {
 	const { setValue } = useFormContext();
 	const fileWatcher: FileList | null = useWatch({ name: "file" });
