@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { ISignProps } from "../../services/auth";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
+import { ISignProps } from "../../services/auth";
+import useGoogleLogin from "./useGoogleLogin";
 import { FormWindow } from "../../ui/FormWindow";
-import FormManager from "./FormManager";
+import AuthFormManager from "./AuthFormManager";
 import { GoogleLogin } from "../../ui/GoogleLogin";
 import { useLogin } from "./useLogin";
-import useGoogleLogin from "./useGoogleLogin";
 import { ephasis } from "../../style/Templates";
 
 const StyledLink = styled(Link)`
@@ -25,7 +25,7 @@ const Reminder = styled.a`
 `;
 
 // TODO: Reminder
-const LoginForm = () => {
+const AuthFormLogin = () => {
 	const { login, status } = useLogin();
 	const { login: googleLogin, status: googleStatus } = useGoogleLogin();
 
@@ -44,7 +44,7 @@ const LoginForm = () => {
 
 	return (
 		<FormWindow>
-			<FormManager
+			<AuthFormManager
 				submitHandler={handleLogin}
 				name="Login"
 				statuses={[status, googleStatus]}
@@ -59,4 +59,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm;
+export default AuthFormLogin;

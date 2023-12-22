@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, ReactNode } from "react";
+
 import useLoggedUser from "../features/authentication/useLoggedUser";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {

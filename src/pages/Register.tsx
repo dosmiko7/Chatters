@@ -1,7 +1,7 @@
-import RegisterForm from "../features/authentication/RegisterForm";
+import AuthFormRegister from "../features/authentication/AuthFormRegister";
 
 const Register = () => {
-	return <RegisterForm />;
+	return <AuthFormRegister />;
 };
 
 export default Register;

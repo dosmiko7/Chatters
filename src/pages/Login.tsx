@@ -1,7 +1,7 @@
-import LoginForm from "../features/authentication/LoginForm";
+import AuthFormLogin from "../features/authentication/AuthFormLogin";
 
 const Login = () => {
-	return <LoginForm />;
+	return <AuthFormLogin />;
 };
 
 export default Login;

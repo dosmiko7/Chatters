@@ -1,7 +1,8 @@
 import { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import styled from "styled-components";
+
 import { ErrorMessage } from "../../ui/ErrorMessage";
 import { Input } from "../../ui/Input";
-import styled from "styled-components";
 import { flexColumn } from "../../style/Templates";
 
 const StyledFormField = styled.div`
@@ -24,7 +25,7 @@ interface IFormFieldProps<T extends FieldValues> {
 	errors: FieldError | undefined;
 }
 
-const FormField = <T extends FieldValues>(props: IFormFieldProps<T>) => {
+const AuthFormField = <T extends FieldValues>(props: IFormFieldProps<T>) => {
 	const { name, type, placeholder, register, validation, errors } = props;
 
 	return (
@@ -39,4 +40,4 @@ const FormField = <T extends FieldValues>(props: IFormFieldProps<T>) => {
 	);
 };
 
-export default FormField;
+export default AuthFormField;

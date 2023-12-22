@@ -1,9 +1,9 @@
-import { FormWindow } from "../../ui/FormWindow";
-import FormManager from "./FormManager";
-import { ISignProps } from "../../services/auth";
 import useRegister from "./useRegister";
+import { ISignProps } from "../../services/auth";
+import { FormWindow } from "../../ui/FormWindow";
+import AuthFormManager from "./AuthFormManager";
 
-const RegisterForm = () => {
+const AuthFormRegister = () => {
 	const { register, status } = useRegister();
 
 	const submitHandler = (data: ISignProps) => {
@@ -13,7 +13,7 @@ const RegisterForm = () => {
 
 	return (
 		<FormWindow>
-			<FormManager
+			<AuthFormManager
 				submitHandler={submitHandler}
 				name="Register"
 				statuses={[status]}
@@ -22,4 +22,4 @@ const RegisterForm = () => {
 	);
 };
 
-export default RegisterForm;
+export default AuthFormRegister;

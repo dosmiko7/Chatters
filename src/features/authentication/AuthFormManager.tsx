@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 
-import FormField from "./FormField";
+import AuthFormField from "./AuthFormField";
 import { Form } from "../../ui/Form";
 import { Button } from "../../ui/Button";
 import Heading from "../../ui/Heading";
@@ -33,7 +33,23 @@ type FormValues = {
 	password: string;
 };
 
-const FormManager = (props: IFormManager) => {
+const emailValidation = {
+	required: "Email is required",
+	pattern: {
+		value: /^\S+@\S+\.\S+$/,
+		message: "Invalid email address",
+	},
+};
+
+const passwordValidation = {
+	required: "Password is required",
+	pattern: {
+		value: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};:'"<>,.?~\\-])\S*$/,
+		message: "Password must contain at least one uppercase letter and one special character",
+	},
+};
+
+const AuthFormManager = (props: IFormManager) => {
 	const {
 		register,
 		handleSubmit,
@@ -49,22 +65,6 @@ const FormManager = (props: IFormManager) => {
 
 	const onSubmit: SubmitHandler<FormValues> = (data) => submitHandler(data);
 
-	const emailValidation = {
-		required: "Email is required",
-		pattern: {
-			value: /^\S+@\S+\.\S+$/,
-			message: "Invalid email address",
-		},
-	};
-
-	const passwordValidation = {
-		required: "Password is required",
-		pattern: {
-			value: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};:'"<>,.?~\\-])\S*$/,
-			message: "Password must contain at least one uppercase letter and one special character",
-		},
-	};
-
 	return (
 		<StyledForm onSubmit={handleSubmit(onSubmit)}>
 			<StyledHeading
@@ -73,7 +73,7 @@ const FormManager = (props: IFormManager) => {
 			>
 				{name}
 			</StyledHeading>
-			<FormField<FormValues>
+			<AuthFormField<FormValues>
 				name="email"
 				type="email"
 				placeholder="Email"
@@ -81,7 +81,7 @@ const FormManager = (props: IFormManager) => {
 				validation={emailValidation}
 				errors={errors.email}
 			/>
-			<FormField<FormValues>
+			<AuthFormField<FormValues>
 				name="password"
 				type="password"
 				placeholder="Password"
@@ -99,4 +99,4 @@ const FormManager = (props: IFormManager) => {
 	);
 };
 
-export default FormManager;
+export default AuthFormManager;
