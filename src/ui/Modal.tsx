@@ -6,7 +6,12 @@ import { HiXMark } from "react-icons/hi2";
 import { Overlay } from "./Overlay";
 import { Button } from "./Button";
 
-const StyledModal = styled.div`
+interface IModalSize {
+	width?: string;
+	height?: string;
+}
+
+const StyledModal = styled.div<IModalSize>`
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -16,8 +21,8 @@ const StyledModal = styled.div`
 	box-shadow: var(--shadow-lg);
 	padding: var(--padding-md) var(--padding-lg);
 	transition: var(--transition-all-5);
-	width: 45rem;
-	height: 55rem;
+	width: ${(props) => props.width || "45rem"};
+	height: ${(props) => props.height || "55rem"};
 `;
 
 const StyledButton = styled(Button)`
@@ -67,7 +72,17 @@ const Open = ({ children, opens: opensWindowName }: { children: any; opens: stri
 	return cloneElement(children, { onClick: handleOnClick });
 };
 
-const Window = ({ children, name }: { children: any; name: string }) => {
+const Window = ({
+	children,
+	name,
+	width,
+	height,
+}: {
+	children: any;
+	name: string;
+	width?: string;
+	height?: string;
+}) => {
 	const { openName, close } = useContext(ModalContext);
 
 	if (name !== openName) {
@@ -76,7 +91,10 @@ const Window = ({ children, name }: { children: any; name: string }) => {
 
 	return createPortal(
 		<Overlay>
-			<StyledModal>
+			<StyledModal
+				width={width}
+				height={height}
+			>
 				<StyledButton
 					onClick={close}
 					variant="menu"
