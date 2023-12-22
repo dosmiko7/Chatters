@@ -6,6 +6,7 @@ import {
 	GoogleAuthProvider,
 	signOut,
 	sendEmailVerification,
+	sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -52,6 +53,12 @@ export const signOutUser = async () => {
 export const sendVerificationLink = async () => {
 	if (!auth.currentUser) throw new Error("There is no user to send verification link");
 	sendEmailVerification(auth.currentUser).catch((error) => {
+		throw error;
+	});
+};
+
+export const sendPasswordReset = async ({ email }: { email: string }) => {
+	sendPasswordResetEmail(auth, email).catch((error) => {
 		throw error;
 	});
 };
