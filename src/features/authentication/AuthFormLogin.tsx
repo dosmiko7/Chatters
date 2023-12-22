@@ -8,20 +8,13 @@ import { FormWindow } from "../../ui/FormWindow";
 import AuthFormManager from "./AuthFormManager";
 import { GoogleLogin } from "../../ui/GoogleLogin";
 import { useLogin } from "./useLogin";
-import { ephasis } from "../../style/Templates";
+import AuthPasswordReminderModal from "./AuthPasswordReminderModal";
 
 const StyledLink = styled(Link)`
 	position: absolute;
 	left: 50%;
 	bottom: 5%;
 	transform: translateX(-50%);
-`;
-
-const Reminder = styled.a`
-	display: block;
-	width: fit-content;
-	margin: 5px auto;
-	${ephasis}
 `;
 
 // TODO: Reminder
@@ -32,10 +25,6 @@ const AuthFormLogin = () => {
 	const handleLogin = (data: ISignProps) => {
 		if (!data) return;
 		login(data);
-	};
-
-	const handleReminder = () => {
-		console.log("Remind password");
 	};
 
 	const handleGoogleLogin = () => {
@@ -49,7 +38,7 @@ const AuthFormLogin = () => {
 				name="Login"
 				statuses={[status, googleStatus]}
 			/>
-			<Reminder onClick={handleReminder}>Forgot Username/Password</Reminder>
+			<AuthPasswordReminderModal />
 			<GoogleLogin onClick={handleGoogleLogin}>
 				<FcGoogle />
 				Login with Google
