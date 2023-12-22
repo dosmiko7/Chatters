@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { User } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+
 import { signIn, ISignProps } from "../../services/auth";
 
 export const useLogin = () => {
@@ -11,7 +12,7 @@ export const useLogin = () => {
 	const { mutate: login, status } = useMutation({
 		mutationFn: ({ email, password }: ISignProps) => signIn({ email, password }),
 
-		onSuccess: (user: User) => {
+		onSuccess: (user: User | null) => {
 			queryClient.setQueryData(["loggedUser"], user);
 			navigate("/dashboard", { replace: true });
 		},

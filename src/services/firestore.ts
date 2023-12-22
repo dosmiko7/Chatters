@@ -95,9 +95,12 @@ export interface IDocumentData {
 
 // TODO: update lastLoggedIn when user is login
 // TODO: update lastLoggedOut when user in logout (also automatically)
+// TODO: remove await if you are using then().catch()
 
 // users collection
-export const addUser = async (user: User) => {
+export const addUser = async (user: User | null) => {
+	if (!user) throw new Error("There is no user to add.");
+
 	const defaultData: IUserData = {
 		nickname: user.email || "",
 		avatar:

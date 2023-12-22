@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { User } from "firebase/auth";
+
 import { signInWithGoogle } from "../../services/auth";
 import { addUser } from "../../services/firestore";
 

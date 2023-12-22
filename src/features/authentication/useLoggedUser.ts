@@ -3,7 +3,7 @@ import { User } from "firebase/auth";
 
 const useLoggedUser = () => {
 	const queryClient = useQueryClient();
-	const data: User | undefined = queryClient.getQueryData(["loggedUser"]);
+	const data: User | null | undefined = queryClient.getQueryData(["loggedUser"]);
 
 	return { data };
 };

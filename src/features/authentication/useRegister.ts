@@ -1,18 +1,21 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { ISignProps, signUp } from "../../services/auth";
 import { User } from "firebase/auth";
+
+import { ISignProps, sendVerificationLink, signUp } from "../../services/auth";
 import { addUser } from "../../services/firestore";
 
 const useRegister = () => {
 	const navigate = useNavigate();
 
 	const { mutate: register, status } = useMutation({
-		mutationFn: ({ email, password }: ISignProps) => signUp({ email, password }).then((user: User) => addUser(user)),
+		mutationFn: ({ email, password }: ISignProps) =>
+			signUp({ email, password }).then((user: User | null) => addUser(user)),
 
 		onSuccess: () => {
-			toast.success("Your account has been created!");
+			toast.success("Your account has been created! We have sent you an account activation link");
+			sendVerificationLink();
 			navigate("/login", { replace: true });
 		},
 
