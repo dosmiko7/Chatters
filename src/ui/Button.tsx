@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import { flexCentered, flexRow } from "../style/Templates";
 
 export interface ButtonProps {
-	variant?: string;
-	size?: string;
+	variant?: "menu" | "danger" | "safe";
+	size?: "large" | "medium" | "small";
 }
 
 export const Button = styled.button<ButtonProps>`
