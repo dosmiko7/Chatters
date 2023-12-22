@@ -4,6 +4,7 @@ import {
 	User,
 	signInWithPopup,
 	GoogleAuthProvider,
+	signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -39,4 +40,10 @@ export const signInWithGoogle = async () => {
 		.catch((error) => {
 			throw error;
 		});
+};
+
+export const signOutUser = async () => {
+	signOut(auth).catch((error) => {
+		throw error;
+	});
 };
