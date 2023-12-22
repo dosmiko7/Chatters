@@ -5,6 +5,7 @@ import AuthFormField from "./AuthFormField";
 import { Form } from "../../ui/Form";
 import { Button } from "../../ui/Button";
 import Heading from "../../ui/Heading";
+import { flexRow } from "../../style/Templates";
 
 const StyledForm = styled(Form)`
 	position: relative;
@@ -16,6 +17,8 @@ const StyledHeading = styled(Heading)`
 `;
 
 const SubmitButton = styled(Button)`
+	${flexRow};
+	justify-content: center;
 	margin-top: 1.2rem;
 	color: var(--color-primary-0);
 `;
@@ -23,7 +26,7 @@ const SubmitButton = styled(Button)`
 type Status = "error" | "idle" | "pending" | "success";
 
 interface IFormManager {
-	name: string;
+	name: "Login" | "Register";
 	submitHandler: (data: FormValues) => void;
 	statuses?: Status[];
 }
@@ -41,12 +44,16 @@ const emailValidation = {
 	},
 };
 
-const passwordValidation = {
+const passwordRegisterValidation = {
 	required: "Password is required",
 	pattern: {
 		value: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};:'"<>,.?~\\-])\S*$/,
 		message: "Password must contain at least one uppercase letter and one special character",
 	},
+};
+
+const passwordLoginValidation = {
+	required: "Password is required",
 };
 
 const AuthFormManager = (props: IFormManager) => {
@@ -86,14 +93,14 @@ const AuthFormManager = (props: IFormManager) => {
 				type="password"
 				placeholder="Password"
 				register={register}
-				validation={passwordValidation}
+				validation={name === "Login" ? passwordLoginValidation : passwordRegisterValidation}
 				errors={errors.password}
 			/>
 			<SubmitButton
 				disabled={statuses?.includes("pending")}
 				type="submit"
 			>
-				{name}
+				<p>{name}</p>
 			</SubmitButton>
 		</StyledForm>
 	);

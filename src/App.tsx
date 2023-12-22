@@ -8,7 +8,7 @@ import GlobalStyles from "./style/GlobalStyles";
 import DarkThemeProvider from "./context/DarkThemeContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-//import ProtectedRoute from "./ui/ProtectedRoute"; TODO: Add as wrapper to Route with <AppLayout/>
+import ProtectedRoute from "./ui/ProtectedRoute";
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
@@ -36,7 +36,13 @@ const App = () => {
 				<GlobalStyles />
 				<BrowserRouter>
 					<Routes>
-						<Route element={<AppLayout />}>
+						<Route
+							element={
+								<ProtectedRoute>
+									<AppLayout />
+								</ProtectedRoute>
+							}
+						>
 							<Route
 								index
 								element={

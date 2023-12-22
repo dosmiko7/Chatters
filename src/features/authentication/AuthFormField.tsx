@@ -17,7 +17,7 @@ interface IFormFieldProps<T extends FieldValues> {
 	register: UseFormRegister<T>;
 	validation: {
 		required: string;
-		pattern: {
+		pattern?: {
 			value: RegExp;
 			message: string;
 		};
