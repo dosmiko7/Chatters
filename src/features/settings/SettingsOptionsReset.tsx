@@ -1,20 +1,22 @@
-import styled from "styled-components";
+import { FcLock } from "react-icons/fc";
 
-import { Button } from "../../ui/Button";
-import Options from "../../ui/Options";
+import Card from "../../ui/Card";
 
-const StyledOption = styled(Options.Option)`
-	width: 100%;
-	justify-content: center;
-	padding: var(--padding-xsm);
-	border-radius: var(--border-radius-md);
-`;
+const INFO =
+	"Click if you want to change your password. We will send you a message to your email with the option to reset your password.";
 
 const SettingsOptionsReset = () => {
+	const onPasswordReset = () => {
+		console.log("eheh");
+	};
+
 	return (
-		<StyledOption>
-			<Button>Reset your password</Button>
-		</StyledOption>
+		<Card
+			icon={<FcLock />}
+			heading="Password reset"
+			info={INFO}
+			onClickHandler={onPasswordReset}
+		/>
 	);
 };
 

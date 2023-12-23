@@ -1,15 +1,17 @@
 import styled from "styled-components";
+
 import Options from "../../ui/Options";
 import SettingsOptionsReset from "./SettingsOptionsReset";
-import { flexCentered } from "../../style/Templates";
+import { flexRow } from "../../style/Templates";
 
 const StyledOptionsContainer = styled(Options.Container)`
-	${flexCentered};
+	width: 90%;
+	margin: 5rem auto;
 `;
 
 const StyledOptionsList = styled(Options.List)`
-	width: 40%;
-	align-items: center;
+	${flexRow};
+	gap: 2rem;
 `;
 
 const SettingsOptions = () => {
