@@ -6,6 +6,7 @@ export const toasterWarningOptions = ({ id }: { id: string }) => {
 			backgroundColor: "var(--color-primary-400)",
 			boxShadow: "var(--shadow-sm)",
 			maxWidth: "300px",
+			border: "1px solid var(--color-primary-50)",
 		},
 	};
 };
