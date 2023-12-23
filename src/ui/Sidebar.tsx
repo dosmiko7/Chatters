@@ -4,6 +4,7 @@ import { Container } from "./Container";
 import { flexColumn } from "../style/Templates";
 import Logo from "./Logo";
 import ProfileSearches from "../features/profiles/ProfileSearches";
+import Settings from "./Settings";
 import ThemeChanger from "./ThemeChanger";
 import ProfileLoggedUser from "../features/profiles/ProfileLoggedUser";
 import Logout from "./Logout";
@@ -29,6 +30,7 @@ const Sidebar = () => {
 				<ProfileSearches />
 			</Box>
 			<Box>
+				<Settings />
 				<ThemeChanger />
 				<ProfileLoggedUser />
 				<Logout />
