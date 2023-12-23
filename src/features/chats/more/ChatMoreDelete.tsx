@@ -6,7 +6,7 @@ import { Button } from "../../../ui/Button";
 import ToasterWarning from "../../../ui/ToasterWarning";
 import { toasterWarningOptions } from "../../../ui/ToasterWarning.options";
 
-const message = "Deleting a chat will delete all messages with that user.";
+const MESSAGE = "Deleting a chat will delete all messages with that user.";
 
 const ChatMoreDelete = () => {
 	const { deleteChat } = useDeleteChat();
@@ -17,10 +17,10 @@ const ChatMoreDelete = () => {
 				<ToasterWarning
 					t={t}
 					confirmHandler={() => deleteChat()}
-					message={message}
+					message={MESSAGE}
 				/>
 			),
-			toasterWarningOptions
+			toasterWarningOptions({ id: "deleteChat" })
 		);
 	};
 

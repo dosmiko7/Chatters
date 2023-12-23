@@ -6,7 +6,7 @@ import ButtonProfile from "../../ui/ButtonProfile";
 import ToasterWarning from "../../ui/ToasterWarning";
 import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
 
-const message = "Removing a user from your friends list will also delete all messages with that user.";
+const MESSAGE = "Removing a user from your friends list will also delete all messages with that user.";
 
 // TODO: Logic for adding friends
 // TODO: Change fixed loggedUserId to dynamic one
@@ -32,10 +32,10 @@ const ProfileButtonFriend = ({
 				<ToasterWarning
 					t={t}
 					confirmHandler={() => updateFriend("remove")}
-					message={message}
+					message={MESSAGE}
 				/>
 			),
-			toasterWarningOptions
+			toasterWarningOptions({ id: "deleteFriend" })
 		);
 	};
 

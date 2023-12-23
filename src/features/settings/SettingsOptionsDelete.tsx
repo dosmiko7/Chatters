@@ -22,7 +22,7 @@ const SettingsOptionsDelete = () => {
 					message={MESSAGE}
 				/>
 			),
-			toasterWarningOptions
+			toasterWarningOptions({ id: "resetPassword" })
 		);
 	};
 

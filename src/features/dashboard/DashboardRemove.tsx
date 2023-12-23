@@ -15,7 +15,7 @@ const RemoveButton = styled(Button)`
 	right: 1rem;
 `;
 
-const message = "Are you sure you want to delete this post?";
+const MESSAGE = "Are you sure you want to delete this post?";
 
 //TODO: Change to dynamic loggedUserId
 const DashboardRemove = ({ postCreatorId, postId }: { postCreatorId: string; postId: string }) => {
@@ -29,10 +29,10 @@ const DashboardRemove = ({ postCreatorId, postId }: { postCreatorId: string; pos
 				<ToasterWarning
 					t={t}
 					confirmHandler={() => deletePost(postId)}
-					message={message}
+					message={MESSAGE}
 				/>
 			),
-			toasterWarningOptions
+			toasterWarningOptions({ id: "deletePost" })
 		);
 	};
 

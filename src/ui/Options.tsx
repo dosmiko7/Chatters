@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { flexRow } from "../style/Templates";
 import Heading from "./Heading";
 
