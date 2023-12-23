@@ -1,13 +1,12 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import styled from "styled-components";
 
+import useCreatePost from "./useCreatePost";
+import { useModal } from "../../../hooks/useModal";
 import { Form } from "../../../ui/Form";
 import DashboardFormMessage from "./DashboardFormMessage";
 import DashboardFormButtons from "./DashboardFormButtons";
-import styled from "styled-components";
-import { useModal } from "../../../hooks/useModal";
-import useCreatePost from "./useCreatePost";
 import Spinner from "../../../ui/Spinner";
-import { useEffect } from "react";
 
 const StyledDashboardForm = styled(Form)`
 	position: relative;
@@ -36,15 +35,13 @@ const DashboardForm = () => {
 	const { handleSubmit, reset } = methods;
 
 	const onSubmit: SubmitHandler<IDashboardFormInput> = async (input: IDashboardFormInput) => {
-		createPost(input);
+		createPost(input, {
+			onSuccess: () => {
+				reset();
+				close();
+			},
+		});
 	};
-
-	useEffect(() => {
-		if (status === "success") {
-			reset();
-			close();
-		}
-	}, [status, reset, close]);
 
 	return (
 		<FormProvider {...methods}>

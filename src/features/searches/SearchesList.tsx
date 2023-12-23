@@ -1,9 +1,9 @@
+import { useModal } from "../../hooks/useModal";
 import { IDocumentData } from "../../services/firestore";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
 import useSearchUsers from "./useSearchUsers";
-import { useModal } from "../../hooks/useModal";
 import Heading from "../../ui/Heading";
 
 const SearchesList = ({ query, onClickHandler }: { query: string; onClickHandler: (userId: string) => void }) => {

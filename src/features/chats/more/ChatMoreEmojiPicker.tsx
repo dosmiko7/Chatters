@@ -8,8 +8,7 @@ const ChatMoreEmojiPicker = () => {
 	const { close } = useModal();
 
 	const onEmojiClickHandler = (emoji: EmojiClickData) => {
-		changeCustomization({ emoji: emoji.emoji });
-		close();
+		changeCustomization({ emoji: emoji.emoji }, { onSuccess: () => close() });
 	};
 
 	return (

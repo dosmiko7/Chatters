@@ -52,8 +52,7 @@ const ChatMoreThemePicker = () => {
 	const { close } = useModal();
 
 	const onThemeClickHandler = (theme: string) => {
-		changeCustomization({ theme });
-		close();
+		changeCustomization({ theme }, { onSuccess: () => close() });
 	};
 
 	return (
