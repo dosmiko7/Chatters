@@ -4,6 +4,7 @@ import { flexRow } from "../../style/Templates";
 import Options from "../../ui/Options";
 import SettingsOptionsReset from "./SettingsOptionsReset";
 import SettingsOptionsDelete from "./SettingsOptionsDelete";
+import SettingsOptionsTheme from "./SettingsOptionsTheme";
 
 const StyledOptionsContainer = styled(Options.Container)`
 	${flexRow};
@@ -24,6 +25,7 @@ const SettingsOptions = () => {
 			<StyledOptionsList>
 				<SettingsOptionsReset />
 				<SettingsOptionsDelete />
+				<SettingsOptionsTheme />
 			</StyledOptionsList>
 		</StyledOptionsContainer>
 	);
