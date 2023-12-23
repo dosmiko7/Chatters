@@ -1,11 +1,14 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import usePasswordReset from "./usePasswordReset";
+import { useModal } from "../../hooks/useModal";
+import { flexRow } from "../../style/Templates";
 import { Form } from "../../ui/Form";
 import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
-import { flexRow } from "../../style/Templates";
 import { ErrorMessage } from "../../ui/ErrorMessage";
+import ThreeDots from "../../ui/ThreeDots";
 
 const ReminderForm = styled(Form)`
 	gap: 1rem;
@@ -45,6 +48,9 @@ interface IReminderPassword {
 
 const AuthPasswordReminder = () => {
 	const methods = useForm<IReminderPassword>({ defaultValues: { email: "" }, mode: "onBlur" });
+	const { sendResetEmail, status } = usePasswordReset();
+	const { close } = useModal();
+
 	const {
 		handleSubmit,
 		reset,
@@ -53,7 +59,15 @@ const AuthPasswordReminder = () => {
 	} = methods;
 
 	const onSubmit: SubmitHandler<IReminderPassword> = async (input: IReminderPassword) => {
-		console.log(input);
+		sendResetEmail(
+			{ email: input.email },
+			{
+				onSettled: () => {
+					close();
+					reset();
+				},
+			}
+		);
 		reset();
 	};
 
@@ -66,9 +80,11 @@ const AuthPasswordReminder = () => {
 				{...register("email", emailValidation)}
 			/>
 			{errors.email && <ErrorMessage>{errors.email?.message}</ErrorMessage>}
+			{status === "pending" && <ThreeDots />}
 			<SubmitButton
 				type="submit"
 				size="small"
+				disabled={status === "pending"}
 			>
 				<p>Send email</p>
 			</SubmitButton>
