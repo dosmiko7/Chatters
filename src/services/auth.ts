@@ -7,6 +7,7 @@ import {
 	signOut,
 	sendEmailVerification,
 	sendPasswordResetEmail,
+	deleteUser,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -59,6 +60,14 @@ export const sendVerificationLink = async () => {
 
 export const sendPasswordReset = async ({ email }: { email: string }) => {
 	sendPasswordResetEmail(auth, email).catch((error) => {
+		throw error;
+	});
+};
+
+export const deleteAccount = async ({ user }: { user: User | null | undefined }) => {
+	if (!user) throw new Error("There is no user/account to delete.");
+
+	deleteUser(user).catch((error) => {
 		throw error;
 	});
 };
