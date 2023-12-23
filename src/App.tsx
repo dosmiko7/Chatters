@@ -8,7 +8,7 @@ import GlobalStyles from "./style/GlobalStyles";
 import DarkThemeProvider from "./context/DarkThemeContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProtectedRoute from "./ui/ProtectedRoute";
+// import ProtectedRoute from "./ui/ProtectedRoute"; <ProtectedRoute> <AppLayout /> </ProtectedRoute>
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
@@ -16,6 +16,7 @@ import Profiles from "./features/profiles/Profiles";
 import Chat from "./pages/Chat";
 import Chats from "./features/chats/Chats";
 import PageNotFound from "./pages/PageNotFound";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -36,13 +37,7 @@ const App = () => {
 				<GlobalStyles />
 				<BrowserRouter>
 					<Routes>
-						<Route
-							element={
-								<ProtectedRoute>
-									<AppLayout />
-								</ProtectedRoute>
-							}
-						>
+						<Route element={<AppLayout />}>
 							<Route
 								index
 								element={
@@ -55,6 +50,10 @@ const App = () => {
 							<Route
 								path="dashboard"
 								element={<Dashboard />}
+							/>
+							<Route
+								path="settings"
+								element={<Settings />}
 							/>
 							<Route
 								path="profile"
