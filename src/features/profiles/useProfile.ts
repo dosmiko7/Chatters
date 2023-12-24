@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-import { getUser } from "../../services/firestore";
+import { getUser } from "../../services/firestore/userApi";
 
 interface IUseProfileProps {
 	passedUserId?: string;

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { IDocumentData } from "../../services/firestore";
+import { IDocumentData } from "../../services/firestore/userApi";
 import { flexRow } from "../../style/Templates";
 import formatDate from "../../utils/formatDate";
 import ProfileButtonFriend from "./ProfileButtonFriend";

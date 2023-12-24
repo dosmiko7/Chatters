@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
-import { TypeMessage, updateChatsMessages } from "../../../services/firestore";
+import { TypeMessage, updateChatsMessages } from "../../../services/firestore/chatsApi";
 
 // TODO: Change for dynamic loggedUserId
 const useSendMessage = () => {

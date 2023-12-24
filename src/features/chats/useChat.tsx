@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { firestore } from "../../firebase";
 import { useParams } from "react-router-dom";
 
-import { IChatData } from "../../services/firestore";
+import { IChatData } from "../../services/firestore/userApi";
 
 export interface IChatElement {
 	type: string;

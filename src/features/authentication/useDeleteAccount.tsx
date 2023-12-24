@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 import useLoggedUser from "./useLoggedUser";
-import { deleteAccount } from "../../services/auth";
+import { deleteAccount } from "../../services/auth/authApi";
 
 const useDeleteAccount = () => {
 	const { data } = useLoggedUser();

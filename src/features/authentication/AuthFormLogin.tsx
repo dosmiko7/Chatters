@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 
 import useLogin from "./useLogin";
 import useGoogleLogin from "./useGoogleLogin";
-import { ISignProps } from "../../services/auth";
+import { ISignProps } from "../../services/auth/authApi";
 import { FormWindow } from "../../ui/FormWindow";
 import AuthFormManager from "./AuthFormManager";
 import GoogleLogin from "../../ui/GoogleLogin";

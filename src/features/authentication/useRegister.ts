@@ -3,8 +3,8 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { User } from "firebase/auth";
 
-import { ISignProps, sendVerificationLink, signUp } from "../../services/auth";
-import { addUser } from "../../services/firestore";
+import { ISignProps, sendVerificationLink, signUp } from "../../services/auth/authApi";
+import { addUser } from "../../services/firestore/userApi";
 
 const useRegister = () => {
 	const navigate = useNavigate();

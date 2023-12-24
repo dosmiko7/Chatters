@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import { friendUpdate } from "../../services/firestore";
+import { friendUpdate } from "../../services/firestore/userApi";
 
 interface IUseFriendUpdateProps {
 	userId: string;

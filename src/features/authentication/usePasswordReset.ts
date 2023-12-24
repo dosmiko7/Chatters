@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import { sendPasswordReset } from "../../services/auth";
+import { sendPasswordReset } from "../../services/auth/authApi";
 
 const usePasswordReset = () => {
 	const { mutate: sendResetEmail, status } = useMutation({

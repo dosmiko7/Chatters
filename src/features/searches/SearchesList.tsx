@@ -1,5 +1,5 @@
 import useModal from "../../hooks/useModal";
-import { IDocumentData } from "../../services/firestore";
+import { IDocumentData } from "../../services/firestore/userApi";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";

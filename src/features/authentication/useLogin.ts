@@ -3,7 +3,7 @@ import { User } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import { signIn, ISignProps } from "../../services/auth";
+import { ISignProps, signIn } from "../../services/auth/authApi";
 
 const useLogin = () => {
 	const queryClient = useQueryClient();

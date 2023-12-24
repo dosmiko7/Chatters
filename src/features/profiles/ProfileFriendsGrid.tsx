@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import { IFriendData } from "../../services/firestore";
+import { IFriendData } from "../../services/firestore/userApi";
 import { flexRow } from "../../style/Templates";
 import ProfileFriendElement from "./ProfileFriendElement";
 

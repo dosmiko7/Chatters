@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
-import { IOptionsDashboard } from "../services/firestore";
+
+import { IOptionsDashboard } from "../services/firestore/dashboardApi";
 
 interface DashboardOptionsContextProps {
 	options: IOptionsDashboard;

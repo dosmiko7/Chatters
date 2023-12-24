@@ -1,5 +1,6 @@
 import useRegister from "./useRegister";
-import { ISignProps } from "../../services/auth";
+
+import { ISignProps } from "../../services/auth/authApi";
 import { FormWindow } from "../../ui/FormWindow";
 import AuthFormManager from "./AuthFormManager";
 

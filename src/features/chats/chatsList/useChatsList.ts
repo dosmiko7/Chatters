@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../../firebase";
 
-import { IUserChat, getUser } from "../../../services/firestore";
 import formatDate from "../../../utils/formatDate";
+import { IUserChat, getUser } from "../../../services/firestore/userApi";
 
 export interface IChatsListElement {
 	createdAt: Timestamp;
@@ -18,7 +18,7 @@ export interface IChatsListElement {
 // TODO: Change for dynamic logged user's data
 const useChatsList = () => {
 	//const { data } = useLoggedUser();
-	//const userID = data?.uid;
+	//const userId = data?.uid;
 	const userId = "ivKwYDsLxLkM34cMKDdw";
 	const [chats, setChats] = useState<IChatsListElement[]>([]);
 	const [error, setError] = useState<boolean>(false);

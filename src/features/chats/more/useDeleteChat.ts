@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { deleteChats } from "../../../services/firestore";
+import { deleteChats } from "../../../services/firestore/chatsApi";
 
 // TODO: Change for dynamic currentloggeduserId
 const useDeleteChat = () => {

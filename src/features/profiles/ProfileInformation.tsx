@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { IDocumentData } from "../../services/firestore";
+import { IDocumentData } from "../../services/firestore/userApi";
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";

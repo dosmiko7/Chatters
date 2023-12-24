@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import { addDashboardPost } from "../../../services/firestore";
+import { addDashboardPost } from "../../../services/firestore/dashboardApi";
 import { IDashboardFormInput } from "./DashboardForm";
 
 // TODO: Change to dynamic user

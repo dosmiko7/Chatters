@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import { signOutUser } from "../../services/auth";
+import { signOutUser } from "../../services/auth/authApi";
 
 const useSignOut = () => {
 	const navigate = useNavigate();
