@@ -16,7 +16,10 @@ const ProfileFormModal = ({ isLoggedUserProfile }: { isLoggedUserProfile: boolea
 				</Modal.Open>
 			)}
 
-			<Modal.Window name="profileForm">
+			<Modal.Window
+				name="profileForm"
+				height="fill-content"
+			>
 				<ProfileForm />
 			</Modal.Window>
 		</Modal>
