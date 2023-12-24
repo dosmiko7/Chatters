@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { themes } from "../../../data/themes";
 import useChatCustomization from "./useChatCustomization";
 import useModal from "../../../hooks/useModal";
+import { displayInfo } from "../../../style/Templates";
 
 interface IPickerProps {
 	background: string;
+	name: string;
 }
 
 const Box = styled.div`
@@ -15,6 +17,7 @@ const Box = styled.div`
 `;
 
 const Picker = styled.div<IPickerProps>`
+	${(props) => displayInfo({ message: props.name, position: "bottom" })};
 	width: 5rem;
 	height: 5rem;
 	position: relative;
@@ -62,6 +65,7 @@ const ChatMoreThemePicker = () => {
 				{themes.map((theme) => {
 					return (
 						<Picker
+							name={theme.theme}
 							key={theme.theme}
 							background={theme.background}
 							onClick={() => onThemeClickHandler(theme.theme)}
