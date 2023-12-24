@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
+import { flexColumn } from "../../../style/Templates";
 import Container from "../../../ui/Container";
 import Heading from "../../../ui/Heading";
 import SearchBar from "../../../ui/SearchBar";
 import ChatsListContainer from "./ChatsListContainer";
 
 const StyledChatsBar = styled(Container)`
+	${flexColumn}
 	max-width: 100%;
+	height: 100dvh;
+	max-height: 100dvh;
 	background-color: var(--color-primary-300);
 `;
 

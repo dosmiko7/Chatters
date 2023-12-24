@@ -7,6 +7,11 @@ import Heading from "../../../ui/Heading";
 import Button from "../../../ui/Button";
 import ChatsList from "./ChatsList";
 
+const ScrollBox = styled.div`
+	flex: 1;
+	overflow: scroll;
+`;
+
 const Box = styled.div`
 	${flexRow};
 	align-items: center;
@@ -23,7 +28,7 @@ const ChatsListContainer = () => {
 	};
 
 	return (
-		<div>
+		<ScrollBox>
 			<Box>
 				<Heading as="h3">Private Chats</Heading>
 				<Button
@@ -35,7 +40,7 @@ const ChatsListContainer = () => {
 				</Button>
 			</Box>
 			{listDisplayed && <ChatsList />}
-		</div>
+		</ScrollBox>
 	);
 };
 
