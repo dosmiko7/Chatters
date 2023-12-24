@@ -33,4 +33,6 @@ export const themes: ThemeData[] = [
 	},
 	generateTheme("grape", "#84afcc", "#402e57"),
 	generateTheme("redish", "#5b2c2c", "#881332"),
+	generateTheme("violet", "#6E44FF", "#57547B"),
+	generateTheme("black", "#000000", "#5A5A5A"),
 ];
