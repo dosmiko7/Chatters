@@ -11,7 +11,8 @@ const StyledSearchesElement = styled(ListElement)`
 	overflow: hidden;
 
 	&:hover {
-		background-color: var(--color-primary-300);
+		background-color: var(--color-primary-200);
+		cursor: pointer;
 	}
 `;
 

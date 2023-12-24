@@ -17,6 +17,10 @@ const BackgroundPreview = styled.img`
 	border-radius: var(--border-radius-md);
 `;
 
+const Edit = styled.span`
+	color: var(--color-white-100);
+`;
+
 const ProfileFormBackground = (props: { watcher: FileList | null; validation: (value: FileList) => true | string }) => {
 	const { watcher, validation } = props;
 
@@ -32,7 +36,7 @@ const ProfileFormBackground = (props: { watcher: FileList | null; validation: (v
 			<StyledContainer>
 				<BackgroundPreview src={currentBackgroundSrc} />
 				<label htmlFor="backgroundUpload">
-					<span>Edit</span>
+					<Edit>Edit</Edit>
 				</label>
 				<HiddenInput
 					id="backgroundUpload"

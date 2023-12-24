@@ -13,7 +13,7 @@ const StyledListElement = styled(ListElement)<IStatus>`
 	position: relative;
 
 	&:hover {
-		background-color: var(--color-primary-300);
+		background-color: var(--color-primary-200);
 		cursor: pointer;
 	}
 

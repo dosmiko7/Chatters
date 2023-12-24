@@ -7,6 +7,8 @@ interface HeadingProps {
 
 const Heading = styled.h1<HeadingProps>`
 	margin-bottom: 0.6rem;
+	color: var(--font-color);
+
 	${(props) =>
 		props.as === "h1" &&
 		css`

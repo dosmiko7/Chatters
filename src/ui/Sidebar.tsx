@@ -13,6 +13,7 @@ const StyledSidebar = styled(Container)`
 	${flexColumn};
 	align-items: center;
 	justify-content: space-between;
+	background-color: var(--color-primary-300);
 `;
 
 const Box = styled.div`

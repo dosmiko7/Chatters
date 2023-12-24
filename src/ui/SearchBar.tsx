@@ -24,9 +24,10 @@ const SearchIcon = styled(BiSearch)`
 `;
 
 const StyledInput = styled(Input)`
-	background-color: var(--color-primary-300);
+	background-color: var(--color-primary-200);
 	padding: 0 var(--padding-sm);
 	width: 100%;
+	transition: var(--transition-all-3);
 
 	&:hover {
 		background-color: var(--color-primary-300);

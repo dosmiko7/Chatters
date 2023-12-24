@@ -16,6 +16,10 @@ const AvatarPreview = styled.img`
 	border-radius: var(--border-radius-circle);
 `;
 
+const Edit = styled.span`
+	color: var(--color-white-100);
+`;
+
 const ProfileFormAvatar = (props: { watcher: FileList | null; validation: (value: FileList) => true | string }) => {
 	const { watcher, validation } = props;
 
@@ -31,7 +35,7 @@ const ProfileFormAvatar = (props: { watcher: FileList | null; validation: (value
 			<StyledContainer>
 				<AvatarPreview src={currentAvatarSrc} />
 				<label htmlFor="avatarUpload">
-					<span>Edit</span>
+					<Edit>Edit</Edit>
 				</label>
 				<HiddenInput
 					id="avatarUpload"

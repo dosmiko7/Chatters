@@ -7,6 +7,7 @@ import ChatsListContainer from "./ChatsListContainer";
 
 const StyledChatsBar = styled(Container)`
 	max-width: 100%;
+	background-color: var(--color-primary-300);
 `;
 
 //TODO: SearchBar should let display friends which nicknames contain input

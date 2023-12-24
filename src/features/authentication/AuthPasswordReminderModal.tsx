@@ -9,7 +9,7 @@ const Reminder = styled.a`
 	display: block;
 	width: fit-content;
 	margin: 5px auto;
-	${ephasis}
+	${ephasis};
 `;
 
 const AuthPasswordReminderModal = () => {

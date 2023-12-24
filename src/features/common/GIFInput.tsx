@@ -12,7 +12,8 @@ const RelativeBox = styled.div`
 `;
 
 const GIFButton = styled(Button)`
-	${displayInfo({ message: "GIF input", position: "right" })}
+	${displayInfo({ message: "GIF input", position: "right" })};
+	color: var(--font-color);
 `;
 
 const GIFInput = ({ isSubmit }: { isSubmit: boolean }) => {

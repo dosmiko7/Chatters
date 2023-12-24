@@ -12,15 +12,10 @@ const StyledForm = styled(Form)`
 	gap: 1.2rem;
 `;
 
-const StyledHeading = styled(Heading)`
-	color: var(--color-primary-500);
-`;
-
 const SubmitButton = styled(Button)`
 	${flexRow};
 	justify-content: center;
 	margin-top: 1.2rem;
-	color: var(--color-primary-0);
 `;
 
 type Status = "error" | "idle" | "pending" | "success";
@@ -74,12 +69,12 @@ const AuthFormManager = (props: IFormManager) => {
 
 	return (
 		<StyledForm onSubmit={handleSubmit(onSubmit)}>
-			<StyledHeading
+			<Heading
 				as="h1"
 				center
 			>
 				{name}
-			</StyledHeading>
+			</Heading>
 			<AuthFormField<FormValues>
 				name="email"
 				type="email"

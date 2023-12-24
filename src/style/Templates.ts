@@ -25,7 +25,7 @@ export const flexRow = css`
 
 export const ephasis = css`
 	position: relative;
-	color: var(--color-primary-50);
+	color: var(--font-color);
 	text-decoration: none;
 	cursor: pointer;
 
@@ -36,12 +36,12 @@ export const ephasis = css`
 		left: 0;
 		height: 1px;
 		width: 0;
-		background-color: var(--color-primary-500);
+		background-color: var(--font-color);
 		transition: width 0.3s ease-in;
 	}
 
 	&:hover {
-		color: var(--color-primary-500);
+		filter: opacity(0.5);
 
 		&::after {
 			width: 100%;
@@ -116,5 +116,6 @@ export const displayInfo = ({ message, position }: { message: string; position: 
 		border: var(--border-thin);
 		padding: var(--padding-xsm);
 		font-weight: var(--font-weight-medium);
+		color: var(--font-color);
 	}
 `;

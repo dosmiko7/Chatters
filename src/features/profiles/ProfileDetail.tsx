@@ -10,7 +10,6 @@ const StyledProfile = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	height: 100%;
-	background-color: var(--color-primary-300);
 `;
 
 // TODO: Add Pen button to edit information if it is our own profile

@@ -10,6 +10,7 @@ const IconContainerForLabel = styled.div`
 	${displayInfo({ message: "File input", position: "right" })}
 	display: flex;
 	padding: var(--padding-sm);
+	color: var(--font-color);
 	border-radius: var(--border-radius-circle);
 	transition: var(--transition-all-3);
 	&:hover {

@@ -24,7 +24,7 @@ const Main = styled.div<IBackground>`
 	flex: 1;
 	gap: 0.4rem;
 	position: relative;
-	background-image: linear-gradient(170deg, transparent 0%, transparent 40%, var(--color-primary-300) 47%),
+	background-image: linear-gradient(170deg, transparent 0%, transparent 40%, var(--color-primary-400) 47%),
 		url(${(props) => props.src});
 	background-size: contain;
 	background-repeat: no-repeat;

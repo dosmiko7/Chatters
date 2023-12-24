@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+
 import { themes } from "../data/themes";
 
 const generateThemesVariables = () => {
@@ -31,9 +32,10 @@ const GlobalStyles = createGlobalStyle`
             --color-secondary-300: #00513a;
             --color-secondary-400: #004834;
             
-            --font-color: #fff;
+            --font-color: #d3d5d8;
 
             --color-white-100: #fff;
+            --color-black-100: #000;
             --color-purple-100: #7752fe;
             --color-green-100: #006600;
             --color-green-200: #338533;
@@ -76,19 +78,21 @@ const GlobalStyles = createGlobalStyle`
         }
     
         &.light-theme {
-            --color-primary-0: #fff;
-            --color-primary-25: #f0f2f5;
-            --color-primary-50: #c2c6cf;
-            --color-primary-100: #8a95a5;
-            --color-primary-200: #697a8e;
-            --color-primary-300: #4e5c6e;
-            --color-primary-400: #425165;
-            --color-primary-500: #36465b;
+            --color-primary-0: #606162;
+            --color-primary-25: #78797b;
+            --color-primary-50: #909193;
+            --color-primary-100: #a8a9ac;
+            --color-primary-200: #c0c2c4;
+            --color-primary-300: #d8dadd;
+            --color-primary-400: #f0f2f5; 
+            --color-primary-500: #fff;
 
             --color-secondary-100: #a1dbbb;
             --color-secondary-200: #5acca3;
             --color-secondary-300: #48b98f;
             --color-secondary-400: #3aa879;
+
+            --font-color: #000;
 
             --toaster-font-color: #000;
         }
@@ -112,7 +116,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Ubuntu', sans-serif;
-        color: var(--color-primary-25);
+        color: var(--font-color);
         
         transition: color 0.3s, background-color 0.3s;
         min-height: 100vh;
@@ -147,7 +151,10 @@ const GlobalStyles = createGlobalStyle`
         cursor: not-allowed;
     }
 
-    a {
+    a,
+    a:link,
+    a:visited {
+        color: var(--font-color);
         text-decoration: none;
         cursor: pointer;
     }
@@ -182,10 +189,7 @@ const GlobalStyles = createGlobalStyle`
             --epr-search-input-bg-color-active: var(--color-primary-500);
             --epr-search-border-color: var(--color-secondary-100);
             --epr-picker-border-color: transparent;
-
-            & .epr-cat-btn {
-                
-            }
+            --epr-text-color: var(--font-color);
         }
     }
 `;

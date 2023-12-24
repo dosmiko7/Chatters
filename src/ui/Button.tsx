@@ -12,13 +12,13 @@ const Button = styled.button<ButtonProps>`
 	align-items: center;
 	gap: 0.6rem;
 	padding: var(--padding-sm);
+	color: #fff;
 	border-radius: var(--border-radius-md);
-	color: var(--color-primary-0);
 	background-color: var(--color-secondary-400);
 	font-weight: var(--font-weight-medium);
 
 	&:hover {
-		background-color: var(--color-secondary-100);
+		background-color: var(--color-secondary-300);
 	}
 
 	${(props) =>
@@ -26,12 +26,14 @@ const Button = styled.button<ButtonProps>`
 		css`
 			${flexCentered};
 			background-color: transparent;
+			color: var(--font-color);
 		`}
 
 	${(props) =>
 		props.variant === "danger" &&
 		css`
 			background-color: var(--color-red-100);
+			color: #fff;
 
 			&:hover {
 				background-color: var(--color-red-200);

@@ -5,7 +5,7 @@ import { centeredAbsolute } from "../style/Templates";
 export const FormWindow = styled.div`
 	${centeredAbsolute}
 	padding: var(--padding-md);
-	background-color: var(--color-primary-0);
+	background-color: var(--color-primary-400);
 	border-radius: var(--border-radius-md);
 	box-shadow: var(--shadow-md);
 	width: 50rem;

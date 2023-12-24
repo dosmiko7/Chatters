@@ -19,6 +19,7 @@ const Option = styled.li`
 	${flexRow}
 	align-items: center;
 	gap: 0.4rem;
+	border-radius: var(--border-radius-md);
 
 	&:hover {
 		backdrop-filter: contrast(90%);
