@@ -2,7 +2,6 @@ import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import useFilePreview from "../../../hooks/useFilePreview";
-import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 import HiddenInput from "../../../ui/HiddenInput";
@@ -27,7 +26,7 @@ const ProfileFormAvatar = (props: { watcher: FileList | null; validation: (value
 	const currentAvatarSrc = avatarSrc || "/avatar-default.png";
 
 	return (
-		<Wrapper>
+		<div>
 			<Heading as="h3">Avatar</Heading>
 			<StyledContainer>
 				<AvatarPreview src={currentAvatarSrc} />
@@ -44,7 +43,7 @@ const ProfileFormAvatar = (props: { watcher: FileList | null; validation: (value
 			</StyledContainer>
 
 			{formState.errors["avatar"] && <p>{get(formState.errors, "avatar").message}</p>}
-		</Wrapper>
+		</div>
 	);
 };
 

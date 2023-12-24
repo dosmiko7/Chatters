@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 
-import { Overlay } from "./Overlay";
-import { Button } from "./Button";
+import Overlay from "./Overlay";
+import Button from "./Button";
 
 interface IModalSize {
 	width?: string;

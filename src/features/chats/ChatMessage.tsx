@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { ListElement } from "../../ui/ListElement";
 import { IChatElement } from "./useChat";
+import ListElement from "../../ui/ListElement";
 import ChatAvatar from "./ChatAvatar";
 import ChatMessageContent from "./ChatMessageContent";
 

@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import List from "../../ui/List";
-import { ListElement } from "../../ui/ListElement";
+import ListElement from "../../ui/ListElement";
 import HiddenInput from "../../ui/HiddenInput";
 
 const GIFElement = styled.label`

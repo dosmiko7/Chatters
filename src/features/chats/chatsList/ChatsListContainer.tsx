@@ -2,15 +2,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
 
-import { Wrapper } from "../../../ui/Wrapper";
-import Heading from "../../../ui/Heading";
 import { flexRow } from "../../../style/Templates";
-import { Button } from "../../../ui/Button";
+import Heading from "../../../ui/Heading";
+import Button from "../../../ui/Button";
 import ChatsList from "./ChatsList";
 
-const StyledChatsContainer = styled(Wrapper)``;
-
-const Box = styled(Wrapper)`
+const Box = styled.div`
 	${flexRow};
 	align-items: center;
 	justify-content: space-between;
@@ -26,7 +23,7 @@ const ChatsListContainer = () => {
 	};
 
 	return (
-		<StyledChatsContainer>
+		<div>
 			<Box>
 				<Heading as="h3">Private Chats</Heading>
 				<Button
@@ -38,7 +35,7 @@ const ChatsListContainer = () => {
 				</Button>
 			</Box>
 			{listDisplayed && <ChatsList />}
-		</StyledChatsContainer>
+		</div>
 	);
 };
 

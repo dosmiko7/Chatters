@@ -3,9 +3,9 @@ import { useFormContext } from "react-hook-form";
 import { TbGif } from "react-icons/tb";
 import styled from "styled-components";
 
-import { Button } from "../../ui/Button";
-import GIFContainer from "./GIFContainer";
 import { displayInfo } from "../../style/Templates";
+import Button from "../../ui/Button";
+import GIFContainer from "./GIFContainer";
 
 const RelativeBox = styled.div`
 	position: relative;

@@ -4,7 +4,7 @@ import { IDocumentData } from "../../services/firestore";
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
-import { Avatar } from "../../ui/Avatar";
+import Avatar from "../../ui/Avatar";
 import ProfileSocials from "./ProfileSocials";
 import ProfileButtons from "./ProfileButtons";
 import ProfilePersonals from "./ProfilePersonals";

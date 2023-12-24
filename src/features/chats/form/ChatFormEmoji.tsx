@@ -2,7 +2,6 @@ import { SubmitHandler, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import { IChatFormInput } from "./ChatForm";
-import { Wrapper } from "../../../ui/Wrapper";
 import HiddenInput from "../../../ui/HiddenInput";
 
 const EmojiLabel = styled.label`
@@ -24,7 +23,7 @@ const ChatFormEmoji = ({
 	const { register } = useFormContext();
 
 	return (
-		<Wrapper>
+		<div>
 			<EmojiLabel
 				htmlFor="emoji"
 				onClick={() => onSubmitHandler({ message: "", file: null, gif: "", emoji: setEmoji })}
@@ -36,7 +35,7 @@ const ChatFormEmoji = ({
 				type="text"
 				{...register("emoji")}
 			/>
-		</Wrapper>
+		</div>
 	);
 };
 

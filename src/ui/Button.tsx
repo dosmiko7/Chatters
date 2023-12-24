@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { flexCentered, flexRow } from "../style/Templates";
 
 export interface ButtonProps {
@@ -6,7 +7,7 @@ export interface ButtonProps {
 	size?: "large" | "medium" | "small";
 }
 
-export const Button = styled.button<ButtonProps>`
+const Button = styled.button<ButtonProps>`
 	${flexRow};
 	align-items: center;
 	gap: 0.6rem;
@@ -68,3 +69,5 @@ export const Button = styled.button<ButtonProps>`
 		
 	transition: var(--transition-all-3);
 `;
+
+export default Button;

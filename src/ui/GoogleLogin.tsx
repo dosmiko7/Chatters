@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { flexCentered } from "../style/Templates";
 
-export const GoogleLogin = styled.div`
+const GoogleLogin = styled.div`
 	${flexCentered}
 	width: fit-content;
 	margin: 2rem auto;
@@ -23,3 +24,5 @@ export const GoogleLogin = styled.div`
 		font-size: 2.6rem;
 	}
 `;
+
+export default GoogleLogin;

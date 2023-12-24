@@ -1,8 +1,8 @@
 import { useFormContext, useWatch } from "react-hook-form";
 import styled from "styled-components";
 
-import DashboardFormAttachment from "./DashboardFormAttachment";
 import { flexColumn } from "../../../style/Templates";
+import DashboardFormAttachment from "./DashboardFormAttachment";
 
 interface IStyledMessageProps {
 	error: boolean;

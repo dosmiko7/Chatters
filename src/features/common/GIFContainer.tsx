@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
 
-import { flexCentered, flexColumn } from "../../style/Templates";
 import useGifs from "../../hooks/useGifs";
+import { flexCentered, flexColumn } from "../../style/Templates";
 import GIFList from "./GIFList";
-import { Container } from "../../ui/Container";
+import Container from "../../ui/Container";
 
 const ListContainer = styled.div`
 	width: 100%;

@@ -1,8 +1,9 @@
 import styled from "styled-components";
+
 import { flexColumn } from "../../style/Templates";
-import { Avatar } from "../../ui/Avatar";
+import Avatar from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
-import { Button } from "../../ui/Button";
+import Button from "../../ui/Button";
 
 const StyledElement = styled.div`
 	${flexColumn};

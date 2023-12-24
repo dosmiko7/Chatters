@@ -1,10 +1,8 @@
 import { get, useFormContext } from "react-hook-form";
-
 import styled from "styled-components";
+
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
-
-const StyledDescription = styled.div``;
 
 const InputDescription = styled(InputProfileForm).attrs({
 	as: "textarea",
@@ -18,7 +16,7 @@ const ProfileFormDescription = () => {
 	};
 
 	return (
-		<StyledDescription>
+		<div>
 			<Heading as="h3">Description</Heading>
 			<InputDescription
 				type="text"
@@ -26,7 +24,7 @@ const ProfileFormDescription = () => {
 				{...register("description", descrValidation)}
 			/>
 			{formState.errors["description"] && <p>{get(formState.errors, "description").message}</p>}
-		</StyledDescription>
+		</div>
 	);
 };
 

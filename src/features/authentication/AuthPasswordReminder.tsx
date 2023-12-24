@@ -2,12 +2,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import usePasswordReset from "./usePasswordReset";
-import { useModal } from "../../hooks/useModal";
+import useModal from "../../hooks/useModal";
 import { flexRow } from "../../style/Templates";
-import { Form } from "../../ui/Form";
-import { Input } from "../../ui/Input";
-import { Button } from "../../ui/Button";
-import { ErrorMessage } from "../../ui/ErrorMessage";
+import Form from "../../ui/Form";
+import Input from "../../ui/Input";
+import Button from "../../ui/Button";
+import ErrorMessage from "../../ui/ErrorMessage";
 import ThreeDots from "../../ui/ThreeDots";
 
 const ReminderForm = styled(Form)`

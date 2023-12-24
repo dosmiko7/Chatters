@@ -3,8 +3,8 @@ import { BiEraser } from "react-icons/bi";
 import styled from "styled-components";
 
 import { DashboardOptionsContext } from "../../context/DashboardOptions";
-import { Button } from "../../ui/Button";
 import { displayInfo } from "../../style/Templates";
+import Button from "../../ui/Button";
 
 const EraserButton = styled(Button)`
 	${displayInfo({ message: "Clear key", position: "bottom" })}

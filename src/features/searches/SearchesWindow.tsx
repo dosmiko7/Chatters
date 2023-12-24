@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import SearchBar from "../../ui/SearchBar";
 import SearchesList from "./SearchesList";
-import { Form } from "../../ui/Form";
+import Form from "../../ui/Form";
 import Heading from "../../ui/Heading";
 
 const StyledSearchesWindow = styled.div`

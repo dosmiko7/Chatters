@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useRef } from "react";
 
-import { ListElement } from "../../ui/ListElement";
-import { Avatar } from "../../ui/Avatar";
-import Heading from "../../ui/Heading";
 import useWaveAnimation from "../../hooks/useWaveAnimation";
+import ListElement from "../../ui/ListElement";
+import Avatar from "../../ui/Avatar";
+import Heading from "../../ui/Heading";
 
 const StyledSearchesElement = styled(ListElement)`
 	position: relative;

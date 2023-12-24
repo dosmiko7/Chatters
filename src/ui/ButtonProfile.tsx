@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Button, ButtonProps } from "./Button";
+import Button, { ButtonProps } from "./Button";
 import { flexRow } from "../style/Templates";
 
 const ButtonProfile = styled(Button)<ButtonProps>`

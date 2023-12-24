@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-import { Container } from "./Container";
 import { flexColumn } from "../style/Templates";
-import Logo from "./Logo";
 import ProfileSearches from "../features/profiles/ProfileSearches";
+import ProfileLoggedUser from "../features/profiles/ProfileLoggedUser";
+import Container from "./Container";
+import Logo from "./Logo";
 import Settings from "./Settings";
 import ThemeChanger from "./ThemeChanger";
-import ProfileLoggedUser from "../features/profiles/ProfileLoggedUser";
 import Logout from "./Logout";
 
 const StyledSidebar = styled(Container)`

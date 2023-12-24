@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import Heading from "../../ui/Heading";
 import { flexRow } from "../../style/Templates";
+import Heading from "../../ui/Heading";
 import ChatMoreOpen from "./more/ChatMoreOpen";
 
 const StyledChatTitle = styled.div`

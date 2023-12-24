@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { flexCentered } from "../style/Templates";
 
 interface IStyledAvatarProps {
@@ -33,7 +34,7 @@ interface IAvatar {
 	onClick?: () => void;
 }
 
-export const Avatar = (props: IAvatar) => {
+const Avatar = (props: IAvatar) => {
 	const { size, src, square, onClick } = props;
 
 	return (
@@ -49,3 +50,5 @@ export const Avatar = (props: IAvatar) => {
 		</StyledAvatar>
 	);
 };
+
+export default Avatar;

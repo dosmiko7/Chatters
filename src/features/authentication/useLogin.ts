@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { signIn, ISignProps } from "../../services/auth";
 
-export const useLogin = () => {
+const useLogin = () => {
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
 
@@ -25,3 +25,5 @@ export const useLogin = () => {
 
 	return { login, status };
 };
+
+export default useLogin;

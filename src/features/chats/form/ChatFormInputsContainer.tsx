@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import styled, { css } from "styled-components";
 
-import ThreeDots from "../../../ui/ThreeDots";
 import { flexRow } from "../../../style/Templates";
+import ThreeDots from "../../../ui/ThreeDots";
 
 interface IContainerProps {
 	status?: string;

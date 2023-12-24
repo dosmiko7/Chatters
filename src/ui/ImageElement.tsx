@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { fileElementStyle } from "../style/Templates";
 
 const ImageContent = styled.img`

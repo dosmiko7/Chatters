@@ -1,4 +1,4 @@
-import { useModal } from "../../hooks/useModal";
+import useModal from "../../hooks/useModal";
 import { IDocumentData } from "../../services/firestore";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";

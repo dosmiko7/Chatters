@@ -3,7 +3,7 @@ import { BiSolidLogOut } from "react-icons/bi";
 
 import useSignOut from "../features/authentication/useSignOut";
 import { displayInfo } from "../style/Templates";
-import { Button } from "./Button";
+import Button from "./Button";
 
 const LogoutButton = styled(Button)`
 	${displayInfo({ message: "Logout", position: "right" })}

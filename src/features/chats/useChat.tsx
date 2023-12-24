@@ -2,6 +2,7 @@ import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { firestore } from "../../firebase";
 import { useParams } from "react-router-dom";
+
 import { IChatData } from "../../services/firestore";
 
 export interface IChatElement {

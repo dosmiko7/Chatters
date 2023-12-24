@@ -1,8 +1,8 @@
 import { FieldValues, UseFormReset } from "react-hook-form";
 import styled from "styled-components";
 
-import { Button } from "../../../ui/Button";
 import { flexRow } from "../../../style/Templates";
+import Button from "../../../ui/Button";
 
 const StyledButtons = styled.div`
 	${flexRow};

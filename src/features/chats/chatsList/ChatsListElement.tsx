@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-import { ListElement } from "../../../ui/ListElement";
-import { Wrapper } from "../../../ui/Wrapper";
 import { flexColumn } from "../../../style/Templates";
-import { Avatar } from "../../../ui/Avatar";
+import ListElement from "../../../ui/ListElement";
+import Avatar from "../../../ui/Avatar";
 import Heading from "../../../ui/Heading";
 
 interface IStatus {
@@ -30,7 +29,7 @@ const StyledListElement = styled(ListElement)<IStatus>`
 	}
 `;
 
-const Box = styled(Wrapper)`
+const Box = styled.div`
 	${flexColumn};
 	width: 70%;
 	flex: 1 1;
@@ -52,7 +51,6 @@ interface IPrivChatEl {
 	lastMessage: string;
 }
 
-// TODO: Displaying last message. If it is not readen - color: white
 const ChatsListElement = (props: IPrivChatEl) => {
 	const { onClickHandler, avatar, lastMessage, nickname, isActive } = props;
 

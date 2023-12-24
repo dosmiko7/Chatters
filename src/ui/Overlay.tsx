@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Overlay = styled.div`
+const Overlay = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -11,3 +11,5 @@ export const Overlay = styled.div`
 	z-index: 1000;
 	transition: var(--transition-all-5);
 `;
+
+export default Overlay;

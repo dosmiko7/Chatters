@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
 import { get, useFormContext } from "react-hook-form";
 
-import Heading from "../../../ui/Heading";
 import { flexColumn } from "../../../style/Templates";
+import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
 
 const StyledSocials = styled.div``;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { toast, Toast } from "react-hot-toast";
 
 import { flexRow } from "../style/Templates";
-import { Button } from "./Button";
+import Button from "./Button";
 import Paragraph from "./Paragraph";
 
 const ToasterContent = styled.div`

@@ -5,7 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import { DashboardOptionsContext } from "../../context/DashboardOptions";
 import SearchesWindow from "../searches/SearchesWindow";
 import Modal from "../../ui/Modal";
-import { Button } from "../../ui/Button";
+import Button from "../../ui/Button";
 import FlexRow from "../../ui/FlexRow";
 import DashboardKeyRemove from "./DashboardKeyRemove";
 

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { findUsers } from "../../services/firestore";
 
 const useSearchUsers = (query: string) => {

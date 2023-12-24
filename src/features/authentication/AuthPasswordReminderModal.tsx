@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import Modal from "../../ui/Modal";
 import { ephasis } from "../../style/Templates";
+import Modal from "../../ui/Modal";
 import Heading from "../../ui/Heading";
 import AuthPasswordReminder from "./AuthPasswordReminder";
 

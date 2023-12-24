@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import Heading from "../ui/Heading";
-import { Button } from "../ui/Button";
-import { flexCentered, flexColumn } from "../style/Templates";
 import useMoveBack from "../hooks/useMoveBack";
+import { flexCentered, flexColumn } from "../style/Templates";
+import Heading from "../ui/Heading";
+import Button from "../ui/Button";
 
 const StyledPageNotFound = styled.div`
 	${flexColumn};

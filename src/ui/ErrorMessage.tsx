@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-export const ErrorMessage = styled.p`
+const ErrorMessage = styled.p`
 	color: var(--color-red-100);
 `;
+
+export default ErrorMessage;

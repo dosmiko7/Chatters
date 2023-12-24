@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { centeredAbsolute } from "../style/Templates";
 
 export const FormWindow = styled.div`
@@ -10,3 +11,5 @@ export const FormWindow = styled.div`
 	width: 50rem;
 	height: 60rem;
 `;
+
+export default FormWindow;

@@ -1,9 +1,9 @@
 import { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
 
-import { ErrorMessage } from "../../ui/ErrorMessage";
-import { Input } from "../../ui/Input";
 import { flexColumn } from "../../style/Templates";
+import ErrorMessage from "../../ui/ErrorMessage";
+import Input from "../../ui/Input";
 
 const StyledFormField = styled.div`
 	${flexColumn};

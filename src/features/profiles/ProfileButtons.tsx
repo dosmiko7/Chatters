@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { IDocumentData } from "../../services/firestore";
-import formatDate from "../../utils/formatDate";
 import { flexRow } from "../../style/Templates";
+import formatDate from "../../utils/formatDate";
 import ProfileButtonFriend from "./ProfileButtonFriend";
 import ProfileButtonMessage from "./ProfileButtonMessage";
 import ProfileFormModal from "./form/ProfileFormModal";

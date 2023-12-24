@@ -1,4 +1,4 @@
-import { Container } from "../../ui/Container";
+import Container from "../../ui/Container";
 import Heading from "../../ui/Heading";
 import SettingsOptions from "./SettingsOptions";
 

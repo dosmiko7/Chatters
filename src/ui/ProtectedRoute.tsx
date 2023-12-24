@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, ReactNode } from "react";
+import { toast } from "react-hot-toast";
 
 import useLoggedUser from "../features/authentication/useLoggedUser";
-import { toast } from "react-hot-toast";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 	const navigate = useNavigate();

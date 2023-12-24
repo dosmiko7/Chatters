@@ -5,8 +5,8 @@ import { HiXMark } from "react-icons/hi2";
 import { BiFileBlank } from "react-icons/bi";
 
 import useFilePreview from "../../../hooks/useFilePreview";
-import { Button } from "../../../ui/Button";
 import { displayInfo, flexCentered, flexColumn } from "../../../style/Templates";
+import Button from "../../../ui/Button";
 
 const Attachment = styled.div`
 	${flexCentered};

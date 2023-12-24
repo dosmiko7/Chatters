@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
 import Modal from "../../ui/Modal";
-import { Button } from "../../ui/Button";
+import Button from "../../ui/Button";
 import SearchesWindow from "./SearchesWindow";
 
 const StyledButton = styled(Button)`

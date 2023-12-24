@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { FaCheck, FaCircleXmark } from "react-icons/fa6";
 
 import useProfileFormSubmit from "./useProfileFormSubmit";
-import { Form } from "../../../ui/Form";
+import { flexCentered } from "../../../style/Templates";
+import Form from "../../../ui/Form";
 import ProfileFormPersonals from "./ProfileFormPersonals";
 import ProfileFormSocials from "./ProfileFormSocials";
 import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
 import ProfileFormButtons from "./ProfileFormButtons";
-import { flexCentered } from "../../../style/Templates";
 import ThreeDots from "../../../ui/ThreeDots";
 
 const StatusContainer = styled.div`

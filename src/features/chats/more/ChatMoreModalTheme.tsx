@@ -1,8 +1,8 @@
-import { Button } from "../../../ui/Button";
+import { themes } from "../../../data/themes";
+import Button from "../../../ui/Button";
 import Heading from "../../../ui/Heading";
 import Modal from "../../../ui/Modal";
 import ChatMoreThemePicker from "./ChatMoreThemePicker";
-import { themes } from "../../../data/themes";
 
 const ChatMoreModalTheme = ({ setTheme }: { setTheme: string }) => {
 	const themeObject = themes.find((obj) => obj.theme === `${setTheme}`);

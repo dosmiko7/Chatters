@@ -2,7 +2,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import useSendMessage from "./useSendMessage";
-import { Form } from "../../../ui/Form";
+import Form from "../../../ui/Form";
 import ChatFormMessage from "./ChatFormMessage";
 import ChatFormAdditional from "./ChatFormAdditional";
 import ChatFormInputsContainer from "./ChatFormInputsContainer";

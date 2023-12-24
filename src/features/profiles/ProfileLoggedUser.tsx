@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { Avatar } from "../../ui/Avatar";
 import { displayInfo } from "../../style/Templates";
+import Avatar from "../../ui/Avatar";
 
 const StyledWrapper = styled.div`
 	${displayInfo({ message: "Your profile", position: "right" })}

@@ -5,7 +5,7 @@ import useChat from "./useChat";
 import { IChatStateProps } from "../../pages/Chat";
 import { flexColumn, flexRow } from "../../style/Templates";
 import ChatForm from "./form/ChatForm";
-import { Container } from "../../ui/Container";
+import Container from "../../ui/Container";
 import ChatWindow from "./ChatWindow";
 import ChatTitle from "./ChatTitle";
 import ChatMore from "./more/ChatMore";

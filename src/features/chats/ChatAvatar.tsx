@@ -1,7 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { Avatar } from "../../ui/Avatar";
-import { useNavigate } from "react-router-dom";
+import Avatar from "../../ui/Avatar";
 
 const AvatarContainer = styled.div`
 	position: absolute;

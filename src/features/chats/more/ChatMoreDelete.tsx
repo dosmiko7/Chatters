@@ -2,9 +2,9 @@ import { BiSolidTrash } from "react-icons/bi";
 import { toast } from "react-hot-toast";
 
 import useDeleteChat from "./useDeleteChat";
-import { Button } from "../../../ui/Button";
-import ToasterWarning from "../../../ui/ToasterWarning";
 import { toasterWarningOptions } from "../../../ui/ToasterWarning.options";
+import Button from "../../../ui/Button";
+import ToasterWarning from "../../../ui/ToasterWarning";
 
 const MESSAGE = "Deleting a chat will delete all messages with that user.";
 

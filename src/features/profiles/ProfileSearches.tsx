@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import Searches from "../searches/Searches";
 import { displayInfo } from "../../style/Templates";
+import Searches from "../searches/Searches";
 
 const StyledWrapper = styled.div`
 	${displayInfo({ message: "Search profile", position: "right" })};

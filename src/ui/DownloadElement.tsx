@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import useDownloadFile from "../hooks/useDownloadFile";
 import { flexRow } from "../style/Templates";
-import { Button } from "./Button";
+import Button from "./Button";
 
 const StyledFileElement = styled.div`
 	${flexRow};

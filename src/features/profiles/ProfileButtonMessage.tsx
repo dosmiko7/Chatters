@@ -1,8 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { BiSolidEnvelope } from "react-icons/bi";
 
 import ButtonProfile from "../../ui/ButtonProfile";
 import getCombinedId from "../../utils/getCombinedId";
-import { useNavigate } from "react-router-dom";
 
 interface IChatData {
 	nickname: string;

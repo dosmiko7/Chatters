@@ -2,8 +2,8 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import useCreatePost from "./useCreatePost";
-import { useModal } from "../../../hooks/useModal";
-import { Form } from "../../../ui/Form";
+import useModal from "../../../hooks/useModal";
+import Form from "../../../ui/Form";
 import DashboardFormMessage from "./DashboardFormMessage";
 import DashboardFormButtons from "./DashboardFormButtons";
 import Spinner from "../../../ui/Spinner";

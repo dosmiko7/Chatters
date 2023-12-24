@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
-import { Input } from "./Input";
+
+import Input from "./Input";
 
 const StyledSearchBar = styled.div`
 	position: relative;

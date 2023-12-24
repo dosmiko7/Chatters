@@ -1,11 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 
-import AuthFormField from "./AuthFormField";
-import { Form } from "../../ui/Form";
-import { Button } from "../../ui/Button";
-import Heading from "../../ui/Heading";
 import { flexRow } from "../../style/Templates";
+import AuthFormField from "./AuthFormField";
+import Form from "../../ui/Form";
+import Button from "../../ui/Button";
+import Heading from "../../ui/Heading";
 
 const StyledForm = styled(Form)`
 	position: relative;

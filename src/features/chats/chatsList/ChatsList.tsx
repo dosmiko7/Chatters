@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import useChatsList, { IChatsListElement } from "./useChatsList";
+import getCombinedId from "../../../utils/getCombinedId";
 import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
-import getCombinedId from "../../../utils/getCombinedId";
 
 // TODO: Change for dynamic currentId
 const ChatsList = () => {

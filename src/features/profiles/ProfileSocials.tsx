@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { flexColumn, flexRow } from "../../style/Templates";
 import { SocialIcon } from "react-social-icons";
+
+import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 
 const StyledSocials = styled.div`

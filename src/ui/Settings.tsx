@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FaGear } from "react-icons/fa6";
 
-import { Button } from "./Button";
+import Button from "./Button";
 
 const Settings = () => {
 	const navigate = useNavigate();

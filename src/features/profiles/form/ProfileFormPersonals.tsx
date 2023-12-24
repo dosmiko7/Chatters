@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useFormContext, get } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
-import { Wrapper } from "../../../ui/Wrapper";
 import InputProfileForm from "../../../ui/InputProfileForm";
 
 const StyledPersonals = styled.div``;
@@ -28,7 +27,7 @@ const ProfileFormPersonals = () => {
 	return (
 		<StyledPersonals>
 			<Heading as="h3">Personals</Heading>
-			<Wrapper>
+			<div>
 				<InputProfileForm
 					type="text"
 					placeholder="Nickname"
@@ -39,25 +38,25 @@ const ProfileFormPersonals = () => {
 					})}
 				/>
 				{formState.errors["nickname"] && <p>{get(formState.errors, "nickname").message}</p>}
-			</Wrapper>
+			</div>
 			<Grid>
-				<Wrapper>
+				<div>
 					<InputProfileForm
 						type="text"
 						placeholder="Name"
 						{...register("personals.name", nameValidation)}
 					/>
 					{personalErrors && <p>{get(personalErrors, "name")?.message}</p>}
-				</Wrapper>
-				<Wrapper>
+				</div>
+				<div>
 					<InputProfileForm
 						type="text"
 						placeholder="Surname"
 						{...register("personals.surname", nameValidation)}
 					/>
 					{personalErrors && <p>{get(personalErrors, "surname")?.message}</p>}
-				</Wrapper>
-				<Wrapper>
+				</div>
+				<div>
 					<InputProfileForm
 						type="text"
 						placeholder="Birthday"
@@ -65,8 +64,8 @@ const ProfileFormPersonals = () => {
 						{...register("personals.birthday")}
 					/>
 					{personalErrors && <p>{get(personalErrors, "birthday")?.message}</p>}
-				</Wrapper>
-				<Wrapper>
+				</div>
+				<div>
 					<InputProfileForm
 						type="text"
 						placeholder="City"
@@ -77,7 +76,7 @@ const ProfileFormPersonals = () => {
 						})}
 					/>
 					{personalErrors && <p>{get(personalErrors, "city")?.message}</p>}
-				</Wrapper>
+				</div>
 			</Grid>
 		</StyledPersonals>
 	);

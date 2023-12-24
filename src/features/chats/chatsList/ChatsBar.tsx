@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Container } from "../../../ui/Container";
+
+import Container from "../../../ui/Container";
 import Heading from "../../../ui/Heading";
 import SearchBar from "../../../ui/SearchBar";
 import ChatsListContainer from "./ChatsListContainer";

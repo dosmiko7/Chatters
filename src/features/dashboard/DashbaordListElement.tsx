@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { IPostDataProps } from "../../services/firestore";
 import { flexRow } from "../../style/Templates";
-import { Avatar } from "../../ui/Avatar";
+import Avatar from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
 import Paragraph from "../../ui/Paragraph";
 import DashboardListAttachment from "./DashboardListAttachment";

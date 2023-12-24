@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-import { ISignProps } from "../../services/auth";
+import useLogin from "./useLogin";
 import useGoogleLogin from "./useGoogleLogin";
+import { ISignProps } from "../../services/auth";
 import { FormWindow } from "../../ui/FormWindow";
 import AuthFormManager from "./AuthFormManager";
-import { GoogleLogin } from "../../ui/GoogleLogin";
-import { useLogin } from "./useLogin";
+import GoogleLogin from "../../ui/GoogleLogin";
 import AuthPasswordReminderModal from "./AuthPasswordReminderModal";
 
 const StyledLink = styled(Link)`
@@ -17,7 +17,6 @@ const StyledLink = styled(Link)`
 	transform: translateX(-50%);
 `;
 
-// TODO: Reminder
 const AuthFormLogin = () => {
 	const { login, status } = useLogin();
 	const { login: googleLogin, status: googleStatus } = useGoogleLogin();

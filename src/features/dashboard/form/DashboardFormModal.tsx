@@ -1,6 +1,6 @@
 import { BiSolidMessageAdd } from "react-icons/bi";
 
-import { Button } from "../../../ui/Button";
+import Button from "../../../ui/Button";
 import Modal from "../../../ui/Modal";
 import DashboardForm from "./DashboardForm";
 import Heading from "../../../ui/Heading";

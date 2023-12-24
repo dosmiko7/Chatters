@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { BsThreeDots } from "react-icons/bs";
 
-import { Button } from "../../../ui/Button";
 import { displayInfo } from "../../../style/Templates";
+import Button from "../../../ui/Button";
 
 const ChatMoreOpenButton = styled(Button)`
 	${displayInfo({ message: "More", position: "left" })}

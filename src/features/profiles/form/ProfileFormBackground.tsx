@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import useFilePreview from "../../../hooks/useFilePreview";
 
-import { Wrapper } from "../../../ui/Wrapper";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 import HiddenInput from "../../../ui/HiddenInput";
@@ -28,7 +27,7 @@ const ProfileFormBackground = (props: { watcher: FileList | null; validation: (v
 	const currentBackgroundSrc = backgroundSrc || "/background-default.jpg";
 
 	return (
-		<Wrapper>
+		<div>
 			<Heading as="h3">Background</Heading>
 			<StyledContainer>
 				<BackgroundPreview src={currentBackgroundSrc} />
@@ -45,7 +44,7 @@ const ProfileFormBackground = (props: { watcher: FileList | null; validation: (v
 			</StyledContainer>
 
 			{formState.errors["background"] && <p>{get(formState.errors, "background").message}</p>}
-		</Wrapper>
+		</div>
 	);
 };
 

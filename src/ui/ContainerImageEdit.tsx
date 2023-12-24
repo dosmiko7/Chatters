@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { centeredAbsolute } from "../style/Templates";
 
 const ContainerImageEditor = styled.div`

@@ -2,10 +2,10 @@ import { useFormContext, useWatch } from "react-hook-form";
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 
-import { Input } from "../../../ui/Input";
 import useFilePreview from "../../../hooks/useFilePreview";
 import { flexRow } from "../../../style/Templates";
-import { Button } from "../../../ui/Button";
+import Input from "../../../ui/Input";
+import Button from "../../../ui/Button";
 
 const MessageContainer = styled.div`
 	position: relative;

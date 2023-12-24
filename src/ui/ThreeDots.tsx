@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+
 import { flexCentered } from "../style/Templates";
 
 const dot = keyframes`

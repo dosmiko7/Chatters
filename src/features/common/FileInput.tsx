@@ -3,7 +3,6 @@ import { TbFile } from "react-icons/tb";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
-import { Wrapper } from "../../ui/Wrapper";
 import HiddenInput from "../../ui/HiddenInput";
 import { displayInfo } from "../../style/Templates";
 
@@ -37,7 +36,7 @@ const FileInput = () => {
 	const { register } = useFormContext();
 
 	return (
-		<Wrapper>
+		<div>
 			<label htmlFor="file">
 				<IconContainerForLabel>
 					<TbFile />
@@ -49,7 +48,7 @@ const FileInput = () => {
 				placeholder="File"
 				{...register("file", { validate: fileValidation })}
 			/>
-		</Wrapper>
+		</div>
 	);
 };
 

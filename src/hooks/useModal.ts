@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import { ModalContext } from "../ui/Modal";
 
 export const useModal = () => {
@@ -9,3 +10,5 @@ export const useModal = () => {
 
 	return context;
 };
+
+export default useModal;

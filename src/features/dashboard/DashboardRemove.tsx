@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
 import useDeletePost from "./useDeletePost";
-import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
-import { Button } from "../../ui/Button";
-import ToasterWarning from "../../ui/ToasterWarning";
 import { displayInfo } from "../../style/Templates";
+import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
+import Button from "../../ui/Button";
+import ToasterWarning from "../../ui/ToasterWarning";
 
 const RemoveButton = styled(Button)`
 	${displayInfo({ message: "Remove post", position: "left" })};
