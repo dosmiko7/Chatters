@@ -20,24 +20,24 @@ const StyledInput = styled(InputProfileForm)`
 	padding-left: 4rem;
 `;
 
+const iconStyle = {
+	position: "absolute",
+	top: "50%",
+	left: "0",
+	transform: "translate(50%, -50%)",
+	fontSize: "2rem",
+};
+
+const linkValidation = {
+	pattern: {
+		value: /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i,
+		message: "Invalid URL format",
+	},
+};
+
 const ProfileFormSocials = () => {
 	const { register, formState } = useFormContext();
 	const socialsErrors = formState.errors.socials;
-
-	const iconStyle = {
-		position: "absolute",
-		top: "50%",
-		left: "0",
-		transform: "translate(50%, -50%)",
-		fontSize: "2rem",
-	};
-
-	const linkValidation = {
-		pattern: {
-			value: /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i,
-			message: "Invalid URL format",
-		},
-	};
 
 	return (
 		<StyledSocials>

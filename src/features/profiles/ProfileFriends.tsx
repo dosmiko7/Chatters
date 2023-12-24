@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { IDocumentData } from "../../services/firestore";
+import { IDocumentData } from "../../services/firestore/userApi";
 import Heading from "../../ui/Heading";
 import ProfileFriendsGrid from "./ProfileFriendsGrid";
 

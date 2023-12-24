@@ -8,15 +8,15 @@ const InputDescription = styled(InputProfileForm).attrs({
 	as: "textarea",
 })``;
 
+const descrValidation = {
+	maxLength: { value: 700, message: "No more than 700 characters" },
+};
+
 const ProfileFormDescription = () => {
 	const { register, formState } = useFormContext();
 
-	const descrValidation = {
-		maxLength: { value: 700, message: "No more than 700 characters" },
-	};
-
 	return (
-		<div>
+		<>
 			<Heading as="h3">Description</Heading>
 			<InputDescription
 				type="text"
@@ -24,7 +24,7 @@ const ProfileFormDescription = () => {
 				{...register("description", descrValidation)}
 			/>
 			{formState.errors["description"] && <p>{get(formState.errors, "description").message}</p>}
-		</div>
+		</>
 	);
 };
 

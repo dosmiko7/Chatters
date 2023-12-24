@@ -13,16 +13,16 @@ const Grid = styled.div`
 	gap: 0.6rem;
 `;
 
+const nameValidation = {
+	pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
+	minLength: { value: 1, message: "At least 1 character" },
+	maxLength: { value: 20, message: "No more than 20 characters" },
+};
+
 // TODO: Make an error/warning element
 const ProfileFormPersonals = () => {
 	const { register, formState } = useFormContext();
 	const personalErrors = formState.errors.personals;
-
-	const nameValidation = {
-		pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
-		minLength: { value: 1, message: "At least 1 character" },
-		maxLength: { value: 20, message: "No more than 20 characters" },
-	};
 
 	return (
 		<StyledPersonals>
