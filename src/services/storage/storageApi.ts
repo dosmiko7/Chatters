@@ -1,5 +1,5 @@
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../firebase";
+import { storage } from "../../firebase";
 
 export const uploadAvatar = async ({ avatarFile, userId }: { avatarFile: File; userId: string }): Promise<void> => {
 	const avatarRef = ref(storage, `avatars/avatar_${userId}.png`);

@@ -9,7 +9,7 @@ import {
 	sendPasswordResetEmail,
 	deleteUser,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 export interface ISignProps {
 	email: string;

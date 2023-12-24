@@ -1,4 +1,4 @@
-import getGifsUrls from "../utils/getGifsUrls";
+import getGifsUrls from "../../utils/getGifsUrls";
 
 const giphyKey = "KZ8BFutjfwdu7D9bcSgZqBMD2poam4nM";
 
