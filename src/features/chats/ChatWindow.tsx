@@ -6,6 +6,7 @@ import { IChatElement } from "./useChat";
 import List from "../../ui/List";
 import ChatMessage from "./ChatMessage";
 import Spinner from "../../ui/Spinner";
+import { themes } from "../../data/themes";
 
 const StyledChatWindow = styled.div`
 	height: 100%;
@@ -28,6 +29,9 @@ const ChatWindow = ({
 	error: boolean;
 }) => {
 	const bottomRef = useRef<null | HTMLDivElement>(null);
+
+	const themeObject = themes.find((obj) => obj.theme === `${setTheme}`);
+	const fontColor = themeObject?.fontColor || "#fff";
 
 	useLayoutEffect(() => {
 		const scrollElement = () => {
@@ -60,7 +64,7 @@ const ChatWindow = ({
 								nickname={message.nickname}
 								avatar={message.avatar}
 								message={message.message}
-								theme={setTheme}
+								theme={{ name: setTheme, fontColor }}
 								renderPhoto={renderPhoto}
 							/>
 						);

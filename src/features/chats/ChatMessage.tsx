@@ -13,7 +13,10 @@ const StyledMessage = styled.div`
 interface IChatMessageProps extends IChatElement {
 	currentUser: string;
 	renderPhoto: boolean;
-	theme: string;
+	theme: {
+		name: string;
+		fontColor: string;
+	};
 }
 
 const ChatMessage = (props: IChatMessageProps) => {

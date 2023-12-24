@@ -15,7 +15,10 @@ interface IChatMessageContentProps {
 	type: string;
 	message: string;
 	fileName?: string;
-	theme: string;
+	theme: {
+		name: string;
+		fontColor: string;
+	};
 	isLeftMessage: boolean;
 }
 
@@ -23,8 +26,8 @@ const ChatMessageContent = ({ data }: { data: IChatMessageContentProps }) => {
 	const { type, message, fileName, theme, isLeftMessage } = data;
 
 	const color = isLeftMessage
-		? { backgroundColor: `var(--${theme}-chat-left)` }
-		: { backgroundColor: `var(--${theme}-chat-right)` };
+		? { backgroundColor: `var(--${theme.name}-chat-left)`, color: theme.fontColor }
+		: { backgroundColor: `var(--${theme.name}-chat-right)`, color: theme.fontColor };
 
 	let renderMessage;
 	switch (true) {

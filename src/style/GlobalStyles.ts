@@ -9,7 +9,7 @@ const generateThemesVariables = () => {
 		const variableEntries = Object.entries(theme.variables);
 		css += `
           ${variableEntries.map(([property, value]) => `${property}: ${value};`).join("\n")}
-      `;
+        `;
 	});
 
 	return css;
