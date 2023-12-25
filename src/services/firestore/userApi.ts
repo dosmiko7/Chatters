@@ -90,8 +90,8 @@ export const addUser = async (user: User | null) => {
 	if (!user) throw new Error("addUser: There is no user to add.");
 
 	const defaultData: IUserData = {
-		nickname: user.email || "",
-		avatar: DEFAULT_AVATAR,
+		nickname: user.displayName || user.email || "",
+		avatar: user.photoURL || DEFAULT_AVATAR,
 		background: DEFAULT_BACKGROUND,
 		description: "",
 		email: user.email || "",
@@ -126,22 +126,14 @@ export const updateUserInfo = async ({
 
 	let avatarUrl: string = "";
 	if (input.avatar) {
-		try {
-			await uploadAvatar({ avatarFile: input.avatar[0], userId });
-			avatarUrl = await getFileURL(`avatars/avatar_${userId}.png`);
-		} catch {
-			throw new Error("updateUserInfo: Something went wrong with avatar image upload.");
-		}
+		await uploadAvatar({ avatarFile: input.avatar[0], userId });
+		avatarUrl = await getFileURL(`avatars/avatar_${userId}.png`);
 	}
 
 	let backgroundUrl: string = "";
 	if (input.background) {
-		try {
-			await uploadBackground({ backgroundFile: input.background[0], userId });
-			backgroundUrl = await getFileURL(`backgrounds/background_${userId}.png`);
-		} catch {
-			throw new Error("updateUserInfo: Something went wrong with background image upload.");
-		}
+		await uploadBackground({ backgroundFile: input.background[0], userId });
+		backgroundUrl = await getFileURL(`backgrounds/background_${userId}.png`);
 	}
 
 	const formattedData = formatSubmit({ ...input, avatar: avatarUrl, background: backgroundUrl }, data);
@@ -175,15 +167,11 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	if (userId === undefined) throw new Error("getUser: UserId should be defined");
 	const docRef = doc(firestore, "users", userId);
 
-	try {
-		const docSnap = await getDoc(docRef);
-		if (docSnap.exists()) {
-			return { id: docSnap.id, data: docSnap.data() as IUserData };
-		} else {
-			throw new Error("getUser: User with such id doesnt exist");
-		}
-	} catch {
-		throw new Error("getUser: User acquisition failed");
+	const docSnap = await getDoc(docRef);
+	if (docSnap.exists()) {
+		return { id: docSnap.id, data: docSnap.data() as IUserData };
+	} else {
+		throw new Error("getUser: User with such id doesnt exist");
 	}
 };
 
@@ -227,22 +215,14 @@ export const updateFriendsList = async ({
 		}
 	};
 
-	try {
-		const userDocSnap = await getDoc(userDocRef);
-		if (userDocSnap.exists()) {
-			await updateList({ documentRef: userDocRef, data: userDocSnap.data(), userIdToChange: friendId });
-		}
-	} catch {
-		throw new Error(`updateFriendsList: User ${userId}'s friends list update failed.`);
+	const userDocSnap = await getDoc(userDocRef);
+	if (userDocSnap.exists()) {
+		await updateList({ documentRef: userDocRef, data: userDocSnap.data(), userIdToChange: friendId });
 	}
 
-	try {
-		const friendDocSnap = await getDoc(friendDocRef);
-		if (friendDocSnap.exists()) {
-			await updateList({ documentRef: friendDocRef, data: friendDocSnap.data(), userIdToChange: userId });
-		}
-	} catch {
-		throw new Error(`updateFriendsList: User ${friendId}'s friends list update failed.`);
+	const friendDocSnap = await getDoc(friendDocRef);
+	if (friendDocSnap.exists()) {
+		await updateList({ documentRef: friendDocRef, data: friendDocSnap.data(), userIdToChange: userId });
 	}
 };
 
@@ -257,16 +237,12 @@ export const friendUpdate = async ({
 }) => {
 	if (userId === undefined || friendId === undefined) throw new Error("friendUpdate: There is no ID for friend update");
 
-	try {
-		if (mode === "add") {
-			await updateFriendsList({ userId, friendId, mode: "add" });
-		} else if (mode === "remove") {
-			await updateFriendsList({ userId, friendId, mode: "remove" });
-			const chatId = getCombinedId(userId, friendId);
-			await deleteChats({ userId, chatId });
-		}
-	} catch {
-		throw new Error("friendUpdate: friends update failed");
+	if (mode === "add") {
+		await updateFriendsList({ userId, friendId, mode: "add" });
+	} else if (mode === "remove") {
+		await updateFriendsList({ userId, friendId, mode: "remove" });
+		const chatId = getCombinedId(userId, friendId);
+		await deleteChats({ userId, chatId });
 	}
 };
 
