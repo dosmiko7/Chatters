@@ -84,3 +84,7 @@ export const deleteAccount = async ({ user }: { user: User | null | undefined })
 		throw new Error("deleteAccount: User deletion failed");
 	}
 };
+
+export const getCurrentUser = async () => {
+	return auth.currentUser;
+};
