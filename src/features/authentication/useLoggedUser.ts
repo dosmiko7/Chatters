@@ -1,9 +1,12 @@
-import { useQueryClient } from "@tanstack/react-query";
-import { User } from "firebase/auth";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentUser } from "../../services/auth/authApi";
 
 const useLoggedUser = () => {
-	const queryClient = useQueryClient();
-	const data: User | null | undefined = queryClient.getQueryData(["loggedUser"]);
+	const { data } = useQuery({
+		queryKey: ["loggedUser"],
+		queryFn: getCurrentUser,
+		gcTime: Infinity,
+	});
 
 	return { data };
 };
