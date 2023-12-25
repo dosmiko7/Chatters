@@ -52,21 +52,18 @@ export const downloadFile = async (filePath: string) => {
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
-	} catch (err) {
-		return err;
+	} catch {
+		throw new Error("downloadFile: File download failed");
 	}
 };
 
 export const removeChatFiles = async ({ chatId }: { chatId: string }) => {
 	const chatFolderRef = ref(storage, `chatFiles/${chatId}`);
 
-	await listAll(chatFolderRef)
-		.then((res) => {
-			res.items.forEach((fileRef) => {
-				deleteObject(fileRef);
-			});
-		})
-		.catch((error) => {
-			throw error;
-		});
+	try {
+		const res = await listAll(chatFolderRef);
+		await Promise.all(res.items.map((fileRef) => deleteObject(fileRef)));
+	} catch {
+		throw new Error("removeChatFiles: removing chat files failed.");
+	}
 };
