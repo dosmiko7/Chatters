@@ -241,3 +241,24 @@ export const friendUpdate = async ({
 		await deleteChats({ userId, chatId });
 	}
 };
+
+export const updateUserTimestamp = async ({
+	mode,
+	userId,
+}: {
+	mode: "login" | "logout";
+	userId: string | undefined;
+}) => {
+	if (!userId) throw new Error("There is no user to update");
+	const userRef = doc(firestore, "users", `${userId}`);
+
+	if (mode === "login") {
+		await updateDoc(userRef, {
+			lastLoggedIn: Timestamp.fromDate(new Date()),
+		});
+	} else if (mode === "logout") {
+		await updateDoc(userRef, {
+			lastLoggedOut: Timestamp.fromDate(new Date()),
+		});
+	}
+};
