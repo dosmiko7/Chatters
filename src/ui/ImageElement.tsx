@@ -15,6 +15,11 @@ const ImageContent = styled(LazyLoadImage)`
 	}
 `;
 
+const PlaceholderContainer = styled.div`
+	height: 30rem;
+	width: 28rem;
+`;
+
 const FullImage = styled.img`
 	max-width: 70dvh;
 	max-height: 70dvh;
@@ -28,9 +33,13 @@ const ImageElement = ({ fileUrl }: { fileUrl: string }) => {
 			<Modal.Open opens={id}>
 				<ImageContent
 					src={fileUrl}
+					placeholder={
+						<PlaceholderContainer>
+							<ThreeDots />
+						</PlaceholderContainer>
+					}
 					effect="blur"
 					alt="Image content"
-					placeholder={<ThreeDots />}
 				/>
 			</Modal.Open>
 
