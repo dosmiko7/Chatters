@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { flexCentered } from "../style/Templates";
 
@@ -19,14 +21,11 @@ const StyledAvatar = styled.div<IStyledAvatarProps>`
 	}
 `;
 
-const Image = styled.img`
+const Image = styled(LazyLoadImage)`
 	max-width: 100%;
 	object-fit: contain;
 `;
 
-// TODO: Change avatar's image to the one downloaded from the server
-// TODO: Clicking on Avatar moves user to Avatar's owner's profile
-// TODO: If user is currently active change border to green
 interface IAvatar {
 	size: string;
 	square?: boolean;
@@ -46,6 +45,7 @@ const Avatar = (props: IAvatar) => {
 			<Image
 				src={src || "avatar-default.png"}
 				alt="Avatar"
+				effect="blur"
 			/>
 		</StyledAvatar>
 	);

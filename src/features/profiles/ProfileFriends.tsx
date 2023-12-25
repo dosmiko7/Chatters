@@ -7,6 +7,9 @@ import ProfileFriendsGrid from "./ProfileFriendsGrid";
 const StyledProfileFriends = styled.div`
 	padding: var(--padding-sm);
 	border-left: var(--border-thin);
+	height: 100dvh;
+	max-height: 100dvh;
+	overflow: scroll;
 `;
 
 // TODO: Make an error UI element for every component where error can occury

@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import AudioElement from "../../ui/AudioElement";
 import DownloadElement from "../../ui/DownloadElement";
 import VideoElement from "../../ui/VideoElement";
 import { flexCentered } from "../../style/Templates";
+import ThreeDots from "../../ui/ThreeDots";
 
 const StyledAttachment = styled.div`
 	${flexCentered};
@@ -30,7 +33,13 @@ const DashboardListAttachment = ({ type, file }: { type: string; file: string })
 			);
 			break;
 		case type.includes("image"):
-			renderElement = <img src={file} />;
+			renderElement = (
+				<LazyLoadImage
+					src={file}
+					effect="blur"
+					placeholder={<ThreeDots />}
+				/>
+			);
 			break;
 		default:
 			<DownloadElement
