@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-import { IUserData, updateUser } from "../../../services/firestore/userApi";
+import { IUserData, updateUserInfo } from "../../../services/firestore/userApi";
 import { IProfileFormInput } from "./ProfileForm";
 
 const useProfileFormSubmit = () => {
@@ -10,7 +10,7 @@ const useProfileFormSubmit = () => {
 	const profileData: { id: string; data: IUserData } | undefined = queryClient.getQueryData(["profile", userId]);
 
 	const { mutate: submit, status } = useMutation({
-		mutationFn: (input: IProfileFormInput) => updateUser({ input, userId, data: profileData?.data }),
+		mutationFn: (input: IProfileFormInput) => updateUserInfo({ input, userId, data: profileData?.data }),
 
 		onSuccess: (data) => {
 			queryClient.setQueryData(["profile", userId], { id: userId, data });

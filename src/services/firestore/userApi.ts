@@ -115,7 +115,7 @@ export const addUser = async (user: User | null) => {
 		});
 };
 
-export const updateUser = async ({
+export const updateUserInfo = async ({
 	input,
 	userId,
 	data,
