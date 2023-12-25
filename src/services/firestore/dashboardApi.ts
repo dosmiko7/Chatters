@@ -87,7 +87,12 @@ export const getDashboardPosts = async ({ options, latestDoc, pagination }: IGet
 		};
 	});
 
-	const currentPosts: IPostDataProps[] = await Promise.all(promises);
+	let currentPosts: IPostDataProps[];
+	try {
+		currentPosts = await Promise.all(promises);
+	} catch {
+		throw new Error("getDashboardPosts: Getting current posts failed");
+	}
 
 	const lastVisibleDoc = documentSnapshots.docs[documentSnapshots.docs.length - 1];
 
@@ -101,8 +106,36 @@ export const addDashboardPost = async ({
 	input: IDashboardFormInput;
 	userId: string | undefined;
 }) => {
-	if (userId === undefined) throw new Error("Adding dashboard post: UserId should be defined.");
+	if (userId === undefined) throw new Error("addDashboardPost: UserId should be defined.");
 
+	const { file, type } = await getFileProps({ input });
+
+	const post: IDashboardDocDataProps = {
+		userId,
+		message: input.message,
+		type,
+		created_at: Timestamp.fromDate(new Date()),
+	};
+	if (file) post["file"] = file;
+
+	try {
+		await addDoc(collection(firestore, "dashboard"), post);
+	} catch {
+		throw new Error("addDashboardPost: Adding new doc failed");
+	}
+};
+
+export const removeDashboardPost = async (postId: string) => {
+	const dashboardPostRef = doc(firestore, "dashboard", postId);
+
+	try {
+		await deleteDoc(dashboardPostRef);
+	} catch {
+		throw new Error("removeDashboardPost: Removing of dashboard post failed");
+	}
+};
+
+const getFileProps = async ({ input }: { input: IDashboardFormInput }) => {
 	let file: string | undefined;
 	let type: string;
 	if (input.file) {
@@ -119,22 +152,5 @@ export const addDashboardPost = async ({
 		type = "image/gif";
 	}
 
-	const post: IDashboardDocDataProps = {
-		userId,
-		message: input.message,
-		type,
-		created_at: Timestamp.fromDate(new Date()),
-	};
-	if (file) post["file"] = file;
-
-	await addDoc(collection(firestore, "dashboard"), post).catch(() => {
-		throw new Error("Error: adding dashboard post");
-	});
-};
-
-export const removeDashboardPost = async (postId: string) => {
-	const dashboardPostRef = doc(firestore, "dashboard", postId);
-	await deleteDoc(dashboardPostRef).catch(() => {
-		throw new Error("Error: removing dashboard post");
-	});
+	return { file, type };
 };
