@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { User } from "firebase/auth";
 
 import { signOutUser } from "../../services/auth/authApi";
+import { updateUserTimestamp } from "../../services/firestore/userApi";
 
 const useSignOut = () => {
 	const navigate = useNavigate();
@@ -11,9 +13,10 @@ const useSignOut = () => {
 	const { mutate: signOut, status } = useMutation({
 		mutationFn: () => signOutUser(),
 
-		onSuccess: () => {
+		onSuccess: (user: User | null) => {
 			toast.success("You have logged out successfully");
 			queryClient.removeQueries();
+			updateUserTimestamp({ mode: "logout", userId: user?.uid });
 			navigate("/login", { replace: true });
 		},
 
