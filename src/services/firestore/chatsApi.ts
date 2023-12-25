@@ -22,16 +22,13 @@ export interface TypeMessage {
 
 export const removeChat = async ({ chatId }: { chatId: string }) => {
 	const chatRef = doc(firestore, "chats", chatId);
-	await deleteDoc(chatRef).catch(() => {
-		throw new Error("Error: removing chat");
-	});
+	await deleteDoc(chatRef);
 };
 
 export const deleteChats = async ({ userId, chatId }: { userId: string | undefined; chatId: string | undefined }) => {
-	if (userId === undefined || chatId === undefined) throw new Error("There is no ID for chat delete");
+	if (userId === undefined || chatId === undefined) throw new Error("deleteChats: There is no ID for chat delete");
 
 	const friendId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: userId });
-
 	await removeUserChats({ userId, friendId });
 	await removeChat({ chatId });
 	await removeChatFiles({ chatId });
@@ -46,11 +43,23 @@ export const updateChatsMessages = async ({
 	senderId: string;
 	input: FileList | string | TypeMessage;
 }) => {
-	if (chatId === undefined) throw new Error("Something went wrong with chat update.");
+	if (chatId === undefined) throw new Error("updateChatsMessages: There is no chatId to update");
 	const chatRef = doc(firestore, "chats", chatId);
-	const chatSnap = await getDoc(chatRef);
-	const user = await getUser(senderId);
 
+	const { newMessage, userChatMessage } = await createNewMessage({ chatId, input, senderId });
+	await addNewMessageToChat({ chatRef, newMessage });
+	await addNewMessageToUserChat({ chatId, senderId, newMessage, userChatMessage });
+};
+
+const createNewMessage = async ({
+	chatId,
+	input,
+	senderId,
+}: {
+	chatId: string;
+	senderId: string;
+	input: FileList | string | TypeMessage;
+}) => {
 	let type = "text";
 	let fileName = "";
 	let message: string;
@@ -79,6 +88,7 @@ export const updateChatsMessages = async ({
 		userChatMessage = input.type === "emoji" ? message : "GIF has been sent.";
 	}
 
+	const user = await getUser(senderId);
 	const newMessage: IChatMessagesData = {
 		nickname: user.data.nickname,
 		avatar: user.data.avatar,
@@ -89,20 +99,37 @@ export const updateChatsMessages = async ({
 	};
 	if (fileName.length) newMessage["fileName"] = fileName;
 
-	// Update chats
+	return { newMessage, userChatMessage };
+};
+
+const addNewMessageToChat = async ({
+	chatRef,
+	newMessage,
+}: {
+	chatRef: DocumentReference<DocumentData, DocumentData>;
+	newMessage: IChatMessagesData;
+}) => {
+	const chatSnap = await getDoc(chatRef);
 	if (chatSnap.exists()) {
 		const chatDoc = chatSnap.data();
 		const updatedMessages = [...chatDoc.messages, newMessage];
-		await updateDoc(chatRef, { messages: updatedMessages }).catch((error) => {
-			throw error;
-		});
+		await updateDoc(chatRef, { messages: updatedMessages });
 	} else {
-		await setDoc(chatRef, { emoji: "💪", messages: [newMessage], theme: "default" }).catch((error) => {
-			throw error;
-		});
+		await setDoc(chatRef, { emoji: "💪", messages: [newMessage], theme: "default" });
 	}
+};
 
-	// Update userChats
+const addNewMessageToUserChat = async ({
+	chatId,
+	senderId,
+	newMessage,
+	userChatMessage,
+}: {
+	chatId: string;
+	senderId: string;
+	newMessage: IChatMessagesData;
+	userChatMessage: string;
+}) => {
 	const receiverId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: senderId });
 	await updateUserChats({
 		userAId: senderId,
@@ -125,46 +152,25 @@ export const updateChatsCustomization = async ({
 	emoji?: string;
 	theme?: string;
 }) => {
-	if (chatId === undefined) throw new Error("Something went wrong with chat customization update.");
+	if (chatId === undefined) throw new Error("updateChatsCustomization: There is no chatId to update");
 	const chatRef = doc(firestore, "chats", chatId);
 
-	if (emoji) {
-		await updateDoc(chatRef, { emoji }).catch((error) => {
-			throw error;
-		});
-	}
-
-	if (theme) {
-		await updateDoc(chatRef, { theme }).catch((error) => {
-			throw error;
-		});
-	}
+	if (emoji) await updateDoc(chatRef, { emoji });
+	if (theme) await updateDoc(chatRef, { theme });
 };
 
 export const removeUserChats = async ({ userId, friendId }: { userId: string; friendId: string }) => {
 	const userChatsRef = doc(firestore, "userChats", userId);
-	const userChatsDocSnap = await getDoc(userChatsRef);
 	const friendChatsRef = doc(firestore, "userChats", friendId);
+
+	const userChatsDocSnap = await getDoc(userChatsRef);
 	const friendChatsDocSnap = await getDoc(friendChatsRef);
-
-	const removeChatElement = async ({
-		documentRef,
-		data,
-		userIdChatToRemove,
-	}: {
-		documentRef: DocumentReference<DocumentData, DocumentData>;
-		data: DocumentData;
-		userIdChatToRemove: string;
-	}) => {
-		const chats = data.chats as IChatMessagesData[];
-		const updatedChats = chats.filter((chat) => chat.userId !== userIdChatToRemove);
-		await updateDoc(documentRef, { chats: updatedChats }).catch((error) => {
-			throw error;
-		});
-	};
-
 	if (userChatsDocSnap.exists()) {
-		await removeChatElement({ documentRef: userChatsRef, data: userChatsDocSnap.data(), userIdChatToRemove: friendId });
+		await removeChatElement({
+			documentRef: userChatsRef,
+			data: userChatsDocSnap.data(),
+			userIdChatToRemove: friendId,
+		});
 	}
 
 	if (friendChatsDocSnap.exists()) {
@@ -174,6 +180,20 @@ export const removeUserChats = async ({ userId, friendId }: { userId: string; fr
 			userIdChatToRemove: userId,
 		});
 	}
+};
+
+const removeChatElement = async ({
+	documentRef,
+	data,
+	userIdChatToRemove,
+}: {
+	documentRef: DocumentReference<DocumentData, DocumentData>;
+	data: DocumentData;
+	userIdChatToRemove: string;
+}) => {
+	const chats = data.chats as IChatMessagesData[];
+	const updatedChats = chats.filter((chat) => chat.userId !== userIdChatToRemove);
+	await updateDoc(documentRef, { chats: updatedChats });
 };
 
 const updateUserChats = async ({
@@ -186,8 +206,8 @@ const updateUserChats = async ({
 	message: IChatMessagesData;
 }) => {
 	const userAChatRef = doc(firestore, "userChats", userAId);
-	const userAChatSnap = await getDoc(userAChatRef);
 
+	const userAChatSnap = await getDoc(userAChatRef);
 	if (userAChatSnap.exists()) {
 		let userChats = userAChatSnap.data().chats as IUserChat[];
 		let chatChanged = false;
@@ -199,12 +219,8 @@ const updateUserChats = async ({
 			}
 		}
 		if (!chatChanged) userChats = [...userChats, message];
-		await updateDoc(userAChatRef, { chats: userChats }).catch((error) => {
-			throw error;
-		});
+		await updateDoc(userAChatRef, { chats: userChats });
 	} else {
-		await setDoc(userAChatRef, { chats: [message] }).catch((error) => {
-			throw error;
-		});
+		await setDoc(userAChatRef, { chats: [message] });
 	}
 };
