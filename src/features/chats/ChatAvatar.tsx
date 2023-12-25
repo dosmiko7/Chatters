@@ -30,7 +30,7 @@ const ChatAvatar = ({ data }: { data: IChatAvatarProps }) => {
 	return (
 		<AvatarContainer
 			style={display}
-			onClick={() => navigate(`profile/${userId}`)}
+			onClick={() => navigate(`/profile/${userId}`)}
 		>
 			<Avatar
 				size="4rem"
