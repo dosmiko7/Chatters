@@ -19,58 +19,68 @@ export interface ISignProps {
 export const signIn = async (props: ISignProps): Promise<User | null> => {
 	const { email, password } = props;
 
-	return signInWithEmailAndPassword(auth, email, password)
-		.then(() => auth.currentUser)
-		.catch((error) => {
-			throw error;
-		});
+	try {
+		await signInWithEmailAndPassword(auth, email, password);
+		return auth.currentUser;
+	} catch {
+		throw new Error("signIn: Failed to login");
+	}
 };
 
 export const signUp = async (props: ISignProps): Promise<User | null> => {
 	const { email, password } = props;
-	return createUserWithEmailAndPassword(auth, email, password)
-		.then(() => auth.currentUser)
-		.catch((error) => {
-			throw error;
-		});
+	try {
+		await createUserWithEmailAndPassword(auth, email, password);
+		return auth.currentUser;
+	} catch {
+		throw new Error("signUp: Failed to create a new user");
+	}
 };
 
 export const signInWithGoogle = async () => {
 	const provider = new GoogleAuthProvider();
 
-	return signInWithPopup(auth, provider)
-		.then((result) => result.user)
-		.catch((error) => {
-			throw error;
-		});
+	try {
+		const result = await signInWithPopup(auth, provider);
+		return result.user;
+	} catch {
+		throw new Error("signInWithGoogle: Failed to login");
+	}
 };
 
 export const signOutUser = async () => {
 	const currentUser = auth.currentUser;
-	return signOut(auth)
-		.then(() => currentUser)
-		.catch((error) => {
-			throw error;
-		});
+	try {
+		await signOut(auth);
+		return currentUser;
+	} catch {
+		throw new Error("signOutUser: Failed to sign out");
+	}
 };
 
 export const sendVerificationLink = async () => {
-	if (!auth.currentUser) throw new Error("There is no user to send verification link");
-	sendEmailVerification(auth.currentUser).catch((error) => {
-		throw error;
-	});
+	if (!auth.currentUser) throw new Error("sendVerificationLink: There is no user to send verification link");
+	try {
+		await sendEmailVerification(auth.currentUser);
+	} catch {
+		throw new Error("sendVerificationLink: Message sending failed");
+	}
 };
 
 export const sendPasswordReset = async ({ email }: { email: string }) => {
-	sendPasswordResetEmail(auth, email).catch((error) => {
-		throw error;
-	});
+	try {
+		await sendPasswordResetEmail(auth, email);
+	} catch {
+		throw new Error("sendPasswordReset: Message sending failed");
+	}
 };
 
 export const deleteAccount = async ({ user }: { user: User | null | undefined }) => {
-	if (!user) throw new Error("There is no user/account to delete.");
+	if (!user) throw new Error("deleteAccount: There is no user/account to delete.");
 
-	deleteUser(user).catch((error) => {
-		throw error;
-	});
+	try {
+		await deleteUser(user);
+	} catch {
+		throw new Error("deleteAccount: User deletion failed");
+	}
 };
