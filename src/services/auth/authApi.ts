@@ -46,9 +46,12 @@ export const signInWithGoogle = async () => {
 };
 
 export const signOutUser = async () => {
-	signOut(auth).catch((error) => {
-		throw error;
-	});
+	const currentUser = auth.currentUser;
+	return signOut(auth)
+		.then(() => currentUser)
+		.catch((error) => {
+			throw error;
+		});
 };
 
 export const sendVerificationLink = async () => {
