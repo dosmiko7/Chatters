@@ -6,6 +6,7 @@ import useFilePreview from "../../../hooks/useFilePreview";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 import HiddenInput from "../../../ui/HiddenInput";
+import ErrorMessage from "../../../ui/ErrorMessage";
 
 const StyledContainer = styled(ContainerImageEditor)`
 	border-radius: var(--border-radius-md);
@@ -47,7 +48,7 @@ const ProfileFormBackground = (props: { watcher: FileList | null; validation: (v
 				/>
 			</StyledContainer>
 
-			{formState.errors["background"] && <p>{get(formState.errors, "background").message}</p>}
+			{formState.errors["background"] && <ErrorMessage>{get(formState.errors, "background").message}</ErrorMessage>}
 		</div>
 	);
 };

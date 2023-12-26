@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
+import ErrorMessage from "../../../ui/ErrorMessage";
 
 const InputDescription = styled(InputProfileForm).attrs({
 	as: "textarea",
@@ -23,7 +24,7 @@ const ProfileFormDescription = () => {
 				placeholder="Description"
 				{...register("description", descrValidation)}
 			/>
-			{formState.errors["description"] && <p>{get(formState.errors, "description").message}</p>}
+			{formState.errors["description"] && <ErrorMessage>{get(formState.errors, "description").message}</ErrorMessage>}
 		</>
 	);
 };

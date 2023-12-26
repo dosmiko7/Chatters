@@ -5,6 +5,7 @@ import { get, useFormContext } from "react-hook-form";
 import { flexColumn } from "../../../style/Templates";
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
+import ErrorMessage from "../../../ui/ErrorMessage";
 
 const StyledSocials = styled.div``;
 
@@ -52,7 +53,7 @@ const ProfileFormSocials = () => {
 							{...register("socials.linkedin", linkValidation)}
 						/>
 					</InputContainer>
-					{socialsErrors && <p>{get(socialsErrors, "linkedin")?.message}</p>}
+					{socialsErrors && <ErrorMessage>{get(socialsErrors, "linkedin")?.message}</ErrorMessage>}
 				</FlexColumn>
 
 				<FlexColumn>
@@ -64,7 +65,7 @@ const ProfileFormSocials = () => {
 							{...register("socials.github", linkValidation)}
 						/>
 					</InputContainer>
-					{socialsErrors && <p>{get(socialsErrors, "github")?.message}</p>}
+					{socialsErrors && <ErrorMessage>{get(socialsErrors, "github")?.message}</ErrorMessage>}
 				</FlexColumn>
 
 				<FlexColumn>
@@ -77,7 +78,7 @@ const ProfileFormSocials = () => {
 						/>
 					</InputContainer>
 				</FlexColumn>
-				{socialsErrors && <p>{get(socialsErrors, "twitter")?.message}</p>}
+				{socialsErrors && <ErrorMessage>{get(socialsErrors, "twitter")?.message}</ErrorMessage>}
 			</FlexColumn>
 		</StyledSocials>
 	);

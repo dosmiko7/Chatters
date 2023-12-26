@@ -4,6 +4,7 @@ import useProfile from "./useProfile";
 import ProfileInformation from "./ProfileInformation";
 import ProfileFriends from "./ProfileFriends";
 import Spinner from "../../ui/Spinner";
+import ErrorMessage from "../../ui/ErrorMessage";
 
 const StyledProfile = styled.div`
 	position: relative;
@@ -17,7 +18,7 @@ const StyledProfile = styled.div`
 const ProfileDetail = () => {
 	const { profileData, status } = useProfile();
 
-	if (status === "error" || profileData === undefined) return <div>Error</div>;
+	if (status === "error" || profileData === undefined) return <ErrorMessage>Something went wrong</ErrorMessage>;
 	else if (status === "pending") return <Spinner />;
 
 	return (

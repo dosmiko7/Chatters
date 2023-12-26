@@ -5,12 +5,13 @@ import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
 import useSearchUsers from "./useSearchUsers";
 import Heading from "../../ui/Heading";
+import ErrorMessage from "../../ui/ErrorMessage";
 
 const SearchesList = ({ query, onClickHandler }: { query: string; onClickHandler: (userId: string) => void }) => {
 	const { data, status } = useSearchUsers(query);
 	const { close } = useModal();
 
-	if (status === "error") return <Heading as="h3">Sorry. Something went wrong.</Heading>;
+	if (status === "error") return <ErrorMessage>Sorry. Something went wrong.</ErrorMessage>;
 	else if (status === "pending") {
 		return <Spinner />;
 	}

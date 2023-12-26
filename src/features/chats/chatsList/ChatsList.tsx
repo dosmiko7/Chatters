@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import useChatsList, { IChatsListElement } from "./useChatsList";
 import { ChatsSearchContext } from "../../../context/ChatsSearchContext";
 import getCombinedId from "../../../utils/getCombinedId";
+import ErrorMessage from "../../../ui/ErrorMessage";
 import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
 import ThreeDots from "../../../ui/ThreeDots";
 
-// TODO: Change for Error element
 // TODO: Change for dynamic currentId
 const ChatsList = () => {
 	const navigate = useNavigate();
@@ -24,7 +24,7 @@ const ChatsList = () => {
 		[chats, searchValue]
 	);
 
-	if (error) return <div>Something went wrong.</div>;
+	if (error) return <ErrorMessage>Something went wrong.</ErrorMessage>;
 	return (
 		<Suspense fallback={<ThreeDots />}>
 			<List<IChatsListElement>

@@ -3,6 +3,7 @@ import { useFormContext, get } from "react-hook-form";
 
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
+import ErrorMessage from "../../../ui/ErrorMessage";
 
 const StyledPersonals = styled.div``;
 
@@ -37,7 +38,7 @@ const ProfileFormPersonals = () => {
 						maxLength: { value: 20, message: "No more than 20 characters" },
 					})}
 				/>
-				{formState.errors["nickname"] && <p>{get(formState.errors, "nickname").message}</p>}
+				{formState.errors["nickname"] && <ErrorMessage>{get(formState.errors, "nickname").message}</ErrorMessage>}
 			</div>
 			<Grid>
 				<div>
@@ -46,7 +47,7 @@ const ProfileFormPersonals = () => {
 						placeholder="Name"
 						{...register("personals.name", nameValidation)}
 					/>
-					{personalErrors && <p>{get(personalErrors, "name")?.message}</p>}
+					{personalErrors && <ErrorMessage>{get(personalErrors, "name")?.message}</ErrorMessage>}
 				</div>
 				<div>
 					<InputProfileForm
@@ -54,7 +55,7 @@ const ProfileFormPersonals = () => {
 						placeholder="Surname"
 						{...register("personals.surname", nameValidation)}
 					/>
-					{personalErrors && <p>{get(personalErrors, "surname")?.message}</p>}
+					{personalErrors && <ErrorMessage>{get(personalErrors, "surname")?.message}</ErrorMessage>}
 				</div>
 				<div>
 					<InputProfileForm
@@ -63,7 +64,7 @@ const ProfileFormPersonals = () => {
 						onFocus={(e) => (e.target.type = "date")}
 						{...register("personals.birthday")}
 					/>
-					{personalErrors && <p>{get(personalErrors, "birthday")?.message}</p>}
+					{personalErrors && <ErrorMessage>{get(personalErrors, "birthday")?.message}</ErrorMessage>}
 				</div>
 				<div>
 					<InputProfileForm
@@ -75,7 +76,7 @@ const ProfileFormPersonals = () => {
 							maxLength: { value: 100, message: "No more than 100 characters" },
 						})}
 					/>
-					{personalErrors && <p>{get(personalErrors, "city")?.message}</p>}
+					{personalErrors && <ErrorMessage>{get(personalErrors, "city")?.message}</ErrorMessage>}
 				</div>
 			</Grid>
 		</StyledPersonals>
