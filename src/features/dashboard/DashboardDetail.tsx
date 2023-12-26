@@ -5,7 +5,7 @@ import Container from "../../ui/Container";
 import DashboardButtons from "./DashboardButtons";
 import DashboardList from "./DashboardList";
 import Heading from "../../ui/Heading";
-import DashboardOptionsProvider from "../../context/DashboardOptions";
+import DashboardOptionsProvider from "../../context/DashboardOptionsContext";
 
 const Main = styled.main`
 	${flexColumn};

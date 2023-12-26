@@ -3,7 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { QueryDocumentSnapshot } from "firebase/firestore";
 
 import { IPostDataProps, PAGINATION_LIMIT, getDashboardPosts } from "../../services/firestore/dashboardApi";
-import { DashboardOptionsContext } from "../../context/DashboardOptions";
+import { DashboardOptionsContext } from "../../context/DashboardOptionsContext";
 
 interface IInitialProps {
 	latestDoc: QueryDocumentSnapshot | undefined;

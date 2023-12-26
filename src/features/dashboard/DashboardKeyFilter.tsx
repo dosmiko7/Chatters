@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
-import { DashboardOptionsContext } from "../../context/DashboardOptions";
+import { DashboardOptionsContext } from "../../context/DashboardOptionsContext";
 import SearchesWindow from "../searches/SearchesWindow";
 import Modal from "../../ui/Modal";
 import Button from "../../ui/Button";

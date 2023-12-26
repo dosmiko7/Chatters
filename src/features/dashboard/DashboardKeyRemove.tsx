@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { BiEraser } from "react-icons/bi";
 import styled from "styled-components";
 
-import { DashboardOptionsContext } from "../../context/DashboardOptions";
+import { DashboardOptionsContext } from "../../context/DashboardOptionsContext";
 import { displayInfo } from "../../style/Templates";
 import Button from "../../ui/Button";
 

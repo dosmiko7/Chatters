@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import styled from "styled-components";
 import { HiSortDescending, HiSortAscending } from "react-icons/hi";
 
-import { DashboardOptionsContext } from "../../context/DashboardOptions";
+import { DashboardOptionsContext } from "../../context/DashboardOptionsContext";
 import { flexRow } from "../../style/Templates";
 import DashboardFilterButton from "./DashboardFilterButton";
 
