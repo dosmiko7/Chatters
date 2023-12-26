@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 import { flexColumn } from "../../../style/Templates";
+import ChatsSearchProvider from "../../../context/ChatsSearchContext";
 import Container from "../../../ui/Container";
 import Heading from "../../../ui/Heading";
-import SearchBar from "../../../ui/SearchBar";
+import ChatsSearch from "./ChatsSearch";
 import ChatsListContainer from "./ChatsListContainer";
 
 const StyledChatsBar = styled(Container)`
@@ -17,11 +18,13 @@ const StyledChatsBar = styled(Container)`
 //TODO: SearchBar should let display friends which nicknames contain input
 const ChatsBar = () => {
 	return (
-		<StyledChatsBar>
-			<Heading as="h2">Chats</Heading>
-			<SearchBar />
-			<ChatsListContainer />
-		</StyledChatsBar>
+		<ChatsSearchProvider>
+			<StyledChatsBar>
+				<Heading as="h2">Chats</Heading>
+				<ChatsSearch />
+				<ChatsListContainer />
+			</StyledChatsBar>
+		</ChatsSearchProvider>
 	);
 };
 

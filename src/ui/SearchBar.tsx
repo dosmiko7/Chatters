@@ -1,3 +1,4 @@
+import { ChangeEvent, FormEvent } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
@@ -36,11 +37,10 @@ const StyledInput = styled(Input)`
 
 interface ISearchBarProps {
 	placeholder?: string;
-	onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	onIconClickHandler?: (e: React.FormEvent<HTMLFormElement>) => void;
+	onChangeHandler?: (event: ChangeEvent<HTMLInputElement>) => void;
+	onIconClickHandler?: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-// TODO: Add searching
 const SearchBar = ({ placeholder = "Search", onChangeHandler, onIconClickHandler }: ISearchBarProps) => {
 	return (
 		<StyledSearchBar>
