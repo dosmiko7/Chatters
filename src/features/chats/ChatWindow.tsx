@@ -31,7 +31,7 @@ const ChatWindow = ({
 	const bottomRef = useRef<null | HTMLDivElement>(null);
 
 	const themeObject = themes.find((obj) => obj.theme === `${setTheme}`);
-	const fontColor = themeObject?.fontColor || "#fff";
+	const fontColor = themeObject?.fontColor || "var(--color-white-100)";
 
 	useLayoutEffect(() => {
 		const scrollElement = () => {

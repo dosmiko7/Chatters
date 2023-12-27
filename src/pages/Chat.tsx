@@ -15,12 +15,12 @@ export interface IChatStateProps {
 }
 
 const Chat = () => {
-	const { data: user } = useLoggedUser();
+	const { loggedUser } = useLoggedUser();
 	const location = useLocation();
 	const { combinedId } = useParams();
 
-	if (user) {
-		if (!combinedId?.includes(user.uid)) {
+	if (loggedUser) {
+		if (!combinedId?.includes(loggedUser.uid)) {
 			<Empty
 				message="Access denied"
 				icon={<BiArrowBack />}

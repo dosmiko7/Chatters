@@ -6,11 +6,11 @@ import useLoggedUser from "./useLoggedUser";
 import { deleteAccount } from "../../services/auth/authApi";
 
 const useDeleteAccount = () => {
-	const { data } = useLoggedUser();
+	const { loggedUser } = useLoggedUser();
 	const navigate = useNavigate();
 
 	const { mutate: deleteUser, status } = useMutation({
-		mutationFn: () => deleteAccount({ user: data }),
+		mutationFn: () => deleteAccount({ user: loggedUser }),
 
 		onSuccess: () => {
 			toast.success("We have deleted your account successfully");

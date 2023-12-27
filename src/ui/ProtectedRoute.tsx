@@ -16,16 +16,16 @@ const FullPage = styled.div`
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 	const navigate = useNavigate();
-	const { data: userData, isLoading, isError } = useLoggedUser();
+	const { loggedUser, isLoading, isError } = useLoggedUser();
 
 	useEffect(() => {
-		if (!userData || isError) {
+		if (!loggedUser || isError) {
 			navigate("/login");
-		} else if (!userData.emailVerified) {
+		} else if (!loggedUser.emailVerified) {
 			navigate("/login");
 			toast.error("Please confirm your email address");
 		}
-	}, [userData, navigate, isError]);
+	}, [loggedUser, navigate, isError]);
 
 	if (isLoading) {
 		<FullPage>
@@ -33,7 +33,7 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 		</FullPage>;
 	}
 
-	if (userData?.emailVerified) return <>{children}</>;
+	if (loggedUser?.emailVerified) return <>{children}</>;
 };
 
 export default ProtectedRoute;
