@@ -1,9 +1,9 @@
-import { Suspense, useContext, useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useLoggedUser from "../../../context/useLoggedUser";
 import useChatsList, { IChatsListElement } from "./useChatsList";
-import { ChatsSearchContext } from "../../../context/ChatsSearchContext";
+import useChatsSearch from "../../../context/useChatsSearch";
 import getCombinedId from "../../../utils/getCombinedId";
 import ErrorMessage from "../../../ui/ErrorMessage";
 import List from "../../../ui/List";
@@ -13,7 +13,7 @@ import ThreeDots from "../../../ui/ThreeDots";
 const ChatsList = () => {
 	const navigate = useNavigate();
 	const { chats, error } = useChatsList();
-	const { searchValue } = useContext(ChatsSearchContext);
+	const { searchValue } = useChatsSearch();
 	const { loggedUser } = useLoggedUser();
 	const filteredChats = useMemo(
 		() =>
