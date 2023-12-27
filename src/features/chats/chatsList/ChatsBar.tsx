@@ -15,7 +15,6 @@ const StyledChatsBar = styled(Container)`
 	background-color: var(--color-primary-300);
 `;
 
-//TODO: SearchBar should let display friends which nicknames contain input
 const ChatsBar = () => {
 	return (
 		<ChatsSearchProvider>

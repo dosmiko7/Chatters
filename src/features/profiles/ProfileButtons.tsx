@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import useLoggedUser from "../../context/useLoggedUser";
 import { IDocumentData } from "../../services/firestore/userApi";
 import { flexRow } from "../../style/Templates";
 import formatDate from "../../utils/formatDate";
@@ -13,13 +14,12 @@ const StyledButtons = styled.div`
 	${flexRow};
 	gap: 1rem;
 `;
-// TODO: Change to dynamic logged user id
 const ProfileButtons = ({ profileData }: { profileData: IDocumentData }) => {
 	const { nickname, avatar, lastLoggedIn, lastLoggedOut, friends_list } = profileData.data;
-	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
+	const { loggedUser } = useLoggedUser();
 	const { userId: profileId } = useParams();
 
-	if (loggedUserId === undefined || profileId === undefined) return null;
+	if (loggedUser?.uid === undefined || profileId === undefined) return null;
 
 	const chatData = {
 		nickname,
@@ -27,18 +27,19 @@ const ProfileButtons = ({ profileData }: { profileData: IDocumentData }) => {
 		isActive: lastLoggedIn > lastLoggedOut,
 		lastSeen: formatDate(lastLoggedOut),
 		friendId: profileId,
-		userId: loggedUserId,
+		userId: loggedUser.uid,
 	};
 
-	const isFriend = friends_list.some((friend) => friend.id === loggedUserId);
-	const isLoggedUserProfile = loggedUserId === profileId;
+	const isFriend = friends_list.some((friend) => friend.id === loggedUser.uid);
+	const isLoggedUserProfile = loggedUser.uid === profileId;
 
+	// TODO: ProfileFormModal pass profileData
 	return (
 		<StyledButtons>
 			<ProfileFormModal isLoggedUserProfile={isLoggedUserProfile} />
 			<ProfileButtonFriend
 				isFriend={isFriend}
-				loggedUserId={loggedUserId}
+				loggedUserId={loggedUser.uid}
 				profileId={profileId}
 			/>
 			<ProfileButtonMessage

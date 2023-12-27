@@ -17,7 +17,6 @@ export const uploadBackground = async ({
 	await uploadBytes(backgroundRef, backgroundFile, { contentType: backgroundFile.type });
 };
 
-// TODO: Change for one method?
 export const uploadChatFile = async ({
 	chatId,
 	fileName,

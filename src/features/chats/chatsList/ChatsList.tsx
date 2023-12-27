@@ -1,6 +1,7 @@
 import { Suspense, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
+import useLoggedUser from "../../../context/useLoggedUser";
 import useChatsList, { IChatsListElement } from "./useChatsList";
 import { ChatsSearchContext } from "../../../context/ChatsSearchContext";
 import getCombinedId from "../../../utils/getCombinedId";
@@ -9,13 +10,11 @@ import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
 import ThreeDots from "../../../ui/ThreeDots";
 
-// TODO: Change for dynamic currentId
 const ChatsList = () => {
 	const navigate = useNavigate();
 	const { chats, error } = useChatsList();
 	const { searchValue } = useContext(ChatsSearchContext);
-	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
-
+	const { loggedUser } = useLoggedUser();
 	const filteredChats = useMemo(
 		() =>
 			chats
@@ -24,13 +23,13 @@ const ChatsList = () => {
 		[chats, searchValue]
 	);
 
-	if (error) return <ErrorMessage>Something went wrong.</ErrorMessage>;
+	if (error || !loggedUser) return <ErrorMessage>Something went wrong.</ErrorMessage>;
 	return (
 		<Suspense fallback={<ThreeDots />}>
 			<List<IChatsListElement>
 				data={filteredChats}
 				render={(friend: IChatsListElement) => {
-					const combinedId = getCombinedId(loggedUserId, friend.userId);
+					const combinedId = getCombinedId(loggedUser?.uid, friend.userId);
 					return (
 						<ChatsListElement
 							key={friend.userId}
@@ -41,7 +40,7 @@ const ChatsList = () => {
 										avatar: friend.avatar,
 										isActive: friend.isActive,
 										friendId: friend.userId,
-										userId: loggedUserId,
+										userId: loggedUser.uid,
 										lastSeen: friend.lastSeen,
 									},
 								})

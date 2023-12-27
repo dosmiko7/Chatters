@@ -40,10 +40,11 @@ export const updateChatsMessages = async ({
 	input,
 }: {
 	chatId: string | undefined;
-	senderId: string;
+	senderId: string | undefined;
 	input: FileList | string | TypeMessage;
 }) => {
-	if (chatId === undefined) throw new Error("updateChatsMessages: There is no chatId to update");
+	if (chatId === undefined || senderId === undefined)
+		throw new Error("updateChatsMessages: There is no chatId to update");
 	const chatRef = doc(firestore, "chats", chatId);
 
 	const { newMessage, userChatMessage } = await createNewMessage({ chatId, input, senderId });

@@ -20,16 +20,13 @@ const LoggedUserProvider = ({ children }: { children: ReactNode }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		console.log("hello");
 		const unsub = onAuthStateChanged(auth, (user) => {
 			if (user) {
-				console.log(user);
 				setLoggedUser(user);
 				setIsLoading(false);
 			} else {
 				setLoggedUser(null);
 			}
-			console.log("Auth state changed");
 		});
 		return () => unsub();
 	}, []);

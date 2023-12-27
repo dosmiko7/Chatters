@@ -1,7 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 
-import useLoggedUser from "../features/authentication/useLoggedUser";
+import useLoggedUser from "../context/useLoggedUser";
 import ChatDetail from "../features/chats/ChatDetail";
 import Empty from "../ui/Empty";
 

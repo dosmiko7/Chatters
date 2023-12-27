@@ -9,7 +9,6 @@ const LogoutButton = styled(Button)`
 	${displayInfo({ message: "Logout", position: "right" })}
 `;
 
-// TODO: Add logout logic
 const Logout = () => {
 	const { signOut, status } = useSignOut();
 

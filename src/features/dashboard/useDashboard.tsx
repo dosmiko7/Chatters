@@ -15,7 +15,6 @@ const INITIAL_PAGE_PARAM: IInitialProps = {
 	pagination: 1,
 };
 
-// TODO: Change options to dynamic ones
 const useDashboard = () => {
 	const { options } = useContext(DashboardOptionsContext);
 

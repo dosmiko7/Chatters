@@ -54,12 +54,11 @@ export interface IProfileFormInput
 		IProfileFormSocials,
 		IProfileFormDescription {}
 
-// TODO: Get profile's (so current, cuz other way we should not edit profile) userID from Query
 const ProfileForm = () => {
 	const methods = useForm<IProfileFormInput>({ mode: "all" });
-	const { handleSubmit, reset, watch } = methods;
-
 	const { submit, status } = useProfileFormSubmit();
+
+	const { handleSubmit, reset, watch } = methods;
 
 	const avatarWatch = watch("avatar");
 	const backgroundWatch = watch("background");

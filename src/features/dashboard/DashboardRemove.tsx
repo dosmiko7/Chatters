@@ -2,6 +2,7 @@ import { BiSolidTrash } from "react-icons/bi";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
+import useLoggedUser from "../../context/useLoggedUser";
 import useDeletePost from "./useDeletePost";
 import { displayInfo } from "../../style/Templates";
 import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
@@ -17,11 +18,10 @@ const RemoveButton = styled(Button)`
 
 const MESSAGE = "Are you sure you want to delete this post?";
 
-//TODO: Change to dynamic loggedUserId
 const DashboardRemove = ({ postCreatorId, postId }: { postCreatorId: string; postId: string }) => {
 	const { deletePost, status } = useDeletePost();
-	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
-	if (postCreatorId !== loggedUserId) return null;
+	const { loggedUser } = useLoggedUser();
+	if (postCreatorId !== loggedUser?.uid) return null;
 
 	const onRemoveHandler = () => {
 		toast(

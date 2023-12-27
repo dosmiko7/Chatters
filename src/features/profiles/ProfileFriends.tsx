@@ -13,7 +13,6 @@ const StyledProfileFriends = styled.div`
 	overflow: scroll;
 `;
 
-// TODO: Make an error UI element for every component where error can occury
 const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
 	const { nickname, friends_list } = profileData.data;
 

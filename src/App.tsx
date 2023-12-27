@@ -17,6 +17,7 @@ import Chat from "./pages/Chat";
 import Chats from "./features/chats/Chats";
 import PageNotFound from "./pages/PageNotFound";
 import Settings from "./pages/Settings";
+import LoggedUserProvider from "./context/LoggedUserContext";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -35,63 +36,65 @@ const App = () => {
 					buttonPosition="bottom-left"
 				/>
 				<GlobalStyles />
-				<BrowserRouter>
-					<Routes>
-						<Route
-							element={
-								<ProtectedRoute>
-									<AppLayout />
-								</ProtectedRoute>
-							}
-						>
+				<LoggedUserProvider>
+					<BrowserRouter>
+						<Routes>
 							<Route
-								index
 								element={
-									<Navigate
-										replace
-										to="dashboard"
-									/>
+									<ProtectedRoute>
+										<AppLayout />
+									</ProtectedRoute>
 								}
+							>
+								<Route
+									index
+									element={
+										<Navigate
+											replace
+											to="dashboard"
+										/>
+									}
+								/>
+								<Route
+									path="dashboard"
+									element={<Dashboard />}
+								/>
+								<Route
+									path="settings"
+									element={<Settings />}
+								/>
+								<Route
+									path="profile"
+									element={<Profiles />}
+								/>
+								<Route
+									path="profile/:userId"
+									element={<Profile />}
+								/>
+								<Route
+									path="chat"
+									element={<Chats />}
+								/>
+								<Route
+									path="chat/:combinedId"
+									element={<Chat />}
+								/>
+							</Route>
+							<Route
+								path="login"
+								element={<Login />}
 							/>
 							<Route
-								path="dashboard"
-								element={<Dashboard />}
+								path="register"
+								element={<Register />}
 							/>
 							<Route
-								path="settings"
-								element={<Settings />}
+								path="*"
+								element={<PageNotFound />}
 							/>
-							<Route
-								path="profile"
-								element={<Profiles />}
-							/>
-							<Route
-								path="profile/:userId"
-								element={<Profile />}
-							/>
-							<Route
-								path="chat"
-								element={<Chats />}
-							/>
-							<Route
-								path="chat/:combinedId"
-								element={<Chat />}
-							/>
-						</Route>
-						<Route
-							path="login"
-							element={<Login />}
-						/>
-						<Route
-							path="register"
-							element={<Register />}
-						/>
-						<Route
-							path="*"
-							element={<PageNotFound />}
-						/>
-					</Routes>
-				</BrowserRouter>
+						</Routes>
+					</BrowserRouter>
+				</LoggedUserProvider>
 				<Toaster
 					position="top-center"
 					gutter={12}

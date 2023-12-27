@@ -2,16 +2,16 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
+import useLoggedUser from "../../../context/useLoggedUser";
 import { deleteChats } from "../../../services/firestore/chatsApi";
 
-// TODO: Change for dynamic currentloggeduserId
 const useDeleteChat = () => {
 	const navigate = useNavigate();
 	const { combinedId } = useParams();
-	const loggedUserId = "ivKwYDsLxLkM34cMKDdw";
+	const { loggedUser } = useLoggedUser();
 
 	const { mutateAsync: deleteChat, status } = useMutation({
-		mutationFn: () => deleteChats({ userId: loggedUserId, chatId: combinedId }),
+		mutationFn: () => deleteChats({ userId: loggedUser?.uid, chatId: combinedId }),
 
 		onSuccess: () => {
 			navigate("/chat");

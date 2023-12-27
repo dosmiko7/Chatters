@@ -8,8 +8,6 @@ import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
 
 const MESSAGE = "Removing a user from your friends list will also delete all messages with that user.";
 
-// TODO: Logic for adding friends
-// TODO: Change fixed loggedUserId to dynamic one
 const ProfileButtonFriend = ({
 	isFriend,
 	loggedUserId,

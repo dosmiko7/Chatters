@@ -20,7 +20,6 @@ const nameValidation = {
 	maxLength: { value: 20, message: "No more than 20 characters" },
 };
 
-// TODO: Make an error/warning element
 const ProfileFormPersonals = () => {
 	const { register, formState } = useFormContext();
 	const personalErrors = formState.errors.personals;

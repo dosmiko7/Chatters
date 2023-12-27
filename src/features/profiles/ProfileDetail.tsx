@@ -13,8 +13,6 @@ const StyledProfile = styled.div`
 	height: 100%;
 `;
 
-// TODO: Add Pen button to edit information if it is our own profile
-// TODO: Add contact button (disabled/non seen if it is our profile)
 const ProfileDetail = () => {
 	const { profileData, status } = useProfile();
 

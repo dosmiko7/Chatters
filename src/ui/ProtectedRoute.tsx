@@ -3,8 +3,8 @@ import { useEffect, ReactNode } from "react";
 import { toast } from "react-hot-toast";
 import styled from "styled-components";
 
-import useLoggedUser from "../features/authentication/useLoggedUser";
 import Spinner from "./Spinner";
+import useLoggedUser from "../context/useLoggedUser";
 
 const FullPage = styled.div`
 	height: 100vh;
@@ -16,16 +16,17 @@ const FullPage = styled.div`
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 	const navigate = useNavigate();
-	const { loggedUser, isLoading, isError } = useLoggedUser();
+	const { loggedUser, isLoading } = useLoggedUser();
 
 	useEffect(() => {
-		if (!loggedUser || isError) {
+		if (!loggedUser) {
 			navigate("/login");
+			toast.error("Please log in to continue");
 		} else if (!loggedUser.emailVerified) {
 			navigate("/login");
 			toast.error("Please confirm your email address");
 		}
-	}, [loggedUser, navigate, isError]);
+	}, [loggedUser, navigate]);
 
 	if (isLoading) {
 		<FullPage>
@@ -33,7 +34,7 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 		</FullPage>;
 	}
 
-	if (loggedUser?.emailVerified) return <>{children}</>;
+	return <>{children}</>;
 };
 
 export default ProtectedRoute;
