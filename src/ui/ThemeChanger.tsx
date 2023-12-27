@@ -1,8 +1,7 @@
-import { useContext } from "react";
 import styled from "styled-components";
 import { FaMoon, FaSun } from "react-icons/fa6";
 
-import { DarkThemeContext } from "../context/DarkThemeContext";
+import useDarkTheme from "../context/useDatkTheme";
 import { displayInfo } from "../style/Templates";
 import Button from "./Button";
 
@@ -11,7 +10,7 @@ const StyledThemeChanger = styled(Button)`
 `;
 
 const ThemeChanger = () => {
-	const { isDarkTheme, toggleDarkTheme } = useContext(DarkThemeContext);
+	const { isDarkTheme, toggleDarkTheme } = useDarkTheme();
 
 	let symbol;
 	if (isDarkTheme) symbol = <FaMoon />;
