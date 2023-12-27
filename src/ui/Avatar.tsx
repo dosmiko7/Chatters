@@ -21,11 +21,6 @@ const StyledAvatar = styled.div<IStyledAvatarProps>`
 	}
 `;
 
-const Image = styled(LazyLoadImage)`
-	max-width: 100%;
-	object-fit: contain;
-`;
-
 interface IAvatar {
 	size: string;
 	square?: boolean;
@@ -42,10 +37,11 @@ const Avatar = (props: IAvatar) => {
 			square={square}
 			onClick={onClick}
 		>
-			<Image
+			<LazyLoadImage
 				src={src || "avatar-default.png"}
 				alt="Avatar"
 				effect="blur"
+				style={{ width: `${size}`, height: `${size}` }}
 			/>
 		</StyledAvatar>
 	);
