@@ -4,7 +4,6 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import { ISignProps, signIn } from "../../services/auth/authApi";
-import { updateUserTimestamp } from "../../services/firestore/userApi";
 
 const useLogin = () => {
 	const queryClient = useQueryClient();
@@ -15,7 +14,6 @@ const useLogin = () => {
 
 		onSuccess: (user: User | null) => {
 			queryClient.setQueryData(["loggedUser"], user);
-			updateUserTimestamp({ mode: "login", userId: user?.uid });
 			navigate("/dashboard", { replace: true });
 		},
 

@@ -8,6 +8,7 @@ import {
 	sendEmailVerification,
 	sendPasswordResetEmail,
 	deleteUser,
+	getAdditionalUserInfo,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -42,7 +43,10 @@ export const signInWithGoogle = async () => {
 
 	try {
 		const result = await signInWithPopup(auth, provider);
-		return result.user;
+		const additionalUserInfo = getAdditionalUserInfo(result);
+		const isNewUser = additionalUserInfo?.isNewUser;
+
+		return { user: result.user, isNewUser };
 	} catch {
 		throw new Error("signInWithGoogle: Failed to login");
 	}
