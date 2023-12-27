@@ -9,6 +9,7 @@ import {
 	sendPasswordResetEmail,
 	deleteUser,
 	getAdditionalUserInfo,
+	updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -89,6 +90,12 @@ export const deleteAccount = async ({ user }: { user: User | null | undefined })
 	}
 };
 
-export const getCurrentUser = async () => {
-	return auth.currentUser;
+export const updateUserProfile = async ({ displayName, photoURL }: { displayName?: string; photoURL?: string }) => {
+	if (!auth.currentUser) throw new Error("updateUser: There is no user to update");
+
+	try {
+		updateProfile(auth.currentUser, { displayName, photoURL });
+	} catch {
+		throw new Error("updateUser: User update failed");
+	}
 };
