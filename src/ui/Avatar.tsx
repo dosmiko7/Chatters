@@ -24,7 +24,7 @@ const StyledAvatar = styled.div<IStyledAvatarProps>`
 interface IAvatar {
 	size: string;
 	square?: boolean;
-	src?: string;
+	src?: string | null;
 	onClick?: () => void;
 }
 

@@ -17,6 +17,7 @@ const ProfileLoggedUser = () => {
 		<StyledWrapper>
 			<Avatar
 				size="4rem"
+				src={loggedUser?.photoURL}
 				onClick={() => navigate(`profile/${loggedUser?.uid}`)}
 			/>
 		</StyledWrapper>
