@@ -22,11 +22,10 @@ const Edit = styled.span`
 	color: var(--color-white-100);
 `;
 
-const ProfileFormBackground = (props: { watcher: FileList | null; validation: (value: FileList) => true | string }) => {
-	const { watcher, validation } = props;
-
-	const { register, formState } = useFormContext();
-	const { imgSrc: backgroundSrc } = useFilePreview(watcher);
+const ProfileFormBackground = ({ validation }: { validation: (value: FileList) => true | string }) => {
+	const { register, formState, watch } = useFormContext();
+	const backgroundWatcher = watch("background");
+	const { imgSrc: backgroundSrc } = useFilePreview(backgroundWatcher);
 
 	// TODO: Instead default values get values from server
 	const currentBackgroundSrc = backgroundSrc || "/background-default.jpg";

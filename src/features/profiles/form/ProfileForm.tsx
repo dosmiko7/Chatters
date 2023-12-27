@@ -58,10 +58,7 @@ const ProfileForm = () => {
 	const methods = useForm<IProfileFormInput>({ mode: "all" });
 	const { submit, status } = useProfileFormSubmit();
 
-	const { handleSubmit, reset, watch } = methods;
-
-	const avatarWatch = watch("avatar");
-	const backgroundWatch = watch("background");
+	const { handleSubmit, reset } = methods;
 
 	const onSubmit: SubmitHandler<IProfileFormInput> = (input: IProfileFormInput) => {
 		const avatarData = input.avatar?.length ? input.avatar : null;
@@ -75,10 +72,7 @@ const ProfileForm = () => {
 	return (
 		<FormProvider {...methods}>
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<ProfileFormImages
-					avatarWatcher={avatarWatch}
-					backgroundWatcher={backgroundWatch}
-				/>
+				<ProfileFormImages />
 				<ProfileFormPersonals />
 				<ProfileFormSocials />
 				<ProfileFormDescription />

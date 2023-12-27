@@ -9,10 +9,6 @@ const StyledImages = styled.div`
 	${flexRow}
 	justify-content: space-between;
 `;
-interface IProfileFormImagesProps {
-	avatarWatcher: FileList | null;
-	backgroundWatcher: FileList | null;
-}
 
 const fileValidation = (value: FileList | null) => {
 	if (value?.length) {
@@ -32,19 +28,11 @@ const fileValidation = (value: FileList | null) => {
 	return true;
 };
 
-const ProfileFormImages = (props: IProfileFormImagesProps) => {
-	const { avatarWatcher, backgroundWatcher } = props;
-
+const ProfileFormImages = () => {
 	return (
 		<StyledImages>
-			<ProfileFormAvatar
-				watcher={avatarWatcher}
-				validation={fileValidation}
-			/>
-			<ProfileFormBackground
-				watcher={backgroundWatcher}
-				validation={fileValidation}
-			/>
+			<ProfileFormAvatar validation={fileValidation} />
+			<ProfileFormBackground validation={fileValidation} />
 		</StyledImages>
 	);
 };

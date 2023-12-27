@@ -21,11 +21,10 @@ const Edit = styled.span`
 	color: var(--color-white-100);
 `;
 
-const ProfileFormAvatar = (props: { watcher: FileList | null; validation: (value: FileList) => true | string }) => {
-	const { watcher, validation } = props;
-
-	const { register, formState } = useFormContext();
-	const { imgSrc: avatarSrc } = useFilePreview(watcher);
+const ProfileFormAvatar = ({ validation }: { validation: (value: FileList) => true | string }) => {
+	const { register, formState, watch } = useFormContext();
+	const avatarWatcher = watch("avatar");
+	const { imgSrc: avatarSrc } = useFilePreview(avatarWatcher);
 
 	// TODO: Instead default values get values from server
 	const currentAvatarSrc = avatarSrc || "/avatar-default.png";
