@@ -46,7 +46,7 @@ const ProfileForm = () => {
 	const methods = useForm<IProfileFormInput>({ mode: "all" });
 	const { submit, status } = useProfileFormSubmit();
 
-	const { handleSubmit, reset } = methods;
+	const { handleSubmit } = methods;
 
 	const onSubmit: SubmitHandler<IProfileFormInput> = (input: IProfileFormInput) => {
 		const avatarData = input.avatar?.length ? input.avatar : null;
@@ -64,7 +64,7 @@ const ProfileForm = () => {
 				<ProfileFormPersonals />
 				<ProfileFormSocials />
 				<ProfileFormDescription />
-				<ProfileFormButtons reset={reset} />
+				<ProfileFormButtons />
 				<ProfileFormStatus status={status} />
 			</Form>
 		</FormProvider>

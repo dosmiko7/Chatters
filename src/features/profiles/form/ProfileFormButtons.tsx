@@ -1,4 +1,4 @@
-import { FieldValues, UseFormReset } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import { flexRow } from "../../../style/Templates";
@@ -14,12 +14,8 @@ const StyledButtons = styled.div`
 	}
 `;
 
-interface IProfileFormButtonProps<T extends FieldValues> {
-	reset: UseFormReset<T>;
-}
-
-const ProfileFormButtons = <T extends FieldValues>(props: IProfileFormButtonProps<T>) => {
-	const { reset } = props;
+const ProfileFormButtons = () => {
+	const { reset } = useFormContext();
 
 	return (
 		<StyledButtons>
