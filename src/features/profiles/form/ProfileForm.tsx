@@ -42,7 +42,7 @@ export interface IProfileFormInput
 		IProfileFormSocials,
 		IProfileFormDescription {}
 
-const ProfileForm = () => {
+const ProfileForm = ({ images }: { images: { avatar: string; background: string } }) => {
 	const methods = useForm<IProfileFormInput>({ mode: "all" });
 	const { submit, status } = useProfileFormSubmit();
 
@@ -60,7 +60,7 @@ const ProfileForm = () => {
 	return (
 		<FormProvider {...methods}>
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<ProfileFormImages />
+				<ProfileFormImages images={images} />
 				<ProfileFormPersonals />
 				<ProfileFormSocials />
 				<ProfileFormDescription />

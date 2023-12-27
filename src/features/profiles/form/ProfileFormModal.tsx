@@ -4,23 +4,21 @@ import Modal from "../../../ui/Modal";
 import ProfileForm from "./ProfileForm";
 import ButtonProfile from "../../../ui/ButtonProfile";
 
-const ProfileFormModal = ({ isLoggedUserProfile }: { isLoggedUserProfile: boolean }) => {
+const ProfileFormModal = ({ images }: { images: { avatar: string; background: string } }) => {
 	return (
 		<Modal>
-			{isLoggedUserProfile && (
-				<Modal.Open opens="profileForm">
-					<ButtonProfile>
-						<BiPencil style={{ fontSize: "2.4rem" }} />
-						<span>Edit profile</span>
-					</ButtonProfile>
-				</Modal.Open>
-			)}
+			<Modal.Open opens="profileForm">
+				<ButtonProfile>
+					<BiPencil style={{ fontSize: "2.4rem" }} />
+					<span>Edit profile</span>
+				</ButtonProfile>
+			</Modal.Open>
 
 			<Modal.Window
 				name="profileForm"
 				height="fill-content"
 			>
-				<ProfileForm />
+				<ProfileForm images={images} />
 			</Modal.Window>
 		</Modal>
 	);

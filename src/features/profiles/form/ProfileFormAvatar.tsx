@@ -21,13 +21,18 @@ const Edit = styled.span`
 	color: var(--color-white-100);
 `;
 
-const ProfileFormAvatar = ({ validation }: { validation: (value: FileList) => true | string }) => {
+const ProfileFormAvatar = ({
+	avatar,
+	validation,
+}: {
+	avatar: string;
+	validation: (value: FileList) => true | string;
+}) => {
 	const { register, formState, watch } = useFormContext();
 	const avatarWatcher = watch("avatar");
 	const { imgSrc: avatarSrc } = useFilePreview(avatarWatcher);
 
-	// TODO: Instead default values get values from server
-	const currentAvatarSrc = avatarSrc || "/avatar-default.png";
+	const currentAvatarSrc = avatarSrc || avatar || "/avatar-default.png";
 
 	return (
 		<div>

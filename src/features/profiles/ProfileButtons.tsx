@@ -15,7 +15,7 @@ const StyledButtons = styled.div`
 	gap: 1rem;
 `;
 const ProfileButtons = ({ profileData }: { profileData: IDocumentData }) => {
-	const { nickname, avatar, lastLoggedIn, lastLoggedOut, friends_list } = profileData.data;
+	const { nickname, avatar, background, lastLoggedIn, lastLoggedOut, friends_list } = profileData.data;
 	const { loggedUser } = useLoggedUser();
 	const { userId: profileId } = useParams();
 
@@ -33,10 +33,9 @@ const ProfileButtons = ({ profileData }: { profileData: IDocumentData }) => {
 	const isFriend = friends_list.some((friend) => friend.id === loggedUser.uid);
 	const isLoggedUserProfile = loggedUser.uid === profileId;
 
-	// TODO: ProfileFormModal pass profileData
 	return (
 		<StyledButtons>
-			<ProfileFormModal isLoggedUserProfile={isLoggedUserProfile} />
+			{isLoggedUserProfile && <ProfileFormModal images={{ avatar, background }} />}
 			<ProfileButtonFriend
 				isFriend={isFriend}
 				loggedUserId={loggedUser.uid}

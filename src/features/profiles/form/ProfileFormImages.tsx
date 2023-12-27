@@ -28,11 +28,19 @@ const fileValidation = (value: FileList | null) => {
 	return true;
 };
 
-const ProfileFormImages = () => {
+const ProfileFormImages = ({ images }: { images: { avatar: string; background: string } }) => {
+	const { avatar, background } = images;
+
 	return (
 		<StyledImages>
-			<ProfileFormAvatar validation={fileValidation} />
-			<ProfileFormBackground validation={fileValidation} />
+			<ProfileFormAvatar
+				avatar={avatar}
+				validation={fileValidation}
+			/>
+			<ProfileFormBackground
+				background={background}
+				validation={fileValidation}
+			/>
 		</StyledImages>
 	);
 };
