@@ -21,6 +21,7 @@ import { getFileURL, uploadAvatar, uploadBackground } from "../storage/storageAp
 import { IProfileFormInput } from "../../features/profiles/form/ProfileForm";
 import formatSubmit from "../../utils/formatSubmit";
 import getCombinedId from "../../utils/getCombinedId";
+import { updateUserProfile } from "../auth/authApi";
 
 export interface IUserChat {
 	userId: string;
@@ -128,6 +129,7 @@ export const updateUserInfo = async ({
 	if (input.avatar) {
 		await uploadAvatar({ avatarFile: input.avatar[0], userId });
 		avatarUrl = await getFileURL(`avatars/avatar_${userId}.png`);
+		await updateUserProfile({ photoURL: avatarUrl });
 	}
 
 	let backgroundUrl: string = "";
