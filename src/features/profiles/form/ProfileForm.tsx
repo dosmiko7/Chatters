@@ -1,25 +1,13 @@
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
-import styled from "styled-components";
-import { FaCheck, FaCircleXmark } from "react-icons/fa6";
 
 import useProfileFormSubmit from "./useProfileFormSubmit";
-import { flexCentered } from "../../../style/Templates";
 import Form from "../../../ui/Form";
 import ProfileFormPersonals from "./ProfileFormPersonals";
 import ProfileFormSocials from "./ProfileFormSocials";
 import ProfileFormDescription from "./ProfileFormDescription";
 import ProfileFormImages from "./ProfileFormImages";
 import ProfileFormButtons from "./ProfileFormButtons";
-import ThreeDots from "../../../ui/ThreeDots";
-
-const StatusContainer = styled.div`
-	position: absolute;
-	${flexCentered}
-	bottom: 0;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 2.2rem;
-`;
+import ProfileFormStatus from "./ProfileFormStatus";
 
 interface IProfileFormImages {
 	avatar: FileList | null;
@@ -77,11 +65,7 @@ const ProfileForm = () => {
 				<ProfileFormSocials />
 				<ProfileFormDescription />
 				<ProfileFormButtons reset={reset} />
-				<StatusContainer>
-					{status === "success" && <FaCheck style={{ color: "var(--color-green-100)" }} />}
-					{status === "pending" && <ThreeDots />}
-					{status === "error" && <FaCircleXmark style={{ color: "var(--color-red-100)" }} />}
-				</StatusContainer>
+				<ProfileFormStatus status={status} />
 			</Form>
 		</FormProvider>
 	);
