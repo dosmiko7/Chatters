@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { SocialIcon } from "react-social-icons";
 
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
+import Social from "../../ui/Social";
 
 const StyledSocials = styled.div`
 	${flexRow}
@@ -12,31 +12,6 @@ const StyledSocials = styled.div`
 
 const StyledProfileSocials = styled.div`
 	${flexColumn}
-`;
-
-const Social = styled.div`
-	position: relative;
-
-	&::before {
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 0;
-		width: 0;
-		height: 0;
-		transform: translate(-5%, -5%);
-		border-radius: var(--border-radius-circle);
-		background-color: var(--color-secondary-100);
-		transition: var(--transition-all-3);
-	}
-
-	&:hover {
-		&::before {
-			height: 110%;
-			width: 110%;
-			top: 0;
-		}
-	}
 `;
 
 interface ISocials {
@@ -54,37 +29,25 @@ const ProfileSocials = ({ socials }: ISocials) => {
 	const hasSocials = (
 		<StyledSocials>
 			{linkedin && (
-				<Social>
-					<SocialIcon
-						network="linkedin"
-						style={{ height: 40, width: 40 }}
-						label="Linkedin"
-						href={linkedin}
-						target="_blank"
-					/>
-				</Social>
+				<Social
+					network="linkedin"
+					label="Linkedin"
+					href={linkedin}
+				/>
 			)}
 			{github && (
-				<Social>
-					<SocialIcon
-						network="github"
-						style={{ height: 40, width: 40 }}
-						label="GitHub"
-						href={github}
-						target="_blank"
-					/>
-				</Social>
+				<Social
+					network="github"
+					label="GitHub"
+					href={github}
+				/>
 			)}
 			{twitter && (
-				<Social>
-					<SocialIcon
-						network="x"
-						style={{ height: 40, width: 40 }}
-						label="X"
-						href={twitter}
-						target="_blank"
-					/>
-				</Social>
+				<Social
+					network="x"
+					label="X"
+					href={twitter}
+				/>
 			)}
 		</StyledSocials>
 	);
