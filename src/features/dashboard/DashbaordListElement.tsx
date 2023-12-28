@@ -9,7 +9,7 @@ import Paragraph from "../../ui/Paragraph";
 import DashboardListAttachment from "./DashboardListAttachment";
 import DashboardRemove from "./DashboardRemove";
 
-const Post = styled.div`
+const Post = styled.article`
 	position: relative;
 	border-radius: var(--border-radius-md);
 	background-color: var(--color-primary-300);

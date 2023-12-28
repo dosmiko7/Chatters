@@ -25,7 +25,7 @@ const Box = styled.div`
 
 const Sidebar = () => {
 	return (
-		<StyledSidebar>
+		<StyledSidebar as="aside">
 			<Box>
 				<Logo />
 				<ProfileSearches />

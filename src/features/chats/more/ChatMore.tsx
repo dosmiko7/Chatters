@@ -46,7 +46,7 @@ const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) =>
 	const activeStatus = isActive ? "🟢 Active now" : `🔴 Last seen ${lastSeen}`;
 
 	return (
-		<StyledChatMoreInfo>
+		<StyledChatMoreInfo as="aside">
 			<CloseButton
 				variant="menu"
 				onClick={handlerClose}
@@ -59,7 +59,7 @@ const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) =>
 					src={avatar}
 				/>
 				<Heading as="h3">{nickname}</Heading>
-				<Heading as="h4">{activeStatus}</Heading>
+				<Heading as="time">{activeStatus}</Heading>
 			</Info>
 			<ChatMoreOptions customizationData={customizationData} />
 		</StyledChatMoreInfo>
