@@ -121,18 +121,19 @@ export const updateUserInfo = async ({
 	input: IProfileFormInput;
 	userId: string | undefined;
 	data: IUserData | undefined;
-}): Promise<IUserData> => {
-	if (!userId || !data) throw new Error("updateUserInfo: There is no user to update");
+}) => {
+	if (!userId) throw new Error("updateUserInfo: There is no user to update");
+	if (!data) data = (await getUser(userId)).data;
 	const userRef = doc(firestore, "users", `${userId}`);
 
-	let avatarUrl: string = "";
+	let avatarUrl: string = data.avatar;
 	if (input.avatar) {
 		await uploadAvatar({ avatarFile: input.avatar[0], userId });
 		avatarUrl = await getFileURL(`avatars/avatar_${userId}.png`);
 		await updateUserProfile({ photoURL: avatarUrl });
 	}
 
-	let backgroundUrl: string = "";
+	let backgroundUrl: string = data.background;
 	if (input.background) {
 		await uploadBackground({ backgroundFile: input.background[0], userId });
 		backgroundUrl = await getFileURL(`backgrounds/background_${userId}.png`);
