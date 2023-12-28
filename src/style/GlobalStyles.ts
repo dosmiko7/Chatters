@@ -42,6 +42,8 @@ const GlobalStyles = createGlobalStyle`
             --color-red-100: #b91c1c;
             --color-red-200: #c74949;
 
+            --logo-color: #f79230;
+
             --font-weight-light: 300;
             --font-weight-regular: 400;
             --font-weight-medium: 500;
