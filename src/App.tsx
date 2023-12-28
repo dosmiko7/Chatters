@@ -6,10 +6,12 @@ import { Toaster } from "react-hot-toast";
 import GlobalStyles from "./style/GlobalStyles";
 
 import DarkThemeProvider from "./context/DarkThemeContext";
+import LoggedUserProvider from "./context/LoggedUserContext";
+import AppLayout from "./ui/AppLayout";
+import WelcomeLayout from "./ui/WelcomeLayout";
+import ProtectedRoute from "./ui/ProtectedRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProtectedRoute from "./ui/ProtectedRoute";
-import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Profiles from "./features/profiles/Profiles";
@@ -17,7 +19,6 @@ import Chat from "./pages/Chat";
 import Chats from "./features/chats/Chats";
 import PageNotFound from "./pages/PageNotFound";
 import Settings from "./pages/Settings";
-import LoggedUserProvider from "./context/LoggedUserContext";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -80,14 +81,17 @@ const App = () => {
 									element={<Chat />}
 								/>
 							</Route>
-							<Route
-								path="login"
-								element={<Login />}
-							/>
-							<Route
-								path="register"
-								element={<Register />}
-							/>
+							<Route element={<WelcomeLayout />}>
+								<Route
+									index
+									path="login"
+									element={<Login />}
+								/>
+								<Route
+									path="register"
+									element={<Register />}
+								/>
+							</Route>
 							<Route
 								path="*"
 								element={<PageNotFound />}
