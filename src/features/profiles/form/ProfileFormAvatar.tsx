@@ -7,8 +7,8 @@ import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 import HiddenInput from "../../../ui/HiddenInput";
 import ErrorMessage from "../../../ui/ErrorMessage";
 
-const StyledContainer = styled(ContainerImageEditor)`
-	border-radius: var(--border-radius-circle);
+const StyledProfileFormAvatar = styled.div`
+	flex: 1;
 `;
 
 const AvatarPreview = styled.img`
@@ -35,9 +35,9 @@ const ProfileFormAvatar = ({
 	const currentAvatarSrc = avatarSrc || avatar || "/avatar-default.png";
 
 	return (
-		<div>
-			<Heading as="h3">Avatar</Heading>
-			<StyledContainer>
+		<StyledProfileFormAvatar>
+			<Heading as="h3" center>Avatar</Heading>
+			<ContainerImageEditor>
 				<AvatarPreview src={currentAvatarSrc} />
 				<label htmlFor="avatarUpload">
 					<Edit>Edit</Edit>
@@ -49,10 +49,10 @@ const ProfileFormAvatar = ({
 					accept="image/jpeg, image/png"
 					{...register("avatar", { validate: validation })}
 				/>
-			</StyledContainer>
+			</ContainerImageEditor>
 
 			{formState.errors["avatar"] && <ErrorMessage>{get(formState.errors, "avatar").message}</ErrorMessage>}
-		</div>
+		</StyledProfileFormAvatar>
 	);
 };
 

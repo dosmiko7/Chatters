@@ -2,14 +2,13 @@ import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
 import useFilePreview from "../../../hooks/useFilePreview";
-
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
 import HiddenInput from "../../../ui/HiddenInput";
 import ErrorMessage from "../../../ui/ErrorMessage";
 
-const StyledContainer = styled(ContainerImageEditor)`
-	border-radius: var(--border-radius-md);
+const StyledProfileFormBackground = styled.div`
+	flex: 1;
 `;
 
 const BackgroundPreview = styled.img`
@@ -33,13 +32,17 @@ const ProfileFormBackground = ({
 	const backgroundWatcher = watch("background");
 	const { imgSrc: backgroundSrc } = useFilePreview(backgroundWatcher);
 
-	// TODO: Instead default values get values from server
 	const currentBackgroundSrc = backgroundSrc || background || "/background-default.jpg";
 
 	return (
-		<div>
-			<Heading as="h3">Background</Heading>
-			<StyledContainer>
+		<StyledProfileFormBackground>
+			<Heading
+				as="h3"
+				center
+			>
+				Background
+			</Heading>
+			<ContainerImageEditor>
 				<BackgroundPreview src={currentBackgroundSrc} />
 				<label htmlFor="backgroundUpload">
 					<Edit>Edit</Edit>
@@ -51,10 +54,10 @@ const ProfileFormBackground = ({
 					accept="image/jpeg, image/png"
 					{...register("background", { validate: validation })}
 				/>
-			</StyledContainer>
+			</ContainerImageEditor>
 
 			{formState.errors["background"] && <ErrorMessage>{get(formState.errors, "background").message}</ErrorMessage>}
-		</div>
+		</StyledProfileFormBackground>
 	);
 };
 

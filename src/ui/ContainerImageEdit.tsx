@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-import { centeredAbsolute } from "../style/Templates";
+import { centeredAbsolute, flexRow } from "../style/Templates";
 
 const ContainerImageEditor = styled.div`
+	${flexRow};
+	justify-content: center;
 	position: relative;
 	transition: var(--transition-all-3);
 	font-weight: var(--font-weight-medium);
