@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-import { centeredAbsolute } from "../style/Templates";
-
 export const FormWindow = styled.div`
-	${centeredAbsolute}
+	position: relative;
 	padding: var(--padding-md);
 	background-color: var(--color-primary-400);
 	border-radius: var(--border-radius-md);
