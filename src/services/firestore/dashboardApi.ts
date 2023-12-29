@@ -108,7 +108,7 @@ export const addDashboardPost = async ({
 }) => {
 	if (userId === undefined) throw new Error("addDashboardPost: UserId should be defined.");
 
-	const { file, type } = await getFileProps({ input });
+	const { file, type } = await getDashboardFileProps({ userId, input });
 
 	const post: IDashboardDocDataProps = {
 		userId,
@@ -135,11 +135,11 @@ export const removeDashboardPost = async (postId: string) => {
 	}
 };
 
-const getFileProps = async ({ input }: { input: IDashboardFormInput }) => {
+const getDashboardFileProps = async ({ userId, input }: { userId: string; input: IDashboardFormInput }) => {
 	let file: string | undefined;
 	let type: string;
 	if (input.file) {
-		const fileUrl = await uploadDashboardFile({ file: input.file[0] });
+		const fileUrl = await uploadDashboardFile({ userId, file: input.file[0] });
 		file = fileUrl;
 		type = input.file[0].type;
 	} else {
