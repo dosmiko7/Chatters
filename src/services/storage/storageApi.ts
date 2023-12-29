@@ -56,23 +56,23 @@ export const downloadFile = async (filePath: string) => {
 	}
 };
 
-export const removeChatFiles = async ({ chatId }: { chatId: string }) => {
-	const chatFolderRef = ref(storage, `chatFiles/${chatId}`);
+export const removeStorageFolder = async ({ path }: { path: string }) => {
+	const folderRef = ref(storage, path);
 
 	try {
-		const res = await listAll(chatFolderRef);
+		const res = await listAll(folderRef);
 		await Promise.all(res.items.map((fileRef) => deleteObject(fileRef)));
 	} catch {
-		throw new Error("removeChatFiles: removing chat files failed.");
+		throw new Error("removeStorageFolder: removing storage folder failed");
 	}
 };
 
-export const removeUserAvatar = async ({ userId }: { userId: string }) => {
-	const avatarRef = ref(storage, `avatars/avatar_${userId}.png`);
+export const removeStorageFile = async ({ path }: { path: string }) => {
+	const fileRef = ref(storage, path);
 
 	try {
-		await deleteObject(avatarRef);
+		await deleteObject(fileRef);
 	} catch {
-		throw new Error("removeUserAvatar: removing user's avatar failed");
+		throw new Error("removeStorageFile: removing storage file failed");
 	}
 };
