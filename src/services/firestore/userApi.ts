@@ -15,12 +15,10 @@ import {
 	where,
 } from "firebase/firestore";
 
-import { deleteChats } from "./chatsApi";
 import { getFileURL, uploadAvatar, uploadBackground } from "../storage/storageApi";
 
 import { IProfileFormInput } from "../../features/profiles/form/ProfileForm";
 import formatSubmit from "../../utils/formatSubmit";
-import getCombinedId from "../../utils/getCombinedId";
 import { updateUserProfile } from "../auth/authApi";
 
 export interface IUserChat {
@@ -178,54 +176,28 @@ export const getUser = async (userId: string | undefined): Promise<IDocumentData
 	}
 };
 
-export const updateFriendsList = async ({
-	userId,
-	friendId,
+export const updateUserTimestamp = async ({
 	mode,
+	userId,
 }: {
-	userId: string;
-	friendId: string;
-	mode: "add" | "remove";
+	mode: "login" | "logout";
+	userId: string | undefined;
 }) => {
-	const userDocRef = doc(firestore, "users", userId);
-	const friendDocRef = doc(firestore, "users", friendId);
+	if (!userId) throw new Error("updateUserTimestamp: There is no user to update");
+	const userRef = doc(firestore, "users", userId);
 
-	const updateList = async ({
-		documentRef,
-		data,
-		userIdToChange,
-	}: {
-		documentRef: DocumentReference<DocumentData, DocumentData>;
-		data: DocumentData;
-		userIdToChange: string;
-	}) => {
-		try {
-			const friendsList = data.friends_list as IFriendData[];
-			let updatedFriendsList: IFriendData[] = [];
-			if (mode === "add") {
-				const user = await getUser(userIdToChange);
-				const addedUser: IFriendData = {
-					id: userIdToChange,
-					avatar: user.data.avatar,
-					nickname: user.data.nickname,
-				};
-				updatedFriendsList = [addedUser, ...friendsList];
-			}
-			if (mode === "remove") updatedFriendsList = friendsList.filter((friend) => friend.id !== userIdToChange);
-			await updateDoc(documentRef, { friends_list: updatedFriendsList });
-		} catch {
-			throw new Error("updateList: Updating friends list failed.");
+	try {
+		if (mode === "login") {
+			await updateDoc(userRef, {
+				lastLoggedIn: Timestamp.fromDate(new Date()),
+			});
+		} else if (mode === "logout") {
+			await updateDoc(userRef, {
+				lastLoggedOut: Timestamp.fromDate(new Date()),
+			});
 		}
-	};
-
-	const userDocSnap = await getDoc(userDocRef);
-	if (userDocSnap.exists()) {
-		await updateList({ documentRef: userDocRef, data: userDocSnap.data(), userIdToChange: friendId });
-	}
-
-	const friendDocSnap = await getDoc(friendDocRef);
-	if (friendDocSnap.exists()) {
-		await updateList({ documentRef: friendDocRef, data: friendDocSnap.data(), userIdToChange: userId });
+	} catch {
+		throw new Error(`updateUserTimestamp: update timestamp while ${mode} failed`);
 	}
 };
 
@@ -241,35 +213,66 @@ export const friendUpdate = async ({
 	if (userId === undefined || friendId === undefined) throw new Error("friendUpdate: There is no ID for friend update");
 
 	if (mode === "add") {
-		await updateFriendsList({ userId, friendId, mode: "add" });
+		await addFriend({ userId, friendId });
 	} else if (mode === "remove") {
-		await updateFriendsList({ userId, friendId, mode: "remove" });
-		const chatId = getCombinedId(userId, friendId);
-		await deleteChats({ userId, chatId });
+		await removeFriend({ userId, friendId });
 	}
 };
 
-export const updateUserTimestamp = async ({
-	mode,
-	userId,
-}: {
-	mode: "login" | "logout";
-	userId: string | undefined;
-}) => {
-	if (!userId) throw new Error("updateUserTimestamp: There is no user to update");
-	const userRef = doc(firestore, "users", `${userId}`);
+export const removeFriend = async ({ userId, friendId }: { userId: string; friendId: string }) => {
+	const updateFriendsList = async ({
+		docRef,
+		friendIdToRemove,
+	}: {
+		docRef: DocumentReference<DocumentData, DocumentData>;
+		friendIdToRemove: string;
+	}) => {
+		const userDocSnap = await getDoc(docRef);
+		const userData = userDocSnap.data() as IUserData;
+		const friendsList = userData.friends_list;
+		const filteredFriendsList = friendsList.filter((friend) => friend.id !== friendIdToRemove);
+		await updateDoc(docRef, {
+			friends_list: filteredFriendsList,
+		});
+	};
 
-	try {
-		if (mode === "login") {
-			await updateDoc(userRef, {
-				lastLoggedIn: Timestamp.fromDate(new Date()),
-			});
-		} else if (mode === "logout") {
-			await updateDoc(userRef, {
-				lastLoggedOut: Timestamp.fromDate(new Date()),
-			});
-		}
-	} catch {
-		throw new Error(`updateUserTimestamp: update timestamp while ${mode} failed`);
-	}
+	const userDocRef = doc(firestore, "users", userId);
+	const friendDocRef = doc(firestore, "users", friendId);
+
+	await updateFriendsList({ docRef: userDocRef, friendIdToRemove: friendId });
+	await updateFriendsList({ docRef: friendDocRef, friendIdToRemove: userId });
+};
+
+export const addFriend = async ({ userId, friendId }: { userId: string; friendId: string }) => {
+	const updateFriendsList = async ({
+		docRef,
+		friendIdToAdd,
+	}: {
+		docRef: DocumentReference<DocumentData, DocumentData>;
+		friendIdToAdd: string;
+	}) => {
+		const userDocSnap = await getDoc(docRef);
+		const userData = userDocSnap.data() as IUserData;
+		const userFriendsList = userData.friends_list;
+
+		const friendToAdd = await getUser(friendIdToAdd);
+		const updatedFriendsList = [
+			...userFriendsList,
+			{
+				id: friendIdToAdd,
+				avatar: friendToAdd.data.avatar,
+				nickname: friendToAdd.data.nickname,
+			},
+		];
+
+		await updateDoc(docRef, {
+			friends_list: updatedFriendsList,
+		});
+	};
+
+	const userDocRef = doc(firestore, "users", userId);
+	const friendDocRef = doc(firestore, "users", friendId);
+
+	await updateFriendsList({ docRef: userDocRef, friendIdToAdd: friendId });
+	await updateFriendsList({ docRef: friendDocRef, friendIdToAdd: userId });
 };
