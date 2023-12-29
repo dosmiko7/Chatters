@@ -6,7 +6,7 @@ import ButtonProfile from "../../ui/ButtonProfile";
 import ToasterWarning from "../../ui/ToasterWarning";
 import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
 
-const MESSAGE = "Removing a user from your friends list will also delete all messages with that user.";
+const MESSAGE = "Are you sure you want to remove this user from your friends list?";
 
 const ProfileButtonFriend = ({
 	isFriend,
