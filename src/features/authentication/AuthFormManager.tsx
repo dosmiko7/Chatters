@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 
+import { emailValidation, passwordLoginValidation, passwordRegisterValidation } from "../../utils/validationTemplates";
 import { flexRow } from "../../style/Templates";
 import AuthFormField from "./AuthFormField";
 import Form from "../../ui/Form";
@@ -29,26 +30,6 @@ interface IFormManager {
 type FormValues = {
 	email: string;
 	password: string;
-};
-
-const emailValidation = {
-	required: "Email is required",
-	pattern: {
-		value: /^\S+@\S+\.\S+$/,
-		message: "Invalid email address",
-	},
-};
-
-const passwordRegisterValidation = {
-	required: "Password is required",
-	pattern: {
-		value: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};:'"<>,.?~\\-])\S*$/,
-		message: "Password must contain at least one uppercase letter and one special character",
-	},
-};
-
-const passwordLoginValidation = {
-	required: "Password is required",
 };
 
 const AuthFormManager = (props: IFormManager) => {
