@@ -5,6 +5,7 @@ import {
 	DocumentReference,
 	Timestamp,
 	collection,
+	deleteDoc,
 	doc,
 	getDoc,
 	getDocs,
@@ -15,7 +16,7 @@ import {
 	where,
 } from "firebase/firestore";
 
-import { getFileURL, uploadAvatar, uploadBackground } from "../storage/storageApi";
+import { getFileURL, removeStorageFile, uploadAvatar, uploadBackground } from "../storage/storageApi";
 
 import { IProfileFormInput } from "../../features/profiles/form/ProfileForm";
 import formatSubmit from "../../utils/formatSubmit";
@@ -292,4 +293,15 @@ export const addFriend = async ({ userId, friendId }: { userId: string; friendId
 
 	await updateFriendsList({ docRef: userDocRef, friendIdToAdd: friendId });
 	await updateFriendsList({ docRef: friendDocRef, friendIdToAdd: userId });
+};
+
+export const deleteUserDoc = async ({ userId }: { userId: string }) => {
+	// a. Delete avatar
+	await removeStorageFile({ path: `avatars/avatar_${userId}` });
+	// b. Delete background
+	await removeStorageFile({ path: `backgrounds/background_${userId}` });
+	// c. Delete friends list -> go through each friend and remove current user from their list
+	await removeFriendsList({ userId });
+	// d. Delete doc
+	await deleteDoc(doc(firestore, "users", userId));
 };
