@@ -2,7 +2,7 @@ import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebas
 import { storage } from "../../firebase";
 
 export const uploadAvatar = async ({ avatarFile, userId }: { avatarFile: File; userId: string }): Promise<void> => {
-	const avatarRef = ref(storage, `avatars/avatar_${userId}.png`);
+	const avatarRef = ref(storage, `avatars/avatar_${userId}`);
 	await uploadBytes(avatarRef, avatarFile, { contentType: avatarFile.type });
 };
 
@@ -13,7 +13,7 @@ export const uploadBackground = async ({
 	backgroundFile: File;
 	userId: string;
 }): Promise<void> => {
-	const backgroundRef = ref(storage, `backgrounds/background_${userId}.png`);
+	const backgroundRef = ref(storage, `backgrounds/background_${userId}`);
 	await uploadBytes(backgroundRef, backgroundFile, { contentType: backgroundFile.type });
 };
 
