@@ -66,3 +66,13 @@ export const removeChatFiles = async ({ chatId }: { chatId: string }) => {
 		throw new Error("removeChatFiles: removing chat files failed.");
 	}
 };
+
+export const removeUserAvatar = async ({ userId }: { userId: string }) => {
+	const avatarRef = ref(storage, `avatars/avatar_${userId}.png`);
+
+	try {
+		await deleteObject(avatarRef);
+	} catch {
+		throw new Error("removeUserAvatar: removing user's avatar failed");
+	}
+};
