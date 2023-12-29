@@ -17,7 +17,7 @@ import {
 import formatDate from "../../utils/formatDate";
 import { IDashboardFormInput } from "../../features/dashboard/form/DashboardForm";
 import { getUser } from "./userApi";
-import { uploadDashboardFile } from "../storage/storageApi";
+import { removeStorageFolder, uploadDashboardFile } from "../storage/storageApi";
 
 export const PAGINATION_LIMIT = 7;
 
@@ -153,4 +153,31 @@ const getDashboardFileProps = async ({ userId, input }: { userId: string; input:
 	}
 
 	return { file, type };
+};
+
+export const deleteUserDashboardPosts = async ({ userId }: { userId: string }) => {
+	const q = query(collection(firestore, "dashboard"), where("userId", "==", userId));
+
+	const postsId: string[] = [];
+	const querySnapshot = await getDocs(q);
+	querySnapshot.forEach((doc) => {
+		postsId.push(doc.id);
+	});
+
+	const promises = postsId.map(async (postId) => {
+		await deleteDoc(doc(firestore, "dashboard", postId));
+	});
+
+	try {
+		await Promise.all(promises);
+	} catch {
+		throw new Error("deleteUserDashboardPosts: deleting posts failed");
+	}
+};
+
+export const deleteUserDashboardDocs = async ({ userId }: { userId: string }) => {
+	// a. Delete files connected to this user's post
+	await removeStorageFolder({ path: `dashboard/${userId}` });
+	// b. Delete every post where userId = {userId}
+	await deleteUserDashboardPosts({ userId });
 };
