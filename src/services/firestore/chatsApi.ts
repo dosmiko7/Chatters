@@ -250,3 +250,35 @@ export const deleteUserChats = async ({ userId }: { userId: string }) => {
 		throw new Error("deleteUsersChats: deleting chats failed");
 	}
 };
+
+export const deleteUsersLastChatsDoc = async ({ userId }: { userId: string }) => {
+	// a. Deleting userChats from all user objects with which he was chatting
+	const userChatRef = doc(firestore, "userChats", userId);
+	const userChatSnap = await getDoc(userChatRef);
+	if (userChatSnap.exists()) {
+		const userChats = userChatSnap.data().chats as IUserChat[];
+		const friends: string[] = [];
+		userChats.forEach((chat) => {
+			friends.push(chat.userId);
+		});
+
+		const promises = friends.map(async (friendId) => {
+			const friendChatRef = doc(firestore, "userChats", friendId);
+			const friendChatSnap = await getDoc(friendChatRef);
+			if (friendChatSnap.exists()) {
+				const friendsChats = friendChatSnap.data().chats as IUserChat[];
+				const filteredFriendsChats = friendsChats.filter((chat) => chat.userId !== userId);
+				await updateDoc(friendChatRef, { chats: filteredFriendsChats });
+			}
+		});
+
+		try {
+			await Promise.all(promises);
+		} catch {
+			throw new Error("deleteUsersLastChatsDoc: deleting userChats failed");
+		}
+	}
+
+	// b. Delete doc with id = {userId}
+	await deleteDoc(doc(firestore, "userChats", userId));
+};
