@@ -201,6 +201,23 @@ export const updateUserTimestamp = async ({
 	}
 };
 
+export const removeFriendsList = async ({ userId }: { userId: string }) => {
+	const userDocRef = doc(firestore, "users", userId);
+	const userDocSnap = await getDoc(userDocRef);
+	const userData = userDocSnap.data() as IUserData;
+	const friendsList = userData.friends_list;
+
+	const promises = friendsList.map(async (friend) => {
+		await removeFriend({ userId, friendId: friend.id });
+	});
+
+	try {
+		await Promise.all(promises);
+	} catch {
+		throw new Error("removeFriendsList: removing friends failed");
+	}
+};
+
 export const friendUpdate = async ({
 	userId,
 	friendId,
