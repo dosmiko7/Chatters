@@ -3,15 +3,18 @@ import {
 	DocumentData,
 	DocumentReference,
 	Timestamp,
+	collection,
 	deleteDoc,
 	doc,
 	getDoc,
+	query,
 	setDoc,
 	updateDoc,
+	getDocs,
 } from "firebase/firestore";
 
 import { IChatMessagesData, IUserChat, getUser } from "./userApi";
-import { getFileURL, removeChatFiles, uploadChatFile } from "../storage/storageApi";
+import { getFileURL, removeStorageFolder, uploadChatFile } from "../storage/storageApi";
 
 import getSecondPartOfCombinedString from "../../utils/getSecondPartOfCombinedString";
 
@@ -31,7 +34,7 @@ export const deleteChats = async ({ userId, chatId }: { userId: string | undefin
 	const friendId = getSecondPartOfCombinedString({ combinedString: chatId, knownPart: userId });
 	await removeUserChats({ userId, friendId });
 	await removeChat({ chatId });
-	await removeChatFiles({ chatId });
+	await removeStorageFolder({ path: `chatFiles/${chatId}` });
 };
 
 export const updateChatsMessages = async ({
@@ -168,7 +171,7 @@ export const removeUserChats = async ({ userId, friendId }: { userId: string; fr
 	const friendChatsDocSnap = await getDoc(friendChatsRef);
 	if (userChatsDocSnap.exists()) {
 		await removeChatElement({
-			documentRef: userChatsRef,
+			userChatsRef: userChatsRef,
 			data: userChatsDocSnap.data(),
 			userIdChatToRemove: friendId,
 		});
@@ -176,7 +179,7 @@ export const removeUserChats = async ({ userId, friendId }: { userId: string; fr
 
 	if (friendChatsDocSnap.exists()) {
 		await removeChatElement({
-			documentRef: friendChatsRef,
+			userChatsRef: friendChatsRef,
 			data: friendChatsDocSnap.data(),
 			userIdChatToRemove: userId,
 		});
@@ -184,17 +187,17 @@ export const removeUserChats = async ({ userId, friendId }: { userId: string; fr
 };
 
 const removeChatElement = async ({
-	documentRef,
+	userChatsRef,
 	data,
 	userIdChatToRemove,
 }: {
-	documentRef: DocumentReference<DocumentData, DocumentData>;
+	userChatsRef: DocumentReference<DocumentData, DocumentData>;
 	data: DocumentData;
 	userIdChatToRemove: string;
 }) => {
 	const chats = data.chats as IChatMessagesData[];
 	const updatedChats = chats.filter((chat) => chat.userId !== userIdChatToRemove);
-	await updateDoc(documentRef, { chats: updatedChats });
+	await updateDoc(userChatsRef, { chats: updatedChats });
 };
 
 const updateUserChats = async ({
@@ -223,5 +226,27 @@ const updateUserChats = async ({
 		await updateDoc(userAChatRef, { chats: userChats });
 	} else {
 		await setDoc(userAChatRef, { chats: [message] });
+	}
+};
+
+export const deleteUserChats = async ({ userId }: { userId: string }) => {
+	const q = query(collection(firestore, "chats"));
+
+	const usersChats: string[] = [];
+	const querySnapshot = await getDocs(q);
+	querySnapshot.forEach((doc) => {
+		const id = doc.id;
+		if (id.includes(userId)) usersChats.push(id);
+	});
+
+	const promises = usersChats.map(async (chatId) => {
+		await deleteDoc(doc(firestore, "chats", chatId));
+		await removeStorageFolder({ path: `chatFiles/${chatId}` });
+	});
+
+	try {
+		await Promise.all(promises);
+	} catch {
+		throw new Error("deleteUsersChats: deleting chats failed");
 	}
 };
