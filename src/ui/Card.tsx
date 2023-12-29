@@ -15,6 +15,7 @@ const StyledCard = styled(Container)`
 	grid-template-rows: 1fr 1fr;
 	transition: var(--transition-all-3);
 	box-shadow: var(--shadow-md);
+	height: 100%;
 
 	&:hover {
 		background-color: var(--color-primary-400);
@@ -39,7 +40,7 @@ const Card = ({
 	icon: ReactNode;
 	heading: string;
 	info: string;
-	onClickHandler: () => void;
+	onClickHandler?: () => void;
 }) => {
 	return (
 		<StyledCard onClick={onClickHandler}>
