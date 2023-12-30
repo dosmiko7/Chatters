@@ -6,7 +6,6 @@ import { Toaster } from "react-hot-toast";
 import GlobalStyles from "./style/GlobalStyles";
 
 import DarkThemeProvider from "./context/DarkThemeContext";
-import LoggedUserProvider from "./context/LoggedUserContext";
 import AppLayout from "./ui/AppLayout";
 import WelcomeLayout from "./ui/WelcomeLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
@@ -37,68 +36,66 @@ const App = () => {
 					buttonPosition="bottom-left"
 				/>
 				<GlobalStyles />
-				<LoggedUserProvider>
-					<BrowserRouter>
-						<Routes>
+				<BrowserRouter>
+					<Routes>
+						<Route
+							element={
+								<ProtectedRoute>
+									<AppLayout />
+								</ProtectedRoute>
+							}
+						>
 							<Route
+								index
 								element={
-									<ProtectedRoute>
-										<AppLayout />
-									</ProtectedRoute>
+									<Navigate
+										replace
+										to="dashboard"
+									/>
 								}
-							>
-								<Route
-									index
-									element={
-										<Navigate
-											replace
-											to="dashboard"
-										/>
-									}
-								/>
-								<Route
-									path="dashboard"
-									element={<Dashboard />}
-								/>
-								<Route
-									path="settings"
-									element={<Settings />}
-								/>
-								<Route
-									path="profile"
-									element={<Profiles />}
-								/>
-								<Route
-									path="profile/:userId"
-									element={<Profile />}
-								/>
-								<Route
-									path="chat"
-									element={<Chats />}
-								/>
-								<Route
-									path="chat/:combinedId"
-									element={<Chat />}
-								/>
-							</Route>
-							<Route element={<WelcomeLayout />}>
-								<Route
-									index
-									path="login"
-									element={<Login />}
-								/>
-								<Route
-									path="register"
-									element={<Register />}
-								/>
-							</Route>
-							<Route
-								path="*"
-								element={<PageNotFound />}
 							/>
-						</Routes>
-					</BrowserRouter>
-				</LoggedUserProvider>
+							<Route
+								path="dashboard"
+								element={<Dashboard />}
+							/>
+							<Route
+								path="settings"
+								element={<Settings />}
+							/>
+							<Route
+								path="profile"
+								element={<Profiles />}
+							/>
+							<Route
+								path="profile/:userId"
+								element={<Profile />}
+							/>
+							<Route
+								path="chat"
+								element={<Chats />}
+							/>
+							<Route
+								path="chat/:combinedId"
+								element={<Chat />}
+							/>
+						</Route>
+						<Route element={<WelcomeLayout />}>
+							<Route
+								index
+								path="login"
+								element={<Login />}
+							/>
+							<Route
+								path="register"
+								element={<Register />}
+							/>
+						</Route>
+						<Route
+							path="*"
+							element={<PageNotFound />}
+						/>
+					</Routes>
+				</BrowserRouter>
 				<Toaster
 					position="top-center"
 					gutter={12}
