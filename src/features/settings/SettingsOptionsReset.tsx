@@ -2,7 +2,7 @@ import { FcLock } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 
 import usePasswordReset from "../authentication/usePasswordReset";
-import useLoggedUser from "../../context/useLoggedUser";
+import useLoggedUser from "../authentication/useLoggedUser";
 import Card from "../../ui/Card";
 
 const INFO =

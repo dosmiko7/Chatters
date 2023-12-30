@@ -1,7 +1,7 @@
 import { Suspense, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useLoggedUser from "../../../context/useLoggedUser";
+import useLoggedUser from "../../authentication/useLoggedUser";
 import useChatsList, { IChatsListElement } from "./useChatsList";
 import useChatsSearch from "../../../context/useChatsSearch";
 import getCombinedId from "../../../utils/getCombinedId";

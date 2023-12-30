@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Timestamp, doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../../firebase";
 
-import useLoggedUser from "../../../context/useLoggedUser";
+import useLoggedUser from "../../authentication/useLoggedUser";
 import formatDate from "../../../utils/formatDate";
 import { IUserChat, getUser } from "../../../services/firestore/userApi";
 

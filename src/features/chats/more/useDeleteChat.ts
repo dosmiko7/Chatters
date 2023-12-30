@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
-import useLoggedUser from "../../../context/useLoggedUser";
+import useLoggedUser from "../../authentication/useLoggedUser";
 import { deleteChats } from "../../../services/firestore/chatsApi";
 
 const useDeleteChat = () => {

@@ -1,22 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, ReactNode } from "react";
 import { toast } from "react-hot-toast";
-import styled from "styled-components";
 
-import Spinner from "./Spinner";
-import useLoggedUser from "../context/useLoggedUser";
-
-const FullPage = styled.div`
-	height: 100vh;
-	background-color: var(--color-grey-50);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
+import useLoggedUser from "../features/authentication/useLoggedUser";
+import useOnAuthChange from "../features/authentication/useOnAuthChange";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 	const navigate = useNavigate();
-	const { loggedUser, isLoading } = useLoggedUser();
+	const { loggedUser } = useLoggedUser();
+	useOnAuthChange();
 
 	useEffect(() => {
 		if (!loggedUser) {
@@ -27,12 +19,6 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 			toast.error("Please confirm your email address");
 		}
 	}, [loggedUser, navigate]);
-
-	if (isLoading) {
-		<FullPage>
-			<Spinner />
-		</FullPage>;
-	}
 
 	return <>{children}</>;
 };

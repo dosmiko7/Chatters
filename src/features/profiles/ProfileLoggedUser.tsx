@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import useLoggedUser from "../../context/useLoggedUser";
+import useLoggedUser from "../authentication/useLoggedUser";
 import { displayInfo } from "../../style/Templates";
 import Avatar from "../../ui/Avatar";
 

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import useLoggedUser from "../../context/useLoggedUser";
+import useLoggedUser from "../authentication/useLoggedUser";
 import { IDocumentData } from "../../services/firestore/userApi";
 import { flexRow } from "../../style/Templates";
 import formatDate from "../../utils/formatDate";

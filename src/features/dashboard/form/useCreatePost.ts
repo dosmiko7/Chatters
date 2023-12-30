@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import useLoggedUser from "../../../context/useLoggedUser";
+import useLoggedUser from "../../authentication/useLoggedUser";
 import { addDashboardPost } from "../../../services/firestore/dashboardApi";
 import { IDashboardFormInput } from "./DashboardForm";
 
