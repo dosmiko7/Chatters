@@ -119,7 +119,7 @@ export const reauthenticateAccount = async ({
 	user,
 	credential,
 }: {
-	user: User | null;
+	user: User | null | undefined;
 	credential: EmailAuthCredential | OAuthCredential | undefined;
 }) => {
 	if (!user) throw new Error("reauthenticateAccount: There is no user to reauthenticate his account.");
