@@ -11,6 +11,9 @@ import {
 	getAdditionalUserInfo,
 	updateProfile,
 	EmailAuthProvider,
+	reauthenticateWithCredential,
+	EmailAuthCredential,
+	OAuthCredential,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -109,5 +112,23 @@ export const updateUserProfile = async ({ displayName, photoURL }: { displayName
 	} catch (error) {
 		console.error(error);
 		throw new Error("updateUser: User update failed");
+	}
+};
+
+export const reauthenticateAccount = async ({
+	user,
+	credential,
+}: {
+	user: User | null;
+	credential: EmailAuthCredential | OAuthCredential | undefined;
+}) => {
+	if (!user) throw new Error("reauthenticateAccount: There is no user to reauthenticate his account.");
+	if (!credential) throw new Error("reauthenticateAccount: Credential not provided");
+
+	try {
+		await reauthenticateWithCredential(user, credential);
+	} catch (error) {
+		console.error(error);
+		throw new Error("reauthenticateAccount: Account reauthentication failed");
 	}
 };
