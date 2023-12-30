@@ -10,7 +10,7 @@ import {
 	deleteUser,
 	getAdditionalUserInfo,
 	updateProfile,
-	UserCredential,
+	EmailAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -19,41 +19,41 @@ export interface ISignProps {
 	password: string;
 }
 
-export const signIn = async (props: ISignProps): Promise<UserCredential> => {
+export const signIn = async (props: ISignProps) => {
 	const { email, password } = props;
 
 	try {
-		const credential = await signInWithEmailAndPassword(auth, email, password);
-		return credential;
+		const userCredential = await signInWithEmailAndPassword(auth, email, password);
+		const authCredential = EmailAuthProvider.credential(email, password);
+		return { userCredential, authCredential };
 	} catch (error) {
 		console.error(error);
 		throw new Error("signIn: Failed to login");
 	}
 };
 
-export const signUp = async (props: ISignProps): Promise<UserCredential> => {
+export const signUp = async (props: ISignProps) => {
 	const { email, password } = props;
 	try {
-		const credential = await createUserWithEmailAndPassword(auth, email, password);
-		return credential;
+		const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+		return userCredential;
 	} catch (error) {
 		console.error(error);
 		throw new Error("signUp: Failed to create a new user");
 	}
 };
 
-export const signInWithGoogle = async (): Promise<{
-	credential: UserCredential;
-	isNewUser: boolean | undefined;
-}> => {
+export const signInWithGoogle = async () => {
 	const provider = new GoogleAuthProvider();
 
 	try {
-		const credential = await signInWithPopup(auth, provider);
-		const additionalUserInfo = getAdditionalUserInfo(credential);
+		const userCredential = await signInWithPopup(auth, provider);
+		const additionalUserInfo = getAdditionalUserInfo(userCredential);
+		const authCredential = GoogleAuthProvider.credentialFromResult(userCredential);
+
 		const isNewUser = additionalUserInfo?.isNewUser;
 
-		return { credential, isNewUser };
+		return { authCredential, userCredential, isNewUser };
 	} catch (error) {
 		console.error(error);
 		throw new Error("signInWithGoogle: Failed to login");
