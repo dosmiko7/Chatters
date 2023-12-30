@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { flexCentered } from "../style/Templates";
 
@@ -37,11 +35,10 @@ const Avatar = (props: IAvatar) => {
 			square={square}
 			onClick={onClick}
 		>
-			<LazyLoadImage
+			<img
 				src={src || "avatar-default.png"}
 				alt="Avatar"
-				effect="blur"
-				style={{ width: `${size}`, height: `${size}` }}
+				style={{ width: "100%", height: "100%", objectFit: "cover" }}
 			/>
 		</StyledAvatar>
 	);
