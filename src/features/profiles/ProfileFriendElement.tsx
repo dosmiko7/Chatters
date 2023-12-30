@@ -12,7 +12,7 @@ const StyledElement = styled.div`
 	background-color: var(--color-primary-400);
 	padding-bottom: var(--padding-sm);
 	width: 30%;
-	height: 40%;
+	height: 30rem;
 	overflow: hidden;
 	transition: var(--transition-all-3);
 
