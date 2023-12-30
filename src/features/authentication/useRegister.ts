@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { User } from "firebase/auth";
 
 import { ISignProps, sendVerificationLink, signUp } from "../../services/auth/authApi";
 import { addUser } from "../../services/firestore/userApi";
@@ -11,16 +10,17 @@ const useRegister = () => {
 
 	const { mutate: register, status } = useMutation({
 		mutationFn: ({ email, password }: ISignProps) =>
-			signUp({ email, password }).then((user: User | null) => addUser(user)),
+			signUp({ email, password }).then((userCredential) => addUser(userCredential.user)),
 
-		onSuccess: () => {
+		onSuccess: async () => {
 			toast.success("Your account has been created! We have sent you an account activation link");
-			sendVerificationLink();
+			await sendVerificationLink();
 			navigate("/login", { replace: true });
 		},
 
 		onError: (err) => {
-			toast.error(err.message);
+			console.error("REGISTER ERROR: ", err);
+			toast.error("Register failed");
 		},
 	});
 
