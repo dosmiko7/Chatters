@@ -10,6 +10,7 @@ import {
 	deleteUser,
 	getAdditionalUserInfo,
 	updateProfile,
+	UserCredential,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -18,37 +19,43 @@ export interface ISignProps {
 	password: string;
 }
 
-export const signIn = async (props: ISignProps): Promise<User | null> => {
+export const signIn = async (props: ISignProps): Promise<UserCredential> => {
 	const { email, password } = props;
 
 	try {
-		await signInWithEmailAndPassword(auth, email, password);
-		return auth.currentUser;
-	} catch {
+		const credential = await signInWithEmailAndPassword(auth, email, password);
+		return credential;
+	} catch (error) {
+		console.error(error);
 		throw new Error("signIn: Failed to login");
 	}
 };
 
-export const signUp = async (props: ISignProps): Promise<User | null> => {
+export const signUp = async (props: ISignProps): Promise<UserCredential> => {
 	const { email, password } = props;
 	try {
-		await createUserWithEmailAndPassword(auth, email, password);
-		return auth.currentUser;
-	} catch {
+		const credential = await createUserWithEmailAndPassword(auth, email, password);
+		return credential;
+	} catch (error) {
+		console.error(error);
 		throw new Error("signUp: Failed to create a new user");
 	}
 };
 
-export const signInWithGoogle = async () => {
+export const signInWithGoogle = async (): Promise<{
+	credential: UserCredential;
+	isNewUser: boolean | undefined;
+}> => {
 	const provider = new GoogleAuthProvider();
 
 	try {
-		const result = await signInWithPopup(auth, provider);
-		const additionalUserInfo = getAdditionalUserInfo(result);
+		const credential = await signInWithPopup(auth, provider);
+		const additionalUserInfo = getAdditionalUserInfo(credential);
 		const isNewUser = additionalUserInfo?.isNewUser;
 
-		return { user: result.user, isNewUser };
-	} catch {
+		return { credential, isNewUser };
+	} catch (error) {
+		console.error(error);
 		throw new Error("signInWithGoogle: Failed to login");
 	}
 };
@@ -58,7 +65,8 @@ export const signOutUser = async () => {
 	try {
 		await signOut(auth);
 		return currentUser;
-	} catch {
+	} catch (error) {
+		console.error(error);
 		throw new Error("signOutUser: Failed to sign out");
 	}
 };
@@ -67,7 +75,8 @@ export const sendVerificationLink = async () => {
 	if (!auth.currentUser) throw new Error("sendVerificationLink: There is no user to send verification link");
 	try {
 		await sendEmailVerification(auth.currentUser);
-	} catch {
+	} catch (error) {
+		console.error(error);
 		throw new Error("sendVerificationLink: Message sending failed");
 	}
 };
@@ -75,7 +84,8 @@ export const sendVerificationLink = async () => {
 export const sendPasswordReset = async ({ email }: { email: string }) => {
 	try {
 		await sendPasswordResetEmail(auth, email);
-	} catch {
+	} catch (error) {
+		console.error(error);
 		throw new Error("sendPasswordReset: Message sending failed");
 	}
 };
@@ -85,7 +95,8 @@ export const deleteAccount = async ({ user }: { user: User | null | undefined })
 
 	try {
 		await deleteUser(user);
-	} catch {
+	} catch (error) {
+		console.error(error);
 		throw new Error("deleteAccount: User deletion failed");
 	}
 };
@@ -95,7 +106,8 @@ export const updateUserProfile = async ({ displayName, photoURL }: { displayName
 
 	try {
 		updateProfile(auth.currentUser, { displayName, photoURL });
-	} catch {
+	} catch (error) {
+		console.error(error);
 		throw new Error("updateUser: User update failed");
 	}
 };
