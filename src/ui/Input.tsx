@@ -5,7 +5,7 @@ const Input = styled.input`
 	padding: var(--padding-sm);
 	background-color: var(--color-white-100);
 	border: 1px solid transparent;
-	color: var(--color-black-100);
+	color: var(--font-color);
 
 	&:hover {
 		border: 1px solid var(--color-secondary-400);
