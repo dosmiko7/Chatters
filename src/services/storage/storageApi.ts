@@ -2,7 +2,7 @@ import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebas
 import { storage } from "../../firebase";
 
 export const uploadAvatar = async ({ avatarFile, userId }: { avatarFile: File; userId: string }): Promise<void> => {
-	const avatarRef = ref(storage, `avatars/avatar_${userId}`);
+	const avatarRef = ref(storage, `avatars/${userId}/avatar_${userId}`);
 	await uploadBytes(avatarRef, avatarFile, { contentType: avatarFile.type });
 };
 
@@ -13,7 +13,7 @@ export const uploadBackground = async ({
 	backgroundFile: File;
 	userId: string;
 }): Promise<void> => {
-	const backgroundRef = ref(storage, `backgrounds/background_${userId}`);
+	const backgroundRef = ref(storage, `backgrounds/${userId}/background_${userId}`);
 	await uploadBytes(backgroundRef, backgroundFile, { contentType: backgroundFile.type });
 };
 
@@ -62,17 +62,8 @@ export const removeStorageFolder = async ({ path }: { path: string }) => {
 	try {
 		const res = await listAll(folderRef);
 		await Promise.all(res.items.map((fileRef) => deleteObject(fileRef)));
-	} catch {
+	} catch (error) {
+		console.error(error);
 		throw new Error("removeStorageFolder: removing storage folder failed");
-	}
-};
-
-export const removeStorageFile = async ({ path }: { path: string }) => {
-	const fileRef = ref(storage, path);
-
-	try {
-		await deleteObject(fileRef);
-	} catch {
-		throw new Error("removeStorageFile: removing storage file failed");
 	}
 };
