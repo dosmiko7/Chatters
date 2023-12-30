@@ -20,7 +20,9 @@ import { getFileURL, removeStorageFolder, uploadAvatar, uploadBackground } from 
 
 import { IProfileFormInput } from "../../features/profiles/form/ProfileForm";
 import formatSubmit from "../../utils/formatSubmit";
-import { updateUserProfile } from "../auth/authApi";
+import { deleteAccount, updateUserProfile } from "../auth/authApi";
+import { deleteUserChats, deleteUsersLastChatsDoc } from "./chatsApi";
+import { deleteUserDashboardDocs } from "./dashboardApi";
 
 export interface IUserChat {
 	userId: string;
@@ -304,4 +306,14 @@ export const deleteUserDoc = async ({ userId }: { userId: string }) => {
 	await removeFriendsList({ userId });
 	// d. Delete doc
 	await deleteDoc(doc(firestore, "users", userId));
+};
+
+export const deleteUser = async ({ user }: { user: User | null }) => {
+	if (!user) throw new Error("deleteUser: There is no user to delete");
+
+	await deleteAccount({ user });
+	await deleteUserDoc({ userId: user.uid });
+	await deleteUserChats({ userId: user.uid });
+	await deleteUserDashboardDocs({ userId: user.uid });
+	await deleteUsersLastChatsDoc({ userId: user.uid });
 };
