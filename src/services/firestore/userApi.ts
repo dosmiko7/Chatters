@@ -16,7 +16,7 @@ import {
 	where,
 } from "firebase/firestore";
 
-import { getFileURL, removeStorageFile, uploadAvatar, uploadBackground } from "../storage/storageApi";
+import { getFileURL, removeStorageFolder, uploadAvatar, uploadBackground } from "../storage/storageApi";
 
 import { IProfileFormInput } from "../../features/profiles/form/ProfileForm";
 import formatSubmit from "../../utils/formatSubmit";
@@ -128,14 +128,14 @@ export const updateUserInfo = async ({
 	let avatarUrl: string = data.avatar;
 	if (input.avatar) {
 		await uploadAvatar({ avatarFile: input.avatar[0], userId });
-		avatarUrl = await getFileURL(`avatars/avatar_${userId}.png`);
+		avatarUrl = await getFileURL(`avatars/${userId}/avatar_${userId}`);
 		await updateUserProfile({ photoURL: avatarUrl });
 	}
 
 	let backgroundUrl: string = data.background;
 	if (input.background) {
 		await uploadBackground({ backgroundFile: input.background[0], userId });
-		backgroundUrl = await getFileURL(`backgrounds/background_${userId}.png`);
+		backgroundUrl = await getFileURL(`backgrounds/${userId}/background_${userId}`);
 	}
 
 	const formattedData = formatSubmit({ ...input, avatar: avatarUrl, background: backgroundUrl }, data);
@@ -297,9 +297,9 @@ export const addFriend = async ({ userId, friendId }: { userId: string; friendId
 
 export const deleteUserDoc = async ({ userId }: { userId: string }) => {
 	// a. Delete avatar
-	await removeStorageFile({ path: `avatars/avatar_${userId}` });
+	await removeStorageFolder({ path: `avatars/${userId}` });
 	// b. Delete background
-	await removeStorageFile({ path: `backgrounds/background_${userId}` });
+	await removeStorageFolder({ path: `backgrounds/${userId}` });
 	// c. Delete friends list -> go through each friend and remove current user from their list
 	await removeFriendsList({ userId });
 	// d. Delete doc
