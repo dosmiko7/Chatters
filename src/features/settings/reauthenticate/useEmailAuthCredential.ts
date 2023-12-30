@@ -1,8 +1,9 @@
 import { useQueryClient } from "@tanstack/react-query";
+import { EmailAuthCredential } from "firebase/auth";
 
 const useEmailAuthCredential = () => {
 	const queryClient = useQueryClient();
-	const emailAuthCredential = queryClient.getQueryData(["emailAuthCredential"]);
+	const emailAuthCredential: EmailAuthCredential | undefined = queryClient.getQueryData(["emailAuthCredential"]);
 
 	return emailAuthCredential;
 };
