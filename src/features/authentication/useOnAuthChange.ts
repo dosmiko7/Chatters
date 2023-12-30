@@ -2,7 +2,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { beforeAuthStateChanged, onAuthStateChanged } from "firebase/auth";
-import { toast } from "react-hot-toast";
 
 import useLoggedUser from "./useLoggedUser";
 import { auth } from "../../firebase";
@@ -29,7 +28,6 @@ const useOnAuthChange = () => {
 			if (!user) {
 				queryClient.removeQueries();
 				navigate("/login");
-				toast.error("Please, login again");
 			}
 		});
 		return () => unsub();
