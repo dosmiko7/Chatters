@@ -1,14 +1,12 @@
-import { FcGoogle } from "react-icons/fc";
-
-import GoogleLogin from "../../../ui/GoogleLogin";
+import useGoogleAuthCredential from "./useGoogleAuthCredential";
+import Button from "../../../ui/Button";
 
 const SettingsReauthenticateGoogle = () => {
-	return (
-		<GoogleLogin>
-			<FcGoogle />
-			Delete account
-		</GoogleLogin>
-	);
+	const googleAuthCredential = useGoogleAuthCredential();
+
+	if (!googleAuthCredential) return null;
+
+	return <Button variant="danger">Delete account</Button>;
 };
 
 export default SettingsReauthenticateGoogle;
