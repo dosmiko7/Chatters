@@ -12,16 +12,17 @@ const useGoogleLogin = () => {
 	const { mutate: login, status } = useMutation({
 		mutationFn: () => signInWithGoogle(),
 
-		onSuccess: ({ user, isNewUser }) => {
-			if (isNewUser) addUser(user);
+		onSuccess: async ({ authCredential, userCredential, isNewUser }) => {
+			if (isNewUser) await addUser(userCredential.user);
 
-			queryClient.setQueryData(["loggedUser"], user);
+			queryClient.setQueryData(["loggedUser"], userCredential.user);
+			queryClient.setQueryData(["googleAuthCredential"], authCredential);
 			navigate("/dashboard", { replace: true });
 		},
 
 		onError: (err) => {
 			console.error("GOOGLE LOGIN ERROR ", err);
-			toast.error(err.message);
+			toast.error("Google login failed");
 		},
 	});
 
