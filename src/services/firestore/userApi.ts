@@ -308,7 +308,7 @@ export const deleteUserDoc = async ({ userId }: { userId: string }) => {
 	await deleteDoc(doc(firestore, "users", userId));
 };
 
-export const deleteUser = async ({ user }: { user: User | null }) => {
+export const deleteUser = async ({ user }: { user: User | null | undefined }) => {
 	if (!user) throw new Error("deleteUser: There is no user to delete");
 
 	await deleteAccount({ user });
