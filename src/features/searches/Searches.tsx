@@ -21,7 +21,10 @@ const Searches = ({ onClickHandler }: { onClickHandler: (userId: string) => void
 				</StyledButton>
 			</Modal.Open>
 			<Modal.Window name="searches">
-				<SearchesWindow onClickHandler={onClickHandler} />
+				<SearchesWindow
+					onClickHandler={onClickHandler}
+					heading="Find user's profile"
+				/>
 			</Modal.Window>
 		</Modal>
 	);
