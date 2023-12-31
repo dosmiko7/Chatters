@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { flexColumn } from "../style/Templates";
+import { flexColumn, flexRow } from "../style/Templates";
 import ProfileSearches from "../features/profiles/ProfileSearches";
 import ProfileLoggedUser from "../features/profiles/ProfileLoggedUser";
 import Container from "./Container";
@@ -14,6 +14,13 @@ const StyledSidebar = styled(Container)`
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--color-primary-300);
+
+	@media only screen and (width <= 1000px) {
+		${flexRow};
+		grid-row: 1/2;
+		grid-column: 1/3;
+		border-bottom: var(--border-thin);
+	}
 `;
 
 const Box = styled.div`
@@ -21,6 +28,10 @@ const Box = styled.div`
 	align-items: center;
 	gap: 1.2rem;
 	max-width: 50%;
+
+	@media only screen and (width <= 1000px) {
+		${flexRow};
+	}
 `;
 
 const Sidebar = () => {
