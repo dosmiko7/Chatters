@@ -26,11 +26,14 @@ const DashboardKeyFilter = () => {
 				<Modal.Open opens="searches">
 					<Button>
 						<BiSearch />
-						<span>Search user's posts</span>
+						<span>Search</span>
 					</Button>
 				</Modal.Open>
 				<Modal.Window name="searches">
-					<SearchesWindow onClickHandler={getUsersPosts} />
+					<SearchesWindow
+						onClickHandler={getUsersPosts}
+						heading="Find user's posts"
+					/>
 				</Modal.Window>
 			</Modal>
 			<DashboardKeyRemove />
