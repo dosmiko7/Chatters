@@ -14,6 +14,11 @@ const Main = styled.main`
 	margin: 0 auto;
 	width: 60%;
 	max-width: 60%;
+
+	@media only screen and (width <= 1000px) {
+		width: 90%;
+		max-width: 90%;
+	}
 `;
 
 const DashboardDetail = () => {
