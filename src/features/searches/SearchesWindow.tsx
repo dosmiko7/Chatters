@@ -17,7 +17,7 @@ const ListContainer = styled.div`
 `;
 
 // TODO: Change to React Hook Form
-const SearchesWindow = ({ onClickHandler }: { onClickHandler: (userId: string) => void }) => {
+const SearchesWindow = ({ onClickHandler, heading }: { onClickHandler: (userId: string) => void; heading: string }) => {
 	const [input, setInput] = useState<string>("");
 	const [query, setQuery] = useState<string>("");
 
@@ -32,7 +32,7 @@ const SearchesWindow = ({ onClickHandler }: { onClickHandler: (userId: string) =
 
 	return (
 		<StyledSearchesWindow>
-			<Heading as="h2">Find a user</Heading>
+			<Heading as="h2">{heading}</Heading>
 			<Form onSubmit={handleOnSubmit}>
 				<SearchBar
 					placeholder="Type nickname"
