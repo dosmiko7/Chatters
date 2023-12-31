@@ -10,13 +10,14 @@ const StyledFooter = styled.footer`
 	align-items: center;
 	justify-content: space-around;
 	background-color: var(--color-primary-400);
-	height: 10%;
+	height: 10rem;
+	margin-top: auto;
 `;
 
 const SocialsBox = styled.div`
 	${flexColumn};
 	align-items: center;
-	width: 10%;
+	width: 20%;
 `;
 
 const Socials = styled.nav`

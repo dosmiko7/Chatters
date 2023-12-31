@@ -10,6 +10,10 @@ const StyledWelcomeLayout = styled.div`
 	height: 100dvh;
 	width: 100dvw;
 	background-color: var(--color-primary-300);
+
+	@media only screen and (width <= 860px) {
+		height: calc(100dvh + 10rem);
+	}
 `;
 
 const Main = styled.main`
@@ -17,11 +21,23 @@ const Main = styled.main`
 	align-items: center;
 	justify-content: space-around;
 	height: 90%;
+
+	@media only screen and (width <= 860px) {
+		${flexColumn};
+	}
 `;
 
 const FormBox = styled.div`
 	${flexCentered};
 	width: 40%;
+
+	@media only screen and (width <= 860px) {
+		width: 70%;
+	}
+
+	@media only screen and (width <= 480px) {
+		width: 90%;
+	}
 `;
 
 const WelcomeLayout = () => {

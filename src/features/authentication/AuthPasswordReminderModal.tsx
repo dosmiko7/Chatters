@@ -8,7 +8,7 @@ import AuthPasswordReminder from "./AuthPasswordReminder";
 const Reminder = styled.a`
 	display: block;
 	width: fit-content;
-	margin: 5px auto;
+	margin: 2rem auto;
 	${ephasis};
 `;
 

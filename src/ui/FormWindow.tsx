@@ -8,6 +8,7 @@ export const FormWindow = styled.div`
 	box-shadow: var(--shadow-md);
 	width: 50rem;
 	height: 60rem;
+	font-size: 2rem;
 `;
 
 export default FormWindow;
