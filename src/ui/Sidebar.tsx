@@ -19,7 +19,7 @@ const StyledSidebar = styled(Container)`
 const Box = styled.div`
 	${flexColumn};
 	align-items: center;
-	gap: 0.6rem;
+	gap: 1.2rem;
 	max-width: 50%;
 `;
 
