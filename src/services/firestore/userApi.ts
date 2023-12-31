@@ -11,6 +11,7 @@ import {
 	getDocs,
 	or,
 	query,
+	serverTimestamp,
 	setDoc,
 	updateDoc,
 	where,
@@ -188,19 +189,22 @@ export const updateUserTimestamp = async ({
 }) => {
 	if (!userId) throw new Error("updateUserTimestamp: There is no user to update");
 	const userRef = doc(firestore, "users", userId);
+	const userSnap = await getDoc(userRef);
 
-	try {
-		if (mode === "login") {
-			await updateDoc(userRef, {
-				lastLoggedIn: Timestamp.fromDate(new Date()),
-			});
-		} else if (mode === "logout") {
-			await updateDoc(userRef, {
-				lastLoggedOut: Timestamp.fromDate(new Date()),
-			});
+	if (userSnap.exists()) {
+		try {
+			if (mode === "login") {
+				await updateDoc(userRef, {
+					lastLoggedIn: serverTimestamp(),
+				});
+			} else if (mode === "logout") {
+				await updateDoc(userRef, {
+					lastLoggedOut: serverTimestamp(),
+				});
+			}
+		} catch {
+			throw new Error(`updateUserTimestamp: update timestamp while ${mode} failed`);
 		}
-	} catch {
-		throw new Error(`updateUserTimestamp: update timestamp while ${mode} failed`);
 	}
 };
 
