@@ -21,8 +21,8 @@ const PlaceholderContainer = styled.div`
 `;
 
 const FullImage = styled.img`
-	max-width: 70dvh;
-	max-height: 70dvh;
+	width: 100%;
+	height: auto;
 `;
 
 const ImageElement = ({ fileUrl }: { fileUrl: string }) => {
@@ -45,8 +45,8 @@ const ImageElement = ({ fileUrl }: { fileUrl: string }) => {
 
 			<Modal.Window
 				name={id}
-				width="fit-content"
-				height="fit-content"
+				width="max-content"
+				height="max-content"
 			>
 				<FullImage
 					src={fileUrl}
