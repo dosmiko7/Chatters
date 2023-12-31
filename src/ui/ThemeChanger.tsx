@@ -19,6 +19,7 @@ const ThemeChanger = () => {
 	return (
 		<StyledThemeChanger
 			variant="menu"
+			size="large"
 			onClick={toggleDarkTheme}
 		>
 			{symbol}

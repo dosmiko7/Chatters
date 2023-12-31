@@ -15,7 +15,7 @@ const Logout = () => {
 	return (
 		<LogoutButton
 			variant="menu"
-			size="medium"
+			size="large"
 			onClick={() => signOut()}
 			disabled={status === "pending"}
 		>

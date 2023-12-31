@@ -15,6 +15,7 @@ const Settings = () => {
 	return (
 		<SettingsButton
 			variant="menu"
+			size="large"
 			onClick={() => navigate("/settings")}
 		>
 			<FaGear />
