@@ -33,6 +33,10 @@ const StyledInput = styled(Input)`
 	&:hover {
 		background-color: var(--color-primary-300);
 	}
+
+	@media only screen and (width <= 860px) {
+		font-size: 2rem;
+	}
 `;
 
 interface ISearchBarProps {
