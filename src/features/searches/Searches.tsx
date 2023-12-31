@@ -1,24 +1,19 @@
-import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
 import Modal from "../../ui/Modal";
 import Button from "../../ui/Button";
 import SearchesWindow from "./SearchesWindow";
 
-const StyledButton = styled(Button)`
-	font-size: 2.2rem;
-`;
-
 const Searches = ({ onClickHandler }: { onClickHandler: (userId: string) => void }) => {
 	return (
 		<Modal>
 			<Modal.Open opens="searches">
-				<StyledButton
+				<Button
 					variant="menu"
-					size="medium"
+					size="large"
 				>
 					<BiSearch />
-				</StyledButton>
+				</Button>
 			</Modal.Open>
 			<Modal.Window name="searches">
 				<SearchesWindow
