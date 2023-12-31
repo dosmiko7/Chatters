@@ -25,7 +25,7 @@ const Button = styled.button<ButtonProps>`
 		props.variant === "menu" &&
 		css`
 			${flexCentered};
-			background-color: transparent;
+			background-color: var(--color-primary-200);
 			color: var(--font-color);
 		`}
 
@@ -53,13 +53,13 @@ const Button = styled.button<ButtonProps>`
 	${(props) =>
 		props.size === "large" &&
 		css`
-			font-size: 2.2rem;
+			font-size: 3rem;
 		`}	
 
 	${(props) =>
 		props.size === "medium" &&
 		css`
-			font-size: 1.8rem;
+			font-size: 2.2rem;
 		`}	
 
 	${(props) =>
