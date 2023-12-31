@@ -11,23 +11,27 @@ import ProfilePersonals from "./ProfilePersonals";
 
 const StyledProfileInformation = styled.div`
 	${flexColumn};
+	position: relative;
 `;
 
 interface IBackground {
 	src: string;
 }
 
-const Main = styled.div<IBackground>`
+const Background = styled.div<IBackground>`
+	height: 30%;
+	background-image: url(${(props) => props.src});
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+`;
+
+const Main = styled.div`
 	${flexColumn};
 	align-items: center;
-	padding-top: 20%;
 	flex: 1;
 	gap: 0.4rem;
-	position: relative;
-	background-image: linear-gradient(170deg, transparent 0%, transparent 40%, var(--color-primary-400) 47%),
-		url(${(props) => props.src});
-	background-size: contain;
-	background-repeat: no-repeat;
+	margin-top: -6rem;
 `;
 
 const Row = styled.div`
@@ -48,7 +52,8 @@ const ProfileInformation = ({ profileData }: { profileData: IDocumentData }) => 
 
 	return (
 		<StyledProfileInformation>
-			<Main src={background}>
+			<Background src={background} />
+			<Main>
 				<Avatar
 					size="12rem"
 					src={avatar}

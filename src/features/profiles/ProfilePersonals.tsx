@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
+import Info from "../../ui/Info";
 
 const StyledPersonals = styled.div`
 	${flexColumn};
@@ -32,7 +33,7 @@ interface IPersonals {
 const ProfilePersonals = ({ personals }: IPersonals) => {
 	const { name, surname, birthday, city } = personals;
 
-	const noPersonals = <div>No personal details</div>;
+	const noPersonals = <Info>No personal details</Info>;
 	const hasPersonals = (
 		<Column>
 			{name && (

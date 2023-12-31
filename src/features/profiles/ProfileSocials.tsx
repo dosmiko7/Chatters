@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { flexColumn, flexRow } from "../../style/Templates";
 import Heading from "../../ui/Heading";
 import Social from "../../ui/Social";
+import Info from "../../ui/Info";
 
 const StyledSocials = styled.div`
 	${flexRow}
@@ -25,7 +26,7 @@ interface ISocials {
 const ProfileSocials = ({ socials }: ISocials) => {
 	const { github, linkedin, twitter } = socials;
 
-	const noSocials = <div>User did not provide his social media.</div>;
+	const noSocials = <Info>User did not provide his social media.</Info>;
 	const hasSocials = (
 		<StyledSocials>
 			{linkedin && (
