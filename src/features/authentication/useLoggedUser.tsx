@@ -4,7 +4,13 @@ import { User } from "firebase/auth";
 export const useLoggedUser = () => {
 	const queryClient = useQueryClient();
 
-	const loggedUser: User | null | undefined = queryClient.getQueryData(["loggedUser"]);
+	let loggedUser: User | null | undefined = queryClient.getQueryData(["loggedUser"]);
+
+	const loggedUserFromLocalStorage = localStorage.getItem("loggedUser");
+
+	if (loggedUserFromLocalStorage && !loggedUser) {
+		loggedUser = JSON.parse(loggedUserFromLocalStorage);
+	}
 
 	return { loggedUser };
 };

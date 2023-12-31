@@ -14,6 +14,7 @@ const useLogin = () => {
 		onSuccess: ({ userCredential, authCredential }) => {
 			queryClient.setQueryData(["loggedUser"], userCredential.user);
 			queryClient.setQueryData(["emailAuthCredential"], authCredential);
+			localStorage.setItem("loggedUser", JSON.stringify(userCredential.user));
 			navigate("/dashboard", { replace: true });
 		},
 

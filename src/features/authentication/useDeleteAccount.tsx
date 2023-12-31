@@ -24,6 +24,7 @@ const useDeleteAccount = () => {
 		onSuccess: () => {
 			toast.success("We have deleted your account successfully");
 			queryClient.removeQueries();
+			localStorage.removeItem("userData");
 			navigate("/login");
 		},
 

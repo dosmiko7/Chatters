@@ -14,6 +14,7 @@ const useSignOut = () => {
 		onSuccess: () => {
 			toast.success("You have logged out successfully");
 			queryClient.removeQueries();
+			localStorage.removeItem("loggedUser");
 			navigate("/login", { replace: true });
 		},
 

@@ -15,6 +15,7 @@ const useOnAuthChange = () => {
 			if (!user) {
 				await updateUserTimestamp({ mode: "logout", userId: loggedUser?.uid });
 				queryClient.removeQueries();
+				localStorage.removeItem("loggedUser");
 			} else {
 				await updateUserTimestamp({ mode: "login", userId: user.uid });
 			}

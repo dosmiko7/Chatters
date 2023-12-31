@@ -16,6 +16,7 @@ const useGoogleLogin = () => {
 			if (isNewUser) await addUser(userCredential.user);
 
 			queryClient.setQueryData(["loggedUser"], userCredential.user);
+			localStorage.setItem("loggedUser", JSON.stringify(userCredential.user));
 			queryClient.setQueryData(["googleAuthCredential"], authCredential);
 			navigate("/dashboard", { replace: true });
 		},
