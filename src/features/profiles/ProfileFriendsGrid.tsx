@@ -6,9 +6,10 @@ import { flexRow } from "../../style/Templates";
 import ProfileFriendElement from "./ProfileFriendElement";
 
 const Grid = styled.div`
-	${flexRow}
+	${flexRow};
 	flex-wrap: wrap;
 	padding-top: var(--padding-md);
+	justify-content: space-between;
 	gap: 1rem;
 `;
 

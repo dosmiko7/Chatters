@@ -1,16 +1,32 @@
 import styled from "styled-components";
 
 import useProfile from "./useProfile";
+import { flexColumn, flexRow } from "../../style/Templates";
 import ProfileInformation from "./ProfileInformation";
 import ProfileFriends from "./ProfileFriends";
 import Spinner from "../../ui/Spinner";
 import ErrorMessage from "../../ui/ErrorMessage";
 
 const StyledProfile = styled.div`
+	${flexRow};
 	position: relative;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
 	height: 100%;
+	max-height: 100%;
+	width: 100%;
+	max-width: 100%;
+
+	& > * {
+		width: 50%;
+	}
+
+	@media only screen and (width <= 860px) {
+		${flexColumn};
+		overflow: scroll;
+
+		& > * {
+			width: 100%;
+		}
+	}
 `;
 
 const ProfileDetail = () => {

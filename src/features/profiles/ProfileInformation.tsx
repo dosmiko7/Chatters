@@ -19,7 +19,7 @@ interface IBackground {
 }
 
 const Background = styled.div<IBackground>`
-	height: 30%;
+	height: 25rem;
 	background-image: url(${(props) => props.src});
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -43,7 +43,7 @@ const Row = styled.div`
 const Addition = styled.div`
 	${flexColumn};
 	flex: 1;
-	padding: 0 var(--padding-lg);
+	padding: var(--padding-md) var(--padding-lg);
 	max-height: 40%;
 `;
 

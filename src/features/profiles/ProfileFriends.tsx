@@ -8,9 +8,13 @@ import ErrorMessage from "../../ui/ErrorMessage";
 const StyledProfileFriends = styled.div`
 	padding: var(--padding-sm);
 	border-left: var(--border-thin);
-	height: 100dvh;
-	max-height: 100dvh;
+	height: 100%;
+	max-height: 100%;
 	overflow: scroll;
+
+	@media only screen and (width <= 860px) {
+		overflow: unset;
+	}
 `;
 
 const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {

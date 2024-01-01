@@ -26,7 +26,7 @@ interface ISocials {
 const ProfileSocials = ({ socials }: ISocials) => {
 	const { github, linkedin, twitter } = socials;
 
-	const noSocials = <Info>User did not provide his social media.</Info>;
+	const noSocials = <Info>No social media.</Info>;
 	const hasSocials = (
 		<StyledSocials>
 			{linkedin && (
