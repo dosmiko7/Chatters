@@ -7,6 +7,7 @@ const Container = styled.div``;
 
 const Category = styled(Heading).attrs({ as: "h3" })`
 	margin: 1rem 0;
+	font-weight: var(--font-weight-bold);
 `;
 
 const List = styled.ul`
