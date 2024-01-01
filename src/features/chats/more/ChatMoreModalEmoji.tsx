@@ -7,7 +7,7 @@ const ChatMoreModalEmoji = ({ setEmoji }: { setEmoji: string }) => {
 	return (
 		<Modal>
 			<Modal.Open opens="gifPicker">
-				<Button>{setEmoji} Change emoji</Button>
+				<Button>{setEmoji} Emoji</Button>
 			</Modal.Open>
 			<Modal.Window name="gifPicker">
 				<Heading as="h2">Emoji</Heading>

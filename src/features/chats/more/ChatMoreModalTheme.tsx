@@ -11,7 +11,7 @@ const ChatMoreModalTheme = ({ setTheme }: { setTheme: string }) => {
 	return (
 		<Modal>
 			<Modal.Open opens="themePicker">
-				<Button style={{ background: background }}>Change theme</Button>
+				<Button style={{ background: background }}>Theme</Button>
 			</Modal.Open>
 			<Modal.Window name="themePicker">
 				<Heading as="h2">Theme</Heading>
