@@ -3,7 +3,7 @@ import styled from "styled-components";
 const InputProfileForm = styled.input`
 	border-radius: var(--border-radius-xsm);
 	border: 1px solid transparent;
-	padding: var(--padding-sm);
+	padding: var(--padding-xsm);
 	margin: var(--padding-xsm) 0;
 	width: 100%;
 	color: var(--color-primary-0);
