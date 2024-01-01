@@ -3,11 +3,9 @@ const overwriteProperties = (input: any, data: any): any => {
 
 	for (const prop in copy) {
 		if (Object.prototype.hasOwnProperty.call(data, prop) && Object.prototype.hasOwnProperty.call(input, prop)) {
-			if (typeof copy[prop] === "object" && typeof input[prop] === "object") {
-				copy[prop] = overwriteProperties(input[prop], copy[prop]);
-			} else {
-				copy[prop] = input[prop];
-			}
+			if (typeof copy[prop] === "object") {
+				copy[prop] = { ...copy[prop], ...input[prop] };
+			} else copy[prop] = input[prop];
 		}
 	}
 

@@ -128,14 +128,14 @@ export const updateUserInfo = async ({
 	if (!data) data = (await getUser(userId)).data;
 	const userRef = doc(firestore, "users", `${userId}`);
 
-	let avatarUrl: string = data.avatar;
+	let avatarUrl: string = "";
 	if (input.avatar) {
 		await uploadAvatar({ avatarFile: input.avatar[0], userId });
 		avatarUrl = await getFileURL(`avatars/${userId}/avatar_${userId}`);
 		await updateUserProfile({ photoURL: avatarUrl });
 	}
 
-	let backgroundUrl: string = data.background;
+	let backgroundUrl: string = "";
 	if (input.background) {
 		await uploadBackground({ backgroundFile: input.background[0], userId });
 		backgroundUrl = await getFileURL(`backgrounds/${userId}/background_${userId}`);
@@ -302,13 +302,9 @@ export const addFriend = async ({ userId, friendId }: { userId: string; friendId
 };
 
 export const deleteUserDoc = async ({ userId }: { userId: string }) => {
-	// a. Delete avatar
 	await removeStorageFolder({ path: `avatars/${userId}` });
-	// b. Delete background
 	await removeStorageFolder({ path: `backgrounds/${userId}` });
-	// c. Delete friends list -> go through each friend and remove current user from their list
 	await removeFriendsList({ userId });
-	// d. Delete doc
 	await deleteDoc(doc(firestore, "users", userId));
 };
 
