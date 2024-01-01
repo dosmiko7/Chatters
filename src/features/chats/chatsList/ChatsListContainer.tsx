@@ -2,14 +2,22 @@ import styled from "styled-components";
 import { useState } from "react";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
 
-import { flexRow } from "../../../style/Templates";
+import useSmallerResolution from "../../../hooks/useSmallerResolution";
+import { flexColumn, flexRow } from "../../../style/Templates";
 import Heading from "../../../ui/Heading";
 import Button from "../../../ui/Button";
 import ChatsList from "./ChatsList";
 
-const ScrollBox = styled.div`
-	flex: 1;
-	overflow: scroll;
+const StyledChatsListContainer = styled.div`
+	${flexColumn};
+	max-height: 100%;
+	width: 100%;
+	max-width: 100%;
+
+	@media only screen and (width <= 680px) {
+		width: 70%;
+		max-width: 70%;
+	}
 `;
 
 const Box = styled.div`
@@ -19,6 +27,7 @@ const Box = styled.div`
 `;
 
 const ChatsListContainer = () => {
+	const { isSmaller } = useSmallerResolution({ width: 680 });
 	const [listDisplayed, setListDisplayed] = useState<boolean>(true);
 
 	const buttonSymbol = listDisplayed ? <BiChevronDown /> : <BiChevronUp />;
@@ -28,19 +37,22 @@ const ChatsListContainer = () => {
 	};
 
 	return (
-		<ScrollBox>
-			<Box>
-				<Heading as="h3">Private Chats</Heading>
-				<Button
-					onClick={handleOnClick}
-					variant="menu"
-					size="small"
-				>
-					{buttonSymbol}
-				</Button>
-			</Box>
+		<StyledChatsListContainer>
+			{!isSmaller && (
+				<Box>
+					<Heading as="h3">Chats</Heading>
+					<Button
+						onClick={handleOnClick}
+						variant="menu"
+						size="small"
+					>
+						{buttonSymbol}
+					</Button>
+				</Box>
+			)}
+
 			{listDisplayed && <ChatsList />}
-		</ScrollBox>
+		</StyledChatsListContainer>
 	);
 };
 

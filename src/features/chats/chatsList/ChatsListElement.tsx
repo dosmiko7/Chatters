@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-import { flexColumn } from "../../../style/Templates";
+import { flexCentered, flexColumn } from "../../../style/Templates";
 import ListElement from "../../../ui/ListElement";
 import Avatar from "../../../ui/Avatar";
 import Heading from "../../../ui/Heading";
+import useSmallerResolution from "../../../hooks/useSmallerResolution";
 
 interface IStatus {
 	isActive: boolean;
@@ -25,7 +26,11 @@ const StyledListElement = styled(ListElement)<IStatus>`
 		transform: translateY(-50%);
 		width: 3px;
 		height: 80%;
-		background-color: ${(props) => (props.isActive ? "var(--color-green-100)" : "transparent")};
+		background-color: ${(props) => (props.isActive ? "var(--color-green-200)" : "transparent")};
+	}
+
+	@media only screen and (width <= 680px) {
+		${flexCentered};
 	}
 `;
 
@@ -52,21 +57,26 @@ interface IPrivChatEl {
 }
 
 const ChatsListElement = (props: IPrivChatEl) => {
+	const { isSmaller } = useSmallerResolution({ width: 680 });
 	const { onClickHandler, avatar, lastMessage, nickname, isActive } = props;
 
 	return (
 		<StyledListElement
 			onClick={onClickHandler}
 			isActive={isActive}
+			nonBorder={isSmaller}
 		>
 			<Avatar
 				src={avatar}
-				size="4rem"
+				size={isSmaller ? "6rem" : "4rem"}
+				border
 			/>
-			<Box>
-				<Heading as="h4">{nickname}</Heading>
-				<Message>{lastMessage}</Message>
-			</Box>
+			{!isSmaller && (
+				<Box>
+					<Heading as="h3">{nickname}</Heading>
+					<Message>{lastMessage}</Message>
+				</Box>
+			)}
 		</StyledListElement>
 	);
 };

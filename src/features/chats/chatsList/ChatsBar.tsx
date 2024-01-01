@@ -1,26 +1,41 @@
 import styled from "styled-components";
 
-import { flexColumn } from "../../../style/Templates";
+import { flexColumn, flexRow } from "../../../style/Templates";
 import ChatsSearchProvider from "../../../context/ChatsSearchContext";
 import Container from "../../../ui/Container";
+import FlexColumn from "../../../ui/FlexColumn";
 import Heading from "../../../ui/Heading";
 import ChatsSearch from "./ChatsSearch";
 import ChatsListContainer from "./ChatsListContainer";
 
 const StyledChatsBar = styled(Container)`
-	${flexColumn}
-	max-width: 100%;
-	height: 100dvh;
-	max-height: 100dvh;
+	${flexColumn};
+	width: 100%;
+	max-width: 100dvw;
+	height: 100%;
+	max-height: 100%;
 	background-color: var(--color-primary-300);
+
+	@media only screen and (width <= 680px) {
+		${flexRow};
+		gap: 1rem;
+	}
+`;
+
+const SearchBox = styled(FlexColumn)`
+	@media only screen and (width <= 680px) {
+		width: 30%;
+	}
 `;
 
 const ChatsBar = () => {
 	return (
 		<ChatsSearchProvider>
 			<StyledChatsBar>
-				<Heading as="h2">Chats</Heading>
-				<ChatsSearch />
+				<SearchBox>
+					<Heading as="h2">Chats</Heading>
+					<ChatsSearch />
+				</SearchBox>
 				<ChatsListContainer />
 			</StyledChatsBar>
 		</ChatsSearchProvider>
