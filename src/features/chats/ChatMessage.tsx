@@ -8,6 +8,10 @@ import ChatMessageContent from "./ChatMessageContent";
 const StyledMessage = styled.div`
 	position: relative;
 	max-width: 45%;
+
+	@media only screen and (width <= 860px) {
+		max-width: 60%;
+	}
 `;
 
 interface IChatMessageProps extends IChatElement {
