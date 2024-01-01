@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
+import styled from "styled-components";
 
 import useProfileFormSubmit from "./useProfileFormSubmit";
 import Form from "../../../ui/Form";
@@ -42,6 +43,10 @@ export interface IProfileFormInput
 		IProfileFormSocials,
 		IProfileFormDescription {}
 
+const StyledProfileForm = styled(Form)`
+	height: 100%;
+`;
+
 const ProfileForm = ({ images }: { images: { avatar: string; background: string } }) => {
 	const methods = useForm<IProfileFormInput>({ mode: "all" });
 	const { submit, status } = useProfileFormSubmit();
@@ -59,14 +64,14 @@ const ProfileForm = ({ images }: { images: { avatar: string; background: string 
 
 	return (
 		<FormProvider {...methods}>
-			<Form onSubmit={handleSubmit(onSubmit)}>
+			<StyledProfileForm onSubmit={handleSubmit(onSubmit)}>
 				<ProfileFormImages images={images} />
 				<ProfileFormPersonals />
 				<ProfileFormSocials />
 				<ProfileFormDescription />
 				<ProfileFormButtons />
 				<ProfileFormStatus status={status} />
-			</Form>
+			</StyledProfileForm>
 		</FormProvider>
 	);
 };

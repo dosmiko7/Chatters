@@ -16,7 +16,8 @@ const ProfileFormModal = ({ images }: { images: { avatar: string; background: st
 
 			<Modal.Window
 				name="profileForm"
-				height="fill-content"
+				height="100dvh"
+				width="70rem"
 			>
 				<ProfileForm images={images} />
 			</Modal.Window>

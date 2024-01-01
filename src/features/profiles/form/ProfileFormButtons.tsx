@@ -7,11 +7,15 @@ import Button from "../../../ui/Button";
 const StyledButtons = styled.div`
 	${flexRow};
 	justify-content: space-between;
-	margin-top: 0.6rem;
+	margin-top: 10px;
 
 	& > * {
 		width: 40%;
 	}
+`;
+
+const StyledButton = styled(Button)`
+	justify-content: center;
 `;
 
 const ProfileFormButtons = () => {
@@ -19,14 +23,14 @@ const ProfileFormButtons = () => {
 
 	return (
 		<StyledButtons>
-			<Button
+			<StyledButton
 				type="button"
 				variant="danger"
 				onClick={() => reset()}
 			>
 				Reset
-			</Button>
-			<Button type="submit">Submit</Button>
+			</StyledButton>
+			<StyledButton type="submit">Submit</StyledButton>
 		</StyledButtons>
 	);
 };

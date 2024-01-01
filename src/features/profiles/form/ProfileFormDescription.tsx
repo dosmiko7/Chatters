@@ -7,7 +7,11 @@ import ErrorMessage from "../../../ui/ErrorMessage";
 
 const InputDescription = styled(InputProfileForm).attrs({
 	as: "textarea",
-})``;
+})`
+	height: 35%;
+	width: 100%;
+	resize: none;
+`;
 
 const descrValidation = {
 	maxLength: { value: 700, message: "No more than 700 characters" },
