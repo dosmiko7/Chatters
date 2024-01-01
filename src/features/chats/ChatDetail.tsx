@@ -13,11 +13,12 @@ import ChatMore from "./more/ChatMore";
 const StyledWrapper = styled.div`
 	${flexRow};
 	height: 100%;
+	position: relative;
 `;
 
 const StyledChat = styled(Container)`
 	${flexColumn};
-	max-height: 100vh;
+	max-height: 100%;
 	width: 75%;
 	flex-grow: 1;
 `;
