@@ -3,15 +3,21 @@ import { HiXMark } from "react-icons/hi2";
 
 import { flexCentered, flexColumn } from "../../../style/Templates";
 import Container from "../../../ui/Container";
-import Avatar from "../../../ui/Avatar";
-import Heading from "../../../ui/Heading";
 import Button from "../../../ui/Button";
+import ChatMoreInfo from "./ChatMoreInfo";
 import ChatMoreOptions from "./ChatMoreOptions";
+import ErrorMessage from "../../../ui/ErrorMessage";
 
 const StyledChatMoreInfo = styled(Container)`
 	${flexColumn};
 	position: relative;
 	width: 25%;
+
+	@media only screen and (width <= 860px) {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
 `;
 
 const CloseButton = styled(Button)`
@@ -20,14 +26,8 @@ const CloseButton = styled(Button)`
 	top: 1rem;
 `;
 
-const Error = styled(Container)`
+const Error = styled(ErrorMessage)`
 	${flexCentered};
-`;
-
-const Info = styled.div`
-	${flexColumn}
-	align-items: center;
-	gap: 0.4rem;
 `;
 
 interface IChatMoreProps {
@@ -40,10 +40,7 @@ interface IChatMoreProps {
 const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) => {
 	if (!data) return <Error>Something went wrong 😓</Error>;
 
-	const { avatar, nickname, isActive, lastSeen } = data;
 	const customizationData = { setEmoji, setTheme };
-
-	const activeStatus = isActive ? "🟢 Active now" : `🔴 Last seen ${lastSeen}`;
 
 	return (
 		<StyledChatMoreInfo as="aside">
@@ -53,14 +50,7 @@ const ChatMore = ({ data, setEmoji, setTheme, handlerClose }: IChatMoreProps) =>
 			>
 				<HiXMark style={{ fontSize: "2rem" }} />
 			</CloseButton>
-			<Info>
-				<Avatar
-					size="6rem"
-					src={avatar}
-				/>
-				<Heading as="h3">{nickname}</Heading>
-				<Heading as="time">{activeStatus}</Heading>
-			</Info>
+			<ChatMoreInfo infoData={data} />
 			<ChatMoreOptions customizationData={customizationData} />
 		</StyledChatMoreInfo>
 	);
