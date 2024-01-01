@@ -27,7 +27,6 @@ const Box = styled.div`
 	${flexColumn};
 	align-items: center;
 	gap: 1.2rem;
-	max-width: 50%;
 
 	@media only screen and (width <= 1000px) {
 		${flexRow};
