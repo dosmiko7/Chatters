@@ -7,12 +7,12 @@ export interface ICustomizationProps {
 	setEmoji: string;
 }
 
-const ChatMoreCustomization = ({ data }: { data: ICustomizationProps; }) => {
+const ChatMoreCustomization = ({ data }: { data: ICustomizationProps }) => {
 	const { setTheme, setEmoji } = data;
 
 	return (
 		<Options.Container>
-			<Options.Category>Chat customization</Options.Category>
+			<Options.Category>Customization</Options.Category>
 			<Options.List>
 				<Options.Option key={setEmoji}>
 					<ChatMoreModalEmoji setEmoji={setEmoji} />
