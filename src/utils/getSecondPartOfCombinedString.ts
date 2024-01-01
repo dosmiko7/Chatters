@@ -5,14 +5,8 @@ const getSecondPartOfCombinedString = ({
 	combinedString: string;
 	knownPart: string;
 }) => {
-	const index = combinedString.indexOf(knownPart);
-
-	if (index !== -1) {
-		const secondPart = combinedString.slice(index + knownPart.length);
-		return secondPart;
-	} else {
-		return "";
-	}
+	const secondPart = combinedString.replace(knownPart, "");
+	return secondPart;
 };
 
 export default getSecondPartOfCombinedString;
