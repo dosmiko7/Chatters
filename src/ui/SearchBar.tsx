@@ -37,6 +37,10 @@ const StyledInput = styled(Input)`
 	@media only screen and (width <= 860px) {
 		font-size: 2rem;
 	}
+
+	@media only screen and (width <= 480px) {
+		font-size: 1.6rem;
+	}
 `;
 
 interface ISearchBarProps {
