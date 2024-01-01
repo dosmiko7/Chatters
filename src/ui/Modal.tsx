@@ -23,8 +23,8 @@ const StyledModal = styled.div<IModalSize>`
 	transition: var(--transition-all-5);
 	width: ${(props) => props.width || "45rem"};
 	height: ${(props) => props.height || "55rem"};
-	max-width: 80dvw;
-	max-height: 80dvh;
+	max-width: 90dvw;
+	max-height: 90dvh;
 `;
 
 const StyledButton = styled(Button)`
