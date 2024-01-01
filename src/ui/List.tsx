@@ -1,5 +1,5 @@
 import { memo } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 import { flexColumn } from "../style/Templates";
 
@@ -15,12 +15,13 @@ const StyledList = styled.ul`
 interface IListProps<T> {
 	data: T[];
 	render: (item: T, index: number) => JSX.Element;
+	style?: CSSProperties;
 }
 
 const GenericList = <T,>(props: IListProps<T>) => {
-	const { data, render } = props;
+	const { data, render, style } = props;
 
-	return <StyledList>{data.map(render)}</StyledList>;
+	return <StyledList style={style}>{data.map(render)}</StyledList>;
 };
 
 const List = memo(GenericList) as typeof GenericList;
