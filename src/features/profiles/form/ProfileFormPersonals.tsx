@@ -32,7 +32,7 @@ const ProfileFormPersonals = () => {
 					type="text"
 					placeholder="Nickname"
 					{...register("nickname", {
-						pattern: { value: /^[a-zA-Z0-9 ]+$/, message: "Special characters are not allowed" },
+						pattern: { value: /^[a-zA-ZżźćńłąęśóäöüßæøåÆØÅ\d\s]+$/, message: "Special characters are not allowed" },
 						minLength: { value: 5, message: "At least 5 characters" },
 						maxLength: { value: 20, message: "No more than 20 characters" },
 					})}
@@ -70,7 +70,7 @@ const ProfileFormPersonals = () => {
 						type="text"
 						placeholder="City"
 						{...register("personals.city", {
-							pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
+							pattern: { value: /^[a-zA-ZżźćńłąęśóäöüßæøåÆØÅ\s]+$/, message: "Only letters" },
 							minLength: { value: 1, message: "At least 1 character" },
 							maxLength: { value: 100, message: "No more than 100 characters" },
 						})}
