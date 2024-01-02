@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { flexColumn, flexRow } from "../style/Templates";
 import ProfileSearches from "../features/profiles/ProfileSearches";
-import ProfileLoggedUser from "../features/profiles/ProfileLoggedUser";
+import ProfileUser from "../features/profiles/ProfileUser";
 import Container from "./Container";
 import Logo from "./Logo";
 import Settings from "./Settings";
@@ -43,7 +43,7 @@ const Sidebar = () => {
 			<Box>
 				<Settings />
 				<ThemeChanger />
-				<ProfileLoggedUser />
+				<ProfileUser />
 				<Logout />
 			</Box>
 		</StyledSidebar>
