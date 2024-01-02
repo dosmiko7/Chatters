@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 
+import { breakpoints } from "../../../style/GlobalStyles";
 import { flexCentered, flexColumn } from "../../../style/Templates";
 import Container from "../../../ui/Container";
 import Button from "../../../ui/Button";
@@ -13,7 +14,7 @@ const StyledChatMoreInfo = styled(Container)`
 	position: relative;
 	width: 25%;
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		position: absolute;
 		width: 100%;
 		height: 100%;

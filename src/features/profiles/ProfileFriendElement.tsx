@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn } from "../../style/Templates";
 import Avatar from "../../ui/Avatar";
 import Heading from "../../ui/Heading";
@@ -27,11 +28,11 @@ const StyledElement = styled.div`
 		border-color: var(--color-secondary-100);
 	}
 
-	@media only screen and (width <= 1000px) {
+	@media only screen and (width <= ${breakpoints.tabletScreen}) {
 		height: 28rem;
 	}
 
-	@media only screen and (width <= 680px) {
+	@media only screen and (width <= ${breakpoints.smartphoneScreen}) {
 		width: 30%;
 		height: 30rem;
 	}

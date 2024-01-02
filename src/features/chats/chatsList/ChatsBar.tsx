@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../../style/Templates";
 import ChatsSearchProvider from "../../../context/ChatsSearchContext";
 import Container from "../../../ui/Container";
@@ -16,14 +17,14 @@ const StyledChatsBar = styled(Container)`
 	max-height: 100%;
 	background-color: var(--color-primary-300);
 
-	@media only screen and (width <= 680px) {
+	@media only screen and (width <= ${breakpoints.smartphoneScreen}) {
 		${flexRow};
 		gap: 1rem;
 	}
 `;
 
 const SearchBox = styled(FlexColumn)`
-	@media only screen and (width <= 680px) {
+	@media only screen and (width <= ${breakpoints.smartphoneScreen}) {
 		width: 30%;
 	}
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../../../style/GlobalStyles";
 import { flexColumn } from "../../../style/Templates";
 import ChatMoreCustomization, { ICustomizationProps } from "./ChatMoreCustomization";
 import ChatMorePrivacy from "./ChatMorePrivacy";
@@ -7,7 +8,7 @@ import ChatMorePrivacy from "./ChatMorePrivacy";
 const StyledChatMoreOptions = styled.div`
 	${flexColumn};
 
-	@media only screen and (width <= 1000px) {
+	@media only screen and (width <= ${breakpoints.tabletScreen}) {
 		font-size: 1.8rem;
 		h3 {
 			font-size: 2rem;

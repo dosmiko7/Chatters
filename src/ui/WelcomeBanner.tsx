@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import { breakpoints } from "../style/GlobalStyles";
 import { flexColumn, flexRow } from "../style/Templates";
 import Heading from "./Heading";
 import FlexColumn from "./FlexColumn";
 
 const StyledWelcomeBanner = styled(FlexColumn)`
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		align-items: center;
 		justify-content: center;
 	}
@@ -21,11 +22,11 @@ const PageName = styled.div`
 		color: var(--logo-color);
 		margin: 0;
 
-		@media only screen and (width <= 1360px) {
+		@media only screen and (width <= ${breakpoints.laptopScreen}) {
 			font-size: 10rem;
 		}
 
-		@media only screen and (width <= 480px) {
+		@media only screen and (width <= ${breakpoints.smallSmartphoneScreen}) {
 			font-size: 7rem;
 		}
 	}
@@ -42,16 +43,16 @@ const SubHeadings = styled.div`
 	h2 {
 		font-size: 8rem;
 
-		@media only screen and (width <= 1360px) {
+		@media only screen and (width <= ${breakpoints.laptopScreen}) {
 			font-size: 6rem;
 		}
 
-		@media only screen and (width <= 480px) {
+		@media only screen and (width <= ${breakpoints.smallSmartphoneScreen}) {
 			font-size: 4rem;
 		}
 	}
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		${flexRow};
 		width: 80%;
 		justify-content: space-evenly;

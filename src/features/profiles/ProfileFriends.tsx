@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { IDocumentData } from "../../services/firestore/userApi";
+import { breakpoints } from "../../style/GlobalStyles";
 import Heading from "../../ui/Heading";
 import ProfileFriendsGrid from "./ProfileFriendsGrid";
 import ErrorMessage from "../../ui/ErrorMessage";
@@ -12,7 +13,7 @@ const StyledProfileFriends = styled.div`
 	max-height: 100%;
 	overflow: scroll;
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		overflow: unset;
 	}
 `;

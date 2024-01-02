@@ -15,6 +15,14 @@ const generateThemesVariables = () => {
 	return css;
 };
 
+export const breakpoints = {
+	laptopScreen: "1360px",
+	tabletScreen: "1000px",
+	smallTabletScreen: "860px",
+	smartphoneScreen: "680px",
+	smallSmartphoneScreen: "480px",
+};
+
 const GlobalStyles = createGlobalStyle`
     :root {
         &, &.dark-theme {
@@ -115,15 +123,15 @@ const GlobalStyles = createGlobalStyle`
         font-size: 62.5%;
         background-color: grey;
 
-        @media only screen and (width <= 1360px){
+        @media only screen and (width <= ${breakpoints.laptopScreen}){
             font-size: 56.5%;
         }
 
-        @media only screen and (width <= 860px){
+        @media only screen and (width <= ${breakpoints.smallTabletScreen}){
             font-size: 52%;
         }
 
-        @media only screen and (width <= 480px){
+        @media only screen and (width <= ${breakpoints.smallSmartphoneScreen}){
             font-size: 48%;
         }
     }

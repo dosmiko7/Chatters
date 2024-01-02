@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
+import { breakpoints } from "../style/GlobalStyles";
 import Input from "./Input";
 
 const StyledSearchBar = styled.div`
@@ -34,11 +35,11 @@ const StyledInput = styled(Input)`
 		background-color: var(--color-primary-300);
 	}
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		font-size: 2rem;
 	}
 
-	@media only screen and (width <= 480px) {
+	@media only screen and (width <= ${breakpoints.smallSmartphoneScreen}) {
 		font-size: 1.6rem;
 	}
 `;

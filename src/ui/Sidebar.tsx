@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../style/GlobalStyles";
 import { flexColumn, flexRow } from "../style/Templates";
 import ProfileSearches from "../features/profiles/ProfileSearches";
 import ProfileUser from "../features/profiles/ProfileUser";
@@ -15,7 +16,7 @@ const StyledSidebar = styled(Container)`
 	justify-content: space-between;
 	background-color: var(--color-primary-300);
 
-	@media only screen and (width <= 1000px) {
+	@media only screen and (width <= ${breakpoints.tabletScreen}) {
 		${flexRow};
 		grid-row: 1/2;
 		grid-column: 1/3;
@@ -28,7 +29,7 @@ const Box = styled.div`
 	align-items: center;
 	gap: 1.2rem;
 
-	@media only screen and (width <= 1000px) {
+	@media only screen and (width <= ${breakpoints.tabletScreen}) {
 		${flexRow};
 	}
 `;

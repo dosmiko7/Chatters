@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { IChatElement } from "./useChat";
+import { breakpoints } from "../../style/GlobalStyles";
 import ListElement from "../../ui/ListElement";
 import ChatAvatar from "./ChatAvatar";
 import ChatMessageContent from "./ChatMessageContent";
@@ -9,7 +10,7 @@ const StyledMessage = styled.div`
 	position: relative;
 	max-width: 45%;
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		max-width: 60%;
 	}
 `;

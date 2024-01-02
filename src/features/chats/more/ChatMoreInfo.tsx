@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../../../style/GlobalStyles";
 import { flexColumn } from "../../../style/Templates";
 import Avatar from "../../../ui/Avatar";
 import Heading from "../../../ui/Heading";
@@ -10,7 +11,7 @@ const Info = styled.div`
 	align-items: center;
 	gap: 0.4rem;
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		h3 {
 			font-size: 2rem;
 		}

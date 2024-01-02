@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
 
 import useSmallerResolution from "../../../hooks/useSmallerResolution";
+import { breakpoints } from "../../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../../style/Templates";
 import Heading from "../../../ui/Heading";
 import Button from "../../../ui/Button";
@@ -14,7 +15,7 @@ const StyledChatsListContainer = styled.div`
 	width: 100%;
 	max-width: 100%;
 
-	@media only screen and (width <= 680px) {
+	@media only screen and (width <= ${breakpoints.smartphoneScreen}) {
 		width: 70%;
 		max-width: 70%;
 	}

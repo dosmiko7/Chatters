@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import useProfile from "./useProfile";
+import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../style/Templates";
 import ProfileInformation from "./ProfileInformation";
 import ProfileFriends from "./ProfileFriends";
@@ -19,7 +20,7 @@ const StyledProfile = styled.div`
 		width: 50%;
 	}
 
-	@media only screen and (width <= 860px) {
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
 		${flexColumn};
 		overflow: scroll;
 

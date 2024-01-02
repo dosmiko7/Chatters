@@ -7,6 +7,7 @@ import useChatsList, { IChatsListElement } from "./useChatsList";
 import useChatsSearch from "../../../context/useChatsSearch";
 import useSmallerResolution from "../../../hooks/useSmallerResolution";
 import getCombinedId from "../../../utils/getCombinedId";
+import { breakpoints } from "../../../style/GlobalStyles";
 import ErrorMessage from "../../../ui/ErrorMessage";
 import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
@@ -17,7 +18,7 @@ const StyledChatsList = styled.div`
 	transform: translateZ(0);
 	-webkit-transform: translateZ(0);
 
-	@media only screen and (width <= 680px) {
+	@media only screen and (width <= ${breakpoints.smartphoneScreen}) {
 		width: 100%;
 		max-width: 100%;
 		overflow: scroll;

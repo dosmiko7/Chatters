@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn } from "../../style/Templates";
 import Container from "../../ui/Container";
 import DashboardButtons from "./DashboardButtons";
@@ -15,7 +16,7 @@ const Main = styled.main`
 	width: 60%;
 	max-width: 60%;
 
-	@media only screen and (width <= 1000px) {
+	@media only screen and (width <= ${breakpoints.tabletScreen}) {
 		width: 90%;
 		max-width: 90%;
 	}

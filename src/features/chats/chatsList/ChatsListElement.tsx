@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { breakpoints } from "../../../style/GlobalStyles";
 import { flexCentered, flexColumn } from "../../../style/Templates";
 import ListElement from "../../../ui/ListElement";
 import Avatar from "../../../ui/Avatar";
@@ -29,7 +30,7 @@ const StyledListElement = styled(ListElement)<IStatus>`
 		background-color: ${(props) => (props.isActive ? "var(--color-green-200)" : "transparent")};
 	}
 
-	@media only screen and (width <= 680px) {
+	@media only screen and (width <= ${breakpoints.smartphoneScreen}) {
 		${flexCentered};
 	}
 `;
