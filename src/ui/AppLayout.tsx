@@ -13,7 +13,7 @@ const StyledAppLayout = styled.div`
 
 	@media only screen and (width <= 1000px) {
 		grid-template-rows: 0.6fr 11fr;
-		grid-template-columns: 3fr 11fr;
+		grid-template-columns: minmax(0, 3fr) 11fr;
 	}
 
 	@media only screen and (width <= 680px) {
