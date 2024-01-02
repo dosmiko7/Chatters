@@ -14,6 +14,9 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 		if (!loggedUser) {
 			navigate("/login");
 			toast.error("Please log in to continue");
+		} else if (!loggedUser.emailVerified) {
+			navigate("/login");
+			toast.error("Please confirm your email address");
 		}
 	}, [loggedUser, navigate]);
 
@@ -21,10 +24,3 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 };
 
 export default ProtectedRoute;
-
-/*
-else if (!loggedUser.emailVerified) {
-			navigate("/login");
-			toast.error("Please confirm your email address");
-		}
-*/
