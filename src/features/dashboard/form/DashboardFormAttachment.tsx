@@ -25,6 +25,10 @@ const NoAttachment = styled.div`
 	width: 100%;
 `;
 
+const Name = styled.p`
+	text-align: center;
+`;
+
 const AttachmentWithImage = styled.img`
 	width: 100%;
 	height: 100%;
@@ -72,7 +76,7 @@ const DashboardFormAttachment = () => {
 		attachmentType = fileWatcher ? (
 			<AttachmentWithoutImage>
 				<BiFileBlank />
-				<p>{fileWatcher[0].name}</p>
+				<Name>{fileWatcher[0].name}</Name>
 			</AttachmentWithoutImage>
 		) : (
 			<NoAttachment>
