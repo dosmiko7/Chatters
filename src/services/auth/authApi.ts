@@ -9,7 +9,6 @@ import {
 	sendPasswordResetEmail,
 	deleteUser,
 	getAdditionalUserInfo,
-	updateProfile,
 	EmailAuthProvider,
 	reauthenticateWithCredential,
 	EmailAuthCredential,
@@ -101,17 +100,6 @@ export const deleteAccount = async ({ user }: { user: User | null | undefined })
 	} catch (error) {
 		console.error(error);
 		throw new Error("deleteAccount: User deletion failed");
-	}
-};
-
-export const updateUserProfile = async ({ displayName, photoURL }: { displayName?: string; photoURL?: string }) => {
-	if (!auth.currentUser) throw new Error("updateUser: There is no user to update");
-
-	try {
-		updateProfile(auth.currentUser, { displayName, photoURL });
-	} catch (error) {
-		console.error(error);
-		throw new Error("updateUser: User update failed");
 	}
 };
 

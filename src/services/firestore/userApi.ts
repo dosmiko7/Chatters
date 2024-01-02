@@ -21,7 +21,7 @@ import { getFileURL, removeStorageFolder, uploadAvatar, uploadBackground } from 
 
 import { IProfileFormInput } from "../../features/profiles/form/ProfileForm";
 import formatSubmit from "../../utils/formatSubmit";
-import { deleteAccount, updateUserProfile } from "../auth/authApi";
+import { deleteAccount} from "../auth/authApi";
 import { deleteUserChats, deleteUsersLastChatsDoc } from "./chatsApi";
 import { deleteUserDashboardDocs } from "./dashboardApi";
 
@@ -132,7 +132,6 @@ export const updateUserInfo = async ({
 	if (input.avatar) {
 		await uploadAvatar({ avatarFile: input.avatar[0], userId });
 		avatarUrl = await getFileURL(`avatars/${userId}/avatar_${userId}`);
-		await updateUserProfile({ photoURL: avatarUrl });
 	}
 
 	let backgroundUrl: string = "";
