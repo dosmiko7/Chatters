@@ -9,7 +9,6 @@ const Grid = styled.div`
 	${flexRow};
 	flex-wrap: wrap;
 	padding-top: var(--padding-md);
-	justify-content: space-between;
 	gap: 1rem;
 `;
 
