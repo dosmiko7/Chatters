@@ -40,8 +40,8 @@ const AuthFormManager = (props: IFormManager) => {
 	} = useForm<FormValues>({
 		mode: "onBlur",
 		defaultValues: {
-			email: "Email",
-			password: "Password",
+			email: "cidot77582@vkr1.com",
+			password: "Test1!",
 		},
 	});
 	const { submitHandler, name, statuses } = props;
