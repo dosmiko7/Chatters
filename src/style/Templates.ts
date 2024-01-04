@@ -104,18 +104,19 @@ const getPositionStyle = (position: PositionType) => {
 
 export const displayInfo = ({ message, position }: { message: string; position: PositionType }) => css`
 	position: relative;
-
-	&:hover::after {
-		content: "${message}";
-		font-size: 1.6rem;
-		z-index: 1000;
-		position: absolute;
-		${getPositionStyle(position)};
-		width: max-content;
-		background-color: var(--color-primary-500);
-		border: var(--border-thin);
-		padding: var(--padding-xsm);
-		font-weight: var(--font-weight-medium);
-		color: var(--font-color);
+	@media (hover: hover) {
+		&:hover::after {
+			content: "${message}";
+			font-size: 1.6rem;
+			z-index: 1000;
+			position: absolute;
+			${getPositionStyle(position)};
+			width: max-content;
+			background-color: var(--color-primary-500);
+			border: var(--border-thin);
+			padding: var(--padding-xsm);
+			font-weight: var(--font-weight-medium);
+			color: var(--font-color);
+		}
 	}
 `;
