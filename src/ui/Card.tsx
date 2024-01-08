@@ -43,7 +43,10 @@ const Card = ({
 	onClickHandler?: () => void;
 }) => {
 	return (
-		<StyledCard onClick={onClickHandler}>
+		<StyledCard
+			onClick={onClickHandler}
+			aria-label="Card"
+		>
 			<IconBox>{icon}</IconBox>
 			<InfoBox>
 				<Heading as="h2">{heading}</Heading>
