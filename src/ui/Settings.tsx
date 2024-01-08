@@ -18,7 +18,7 @@ const Settings = () => {
 			size="large"
 			onClick={() => navigate("/settings")}
 		>
-			<FaGear />
+			<FaGear data-testid="icon" />
 		</SettingsButton>
 	);
 };
