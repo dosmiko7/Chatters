@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 import { breakpoints } from "../style/GlobalStyles";
 
-const Paragraph = styled.p`
+const Paragraph = styled.p.attrs({
+	role: "paragraph",
+})`
 	overflow: hidden;
 	text-overflow: ellipsis;
 
