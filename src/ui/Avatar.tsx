@@ -38,6 +38,7 @@ const Avatar = (props: IAvatar) => {
 			square={square}
 			onClick={onClick}
 			border={border}
+			aria-label="Avatar container"
 		>
 			<img
 				src={src || "avatar-default.png"}
