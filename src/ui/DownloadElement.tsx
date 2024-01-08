@@ -3,20 +3,17 @@ import styled from "styled-components";
 
 import useDownloadFile from "../hooks/useDownloadFile";
 import { flexRow } from "../style/Templates";
+import Wrapper from "./Wrapper";
 import Button from "./Button";
+import Paragraph from "./Paragraph";
 
-const StyledFileElement = styled.div`
+const StyledFileElement = styled(Wrapper)`
 	${flexRow};
 	align-items: center;
 	gap: 0.4rem;
 	padding: var(--padding-sm);
 	border: 1px solid var(--color-secondary-300);
 	border-radius: var(--border-radius-sm);
-`;
-
-const FileName = styled.p`
-	overflow: hidden;
-	text-overflow: ellipsis;
 `;
 
 const DownloadElement = ({ fileUrl, filename }: { fileUrl: string; filename?: string }) => {
@@ -36,7 +33,7 @@ const DownloadElement = ({ fileUrl, filename }: { fileUrl: string; filename?: st
 			>
 				<BiDownload />
 			</Button>
-			{filename && <FileName>{filename}</FileName>}
+			{filename && <Paragraph>{filename}</Paragraph>}
 		</StyledFileElement>
 	);
 };
