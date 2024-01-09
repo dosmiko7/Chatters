@@ -1,40 +1,45 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import DownloadElement from "../DownloadElement";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: false,
+		},
+	},
+});
+
+const wrapper = ({ children }: { children: JSX.Element }) => (
+	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+);
 
 describe("DownloadElement", () => {
 	describe("render correctly", () => {
 		test("with passed props", () => {
 			render(
-				<QueryClientProvider client={queryClient}>
-					<DownloadElement
-						fileUrl="someFileUrl"
-						filename="SomeFile.txt"
-					/>
-				</QueryClientProvider>
+				<DownloadElement
+					fileUrl="someFileUrl"
+					filename="SomeFile.txt"
+				/>,
+				{ wrapper }
 			);
 
-			const wrapper = screen.getByRole("wrapper");
+			const wrapperElement = screen.getByRole("wrapper");
 			const button = screen.getByRole("button");
 			const paragraph = screen.getByRole("paragraph");
 
-			expect(wrapper).toBeInTheDocument();
+			expect(wrapperElement).toBeInTheDocument();
 			expect(button).toBeInTheDocument();
 			expect(button).not.toBeDisabled();
 			expect(paragraph).toHaveTextContent("SomeFile.txt");
 		});
 
 		test("without filename prop", () => {
-			render(
-				<QueryClientProvider client={queryClient}>
-					<DownloadElement fileUrl="someFileUrl" />
-				</QueryClientProvider>
-			);
+			render(<DownloadElement fileUrl="someFileUrl" />, { wrapper });
 
 			const paragraph = screen.queryByRole("paragraph");
 
@@ -43,22 +48,21 @@ describe("DownloadElement", () => {
 	});
 
 	test("button changes its disabled value when pressed", async () => {
+		vi.spyOn(console, "error").mockImplementation(() => undefined);
+
 		render(
-			<QueryClientProvider client={queryClient}>
-				<DownloadElement
-					fileUrl="someFileUrl"
-					filename="SomeFile.txt"
-				/>
-			</QueryClientProvider>
+			<DownloadElement
+				fileUrl="someFileUrl"
+				filename="SomeFile.txt"
+			/>,
+			{ wrapper }
 		);
 
 		const button = screen.getByRole("button");
-
 		expect(button).not.toBeDisabled();
+
 		await userEvent.click(button);
-		expect(button).toBeDisabled();
-
-		await new Promise((r) => setTimeout(r, 2000));
-		expect(button).not.toBeDisabled();
+		await waitFor(() => expect(button).toBeDisabled());
+		await waitFor(() => expect(button).not.toBeDisabled());
 	});
 });
