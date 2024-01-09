@@ -21,7 +21,14 @@ interface IListProps<T> {
 const GenericList = <T,>(props: IListProps<T>) => {
 	const { data, render, style } = props;
 
-	return <StyledList style={style}>{data.map(render)}</StyledList>;
+	return (
+		<StyledList
+			role="list"
+			style={style}
+		>
+			{data.map(render)}
+		</StyledList>
+	);
 };
 
 const List = memo(GenericList) as typeof GenericList;
