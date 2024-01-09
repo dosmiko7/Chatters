@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-import Heading from "./Heading";
 import { centeredAbsolute, flexColumn } from "../style/Templates";
+import Heading from "./Heading";
+import Wrapper from "./Wrapper";
 
-const StyledLayout = styled.div`
+const StyledLayout = styled(Wrapper)`
 	${flexColumn};
 	${centeredAbsolute};
 	align-items: center;
@@ -16,7 +17,7 @@ const IconContainer = styled.div`
 const Empty = ({ message, icon }: { message: string; icon: JSX.Element }) => {
 	return (
 		<StyledLayout>
-			<IconContainer>{icon}</IconContainer>
+			<IconContainer aria-label="icon container">{icon}</IconContainer>
 			<Heading as="h1">{message}</Heading>
 		</StyledLayout>
 	);
