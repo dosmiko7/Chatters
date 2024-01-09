@@ -38,7 +38,7 @@ interface ISocialProps {
 
 const Social = ({ network, style, label, href }: ISocialProps) => {
 	return (
-		<StyledSocial role="link">
+		<StyledSocial role="social">
 			<SocialIcon
 				network={network}
 				style={style || { height: 40, width: 40 }}
