@@ -22,7 +22,7 @@ const Logo = () => {
 	const navigate = useNavigate();
 
 	return (
-		<StyledLogo>
+		<StyledLogo role="logo">
 			<Image
 				src="logo.png"
 				alt="Logo"
