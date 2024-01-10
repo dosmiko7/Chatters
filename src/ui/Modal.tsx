@@ -103,6 +103,7 @@ const Window = ({
 				<StyledButton
 					onClick={close}
 					variant="menu"
+					aria-label="close button"
 				>
 					<HiXMark />
 				</StyledButton>
