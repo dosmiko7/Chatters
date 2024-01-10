@@ -11,7 +11,9 @@ interface IModalSize {
 	height?: string;
 }
 
-const StyledModal = styled.div<IModalSize>`
+const StyledModal = styled.div.attrs({
+	role: "modal",
+})<IModalSize>`
 	position: fixed;
 	top: 50%;
 	left: 50%;
