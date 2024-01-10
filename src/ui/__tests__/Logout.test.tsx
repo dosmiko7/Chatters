@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { Mock, afterEach, describe, expect, test, vi } from "vitest";
+import { Mock, describe, expect, test, vi } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -33,10 +33,6 @@ const wrapper = ({ children }: { children: JSX.Element }) => (
 );
 
 describe("Logout", () => {
-	afterEach(() => {
-		vi.restoreAllMocks();
-	});
-
 	test("render properly", () => {
 		render(<Logout />, { wrapper });
 
