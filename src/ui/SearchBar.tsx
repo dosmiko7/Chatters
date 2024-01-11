@@ -52,8 +52,11 @@ interface ISearchBarProps {
 
 const SearchBar = ({ placeholder = "Search", onChangeHandler, onIconClickHandler }: ISearchBarProps) => {
 	return (
-		<StyledSearchBar>
-			<SearchIcon onClick={onIconClickHandler} />
+		<StyledSearchBar aria-label="search bar">
+			<SearchIcon
+				onClick={onIconClickHandler}
+				role="icon"
+			/>
 			<StyledInput
 				placeholder={placeholder}
 				type="text"
