@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "firebase/auth";
 
-export const useLoggedUser = () => {
+const useLoggedUser = () => {
 	const queryClient = useQueryClient();
 
 	let loggedUser: User | null | undefined = queryClient.getQueryData(["loggedUser"]);
