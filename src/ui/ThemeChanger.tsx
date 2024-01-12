@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaMoon, FaSun } from "react-icons/fa6";
 
-import useDarkTheme from "../context/useDatkTheme";
+import useDarkTheme from "../context/useDarkTheme";
 import { displayInfo } from "../style/Templates";
 import Button from "./Button";
 
