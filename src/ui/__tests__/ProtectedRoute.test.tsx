@@ -1,6 +1,7 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import { Mock, describe, expect, test, vi } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 import { MemoryRouter } from "react-router-dom";
 import { User } from "firebase/auth";
 
@@ -34,7 +35,10 @@ const queryClient = new QueryClient({
 
 const wrapper = ({ children }: { children: JSX.Element }) => (
 	<MemoryRouter>
-		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+		<QueryClientProvider client={queryClient}>
+			<Toaster />
+			{children}
+		</QueryClientProvider>
 	</MemoryRouter>
 );
 
@@ -54,19 +58,26 @@ describe("ProtectedRoute", () => {
 		expect(useNavigateMock).toBeCalledTimes(0);
 	});
 
-	test('should navigate to /login if user is null with toast "Please log in to continue"', () => {
+	test('should navigate to /login if user is null with toast "Please log in to continue"', async () => {
 		vi.spyOn(useLoggedUserHooks, "default").mockReturnValue({ loggedUser: null });
 		render(<ProtectedRoute>Children</ProtectedRoute>, { wrapper });
 
 		expect(useNavigateMock).toBeCalledTimes(1);
 		expect(useNavigateMock).toBeCalledWith("/login");
+		await waitFor(() => {
+			expect(screen.getByText("Please log in to continue")).toBeInTheDocument();
+		});
 	});
 
-	test('should navigate to /login if user has not verified email with toast "Please confirm your email address"', () => {
+	test('should navigate to /login if user has not verified email with toast "Please confirm your email address"', async () => {
 		vi.spyOn(useLoggedUserHooks, "default").mockReturnValue({ loggedUser: { emailVerified: false } as User });
 		render(<ProtectedRoute>Children</ProtectedRoute>, { wrapper });
 
 		expect(useNavigateMock).toBeCalledTimes(1);
 		expect(useNavigateMock).toBeCalledWith("/login");
+		screen.debug();
+		await waitFor(() => {
+			expect(screen.getByText("Please confirm your email address")).toBeInTheDocument();
+		});
 	});
 });
