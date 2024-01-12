@@ -75,7 +75,6 @@ describe("ProtectedRoute", () => {
 
 		expect(useNavigateMock).toBeCalledTimes(1);
 		expect(useNavigateMock).toBeCalledWith("/login");
-		screen.debug();
 		await waitFor(() => {
 			expect(screen.getByText("Please confirm your email address")).toBeInTheDocument();
 		});
