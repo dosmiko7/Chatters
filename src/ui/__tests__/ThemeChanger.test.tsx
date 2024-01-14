@@ -3,7 +3,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
 import ThemeChanger from "../ThemeChanger";
-import { DarkThemeContext } from "../../context/DarkThemeContext";
+import DarkThemeProvider, { DarkThemeContext } from "../../context/DarkThemeContext";
 
 vi.mock("react-icons/fa6", async (): Promise<unknown> => {
 	const actual: Record<string, unknown> = await vi.importActual("react-icons/fa6");
@@ -31,7 +31,11 @@ describe("ThemeChanger", () => {
 	const toggleDarkTheme = vi.fn();
 
 	test("render properely", () => {
-		render(<ThemeChanger />);
+		render(
+			<DarkThemeProvider>
+				<ThemeChanger />
+			</DarkThemeProvider>
+		);
 
 		const button = screen.getByRole("button");
 
