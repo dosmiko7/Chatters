@@ -1,4 +1,4 @@
-const overwriteProperties = (input: any, data: any): any => {
+export const overwriteProperties = (input: any, data: any): any => {
 	const copy = { ...data };
 
 	for (const prop in copy) {
@@ -12,7 +12,7 @@ const overwriteProperties = (input: any, data: any): any => {
 	return copy;
 };
 
-const removeEmptyProperties = (input: any): any => {
+export const removeEmptyProperties = (input: any): any => {
 	const copy = { ...input };
 
 	for (const prop in copy) {
