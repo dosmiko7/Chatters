@@ -32,7 +32,11 @@ describe("DashboardOptionsContext", () => {
 	);
 
 	const TestComponent = () => {
-		const { options, setOrder, setKey } = useContext(DashboardOptionsContext);
+		const context = useContext(DashboardOptionsContext);
+
+		if (!context) return null;
+
+		const { options, setOrder, setKey } = context;
 		return (
 			<div>
 				<span>Order: {options.order}</span>
@@ -52,15 +56,15 @@ describe("DashboardOptionsContext", () => {
 			<DashboardOptionsContext.Consumer>
 				{(value) => (
 					<div>
-						<span>Received order: {value.options.order}</span>
-						<span>Received key: {value.options.key}</span>
+						<span>Received order: {value?.options.order}</span>
+						<span>Received key: {value?.options.key}</span>
 						<button
 							data-testid="order"
-							onClick={() => value.setOrder}
+							onClick={() => value?.setOrder}
 						></button>
 						<button
 							data-testid="key"
-							onClick={() => value.setKey}
+							onClick={() => value?.setKey}
 						></button>
 					</div>
 				)}

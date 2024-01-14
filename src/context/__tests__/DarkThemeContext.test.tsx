@@ -22,7 +22,11 @@ describe("DarkThemeContext", () => {
 	const wrapper = ({ children }: { children: React.ReactNode }) => <DarkThemeProvider>{children}</DarkThemeProvider>;
 
 	const TestComponent = () => {
-		const { isDarkTheme, toggleDarkTheme } = useContext(DarkThemeContext);
+		const context = useContext(DarkThemeContext);
+
+		if (!context) return null;
+
+		const { isDarkTheme, toggleDarkTheme } = context;
 		return (
 			<div>
 				<button onClick={toggleDarkTheme}>Click</button>
@@ -36,8 +40,8 @@ describe("DarkThemeContext", () => {
 			<DarkThemeContext.Consumer>
 				{(value) => (
 					<div>
-						<span>Received: {value.isDarkTheme.toString()}</span>
-						<button onClick={value.toggleDarkTheme}></button>
+						<span>Received: {value?.isDarkTheme.toString()}</span>
+						<button onClick={value?.toggleDarkTheme}></button>
 					</div>
 				)}
 			</DarkThemeContext.Consumer>,

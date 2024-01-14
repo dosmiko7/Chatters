@@ -25,10 +25,10 @@ describe("ChatsSearchContext", () => {
 			<ChatsSearchContext.Consumer>
 				{(value) => (
 					<div>
-						<span>Received: {value.searchValue}</span>
+						<span>Received: {value?.searchValue}</span>
 						<input
 							type="text"
-							onChange={(event: ChangeEvent<HTMLInputElement>) => value.enterSearchValue(event.target.value)}
+							onChange={(event: ChangeEvent<HTMLInputElement>) => value?.enterSearchValue(event.target.value)}
 						></input>
 					</div>
 				)}
@@ -52,7 +52,11 @@ describe("ChatsSearchContext", () => {
 		);
 
 		const TestComponent = () => {
-			const { searchValue, enterSearchValue } = useContext(ChatsSearchContext);
+			const context = useContext(ChatsSearchContext);
+
+			if (!context) return null;
+
+			const { searchValue, enterSearchValue } = context;
 			return (
 				<div>
 					<input
