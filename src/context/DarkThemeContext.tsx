@@ -6,12 +6,7 @@ interface DarkThemeContextProps {
 	toggleDarkTheme: () => void;
 }
 
-const defaultValues: DarkThemeContextProps = {
-	isDarkTheme: true,
-	toggleDarkTheme: () => {},
-};
-
-export const DarkThemeContext = createContext(defaultValues);
+export const DarkThemeContext = createContext<DarkThemeContextProps | undefined>(undefined);
 
 const DarkThemeProvider = ({ children }: { children: ReactNode }) => {
 	const [isDarkTheme, setIsDarkTheme] = useLocalStorageState<boolean>("isDarkTheme", true);

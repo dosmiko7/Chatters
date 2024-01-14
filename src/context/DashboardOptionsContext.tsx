@@ -8,13 +8,7 @@ interface DashboardOptionsContextProps {
 	setKey: (key: string | null) => void;
 }
 
-const defaultValues: DashboardOptionsContextProps = {
-	options: { order: "desc" },
-	setOrder: () => {},
-	setKey: () => {},
-};
-
-export const DashboardOptionsContext = createContext(defaultValues);
+export const DashboardOptionsContext = createContext<DashboardOptionsContextProps | undefined>(undefined);
 
 const DashboardOptionsProvider = ({ children }: { children: ReactNode }) => {
 	const [options, setOptions] = useState<IOptionsDashboard>({ order: "desc" });

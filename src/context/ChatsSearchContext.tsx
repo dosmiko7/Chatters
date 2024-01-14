@@ -5,12 +5,7 @@ interface ChatsSearchContextProps {
 	enterSearchValue: (input: string) => void;
 }
 
-const defaultValues: ChatsSearchContextProps = {
-	searchValue: "",
-	enterSearchValue: () => {},
-};
-
-export const ChatsSearchContext = createContext(defaultValues);
+export const ChatsSearchContext = createContext<ChatsSearchContextProps | undefined>(undefined);
 
 const ChatsSearchProvider = ({ children }: { children: ReactNode }) => {
 	const [searchValue, setSearchValue] = useState<string>("");
