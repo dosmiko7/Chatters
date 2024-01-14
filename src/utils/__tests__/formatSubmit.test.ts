@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import formatSubmit, { overwriteProperties, removeEmptyProperties } from "../formatSubmit"; // Replace with the actual file path
+import formatSubmit, { overwriteProperties, removeEmptyProperties } from "../formatSubmit";
 
 describe("overwriteProperties", () => {
 	test("should overwrite the values in data with those in input", () => {
