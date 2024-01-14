@@ -5,7 +5,12 @@ interface ThemeData {
 	fontColor: string;
 }
 
-const generateTheme = (theme: string, hexLeftColor: string, hexRightColor: string, hexFontColor: string): ThemeData => {
+export const generateTheme = (
+	theme: string,
+	hexLeftColor: string,
+	hexRightColor: string,
+	hexFontColor: string
+): ThemeData => {
 	const prefix = `--${theme}-chat`;
 	const left = `${prefix}-left`;
 	const right = `${prefix}-right`;
