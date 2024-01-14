@@ -1,10 +1,10 @@
-import { ChangeEvent, useContext } from "react";
+import { ChangeEvent } from "react";
 
-import { ChatsSearchContext } from "../../../context/ChatsSearchContext";
+import useChatsSearch from "../../../context/useChatsSearch";
 import SearchBar from "../../../ui/SearchBar";
 
 const ChatsSearch = () => {
-	const { enterSearchValue } = useContext(ChatsSearchContext);
+	const { enterSearchValue } = useChatsSearch();
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		enterSearchValue(event.target.value);

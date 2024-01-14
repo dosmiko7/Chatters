@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
-import { DashboardOptionsContext } from "../../context/DashboardOptionsContext";
 import useSmallerResolution from "../../hooks/useSmallerResolution";
 import SearchesWindow from "../searches/SearchesWindow";
 import Modal from "../../ui/Modal";
@@ -10,6 +8,7 @@ import Button from "../../ui/Button";
 import FlexRow from "../../ui/FlexRow";
 import DashboardKeyRemove from "./DashboardKeyRemove";
 import { displayInfo } from "../../style/Templates";
+import useDashboardOptions from "../../context/useDashboardOptions";
 
 const StyledFlexRow = styled(FlexRow)`
 	gap: 0.6rem;
@@ -21,7 +20,7 @@ const SearchButton = styled(Button)`
 
 const DashboardKeyFilter = () => {
 	const { isSmaller } = useSmallerResolution({ width: 860 });
-	const { setKey } = useContext(DashboardOptionsContext);
+	const { setKey } = useDashboardOptions();
 
 	const getUsersPosts = (userId: string) => {
 		setKey(userId);

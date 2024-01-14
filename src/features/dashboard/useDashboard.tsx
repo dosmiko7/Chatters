@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { QueryDocumentSnapshot } from "firebase/firestore";
 
 import { IPostDataProps, PAGINATION_LIMIT, getDashboardPosts } from "../../services/firestore/dashboardApi";
-import { DashboardOptionsContext } from "../../context/DashboardOptionsContext";
+import useDashboardOptions from "../../context/useDashboardOptions";
 
 interface IInitialProps {
 	latestDoc: QueryDocumentSnapshot | undefined;
@@ -16,7 +15,7 @@ const INITIAL_PAGE_PARAM: IInitialProps = {
 };
 
 const useDashboard = () => {
-	const { options } = useContext(DashboardOptionsContext);
+	const { options } = useDashboardOptions();
 
 	const {
 		data,
