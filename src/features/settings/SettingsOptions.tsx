@@ -13,7 +13,7 @@ const StyledOptionsContainer = styled(Options.Container)`
 	margin: 5rem auto;
 `;
 
-const StyledOptionsList = styled.div`
+const StyledOptionsList = styled.ul`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 	gap: 2rem;
