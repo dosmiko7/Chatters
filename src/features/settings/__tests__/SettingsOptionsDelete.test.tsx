@@ -1,23 +1,11 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router-dom";
 import { screen, render } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
+import { wrapper as queryWrapper } from "./testingQuery";
 import SettingsOptionsDelete from "../SettingsOptionsDelete";
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-const wrapper = ({ children }: { children: JSX.Element }) => (
-	<MemoryRouter>
-		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-	</MemoryRouter>
-);
+const wrapper = ({ children }: { children: JSX.Element }) => <MemoryRouter>{queryWrapper({ children })}</MemoryRouter>;
 
 describe("SettingsOptionsDelete", () => {
 	test("should render card", async () => {

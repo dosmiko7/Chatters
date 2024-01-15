@@ -1,10 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, test, expect, vi, Mock } from "vitest";
 import { User } from "firebase/auth";
 import { toast } from "react-hot-toast";
 
+import { wrapper } from "./testingQuery";
 import * as useLoggedUserHooks from "../../authentication/useLoggedUser";
 import SettingsOptionsReset from "../SettingsOptionsReset";
 
@@ -17,18 +17,6 @@ vi.mock("../../authentication/usePasswordReset", async (): Promise<unknown> => {
 });
 
 vi.mock("react-hot-toast");
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-const wrapper = ({ children }: { children: JSX.Element }) => (
-	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe("SettingsOptionsReset", () => {
 	test("render properly", () => {

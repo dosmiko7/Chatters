@@ -1,7 +1,7 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
+import { wrapper } from "./testingQuery";
 import SettingsDetail from "../SettingsDetail";
 
 vi.mock("../SettingsOptions", () => {
@@ -9,18 +9,6 @@ vi.mock("../SettingsOptions", () => {
 		default: () => <ul>Options</ul>,
 	};
 });
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-const wrapper = ({ children }: { children: JSX.Element }) => (
-	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe("SettingsDetail", () => {
 	test("render properly", () => {
