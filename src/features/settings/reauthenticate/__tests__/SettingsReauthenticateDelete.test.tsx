@@ -1,10 +1,10 @@
 import { EmailAuthCredential, OAuthCredential } from "firebase/auth";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
+import { wrapper as queryWrapper } from "./testingQuery";
 import SettingsReauthenticateDelete from "../SettingsReauthenticateDelete";
 import * as useEmailAuthCredentialHooks from "../useEmailAuthCredential";
 import * as useGoogleAuthCredentialHooks from "../useGoogleAuthCredential";
@@ -14,19 +14,7 @@ vi.mock("../../../../ui/ThreeDots", () => {
 	return { default: () => <div>ThreeDots</div> };
 });
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-const wrapper = ({ children }: { children: JSX.Element }) => (
-	<MemoryRouter>
-		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-	</MemoryRouter>
-);
+const wrapper = ({ children }: { children: JSX.Element }) => <MemoryRouter>{queryWrapper({ children })}</MemoryRouter>;
 
 describe("SettingsReauthenticateDelete", () => {
 	const deleteAccountMock = vi.fn();

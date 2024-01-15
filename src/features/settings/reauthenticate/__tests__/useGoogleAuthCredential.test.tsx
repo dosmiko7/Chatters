@@ -1,20 +1,8 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, test } from "vitest";
 
+import { queryClient, wrapper } from "./testingQuery";
 import useGoogleAuthCredential from "../useGoogleAuthCredential";
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-const wrapper = ({ children }: { children: JSX.Element }) => (
-	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 const TestComponent = () => {
 	const googleAuthCredential = useGoogleAuthCredential();

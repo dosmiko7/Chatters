@@ -1,27 +1,15 @@
 import { User } from "firebase/auth";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
+import { wrapper } from "./testingQuery";
 import SettingsReauthenticateModal from "../SettingsReauthenticateModal";
 import * as useLoggedUserHooks from "../../../authentication/useLoggedUser";
 
 vi.mock("../SettingsReauthenticate", () => {
 	return { default: () => <div>SettingsReauthenticate</div> };
 });
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-const wrapper = ({ children }: { children: JSX.Element }) => (
-	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe("SettingsReauthenticateModal", () => {
 	test("render starting card properly", () => {
