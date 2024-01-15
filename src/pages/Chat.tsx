@@ -21,10 +21,12 @@ const Chat = () => {
 
 	if (loggedUser) {
 		if (!combinedId?.includes(loggedUser.uid)) {
-			<Empty
-				message="Access denied"
-				icon={<BiArrowBack />}
-			/>;
+			return (
+				<Empty
+					message="Access denied"
+					icon={<BiArrowBack />}
+				/>
+			);
 		}
 	}
 
