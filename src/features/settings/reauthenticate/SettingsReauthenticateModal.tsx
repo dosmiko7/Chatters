@@ -1,29 +1,30 @@
 import { FcDisapprove } from "react-icons/fc";
 
+import useLoggedUser from "../../authentication/useLoggedUser";
 import SettingsReauthenticate from "./SettingsReauthenticate";
+import Wrapper from "../../../ui/Wrapper";
+import Paragraph from "../../../ui/Paragraph";
 import Modal from "../../../ui/Modal";
 import Card from "../../../ui/Card";
 
 const INFO = "Delete your account permanently. All data will be cleared. It is not possible to recover your account.";
 
 // INFO: DELETE OPTION IS DISABLED FOR TEST ACCOUNT
-import useLoggedUser from "../../authentication/useLoggedUser";
-
 const SettingsReauthenticateModal = () => {
 	const { loggedUser } = useLoggedUser();
 
-	const info = <div>Delete option is disabled for test user</div>;
+	const info = <Paragraph>Delete option is disabled for test user</Paragraph>;
 
 	return (
 		<Modal>
 			<Modal.Open opens="reauthenticate">
-				<div>
+				<Wrapper>
 					<Card
 						icon={<FcDisapprove />}
 						heading="Delete account"
 						info={INFO}
 					/>
-				</div>
+				</Wrapper>
 			</Modal.Open>
 
 			<Modal.Window
