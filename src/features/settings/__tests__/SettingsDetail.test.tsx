@@ -4,7 +4,11 @@ import { describe, expect, test, vi } from "vitest";
 
 import SettingsDetail from "../SettingsDetail";
 
-vi.mock("../SettingsOptions");
+vi.mock("../SettingsOptions", () => {
+	return {
+		default: () => <ul>Options</ul>,
+	};
+});
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -24,9 +28,11 @@ describe("SettingsDetail", () => {
 
 		const container = screen.getByRole("container");
 		const heading = screen.getByRole("heading");
+		const list = screen.getByRole("list");
 
 		expect(container).toBeInTheDocument();
 		expect(heading.textContent).toBe("Settings");
 		expect(container).toContainElement(heading);
+		expect(container).toContainElement(list);
 	});
 });
