@@ -6,7 +6,9 @@ const rotate = keyframes`
   }
 `;
 
-const Spinner = styled.div`
+const Spinner = styled.div.attrs({
+	"data-testid": "spinner",
+})`
 	margin: 4.8rem auto;
 
 	width: 6.4rem;
