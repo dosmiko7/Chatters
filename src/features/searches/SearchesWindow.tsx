@@ -5,18 +5,18 @@ import SearchBar from "../../ui/SearchBar";
 import SearchesList from "./SearchesList";
 import Form from "../../ui/Form";
 import Heading from "../../ui/Heading";
+import Wrapper from "../../ui/Wrapper";
 
 const StyledSearchesWindow = styled.div`
 	width: 40rem;
 	height: 60rem;
 `;
 
-const ListContainer = styled.div`
+const ListContainer = styled(Wrapper)`
 	max-height: 80%;
 	overflow-y: scroll;
 `;
 
-// TODO: Change to React Hook Form
 const SearchesWindow = ({ onClickHandler, heading }: { onClickHandler: (userId: string) => void; heading: string }) => {
 	const [input, setInput] = useState<string>("");
 	const [query, setQuery] = useState<string>("");
