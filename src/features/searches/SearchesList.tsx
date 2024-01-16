@@ -1,9 +1,9 @@
 import useModal from "../../hooks/useModal";
+import useSearchUsers from "./useSearchUsers";
 import { IDocumentData } from "../../services/firestore/userApi";
 import List from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import SearchesElement from "./SearchesElement";
-import useSearchUsers from "./useSearchUsers";
 import Heading from "../../ui/Heading";
 import ErrorMessage from "../../ui/ErrorMessage";
 
