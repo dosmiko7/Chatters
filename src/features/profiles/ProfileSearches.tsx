@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 import { displayInfo } from "../../style/Templates";
 import Searches from "../searches/Searches";
+import Wrapper from "../../ui/Wrapper";
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(Wrapper)`
 	${displayInfo({ message: "Search profile", position: "right" })};
 `;
 
