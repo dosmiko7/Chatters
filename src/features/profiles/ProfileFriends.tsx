@@ -4,7 +4,6 @@ import { IDocumentData } from "../../services/firestore/userApi";
 import { breakpoints } from "../../style/GlobalStyles";
 import Heading from "../../ui/Heading";
 import ProfileFriendsGrid from "./ProfileFriendsGrid";
-import ErrorMessage from "../../ui/ErrorMessage";
 
 const StyledProfileFriends = styled.div`
 	padding: var(--padding-sm);
@@ -22,8 +21,7 @@ const ProfileFriends = ({ profileData }: { profileData: IDocumentData }) => {
 	const { nickname, friends_list } = profileData.data;
 
 	let renderEl;
-	if (!profileData) renderEl = <ErrorMessage>Something went wrong</ErrorMessage>;
-	else if (!friends_list.length)
+	if (!friends_list.length)
 		renderEl = (
 			<Heading
 				as="h3"
