@@ -33,8 +33,7 @@ const StyledProfile = styled.div`
 const ProfileDetail = () => {
 	const { profileData, status } = useProfile();
 
-	if (status === "error") return <ErrorMessage>Something went wrong</ErrorMessage>;
-	if (!profileData) return null;
+	if (status === "error" || !profileData) return <ErrorMessage>Something went wrong</ErrorMessage>;
 	else if (status === "pending") return <Spinner />;
 
 	return (
