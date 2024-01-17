@@ -37,7 +37,7 @@ const ProfileDetail = () => {
 	else if (status === "pending") return <Spinner />;
 
 	return (
-		<StyledProfile>
+		<StyledProfile aria-label="Profile">
 			<ProfileInformation profileData={profileData} />
 			<ProfileFriends profileData={profileData} />
 		</StyledProfile>
