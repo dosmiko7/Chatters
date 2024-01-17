@@ -4,7 +4,7 @@ import { BiSolidEnvelope } from "react-icons/bi";
 import ButtonProfile from "../../ui/ButtonProfile";
 import getCombinedId from "../../utils/getCombinedId";
 
-interface IChatData {
+export interface IChatData {
 	nickname: string;
 	avatar: string;
 	isActive: boolean;
