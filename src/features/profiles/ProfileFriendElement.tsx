@@ -57,7 +57,10 @@ interface IProfileFriendElement {
 
 const ProfileFriendElement = ({ avatar, nickname, onClickHandler }: IProfileFriendElement) => {
 	return (
-		<StyledElement onClick={onClickHandler}>
+		<StyledElement
+			onClick={onClickHandler}
+			aria-label={`View profile of ${nickname}`}
+		>
 			<Avatar
 				size="auto"
 				src={avatar}
