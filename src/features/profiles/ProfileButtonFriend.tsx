@@ -17,8 +17,10 @@ const ProfileButtonFriend = ({
 	loggedUserId: string;
 	profileId: string;
 }) => {
-	const { updateFriend } = useFriendUpdate({ userId: loggedUserId, profileId });
+	const { updateFriend, status } = useFriendUpdate({ userId: loggedUserId, profileId });
 	if (loggedUserId === profileId) return null;
+
+	if (status === "error") toast.error("The operation failed");
 
 	const onAddFriendHandler = () => {
 		updateFriend("add");
