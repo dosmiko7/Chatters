@@ -7,7 +7,7 @@ import Button from "../../../ui/Button";
 const StyledButtons = styled.div`
 	${flexRow};
 	justify-content: space-between;
-	margin-top: 10px;
+	padding-top: 10px;
 
 	& > * {
 		width: 40%;

@@ -5,20 +5,26 @@ import { descriptionValidation } from "../../../utils/validationTemplates";
 import Heading from "../../../ui/Heading";
 import InputProfileForm from "../../../ui/InputProfileForm";
 import ErrorMessage from "../../../ui/ErrorMessage";
+import Wrapper from "../../../ui/Wrapper";
 
 const InputDescription = styled(InputProfileForm).attrs({
 	as: "textarea",
 })`
-	height: 35%;
+	height: 70%;
 	width: 100%;
 	resize: none;
+`;
+
+const DescriptionSection = styled(Wrapper)`
+	flex: 1;
+	width: 100%;
 `;
 
 const ProfileFormDescription = () => {
 	const { register, formState } = useFormContext();
 
 	return (
-		<>
+		<DescriptionSection>
 			<Heading as="h3">Description</Heading>
 			<InputDescription
 				type="text"
@@ -26,7 +32,7 @@ const ProfileFormDescription = () => {
 				{...register("description", descriptionValidation)}
 			/>
 			{formState.errors["description"] && <ErrorMessage>{get(formState.errors, "description").message}</ErrorMessage>}
-		</>
+		</DescriptionSection>
 	);
 };
 
