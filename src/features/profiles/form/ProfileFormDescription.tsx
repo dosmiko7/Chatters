@@ -24,7 +24,7 @@ const ProfileFormDescription = () => {
 	const { register, formState } = useFormContext();
 
 	return (
-		<DescriptionSection>
+		<DescriptionSection aria-label="Description input section">
 			<Heading as="h3">Description</Heading>
 			<InputDescription
 				type="text"
