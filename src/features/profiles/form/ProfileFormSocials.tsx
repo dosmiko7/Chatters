@@ -44,7 +44,7 @@ const ProfileFormSocials = () => {
 		<StyledSocials>
 			<Heading as="h3">Socials</Heading>
 			<FlexColumn>
-				<FlexColumn>
+				<FlexColumn aria-label="Linkedin input section">
 					<InputContainer>
 						<FaLinkedin style={iconStyle} />
 						<StyledInput
@@ -56,7 +56,7 @@ const ProfileFormSocials = () => {
 					{socialsErrors && <ErrorMessage>{get(socialsErrors, "linkedin")?.message}</ErrorMessage>}
 				</FlexColumn>
 
-				<FlexColumn>
+				<FlexColumn aria-label="GitHub input section">
 					<InputContainer>
 						<FaGithub style={iconStyle} />
 						<StyledInput
@@ -68,7 +68,7 @@ const ProfileFormSocials = () => {
 					{socialsErrors && <ErrorMessage>{get(socialsErrors, "github")?.message}</ErrorMessage>}
 				</FlexColumn>
 
-				<FlexColumn>
+				<FlexColumn aria-label="Twitter input section">
 					<InputContainer>
 						<FaXTwitter style={iconStyle} />
 						<StyledInput
