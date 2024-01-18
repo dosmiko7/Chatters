@@ -49,6 +49,14 @@ export const ephasis = css`
 	}
 `;
 
+export const socialIconStyle = css`
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(50%, -50%);
+	font-size: 2rem;
+`;
+
 export const fileElementStyle = css`
 	max-height: 28rem;
 	width: auto;
