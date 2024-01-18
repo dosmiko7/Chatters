@@ -24,3 +24,21 @@ export const linkValidation = {
 		message: "Invalid URL format",
 	},
 };
+
+export const nameValidation = {
+	pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
+	minLength: { value: 1, message: "At least 1 character" },
+	maxLength: { value: 20, message: "No more than 20 characters" },
+};
+
+export const cityValidation = {
+	pattern: { value: /^[a-zA-ZżźćńłąęśóäöüßæøåÆØÅ\s]+$/, message: "Only letters" },
+	minLength: { value: 1, message: "At least 1 character" },
+	maxLength: { value: 100, message: "No more than 100 characters" },
+};
+
+export const nicknameValidation = {
+	pattern: { value: /^[a-zA-ZżźćńłąęśóäöüßæøåÆØÅ\d\s]+$/, message: "Special characters are not allowed" },
+	minLength: { value: 5, message: "At least 5 characters" },
+	maxLength: { value: 20, message: "No more than 20 characters" },
+};
