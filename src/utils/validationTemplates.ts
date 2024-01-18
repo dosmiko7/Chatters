@@ -69,3 +69,7 @@ export const fileValidation = (value: FileList | null) => {
 
 	return true;
 };
+
+export const descriptionValidation = {
+	maxLength: { value: 700, message: "No more than 700 characters" },
+};
