@@ -3,6 +3,7 @@ import { FaGithub } from "react-icons/fa6";
 import styled from "styled-components";
 
 import { linkValidation } from "../../../utils/validationTemplates";
+import { socialIconStyle } from "../../../style/Templates";
 import FlexColumn from "../../../ui/FlexColumn";
 import InputProfileForm from "../../../ui/InputProfileForm";
 import ErrorMessage from "../../../ui/ErrorMessage";
@@ -15,13 +16,9 @@ const StyledInput = styled(InputProfileForm)`
 	padding-left: 4rem;
 `;
 
-const iconStyle = {
-	position: "absolute",
-	top: "50%",
-	left: "0",
-	transform: "translate(50%, -50%)",
-	fontSize: "2rem",
-};
+const StyledFaGithub = styled(FaGithub)`
+	${socialIconStyle};
+`;
 
 const ProfileFormSocialGitHub = () => {
 	const { register, formState } = useFormContext();
@@ -30,7 +27,7 @@ const ProfileFormSocialGitHub = () => {
 	return (
 		<FlexColumn aria-label="GitHub input section">
 			<InputContainer>
-				<FaGithub style={iconStyle} />
+				<StyledFaGithub />
 				<StyledInput
 					type="url"
 					placeholder="Github"
