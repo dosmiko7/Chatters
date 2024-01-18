@@ -1,10 +1,9 @@
-import { FormProvider, useForm } from "react-hook-form";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 
 import ProfileFormSocials from "../ProfileFormSocials";
-import { IProfileFormInput } from "../ProfileForm";
+import Wrapper from "./formWrapper";
 
 /*
 const ProfileFormSocials = () => {
@@ -55,12 +54,6 @@ const ProfileFormSocials = () => {
 	);
 };
 */
-
-const Wrapper = ({ children }: { children: JSX.Element }) => {
-	const formMethods = useForm<IProfileFormInput>({ mode: "all" });
-
-	return <FormProvider {...formMethods}>{children}</FormProvider>;
-};
 
 describe("ProfileFormSocials", () => {
 	test("render properly", () => {
