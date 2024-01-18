@@ -27,13 +27,13 @@ export const linkValidation = {
 
 export const nameValidation = {
 	pattern: { value: /^[a-zA-Z]+$/, message: "Only letters" },
-	minLength: { value: 1, message: "At least 1 character" },
+	minLength: { value: 2, message: "At least 2 character" },
 	maxLength: { value: 20, message: "No more than 20 characters" },
 };
 
 export const cityValidation = {
 	pattern: { value: /^[a-zA-ZżźćńłąęśóäöüßæøåÆØÅ\s]+$/, message: "Only letters" },
-	minLength: { value: 1, message: "At least 1 character" },
+	minLength: { value: 2, message: "At least 2 character" },
 	maxLength: { value: 100, message: "No more than 100 characters" },
 };
 
