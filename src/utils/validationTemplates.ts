@@ -17,3 +17,10 @@ export const passwordRegisterValidation = {
 export const passwordLoginValidation = {
 	required: "Password is required",
 };
+
+export const linkValidation = {
+	pattern: {
+		value: /^(https?:\/\/)?([\w.]+)\.([a-z]{2,})(\/\S*)?$/i,
+		message: "Invalid URL format",
+	},
+};
