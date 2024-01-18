@@ -19,7 +19,7 @@ const ProfileFormPersonalNickname = () => {
 				placeholder="Nickname"
 				{...register("nickname", nicknameValidation)}
 			/>
-			{errors && <ErrorMessage>{get(errors, "nickname")?.message}</ErrorMessage>}
+			{errors["nickname"] && <ErrorMessage>{get(errors, "nickname")?.message}</ErrorMessage>}
 		</NicknameInputSection>
 	);
 };
