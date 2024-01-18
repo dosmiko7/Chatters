@@ -42,3 +42,10 @@ export const nicknameValidation = {
 	minLength: { value: 5, message: "At least 5 characters" },
 	maxLength: { value: 20, message: "No more than 20 characters" },
 };
+
+export const dateValidation = {
+	valueAsDate: true,
+	validate: (date: Date) => {
+		return date < new Date() || "The date should not be newer than today";
+	},
+};
