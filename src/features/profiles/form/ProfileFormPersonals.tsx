@@ -12,7 +12,7 @@ const StyledPersonals = styled.div``;
 const Grid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
 	gap: 0.6rem;
 `;
 

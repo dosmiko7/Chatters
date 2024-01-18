@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ErrorMessage from "../../../ui/ErrorMessage";
 import InputProfileForm from "../../../ui/InputProfileForm";
 import Wrapper from "../../../ui/Wrapper";
+import { dateValidation } from "../../../utils/validationTemplates";
 
 const BirthdayInputSection = styled(Wrapper)``;
 
@@ -17,9 +18,9 @@ const ProfileFormPersonalBirthday = () => {
 				type="text"
 				placeholder="Birthday"
 				onFocus={(e) => (e.target.type = "date")}
-				{...register("personals.birthday")}
+				{...register("personals.birthday", dateValidation)}
 			/>
-			{personalErrors && <ErrorMessage>{get(personalErrors, "birthday")?.message}</ErrorMessage>}
+			{get(personalErrors, "birthday") ? <ErrorMessage>{get(personalErrors, "birthday")?.message}</ErrorMessage> : null}
 		</BirthdayInputSection>
 	);
 };

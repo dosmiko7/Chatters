@@ -19,7 +19,7 @@ const ProfileFormPersonalCity = () => {
 				placeholder="City"
 				{...register("personals.city", cityValidation)}
 			/>
-			{personalErrors && <ErrorMessage>{get(personalErrors, "city")?.message}</ErrorMessage>}
+			{get(personalErrors, "city") ? <ErrorMessage>{get(personalErrors, "city")?.message}</ErrorMessage> : null}
 		</CityInputSection>
 	);
 };

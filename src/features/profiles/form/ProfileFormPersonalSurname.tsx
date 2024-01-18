@@ -19,7 +19,7 @@ const ProfileFormPersonalSurname = () => {
 				placeholder="Surname"
 				{...register("personals.surname", nameValidation)}
 			/>
-			{personalErrors && <ErrorMessage>{get(personalErrors, "surname")?.message}</ErrorMessage>}
+			{get(personalErrors, "surname") ? <ErrorMessage>{get(personalErrors, "surname")?.message}</ErrorMessage> : null}
 		</SurnameInputSection>
 	);
 };
