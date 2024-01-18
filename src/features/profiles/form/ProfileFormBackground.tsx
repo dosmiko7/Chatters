@@ -1,6 +1,7 @@
 import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
+import { fileValidation } from "../../../utils/validationTemplates";
 import useFilePreview from "../../../hooks/useFilePreview";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
@@ -21,13 +22,7 @@ const Edit = styled.span`
 	color: var(--color-white-100);
 `;
 
-const ProfileFormBackground = ({
-	background,
-	validation,
-}: {
-	background: string;
-	validation: (value: FileList) => true | string;
-}) => {
+const ProfileFormBackground = ({ background }: { background: string }) => {
 	const { register, formState, watch } = useFormContext();
 	const backgroundWatcher = watch("background");
 	const { imgSrc: backgroundSrc } = useFilePreview(backgroundWatcher);
@@ -52,7 +47,7 @@ const ProfileFormBackground = ({
 					type="file"
 					placeholder="Background"
 					accept="image/jpeg, image/png"
-					{...register("background", { validate: validation })}
+					{...register("background", { validate: fileValidation })}
 				/>
 			</ContainerImageEditor>
 

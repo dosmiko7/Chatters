@@ -1,6 +1,7 @@
 import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
+import { fileValidation } from "../../../utils/validationTemplates";
 import useFilePreview from "../../../hooks/useFilePreview";
 import Heading from "../../../ui/Heading";
 import ContainerImageEditor from "../../../ui/ContainerImageEdit";
@@ -21,13 +22,7 @@ const Edit = styled.span`
 	color: var(--color-white-100);
 `;
 
-const ProfileFormAvatar = ({
-	avatar,
-	validation,
-}: {
-	avatar: string;
-	validation: (value: FileList) => true | string;
-}) => {
+const ProfileFormAvatar = ({ avatar }: { avatar: string }) => {
 	const { register, formState, watch } = useFormContext();
 	const avatarWatcher = watch("avatar");
 	const { imgSrc: avatarSrc } = useFilePreview(avatarWatcher);
@@ -36,7 +31,12 @@ const ProfileFormAvatar = ({
 
 	return (
 		<StyledProfileFormAvatar>
-			<Heading as="h3" center>Avatar</Heading>
+			<Heading
+				as="h3"
+				center
+			>
+				Avatar
+			</Heading>
 			<ContainerImageEditor>
 				<AvatarPreview src={currentAvatarSrc} />
 				<label htmlFor="avatarUpload">
@@ -47,7 +47,7 @@ const ProfileFormAvatar = ({
 					type="file"
 					placeholder="Avatar"
 					accept="image/jpeg, image/png"
-					{...register("avatar", { validate: validation })}
+					{...register("avatar", { validate: fileValidation })}
 				/>
 			</ContainerImageEditor>
 
