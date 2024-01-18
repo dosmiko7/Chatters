@@ -30,7 +30,7 @@ const ProfileFormAvatar = ({ avatar }: { avatar: string }) => {
 	const currentAvatarSrc = avatarSrc || avatar || "/avatar-default.png";
 
 	return (
-		<StyledProfileFormAvatar>
+		<StyledProfileFormAvatar aria-label="Avatar input section">
 			<Heading
 				as="h3"
 				center

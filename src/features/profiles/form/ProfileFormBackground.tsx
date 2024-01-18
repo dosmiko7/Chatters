@@ -30,7 +30,7 @@ const ProfileFormBackground = ({ background }: { background: string }) => {
 	const currentBackgroundSrc = backgroundSrc || background || "/background-default.jpg";
 
 	return (
-		<StyledProfileFormBackground>
+		<StyledProfileFormBackground aria-label="Background input section">
 			<Heading
 				as="h3"
 				center
