@@ -21,12 +21,7 @@ const wrapper = ({ children }: { children: JSX.Element }) => (
 
 describe("useSearchUsers", () => {
 	test("should return success status if the promise was successfully resolved", async () => {
-		vi.spyOn(usersApiFunctions, "findUsers").mockImplementationOnce(
-			(key: string) =>
-				new Promise((resolve) => {
-					resolve([{ id: key } as IDocumentData]);
-				})
-		);
+		vi.spyOn(usersApiFunctions, "findUsers").mockResolvedValueOnce([{ id: "test" } as IDocumentData]);
 		const { result } = renderHook(() => useSearchUsers("test"), { wrapper });
 
 		await waitFor(() => expect(result.current.status).toBe("success"));
@@ -36,7 +31,7 @@ describe("useSearchUsers", () => {
 	});
 
 	test("should return error status if the promise was rejected", async () => {
-		vi.spyOn(usersApiFunctions, "findUsers").mockImplementationOnce(() => Promise.reject(new Error("fail")));
+		vi.spyOn(usersApiFunctions, "findUsers").mockRejectedValue(new Error("fail"));
 		const { result } = renderHook(() => useSearchUsers("test"), { wrapper });
 
 		await waitFor(() => expect(result.current.status).toBe("error"));
