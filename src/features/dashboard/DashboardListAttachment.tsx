@@ -34,10 +34,12 @@ const DashboardListAttachment = ({ type, file }: { type: string; file: string })
 			renderElement = <ImageElement fileUrl={file} />;
 			break;
 		default:
-			<DownloadElement
-				fileUrl={file}
-				filename="file"
-			/>;
+			renderElement = (
+				<DownloadElement
+					fileUrl={file}
+					filename="file"
+				/>
+			);
 			break;
 	}
 
