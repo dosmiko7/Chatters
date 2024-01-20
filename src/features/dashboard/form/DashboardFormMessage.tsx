@@ -58,7 +58,7 @@ const DashboardFormMessage = () => {
 					error={!!formState.errors["message"]}
 					{...register("message", { required: true, maxLength: MAX_CHARS })}
 				/>
-				<Counter>
+				<Counter aria-label="Characters counter">
 					{messageWatcher.length} / {MAX_CHARS}
 				</Counter>
 			</TextContainer>
