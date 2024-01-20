@@ -4,8 +4,9 @@ import { flexRow } from "../../style/Templates";
 import DashboardFormModal from "./form/DashboardFormModal";
 import DashboardFilters from "./DashboardFilters";
 import DashboardKeyFilter from "./DashboardKeyFilter";
+import Wrapper from "../../ui/Wrapper";
 
-const StyledDashboardButtons = styled.div`
+const StyledDashboardButtons = styled(Wrapper)`
 	${flexRow};
 	width: 100%;
 	justify-content: space-between;
@@ -13,7 +14,7 @@ const StyledDashboardButtons = styled.div`
 
 const DashboardButtons = () => {
 	return (
-		<StyledDashboardButtons>
+		<StyledDashboardButtons aria-label="Dashboard buttons">
 			<DashboardFormModal />
 			<DashboardKeyFilter />
 			<DashboardFilters />
