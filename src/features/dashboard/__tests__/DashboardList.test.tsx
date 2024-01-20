@@ -11,7 +11,7 @@ import DashboardOptionsProvider from "../../../context/DashboardOptionsContext";
 
 vi.mock("../../../hooks/useIsVisible");
 
-vi.mock("../DashbaordListElement", () => {
+vi.mock("../DashboardListElement", () => {
 	return {
 		default: (props: any) => <div>{props.post.data.nickname}</div>,
 	};
