@@ -6,14 +6,14 @@ import useDashboardOptions from "../../context/useDashboardOptions";
 import { flexRow } from "../../style/Templates";
 import DashboardFilterButton from "./DashboardFilterButton";
 
-const StyledDashboardSortFilters = styled.div`
+const StyledDashboardFilters = styled.div`
 	${flexRow};
 	font-size: 2rem;
 	gap: 1rem;
 	color: var(--font-color);
 `;
 
-const DashboardSortFilters = () => {
+const DashboardFilters = () => {
 	const { setOrder } = useDashboardOptions();
 	const [selectedOption, setSelectedOption] = useState<"asc" | "desc">("desc");
 
@@ -23,7 +23,7 @@ const DashboardSortFilters = () => {
 	};
 
 	return (
-		<StyledDashboardSortFilters>
+		<StyledDashboardFilters>
 			<DashboardFilterButton
 				infoMsg="From oldest"
 				icon={<HiSortAscending />}
@@ -36,8 +36,8 @@ const DashboardSortFilters = () => {
 				onClickHandler={() => onFilterOptionClick("desc")}
 				isActive={selectedOption === "desc"}
 			/>
-		</StyledDashboardSortFilters>
+		</StyledDashboardFilters>
 	);
 };
 
-export default DashboardSortFilters;
+export default DashboardFilters;

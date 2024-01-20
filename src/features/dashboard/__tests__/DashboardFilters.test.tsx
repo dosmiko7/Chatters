@@ -5,7 +5,7 @@ import { userEvent } from "@testing-library/user-event";
 import * as useDashboardOptionsHooks from "../../../context/useDashboardOptions";
 import { IOptionsDashboard } from "../../../services/firestore/dashboardApi";
 import DashboardOptionsProvider from "../../../context/DashboardOptionsContext";
-import DashboardSortFilters from "../DashboardFilters";
+import DashboardFilters from "../DashboardFilters";
 
 vi.mock("react-icons/hi", () => {
 	const actual = vi.importActual("react-icons/hi");
@@ -36,7 +36,7 @@ describe("DashboardFilters", () => {
 	const setKeyMock = vi.fn();
 
 	test("render properly", () => {
-		render(<DashboardSortFilters />, { wrapper });
+		render(<DashboardFilters />, { wrapper });
 
 		const buttons = screen.getAllByRole("button");
 		expect(buttons.length).toBe(2);
@@ -51,7 +51,7 @@ describe("DashboardFilters", () => {
 			setKey: setKeyMock,
 		});
 
-		render(<DashboardSortFilters />, { wrapper });
+		render(<DashboardFilters />, { wrapper });
 
 		const buttonAsc = screen.getByRole("button", { name: "HiSortAscending false" });
 
@@ -67,7 +67,7 @@ describe("DashboardFilters", () => {
 			setKey: setKeyMock,
 		});
 
-		render(<DashboardSortFilters />, { wrapper });
+		render(<DashboardFilters />, { wrapper });
 
 		const buttonDesc = screen.getByRole("button", { name: "HiSortDescending true" });
 
@@ -83,7 +83,7 @@ describe("DashboardFilters", () => {
 			setKey: setKeyMock,
 		});
 
-		render(<DashboardSortFilters />, { wrapper });
+		render(<DashboardFilters />, { wrapper });
 
 		const buttonDesc = screen.getByRole("button", { name: "HiSortDescending true" });
 		const buttonAsc = screen.getByRole("button", { name: "HiSortAscending false" });
