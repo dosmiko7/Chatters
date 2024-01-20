@@ -68,5 +68,3 @@ const DashboardFormMessage = () => {
 };
 
 export default DashboardFormMessage;
-
-//onChange={(e) => setCharsCount(e.target.value.length)}
