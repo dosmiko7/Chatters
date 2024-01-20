@@ -4,7 +4,7 @@ import styled from "styled-components";
 import useIsVisible from "../../hooks/useIsVisible";
 import { IPostDataProps } from "../../services/firestore/dashboardApi";
 import List from "../../ui/List";
-import DashboardListElement from "./DashbaordListElement";
+import DashboardListElement from "./DashboardListElement";
 import Spinner from "../../ui/Spinner";
 import Paragraph from "../../ui/Paragraph";
 import useDashboard from "./useDashboard";
