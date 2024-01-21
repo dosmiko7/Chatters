@@ -31,11 +31,13 @@ const GIFList = ({ gifs, isSubmit }: { gifs: string[]; isSubmit: boolean }) => {
 							<HiddenInput
 								{...register("gif")}
 								type="submit"
+								placeholder="GIF input"
 								id={gifSrc}
 								value={gifSrc}
 							/>
 						)}
 						<GIFElement
+							aria-label="GIF element"
 							htmlFor={gifSrc}
 							onClick={() => setValue("gif", gifSrc)}
 						>
