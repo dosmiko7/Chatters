@@ -16,7 +16,9 @@ const Attachment = styled.div`
 	margin-top: auto;
 `;
 
-const NoAttachment = styled.div`
+const NoAttachment = styled.div.attrs({
+	"aria-label": "No attachment",
+})`
 	${flexCentered};
 	opacity: 0.5;
 	font-size: 2rem;
@@ -29,14 +31,18 @@ const Name = styled.p`
 	text-align: center;
 `;
 
-const AttachmentWithImage = styled.img`
+const AttachmentWithImage = styled.img.attrs({
+	"aria-label": "Attachment with image",
+})`
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
 `;
 
-const AttachmentWithoutImage = styled.div`
+const AttachmentWithoutImage = styled.div.attrs({
+	"aria-label": "Attachment without image",
+})`
 	${flexColumn};
 	align-items: center;
 	font-size: 2.4rem;
