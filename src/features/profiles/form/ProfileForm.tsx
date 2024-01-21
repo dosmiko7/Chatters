@@ -64,7 +64,10 @@ const ProfileForm = ({ images }: { images: { avatar: string; background: string 
 
 	return (
 		<FormProvider {...methods}>
-			<StyledProfileForm onSubmit={handleSubmit(onSubmit)}>
+			<StyledProfileForm
+				onSubmit={handleSubmit(onSubmit)}
+				aria-label="Profile form"
+			>
 				<ProfileFormImages images={images} />
 				<ProfileFormPersonals />
 				<ProfileFormSocials />
