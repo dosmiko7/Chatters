@@ -45,7 +45,10 @@ const DashboardForm = () => {
 
 	return (
 		<FormProvider {...methods}>
-			<StyledDashboardForm onSubmit={handleSubmit(onSubmit)}>
+			<StyledDashboardForm
+				onSubmit={handleSubmit(onSubmit)}
+				aria-label="Dashboard form"
+			>
 				{status === "pending" && (
 					<LoadingBox>
 						<Spinner />
