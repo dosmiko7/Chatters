@@ -1,10 +1,10 @@
 import { get, useFormContext } from "react-hook-form";
 import styled from "styled-components";
 
+import { dateValidation } from "../../../utils/validationTemplates";
 import ErrorMessage from "../../../ui/ErrorMessage";
 import InputProfileForm from "../../../ui/InputProfileForm";
 import Wrapper from "../../../ui/Wrapper";
-import { dateValidation } from "../../../utils/validationTemplates";
 
 const BirthdayInputSection = styled(Wrapper)``;
 
