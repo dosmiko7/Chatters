@@ -45,7 +45,7 @@ describe("ProfileFormBackground", () => {
 		const hiddenInput = screen.getByPlaceholderText("Background");
 		await waitFor(() => fireEvent.change(hiddenInput, { target: { files: [fileInvalidExtension] } }));
 
-		await waitFor(() => expect(screen.getByText("Only JPG and PNG are allowed.")).toBeInTheDocument());
+		await waitFor(() => expect(screen.getByText("Only jpg, jpeg, png are allowed")).toBeInTheDocument());
 	});
 
 	test("should not render error message if input is valid", async () => {
@@ -55,7 +55,7 @@ describe("ProfileFormBackground", () => {
 		const hiddenInput = screen.getByPlaceholderText("Background");
 		await waitFor(() => fireEvent.change(hiddenInput, { target: { files: [fileValid] } }));
 
-		await waitFor(() => expect(screen.queryByText("Only JPG and PNG are allowed.")).not.toBeInTheDocument());
+		await waitFor(() => expect(screen.queryByText("Only jpg, jpeg, png are allowed")).not.toBeInTheDocument());
 		await waitFor(() => expect(screen.queryByText("File size should be less than 1 MB")).not.toBeInTheDocument());
 	});
 });

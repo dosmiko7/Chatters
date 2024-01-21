@@ -29,4 +29,12 @@ describe("isFileExtensionValid", () => {
 
 		expect(result).toBe(true);
 	});
+
+	test("should return true when allowed extensions are empty", () => {
+		const fileName = "example.gif";
+		const allowedExtensions = [] as string[];
+
+		const result = isFileExtensionValid(fileName, allowedExtensions);
+		expect(result).toBe(true);
+	});
 });
