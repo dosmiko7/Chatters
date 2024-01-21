@@ -48,7 +48,7 @@ export const nicknameValidation = {
 export const dateValidation = {
 	valueAsDate: true,
 	validate: (date: Date) => {
-		return date < new Date() || "The date should not be newer than today";
+		return date <= new Date() || "The date should not be newer than today";
 	},
 };
 
