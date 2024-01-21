@@ -128,14 +128,14 @@ describe("validationTemplates", () => {
 
 	describe("dateValidation", () => {
 		test("valid dates", () => {
-			const validDates = new Date();
+			const validDates = new Date().toISOString();
 			expect(dateValidation.validate(validDates)).toBe(true);
 		});
 
 		test("invalid dates (future date)", () => {
 			const futureDate = new Date();
 			futureDate.setDate(futureDate.getDate() + 1);
-			expect(dateValidation.validate(futureDate)).toBe("The date should not be newer than today");
+			expect(dateValidation.validate(futureDate.toISOString())).toBe("The date should not be newer than today");
 		});
 	});
 });
