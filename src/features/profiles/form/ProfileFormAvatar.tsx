@@ -47,7 +47,7 @@ const ProfileFormAvatar = ({ avatar }: { avatar: string }) => {
 					type="file"
 					placeholder="Avatar"
 					accept="image/jpeg, image/png"
-					{...register("avatar", { validate: fileValidation })}
+					{...register("avatar", { validate: (value) => fileValidation(value, ["jpg", "jpeg", "png"]) })}
 				/>
 			</ContainerImageEditor>
 

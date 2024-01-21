@@ -3,8 +3,10 @@ import { TbFile } from "react-icons/tb";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
-import HiddenInput from "../../ui/HiddenInput";
 import { displayInfo } from "../../style/Templates";
+import HiddenInput from "../../ui/HiddenInput";
+import Wrapper from "../../ui/Wrapper";
+import { fileValidation } from "../../utils/validationTemplates";
 
 const IconContainerForLabel = styled.div`
 	${displayInfo({ message: "File input", position: "right" })}
@@ -19,25 +21,19 @@ const IconContainerForLabel = styled.div`
 	}
 `;
 
-const fileValidation = (value: FileList | null) => {
-	if (value?.length) {
-		const file = value[0];
-		const maxSizeInBytes = 1 * 1024 * 1024;
-
-		if (file.size > maxSizeInBytes) {
-			toast.error("File size should be less than 1 MB");
-			return false;
-		}
+const fileValidationWithToast = (value: FileList | null, validExtensions?: string[]) => {
+	const result = fileValidation(value, validExtensions);
+	if (typeof result === "string") {
+		toast.error(result);
 	}
-
-	return true;
+	return result;
 };
 
-const FileInput = () => {
+const FileInput = ({ validExtensions }: { validExtensions?: string[] }) => {
 	const { register } = useFormContext();
 
 	return (
-		<div>
+		<Wrapper>
 			<label htmlFor="file">
 				<IconContainerForLabel>
 					<TbFile />
@@ -47,9 +43,9 @@ const FileInput = () => {
 				id="file"
 				type="file"
 				placeholder="File"
-				{...register("file", { validate: fileValidation })}
+				{...register("file", { validate: (value) => fileValidationWithToast(value, validExtensions) })}
 			/>
-		</div>
+		</Wrapper>
 	);
 };
 

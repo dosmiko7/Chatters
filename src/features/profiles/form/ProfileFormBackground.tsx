@@ -47,7 +47,7 @@ const ProfileFormBackground = ({ background }: { background: string }) => {
 					type="file"
 					placeholder="Background"
 					accept="image/jpeg, image/png"
-					{...register("background", { validate: fileValidation })}
+					{...register("background", { validate: (value) => fileValidation(value, ["jpg", "jpeg", "png"]) })}
 				/>
 			</ContainerImageEditor>
 

@@ -52,14 +52,13 @@ export const dateValidation = {
 	},
 };
 
-export const fileValidation = (value: FileList | null) => {
+export const fileValidation = (value: FileList | null, allowedExtensions: string[] = []) => {
 	if (value?.length) {
 		const file = value[0];
 		const maxSizeInBytes = 1024 * 1024;
-		const allowedExtensions = ["jpg", "jpeg", "png"];
 
 		if (!isFileExtensionValid(file.name, allowedExtensions)) {
-			return "Only JPG and PNG are allowed.";
+			return `Only ${allowedExtensions.join(", ")} are allowed`;
 		}
 
 		if (file.size > maxSizeInBytes) {
