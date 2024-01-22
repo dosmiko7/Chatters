@@ -124,7 +124,11 @@ describe("ChatDetail", () => {
 
 		await waitFor(() => expect(screen.getByTestId("ChatMore")).toBeInTheDocument());
 		const chatMore = screen.getByTestId("ChatMore");
-		expect(within(chatMore).getByText(""));
+		expect(
+			within(chatMore).getByText(
+				`{"nickname":"testNickname","avatar":"testAvatar.jpg","isActive":true,"lastSeen":"testLastSeen","friendId":"testFriendId"}`
+			)
+		);
 		expect(within(chatMore).getByText("testTheme"));
 		expect(within(chatMore).getByText("testEmoji"));
 	});

@@ -9,8 +9,9 @@ import Container from "../../ui/Container";
 import ChatWindow from "./ChatWindow";
 import ChatTitle from "./ChatTitle";
 import ChatMore from "./more/ChatMore";
+import Wrapper from "../../ui/Wrapper";
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(Wrapper)`
 	${flexRow};
 	height: 100%;
 	position: relative;
