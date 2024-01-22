@@ -6,7 +6,9 @@ import { flexCentered, flexColumn } from "../../style/Templates";
 import GIFList from "./GIFList";
 import Container from "../../ui/Container";
 
-const ListContainer = styled.div`
+const ListContainer = styled.div.attrs({
+	"data-testid": "list-container",
+})`
 	width: 100%;
 	margin-top: 1rem;
 	overflow-y: scroll;
@@ -40,6 +42,8 @@ const GIFKeyInput = styled.input`
 	background-color: var(--color-primary-400);
 `;
 
+const OFFSET_RANGE = 6;
+
 const GIFContainer = ({ isSubmit }: { isSubmit: boolean }) => {
 	const [input, setInput] = useState<string>("");
 	const [currentKey, setCurrentKey] = useState<string>("");
@@ -65,7 +69,7 @@ const GIFContainer = ({ isSubmit }: { isSubmit: boolean }) => {
 		const bottom = Math.abs(target.scrollHeight - target.clientHeight - target.scrollTop) < 1;
 		if (bottom) {
 			setScrollPosition(target.scrollTop);
-			setOffset((prev) => prev + 6);
+			setOffset((prev) => prev + OFFSET_RANGE);
 		}
 	};
 
