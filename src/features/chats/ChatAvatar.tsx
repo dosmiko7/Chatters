@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Avatar from "../../ui/Avatar";
+import Wrapper from "../../ui/Wrapper";
 
-const AvatarContainer = styled.div`
+const AvatarContainer = styled(Wrapper)`
 	position: absolute;
 	bottom: 0;
 
