@@ -9,38 +9,6 @@ import DashboardRemove from "../DashboardRemove";
 import * as useLoggedUserHooks from "../../authentication/useLoggedUser";
 import * as useDeletePostHooks from "../useDeletePost";
 
-/*
-const MESSAGE = "Are you sure you want to delete this post?";
-
-const DashboardRemove = ({ postCreatorId, postId }: { postCreatorId: string; postId: string }) => {
-	const { deletePost, status } = useDeletePost();
-	const { loggedUser } = useLoggedUser();
-	if (postCreatorId !== loggedUser?.uid) return null;
-
-	const onRemoveHandler = () => {
-		toast(
-			(t) => (
-				<ToasterWarning
-					t={t}
-					confirmHandler={() => deletePost(postId)}
-					message={MESSAGE}
-				/>
-			),
-			toasterWarningOptions({ id: "deletePost" })
-		);
-	};
-
-	return (
-		<RemoveButton
-			variant="danger"
-			onClick={onRemoveHandler}
-			disabled={status === "pending"}
-		>
-			<BiSolidTrash />
-		</RemoveButton>
-	);
-};
-*/
 vi.mock("react-hot-toast");
 
 vi.mock("react-icons/bi", () => {
