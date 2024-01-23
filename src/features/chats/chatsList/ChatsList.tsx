@@ -13,7 +13,7 @@ import List from "../../../ui/List";
 import ChatsListElement from "./ChatsListElement";
 import ThreeDots from "../../../ui/ThreeDots";
 
-const StyledChatsList = styled.div`
+const StyledChatsListBox = styled.div`
 	height: 100%;
 	transform: translateZ(0);
 	-webkit-transform: translateZ(0);
@@ -43,7 +43,7 @@ const ChatsList = () => {
 	if (error || !loggedUser) return <ErrorMessage>Something went wrong.</ErrorMessage>;
 	return (
 		<Suspense fallback={<ThreeDots />}>
-			<StyledChatsList>
+			<StyledChatsListBox aria-label="Chats list">
 				<List<IChatsListElement>
 					style={isSmaller ? { flexDirection: "row" } : undefined}
 					data={filteredChats}
@@ -72,7 +72,7 @@ const ChatsList = () => {
 						);
 					}}
 				/>
-			</StyledChatsList>
+			</StyledChatsListBox>
 		</Suspense>
 	);
 };
