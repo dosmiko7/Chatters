@@ -19,7 +19,7 @@ const defaultNickname = "friend";
 
 const ChatTitle = ({ nickname, handlerOpen }: ChatTitleProps) => {
 	return (
-		<StyledChatTitle>
+		<StyledChatTitle aria-label="Chat title">
 			<Heading as="h2">Chat with {nickname || defaultNickname}</Heading>
 			<ChatMoreOpen handlerOpen={handlerOpen} />
 		</StyledChatTitle>
