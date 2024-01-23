@@ -63,6 +63,7 @@ const ChatsListElement = (props: IPrivChatEl) => {
 
 	return (
 		<StyledListElement
+			aria-label={`Chat with ${nickname}`}
 			onClick={onClickHandler}
 			isActive={isActive}
 			nonBorder={isSmaller}
