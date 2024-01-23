@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
 import { IChatElement } from "./useChat";
+import { themes } from "../../data/themes";
 import List from "../../ui/List";
 import ChatMessage from "./ChatMessage";
 import Spinner from "../../ui/Spinner";
-import { themes } from "../../data/themes";
 
 const StyledChatWindow = styled.div`
 	height: 100%;
@@ -47,7 +47,7 @@ const ChatWindow = ({
 	if (error) toast.error("Something went wrong with fetching messages.");
 
 	return (
-		<StyledChatWindow>
+		<StyledChatWindow aria-label="Chat window">
 			<Suspense fallback={<Spinner />}>
 				<List<IChatElement>
 					data={chat}
