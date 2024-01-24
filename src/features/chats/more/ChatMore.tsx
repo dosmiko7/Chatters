@@ -32,7 +32,7 @@ const Error = styled(ErrorMessage)`
 `;
 
 interface IChatMoreProps {
-	data: { avatar: string; nickname: string; isActive: boolean; lastSeen: string };
+	data?: { avatar: string; nickname: string; isActive: boolean; lastSeen: string };
 	setEmoji: string;
 	setTheme: string;
 	handlerClose: () => void;

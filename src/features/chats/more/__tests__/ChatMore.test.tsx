@@ -70,4 +70,17 @@ describe("ChatMore", () => {
 		fireEvent.click(button);
 		expect(handlerCloseMock).toBeCalled();
 	});
+
+	test("pass props to children properly", () => {
+		render(
+			<ChatMore
+				data={testData}
+				{...testCustomizationData}
+				handlerClose={handlerCloseMock}
+			/>
+		);
+
+		expect(screen.getByTestId("ChatMoreInfo").textContent).toBe(JSON.stringify(testData));
+		expect(screen.getByTestId("ChatMoreOptions").textContent).toBe(JSON.stringify(testCustomizationData));
+	});
 });
