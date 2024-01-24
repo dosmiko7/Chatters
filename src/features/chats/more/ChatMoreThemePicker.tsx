@@ -61,10 +61,11 @@ const ChatMoreThemePicker = () => {
 
 	return (
 		<Box>
-			<Grid>
+			<Grid aria-label="Available themes">
 				{themes.map((theme) => {
 					return (
 						<Picker
+							aria-label={`Choose theme: ${theme.theme}`}
 							name={theme.theme}
 							key={theme.theme}
 							background={theme.background}
