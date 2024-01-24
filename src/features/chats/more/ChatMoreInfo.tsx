@@ -33,13 +33,19 @@ const ChatMoreInfo = ({
 	const activeStatus = isActive ? "🟢 Active now" : `🔴 Last seen ${lastSeen}`;
 
 	return (
-		<Info>
+		<Info aria-label="Info about the user">
 			<Avatar
 				size={isSmaller ? "12rem" : "6rem"}
 				src={avatar}
 			/>
-			<Heading as="h3">{nickname}</Heading>
 			<Heading
+				as="h3"
+				aria-label="Nickname of user"
+			>
+				{nickname}
+			</Heading>
+			<Heading
+				aria-label="Active status of user"
 				as="time"
 				center
 			>
