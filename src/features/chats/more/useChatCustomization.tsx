@@ -6,7 +6,7 @@ import { updateChatsCustomization } from "../../../services/firestore/chatsApi";
 
 const useChatCustomization = () => {
 	const { combinedId } = useParams();
-	const { mutateAsync: changeCustomization, status } = useMutation({
+	const { mutate: changeCustomization, status } = useMutation({
 		mutationFn: ({ emoji, theme }: { emoji?: string; theme?: string }) =>
 			updateChatsCustomization({ chatId: combinedId, emoji, theme }),
 
