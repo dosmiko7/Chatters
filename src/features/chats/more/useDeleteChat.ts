@@ -10,7 +10,7 @@ const useDeleteChat = () => {
 	const { combinedId } = useParams();
 	const { loggedUser } = useLoggedUser();
 
-	const { mutateAsync: deleteChat, status } = useMutation({
+	const { mutate: deleteChat, status } = useMutation({
 		mutationFn: () => deleteChats({ userId: loggedUser?.uid, chatId: combinedId }),
 
 		onSuccess: () => {
