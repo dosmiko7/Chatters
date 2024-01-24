@@ -1,22 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { screen, render, within, fireEvent } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import * as useChatCustomizationHooks from "../useChatCustomization";
 import * as useModalHooks from "../../../../hooks/useModal";
 import ChatMoreThemePicker from "../ChatMoreThemePicker";
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: false,
-		},
-	},
-});
-
-export const wrapper = ({ children }: { children: JSX.Element }) => {
-	return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
-};
+import wrapper from "./wrapper.tsx";
 
 describe("ChatMoreThemePicker", () => {
 	const changeCustomizationMock = vi.fn();
