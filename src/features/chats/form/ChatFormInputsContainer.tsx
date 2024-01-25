@@ -26,7 +26,13 @@ const StyledContainer = styled.div<IContainerProps>`
 		`}
 `;
 
-const ChatFormInputsContainer = ({ status, children }: { status: string; children: ReactNode[] }) => {
+const ChatFormInputsContainer = ({
+	status,
+	children,
+}: {
+	status: "idle" | "error" | "pending" | "success";
+	children: ReactNode[] | ReactNode;
+}) => {
 	return (
 		<>
 			{status === "pending" && <ThreeDots />}
