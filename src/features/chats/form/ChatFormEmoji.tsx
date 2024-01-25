@@ -25,6 +25,7 @@ const ChatFormEmoji = ({
 	return (
 		<div>
 			<EmojiLabel
+				aria-label="Send emoji"
 				htmlFor="emoji"
 				onClick={() => onSubmitHandler({ message: "", file: null, gif: "", emoji: setEmoji })}
 			>
