@@ -33,7 +33,7 @@ const AuthFormLogin = () => {
 	};
 
 	return (
-		<FormWindow>
+		<FormWindow aria-label="Login form">
 			<AuthFormManager
 				submitHandler={handleLogin}
 				name="Login"
