@@ -24,7 +24,7 @@ const AuthFormRegister = () => {
 	};
 
 	return (
-		<FormWindow>
+		<FormWindow aria-label="Register form">
 			<AuthFormManager
 				submitHandler={submitHandler}
 				name="Register"
