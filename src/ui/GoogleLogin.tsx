@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 import { flexCentered } from "../style/Templates";
 
-const GoogleLogin = styled.div`
+const GoogleLogin = styled.div.attrs({
+	as: "button",
+})`
 	${flexCentered}
 	width: fit-content;
 	margin: 2rem auto;
