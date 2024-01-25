@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
+
 import ChatFormInputsContainer from "../ChatFormInputsContainer";
 
 const TestComponentA = () => <div>TestComponentA</div>;

@@ -33,7 +33,7 @@ const LoadingDot = styled.span`
 
 const ThreeDots = () => {
 	return (
-		<LoadingContainer>
+		<LoadingContainer aria-label="Three dots - loading animation">
 			<LoadingDot />
 			<LoadingDot />
 			<LoadingDot />
