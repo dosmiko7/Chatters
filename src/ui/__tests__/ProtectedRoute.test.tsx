@@ -63,7 +63,7 @@ describe("ProtectedRoute", () => {
 		render(<ProtectedRoute>Children</ProtectedRoute>, { wrapper });
 
 		expect(useNavigateMock).toBeCalledTimes(1);
-		expect(useNavigateMock).toBeCalledWith("/login");
+		expect(useNavigateMock).toBeCalledWith("/login", { replace: true });
 		await waitFor(() => {
 			expect(screen.getByText("Please log in to continue")).toBeInTheDocument();
 		});
@@ -74,7 +74,7 @@ describe("ProtectedRoute", () => {
 		render(<ProtectedRoute>Children</ProtectedRoute>, { wrapper });
 
 		expect(useNavigateMock).toBeCalledTimes(1);
-		expect(useNavigateMock).toBeCalledWith("/login");
+		expect(useNavigateMock).toBeCalledWith("/login", { replace: true });
 		await waitFor(() => {
 			expect(screen.getByText("Please confirm your email address")).toBeInTheDocument();
 		});

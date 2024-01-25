@@ -12,11 +12,11 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 
 	useEffect(() => {
 		if (!loggedUser) {
-			navigate("/login");
-			toast.error("Please log in to continue");
+			navigate("/login", { replace: true });
+			toast.error("Please log in to continue", { id: "login_again" });
 		} else if (!loggedUser.emailVerified) {
-			navigate("/login");
-			toast.error("Please confirm your email address");
+			navigate("/login", { replace: true });
+			toast.error("Please confirm your email address", { id: "confirm_email" });
 		}
 	}, [loggedUser, navigate]);
 
