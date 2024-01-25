@@ -28,13 +28,13 @@ Each user has their own profile. This is where we will find his friends and info
 ![Profiles Demo](documentation/images/gifs/Profiles.gif)
 ![Edit Profile Demo](documentation/images/gifs/ProfileEdit.gif)
 
-## Search and send messages
+## 💬 Search and send messages
 
 Add to friends, write messages, filter current chats.
 ![Search And Send Demo](documentation/images/gifs/SearchAndSend.gif)
 ![Filter Demo](documentation/images/gifs/Filter.gif)
 
-## Customize your chat
+## 🎨 Customize your chat
 
 Choose a theme for your chat, choose one of many emoticons and set it as the basic one. Or delete the chat if you want.
 ![Customize Demo](documentation/images/gifs/Customize.gif)
@@ -65,6 +65,8 @@ Password: Test1!
 - Node v18.14.2
 - npm v8.1.0
 - Vite
+- Vitest
+- React Testing Library
 - Firebase
 - TypeScript
 - React
@@ -73,6 +75,14 @@ Password: Test1!
 - React Hook Form
 - React Hot Toast
 - Styled Components
+
+# 📝 Tests
+
+Current tests coverage (25.01.2024)
+![Coverage](documentation/images/tests/TestCoverage_250124.png)
+
+For more info:
+[a link](https://github.com/dosmiko7/Chatters/tree/main/documentation/tests/coverage/index.html)
 
 ## 👨‍💻 Author
 
