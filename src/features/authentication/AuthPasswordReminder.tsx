@@ -72,7 +72,10 @@ const AuthPasswordReminder = () => {
 	};
 
 	return (
-		<ReminderForm onSubmit={handleSubmit(onSubmit)}>
+		<ReminderForm
+			onSubmit={handleSubmit(onSubmit)}
+			aria-label="Remind password form"
+		>
 			<ReminderInput
 				isError={errors.email ? true : false}
 				type="text"
