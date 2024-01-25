@@ -33,7 +33,7 @@ describe("useDeleteAccount", () => {
 		vi.spyOn(useGoogleAuthCredentialHooks, "default").mockReturnValue(undefined);
 	});
 
-	test("should call toast.success, navigate and remove all queries if the toast was resolved", async () => {
+	test("should call toast.success, navigate and remove all queries if promise was resolved", async () => {
 		vi.spyOn(authApiFunctions, "reauthenticateAccount").mockResolvedValueOnce();
 		vi.spyOn(userApiFunctions, "deleteUser").mockResolvedValueOnce();
 
@@ -49,7 +49,7 @@ describe("useDeleteAccount", () => {
 		expect(JSON.stringify(queryClient.getQueryData(["test"]))).toBe(undefined);
 	});
 
-	test("should call toast.error and console.error if the toast was rejected", async () => {
+	test("should call toast.error and console.error if promise was rejected", async () => {
 		const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 		vi.spyOn(authApiFunctions, "reauthenticateAccount").mockResolvedValueOnce();
 		vi.spyOn(userApiFunctions, "deleteUser").mockRejectedValueOnce("error");
