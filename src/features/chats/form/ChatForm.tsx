@@ -41,7 +41,10 @@ const ChatForm = ({ setEmoji }: { setEmoji: string }) => {
 
 	return (
 		<FormProvider {...methods}>
-			<StyledChatForm onSubmit={handleSubmit(onSubmit)}>
+			<StyledChatForm
+				onSubmit={handleSubmit(onSubmit)}
+				aria-label="Chat form"
+			>
 				<ChatFormInputsContainer status={status}>
 					<ChatFormAdditional />
 					<ChatFormMessage status={status} />
