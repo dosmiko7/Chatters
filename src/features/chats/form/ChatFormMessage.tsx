@@ -53,7 +53,7 @@ const StyledMessageInput = styled(Input)`
 	}
 `;
 
-const ChatFormMessage = ({ status }: { status: string }) => {
+const ChatFormMessage = ({ status }: { status: "idle" | "error" | "pending" | "success" }) => {
 	const { register, setValue } = useFormContext();
 	const watcher: FileList = useWatch({ name: "file" });
 	const { imgSrc } = useFilePreview(watcher);
@@ -67,8 +67,9 @@ const ChatFormMessage = ({ status }: { status: string }) => {
 	return (
 		<MessageContainer>
 			{watcher && watcher[0] && (
-				<Box>
+				<Box aria-label="Attachment file">
 					<FileRemove
+						aria-label="Remove file"
 						variant="menu"
 						type="button"
 						onClick={handleOnRemove}
