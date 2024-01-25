@@ -8,5 +8,9 @@ export default defineConfig(() => ({
 		globals: true,
 		environment: "happy-dom",
 		setupFiles: ["src/setupTest.ts"],
+		coverage: {
+			reportsDirectory: "./documentation/tests/coverage",
+			reporter: ["html"],
+		},
 	},
 }));
