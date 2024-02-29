@@ -32,13 +32,19 @@ const DashboardKeyFilter = () => {
 		<StyledFlexRow>
 			<Modal>
 				<Modal.Open opens="searches">
-					<SearchButton
-						variant={isSmaller ? "menu" : undefined}
-						size={isSmaller ? "large" : undefined}
-					>
-						<BiSearch />
-						{!isSmaller && <span>Search</span>}
-					</SearchButton>
+					{isSmaller ? (
+						<SearchButton
+							variant="menu"
+							size="large"
+						>
+							<BiSearch />
+						</SearchButton>
+					) : (
+						<SearchButton>
+							<BiSearch />
+							<span>Search</span>
+						</SearchButton>
+					)}
 				</Modal.Open>
 				<Modal.Window name="searches">
 					<Suspense fallback={<ThreeDots />}>
