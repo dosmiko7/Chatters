@@ -2,9 +2,8 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
 
 import useGifs from "../../hooks/useGifs";
-import { flexCentered, flexColumn } from "../../style/Templates";
+import { flexCentered } from "../../style/Templates";
 import GIFList from "./GIFList";
-import Container from "../../ui/Container";
 
 const ListContainer = styled.div.attrs({
 	"data-testid": "list-container",
@@ -18,19 +17,6 @@ const EmptyInfo = styled.div`
 	font-size: 1.6rem;
 	${flexCentered};
 	height: 100%;
-`;
-
-const GIFWindow = styled(Container)`
-	${flexColumn};
-	position: absolute;
-	top: -41rem;
-	height: 40rem;
-	width: 30rem;
-	align-items: center;
-	background-color: var(--color-primary-300);
-	box-shadow: var(--shadow-md);
-	border-radius: var(--border-radius-sm);
-	border-right: none;
 `;
 
 const GIFKeyInput = styled.input`
@@ -98,7 +84,7 @@ const GIFContainer = ({ isSubmit }: { isSubmit: boolean }) => {
 	);
 
 	return (
-		<GIFWindow>
+		<>
 			<GIFKeyInput
 				placeholder="GIF about..."
 				type="text"
@@ -106,7 +92,7 @@ const GIFContainer = ({ isSubmit }: { isSubmit: boolean }) => {
 				onKeyDown={handleKeyDown}
 			/>
 			{renderElement}
-		</GIFWindow>
+		</>
 	);
 };
 

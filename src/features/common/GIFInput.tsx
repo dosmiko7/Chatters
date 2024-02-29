@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState, lazy } from "react";
 import { useFormContext } from "react-hook-form";
 import { TbGif } from "react-icons/tb";
 import styled from "styled-components";
 
-import { displayInfo } from "../../style/Templates";
+import { displayInfo, flexColumn } from "../../style/Templates";
 import Button from "../../ui/Button";
-import GIFContainer from "./GIFContainer";
+import Container from "../../ui/Container";
+import ThreeDots from "../../ui/ThreeDots";
+const GIFContainer = lazy(() => import("./GIFContainer"));
 
 const RelativeBox = styled.div`
 	position: relative;
@@ -14,6 +16,19 @@ const RelativeBox = styled.div`
 const GIFButton = styled(Button)`
 	${displayInfo({ message: "GIF input", position: "right" })};
 	color: var(--font-color);
+`;
+
+const GIFWindow = styled(Container)`
+	${flexColumn};
+	position: absolute;
+	top: -41rem;
+	height: 40rem;
+	width: 30rem;
+	align-items: center;
+	background-color: var(--color-primary-300);
+	box-shadow: var(--shadow-md);
+	border-radius: var(--border-radius-sm);
+	border-right: none;
 `;
 
 const GIFInput = ({ isSubmit }: { isSubmit: boolean }) => {
@@ -36,7 +51,13 @@ const GIFInput = ({ isSubmit }: { isSubmit: boolean }) => {
 
 	return (
 		<RelativeBox>
-			{openGIFList && <GIFContainer isSubmit={isSubmit} />}
+			{openGIFList && (
+				<GIFWindow>
+					<Suspense fallback={<ThreeDots />}>
+						<GIFContainer isSubmit={isSubmit} />
+					</Suspense>
+				</GIFWindow>
+			)}
 			<GIFButton
 				type="button"
 				variant="menu"
