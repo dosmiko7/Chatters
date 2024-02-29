@@ -20,13 +20,19 @@ const DashboardFormModal = () => {
 	return (
 		<Modal>
 			<Modal.Open opens="dashboardForm">
-				<AddButton
-					variant={isSmaller ? "menu" : undefined}
-					size={isSmaller ? "large" : undefined}
-				>
-					<BiSolidMessageAdd />
-					{!isSmaller && <span>New post</span>}
-				</AddButton>
+				{isSmaller ? (
+					<AddButton
+						variant="menu"
+						size="large"
+					>
+						<BiSolidMessageAdd />
+					</AddButton>
+				) : (
+					<AddButton>
+						<BiSolidMessageAdd />
+						<span>New post</span>
+					</AddButton>
+				)}
 			</Modal.Open>
 
 			<Modal.Window name="dashboardForm">
