@@ -1,14 +1,16 @@
+import { Suspense, lazy } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 
 import useSmallerResolution from "../../hooks/useSmallerResolution";
-import SearchesWindow from "../searches/SearchesWindow";
+import useDashboardOptions from "../../context/useDashboardOptions";
+import { displayInfo } from "../../style/Templates";
 import Modal from "../../ui/Modal";
 import Button from "../../ui/Button";
 import FlexRow from "../../ui/FlexRow";
 import DashboardKeyRemove from "./DashboardKeyRemove";
-import { displayInfo } from "../../style/Templates";
-import useDashboardOptions from "../../context/useDashboardOptions";
+import ThreeDots from "../../ui/ThreeDots";
+const SearchesWindow = lazy(() => import("../searches/SearchesWindow"));
 
 const StyledFlexRow = styled(FlexRow)`
 	gap: 0.6rem;
@@ -39,10 +41,12 @@ const DashboardKeyFilter = () => {
 					</SearchButton>
 				</Modal.Open>
 				<Modal.Window name="searches">
-					<SearchesWindow
-						onClickHandler={getUsersPosts}
-						heading="Find user's posts"
-					/>
+					<Suspense fallback={<ThreeDots />}>
+						<SearchesWindow
+							onClickHandler={getUsersPosts}
+							heading="Find user's posts"
+						/>
+					</Suspense>
 				</Modal.Window>
 			</Modal>
 			<DashboardKeyRemove />
