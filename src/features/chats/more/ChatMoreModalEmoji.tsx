@@ -1,7 +1,10 @@
+import { Suspense, lazy } from "react";
+
 import Modal from "../../../ui/Modal";
 import Button from "../../../ui/Button";
 import Heading from "../../../ui/Heading";
-import ChatMoreEmojiPicker from "./ChatMoreEmojiPicker";
+import ThreeDots from "../../../ui/ThreeDots";
+const ChatMoreEmojiPicker = lazy(() => import("./ChatMoreEmojiPicker"));
 
 const ChatMoreModalEmoji = ({ setEmoji }: { setEmoji: string }) => {
 	return (
@@ -10,8 +13,10 @@ const ChatMoreModalEmoji = ({ setEmoji }: { setEmoji: string }) => {
 				<Button>{setEmoji} Emoji</Button>
 			</Modal.Open>
 			<Modal.Window name="gifPicker">
-				<Heading as="h2">Emoji</Heading>
-				<ChatMoreEmojiPicker />
+				<Suspense fallback={<ThreeDots />}>
+					<Heading as="h2">Emoji</Heading>
+					<ChatMoreEmojiPicker />
+				</Suspense>
 			</Modal.Window>
 		</Modal>
 	);
