@@ -1,9 +1,11 @@
+import { Suspense, lazy } from "react";
 import styled from "styled-components";
 
 import { ephasis } from "../../style/Templates";
 import Modal from "../../ui/Modal";
 import Heading from "../../ui/Heading";
-import AuthPasswordReminder from "./AuthPasswordReminder";
+import ThreeDots from "../../ui/ThreeDots";
+const AuthPasswordReminder = lazy(() => import("./AuthPasswordReminder"));
 
 const Reminder = styled.a`
 	display: block;
@@ -23,8 +25,10 @@ const AuthPasswordReminderModal = () => {
 				width="max-content"
 				height="max-content"
 			>
-				<Heading as="h2">Password reminder</Heading>
-				<AuthPasswordReminder />
+				<Suspense fallback={<ThreeDots />}>
+					<Heading as="h2">Password reminder</Heading>
+					<AuthPasswordReminder />
+				</Suspense>
 			</Modal.Window>
 		</Modal>
 	);
