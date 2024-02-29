@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import styled from "styled-components";
 
 import useChat from "./useChat";
 import { IChatStateProps } from "../../pages/Chat";
+import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../style/Templates";
 import ChatForm from "./form/ChatForm";
 import Container from "../../ui/Container";
 import ChatWindow from "./ChatWindow";
 import ChatTitle from "./ChatTitle";
-import ChatMore from "./more/ChatMore";
 import Wrapper from "../../ui/Wrapper";
+import ThreeDots from "../../ui/ThreeDots";
+const ChatMore = lazy(() => import("./more/ChatMore"));
 
 const StyledWrapper = styled(Wrapper)`
 	${flexRow};
@@ -22,6 +24,16 @@ const StyledChat = styled(Container)`
 	max-height: 100%;
 	width: 75%;
 	flex-grow: 1;
+`;
+
+const FallbackContainer = styled(Container)`
+	width: 25%;
+
+	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
 `;
 
 const ChatDetail = ({ state }: { state: IChatStateProps }) => {
@@ -51,12 +63,20 @@ const ChatDetail = ({ state }: { state: IChatStateProps }) => {
 				<ChatForm setEmoji={emoji} />
 			</StyledChat>
 			{isMoreOpen && (
-				<ChatMore
-					handlerClose={handleOpenMore}
-					data={data}
-					setEmoji={emoji}
-					setTheme={theme}
-				/>
+				<Suspense
+					fallback={
+						<FallbackContainer>
+							<ThreeDots />
+						</FallbackContainer>
+					}
+				>
+					<ChatMore
+						handlerClose={handleOpenMore}
+						data={data}
+						setEmoji={emoji}
+						setTheme={theme}
+					/>
+				</Suspense>
 			)}
 		</StyledWrapper>
 	);
