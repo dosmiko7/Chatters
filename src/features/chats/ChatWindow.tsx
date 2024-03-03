@@ -56,14 +56,8 @@ const ChatWindow = ({
 						return (
 							<ChatMessage
 								key={index}
-								type={message.type}
-								fileName={message.fileName}
 								currentUser={currentUser}
-								userId={message.userId}
-								createdAt={message.createdAt}
-								nickname={message.nickname}
-								avatar={message.avatar}
-								message={message.message}
+								{...message}
 								theme={{ name: setTheme, fontColor }}
 								renderPhoto={renderPhoto}
 							/>
