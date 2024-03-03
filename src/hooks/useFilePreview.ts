@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-// TODO: Add thumbnail for videos
-// TODO: The inscription is crooked
 const useFilePreview = (file: FileList | null) => {
 	const [imgSrc, setImgSrc] = useState<string | null>("");
 

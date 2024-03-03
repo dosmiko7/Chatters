@@ -3,7 +3,6 @@ import { Auth, getAuth } from "firebase/auth";
 import { Firestore, getFirestore } from "firebase/firestore";
 import { FirebaseStorage, getStorage } from "firebase/storage";
 
-// TODO: Change rules for firestore and storage
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
 	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
