@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import usePasswordReset from "./usePasswordReset";
 import useModal from "../../hooks/useModal";
+import { emailValidation } from "../../utils/validationTemplates";
 import { flexRow } from "../../style/Templates";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
@@ -33,14 +34,6 @@ const SubmitButton = styled(Button)`
 	justify-content: center;
 	width: 50%;
 `;
-
-const emailValidation = {
-	required: "Email is required",
-	pattern: {
-		value: /^\S+@\S+\.\S+$/,
-		message: "Invalid email address",
-	},
-};
 
 interface IReminderPassword {
 	email: string;
