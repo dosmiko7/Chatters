@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
-import { wrapper } from "./testingQuery";
+import { wrapper } from "../../__tests__/testingQuery";
 import SettingsOptions from "../SettingsOptions";
 
 vi.mock("../SettingsOptionsDelete", () => {

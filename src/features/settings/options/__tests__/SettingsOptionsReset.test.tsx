@@ -4,8 +4,8 @@ import { describe, test, expect, vi, Mock } from "vitest";
 import { User } from "firebase/auth";
 import { toast } from "react-hot-toast";
 
-import { wrapper } from "./testingQuery";
-import * as useLoggedUserHooks from "../../authentication/useLoggedUser";
+import { wrapper } from "../../__tests__/testingQuery";
+import * as useLoggedUserHooks from "../../../authentication/useLoggedUser";
 import SettingsOptionsReset from "../SettingsOptionsReset";
 
 const sendResetEmailMock: Mock = vi.fn();

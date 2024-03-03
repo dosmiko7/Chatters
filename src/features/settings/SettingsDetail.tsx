@@ -1,6 +1,6 @@
 import Container from "../../ui/Container";
 import Heading from "../../ui/Heading";
-import SettingsOptions from "./SettingsOptions";
+import SettingsOptions from "./options/SettingsOptions";
 
 const SettingsDetail = () => {
 	return (

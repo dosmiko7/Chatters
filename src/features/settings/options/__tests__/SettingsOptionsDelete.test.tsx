@@ -2,7 +2,7 @@ import { MemoryRouter } from "react-router-dom";
 import { screen, render } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
-import { wrapper as queryWrapper } from "./testingQuery";
+import { wrapper as queryWrapper } from "../../__tests__/testingQuery";
 import SettingsOptionsDelete from "../SettingsOptionsDelete";
 
 const wrapper = ({ children }: { children: JSX.Element }) => <MemoryRouter>{queryWrapper({ children })}</MemoryRouter>;

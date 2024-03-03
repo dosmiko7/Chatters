@@ -1,4 +1,4 @@
-import SettingsReauthenticateModal from "./reauthenticate/SettingsReauthenticateModal";
+import SettingsReauthenticateModal from "../reauthenticate/SettingsReauthenticateModal";
 
 const SettingsOptionsDelete = () => {
 	return <SettingsReauthenticateModal />;

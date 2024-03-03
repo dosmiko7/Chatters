@@ -3,7 +3,7 @@ import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
 import SettingsOptionsTheme from "../SettingsOptionsTheme";
-import DarkThemeProvider from "../../../context/DarkThemeContext";
+import DarkThemeProvider from "../../../../context/DarkThemeContext";
 
 const toggleDarkThemeMock = vi.fn();
 

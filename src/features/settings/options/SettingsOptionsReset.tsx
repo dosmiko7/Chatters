@@ -1,9 +1,9 @@
 import { FcLock } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 
-import usePasswordReset from "../authentication/usePasswordReset";
-import useLoggedUser from "../authentication/useLoggedUser";
-import Card from "../../ui/Card";
+import usePasswordReset from "../../authentication/usePasswordReset";
+import useLoggedUser from "../../authentication/useLoggedUser";
+import Card from "../../../ui/Card";
 
 const INFO =
 	"Click if you want to change your password. We will send you a message to your email with the option to reset your password.";

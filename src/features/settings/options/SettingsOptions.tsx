@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { flexRow } from "../../style/Templates";
+import { flexRow } from "../../../style/Templates";
 import SettingsOptionsReset from "./SettingsOptionsReset";
 import SettingsOptionsDelete from "./SettingsOptionsDelete";
 import SettingsOptionsTheme from "./SettingsOptionsTheme";
