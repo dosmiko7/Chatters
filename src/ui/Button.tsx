@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { flexCentered, flexRow } from "../style/Templates";
 
 export interface ButtonProps {
-	variant?: "menu" | "danger" | "safe";
+	variant?: "menu" | "danger" | "safe" | "profile";
 	size?: "large" | "medium" | "small";
 }
 
@@ -40,7 +40,7 @@ const Button = styled.button<ButtonProps>`
 			}
 		`}
 
-		${(props) =>
+	${(props) =>
 		props.variant === "safe" &&
 		css`
 			background-color: var(--color-green-100);
@@ -48,6 +48,15 @@ const Button = styled.button<ButtonProps>`
 			&:hover {
 				background-color: var(--color-green-200);
 			}
+		`}
+
+	${(props) =>
+		props.variant === "profile" &&
+		css`
+			${flexRow};
+			align-items: center;
+			gap: 0.6rem;
+			border-radius: var(--border-radius-xsm);
 		`}
 
 	${(props) =>
