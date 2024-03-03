@@ -5,12 +5,12 @@ import useChat from "./useChat";
 import { IChatStateProps } from "../../pages/Chat";
 import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../style/Templates";
-import ChatForm from "./form/ChatForm";
 import Container from "../../ui/Container";
-import ChatWindow from "./ChatWindow";
-import ChatTitle from "./ChatTitle";
 import Wrapper from "../../ui/Wrapper";
 import ThreeDots from "../../ui/ThreeDots";
+import ChatTitle from "./ChatTitle";
+import ChatForm from "./form/ChatForm";
+import ChatWindow from "./window/ChatWindow";
 const ChatMore = lazy(() => import("./more/ChatMore"));
 
 const StyledWrapper = styled(Wrapper)`

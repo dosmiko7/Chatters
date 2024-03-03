@@ -2,11 +2,11 @@ import { useRef, useLayoutEffect, Suspense } from "react";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
-import { IChatElement } from "./useChat";
-import { themes } from "../../data/themes";
-import List from "../../ui/List";
+import { IChatElement } from "../useChat";
+import { themes } from "../../../data/themes";
+import List from "../../../ui/List";
+import Spinner from "../../../ui/Spinner";
 import ChatMessage from "./ChatMessage";
-import Spinner from "../../ui/Spinner";
 
 const StyledChatWindow = styled.div`
 	height: 100%;

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { themes } from "../../../data/themes";
+import { themes } from "../../../../../data/themes";
 import useChatCustomization from "./useChatCustomization";
-import useModal from "../../../hooks/useModal";
-import { displayInfo } from "../../../style/Templates";
+import useModal from "../../../../../hooks/useModal";
+import { displayInfo } from "../../../../../style/Templates";
 
 interface IPickerProps {
 	background: string;

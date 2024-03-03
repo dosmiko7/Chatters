@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import { IChatElement } from "./useChat";
-import { breakpoints } from "../../style/GlobalStyles";
-import ListElement from "../../ui/ListElement";
+import { IChatElement } from "../useChat";
+import { breakpoints } from "../../../style/GlobalStyles";
+import ListElement from "../../../ui/ListElement";
 import ChatAvatar from "./ChatAvatar";
 import ChatMessageContent from "./ChatMessageContent";
 

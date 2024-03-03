@@ -3,9 +3,9 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { describe, expect, test, vi } from "vitest";
 
-import * as chatsApiFunctions from "../../../../services/firestore/chatsApi";
+import * as chatsApiFunctions from "../../../../../../services/firestore/chatsApi";
 import useChatCustomization from "../useChatCustomization";
-import wrapper from "./wrapper";
+import wrapper from "../../../__tests__/wrapper";
 
 vi.mock("react-hot-toast");
 

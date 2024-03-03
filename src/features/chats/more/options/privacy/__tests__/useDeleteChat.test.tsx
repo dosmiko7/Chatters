@@ -4,10 +4,10 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
-import * as chatsApiFunctions from "../../../../services/firestore/chatsApi";
-import * as useLoggedUserHooks from "../../../authentication/useLoggedUser";
+import * as chatsApiFunctions from "../../../../../../services/firestore/chatsApi";
+import * as useLoggedUserHooks from "../../../../../authentication/useLoggedUser";
 import useDeleteChat from "../useDeleteChat";
-import wrapper from "./wrapper";
+import wrapper from "../../../__tests__/wrapper";
 
 vi.mock("react-hot-toast");
 

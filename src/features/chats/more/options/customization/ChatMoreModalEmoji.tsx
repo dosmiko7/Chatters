@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 
-import Modal from "../../../ui/Modal";
-import Button from "../../../ui/Button";
-import Heading from "../../../ui/Heading";
-import ThreeDots from "../../../ui/ThreeDots";
+import Modal from "../../../../../ui/Modal";
+import Button from "../../../../../ui/Button";
+import Heading from "../../../../../ui/Heading";
+import ThreeDots from "../../../../../ui/ThreeDots";
 const ChatMoreEmojiPicker = lazy(() => import("./ChatMoreEmojiPicker"));
 
 const ChatMoreModalEmoji = ({ setEmoji }: { setEmoji: string }) => {

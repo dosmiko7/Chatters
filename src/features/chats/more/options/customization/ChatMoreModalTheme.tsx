@@ -1,10 +1,10 @@
 import { Suspense, lazy } from "react";
 
-import { themes } from "../../../data/themes";
-import Button from "../../../ui/Button";
-import Heading from "../../../ui/Heading";
-import Modal from "../../../ui/Modal";
-import ThreeDots from "../../../ui/ThreeDots";
+import { themes } from "../../../../../data/themes";
+import Button from "../../../../../ui/Button";
+import Heading from "../../../../../ui/Heading";
+import Modal from "../../../../../ui/Modal";
+import ThreeDots from "../../../../../ui/ThreeDots";
 const ChatMoreThemePicker = lazy(() => import("./ChatMoreThemePicker"));
 
 const ChatMoreModalTheme = ({ setTheme }: { setTheme: string }) => {

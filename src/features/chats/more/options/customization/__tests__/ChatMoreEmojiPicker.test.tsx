@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import * as useChatCustomizationHooks from "../useChatCustomization";
-import * as useModalHooks from "../../../../hooks/useModal";
+import * as useModalHooks from "../../../../../../hooks/useModal";
 import ChatMoreEmojiPicker from "../ChatMoreEmojiPicker";
 import EmojiPicker from "emoji-picker-react";
 

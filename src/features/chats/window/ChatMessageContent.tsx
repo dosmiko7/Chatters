@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import ImageElement from "../../ui/ImageElement";
-import AudioElement from "../../ui/AudioElement";
-import VideoElement from "../../ui/VideoElement";
-import DownloadElement from "../../ui/DownloadElement";
-import Paragraph from "../../ui/Paragraph";
-import Wrapper from "../../ui/Wrapper";
+import ImageElement from "../../../ui/ImageElement";
+import AudioElement from "../../../ui/AudioElement";
+import VideoElement from "../../../ui/VideoElement";
+import DownloadElement from "../../../ui/DownloadElement";
+import Paragraph from "../../../ui/Paragraph";
+import Wrapper from "../../../ui/Wrapper";
 
 const ContentContainer = styled(Wrapper)`
 	border-radius: var(--border-radius-sm);

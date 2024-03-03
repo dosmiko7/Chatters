@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { breakpoints } from "../../../style/GlobalStyles";
-import { flexColumn } from "../../../style/Templates";
-import ChatMoreCustomization, { ICustomizationProps } from "./ChatMoreCustomization";
-import ChatMorePrivacy from "./ChatMorePrivacy";
+import { breakpoints } from "../../../../style/GlobalStyles";
+import { flexColumn } from "../../../../style/Templates";
+import ChatMoreCustomization, { ICustomizationProps } from "./customization/ChatMoreCustomization";
+import ChatMorePrivacy from "./privacy/ChatMorePrivacy";
 
 const StyledChatMoreOptions = styled.div`
 	${flexColumn};

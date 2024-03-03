@@ -5,9 +5,9 @@ import { breakpoints } from "../../../style/GlobalStyles";
 import { flexCentered, flexColumn } from "../../../style/Templates";
 import Container from "../../../ui/Container";
 import Button from "../../../ui/Button";
-import ChatMoreInfo from "./ChatMoreInfo";
-import ChatMoreOptions from "./ChatMoreOptions";
 import ErrorMessage from "../../../ui/ErrorMessage";
+import ChatMoreOptions from "./options/ChatMoreOptions";
+import ChatMoreInfo from "./ChatMoreInfo";
 
 const StyledChatMoreInfo = styled(Container)`
 	${flexColumn};

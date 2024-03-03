@@ -1,4 +1,4 @@
-import Options from "../../../ui/Options";
+import Options from "../../../../../ui/Options";
 import ChatMoreDelete from "./ChatMoreDelete";
 
 const ChatMorePrivacy = () => {

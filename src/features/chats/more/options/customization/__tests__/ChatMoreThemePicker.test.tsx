@@ -1,10 +1,10 @@
 import { screen, render, within, fireEvent } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
-import * as useChatCustomizationHooks from "../useChatCustomization";
-import * as useModalHooks from "../../../../hooks/useModal";
-import ChatMoreThemePicker from "../ChatMoreThemePicker";
-import wrapper from "./wrapper.tsx";
+import * as useChatCustomizationHooks from "../useChatCustomization.tsx";
+import * as useModalHooks from "../../../../../../hooks/useModal.ts";
+import ChatMoreThemePicker from "../ChatMoreThemePicker.tsx";
+import wrapper from "../../../__tests__/wrapper.tsx";
 
 describe("ChatMoreThemePicker", () => {
 	const changeCustomizationMock = vi.fn();
