@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 import useProfileFormSubmit from "./useProfileFormSubmit";
 import Form from "../../../ui/Form";
-import ProfileFormPersonals from "./ProfileFormPersonals";
-import ProfileFormSocials from "./ProfileFormSocials";
-import ProfileFormDescription from "./ProfileFormDescription";
-import ProfileFormImages from "./ProfileFormImages";
+import ProfileFormPersonals from "./inputs/personals/ProfileFormPersonals";
+import ProfileFormSocials from "./inputs/socials/ProfileFormSocials";
+import ProfileFormDescription from "./inputs/description/ProfileFormDescription";
+import ProfileFormImages from "./inputs/images/ProfileFormImages";
 import ProfileFormButtons from "./ProfileFormButtons";
 import ProfileFormStatus from "./ProfileFormStatus";
 

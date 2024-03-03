@@ -3,8 +3,8 @@ import styled from "styled-components";
 import useProfile from "./useProfile";
 import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../style/Templates";
-import ProfileInformation from "./ProfileInformation";
-import ProfileFriends from "./ProfileFriends";
+import ProfileInformation from "./information/ProfileInformation";
+import ProfileFriends from "./friends/ProfileFriends";
 import Spinner from "../../ui/Spinner";
 import ErrorMessage from "../../ui/ErrorMessage";
 
