@@ -7,7 +7,7 @@ import { IDocumentData } from "../../../../../services/firestore/userApi";
 import * as useLoggedUserHooks from "../../../../authentication/useLoggedUser";
 import ProfileButtons from "../ProfileButtons";
 
-vi.mock("../form/ProfileFormModal", () => {
+vi.mock("../../../form/ProfileFormModal", () => {
 	return {
 		default: () => <div>ProfileFormModal</div>,
 	};

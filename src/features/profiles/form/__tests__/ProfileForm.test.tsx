@@ -4,25 +4,25 @@ import { describe, expect, test, vi } from "vitest";
 import ProfileForm from "../ProfileForm";
 import * as useProfileFormSubmitHooks from "../useProfileFormSubmit";
 
-vi.mock("../ProfileFormImages", () => {
+vi.mock("../inputs/images/ProfileFormImages", () => {
 	return {
 		default: () => <div>ProfileFormImages</div>,
 	};
 });
 
-vi.mock("../ProfileFormPersonals", () => {
+vi.mock("../inputs/personals/ProfileFormPersonals", () => {
 	return {
 		default: () => <div>ProfileFormPersonals</div>,
 	};
 });
 
-vi.mock("../ProfileFormSocials", () => {
+vi.mock("../inputs/socials/ProfileFormSocials", () => {
 	return {
 		default: () => <div>ProfileFormSocials</div>,
 	};
 });
 
-vi.mock("../ProfileFormDescription", () => {
+vi.mock("../inputs/description/ProfileFormDescription", () => {
 	return {
 		default: () => <div>ProfileFormDescription</div>,
 	};

@@ -5,13 +5,13 @@ import { IDocumentData } from "../../../services/firestore/userApi";
 import * as useProfileHooks from "../useProfile";
 import ProfileDetail from "../ProfileDetail";
 
-vi.mock("../ProfileInformation", () => {
+vi.mock("../information/ProfileInformation", () => {
 	return {
 		default: (props: any) => <div>ProfileInformation: {props.profileData.id}</div>,
 	};
 });
 
-vi.mock("../ProfileFriends", () => {
+vi.mock("../friends/ProfileFriends", () => {
 	return {
 		default: (props: any) => <div>ProfileFriends: {props.profileData.id}</div>,
 	};

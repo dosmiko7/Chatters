@@ -3,7 +3,7 @@ import { describe, expect, test, vi } from "vitest";
 
 import ProfileSocials from "../ProfileSocials";
 
-vi.mock("../../../ui/Social", () => {
+vi.mock("../../../../ui/Social", () => {
 	return {
 		default: (props: any) => <div>{props.href}</div>,
 	};
