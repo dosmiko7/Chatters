@@ -30,39 +30,6 @@ vi.mock(`react-router-dom`, async (): Promise<unknown> => {
 	};
 });
 
-/*
-const DashboardListElement = ({ post }: { post: IPostDataProps }) => {
-	const navigate = useNavigate();
-	const { userId, avatar, nickname, message, file, type, createdAt } = post.data;
-
-	return (
-		<Post>
-			<Header>
-				<Avatar
-					size="4rem"
-					src={avatar}
-					onClick={() => navigate(`/profile/${userId}`)}
-					square
-				/>
-				<Nickname>{nickname}</Nickname>
-				<Date>{createdAt}</Date>
-			</Header>
-			<Paragraph>{message}</Paragraph>
-			{file && (
-				<DashboardListAttachment
-					type={type}
-					file={file}
-				/>
-			)}
-			<DashboardRemove
-				postCreatorId={userId}
-				postId={post.postId}
-			/>
-		</Post>
-	);
-};
-*/
-
 describe("DashboardListElement", () => {
 	const examplePost = {
 		postId: "testPostId",

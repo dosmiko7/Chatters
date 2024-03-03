@@ -46,7 +46,7 @@ describe("ChatMoreInfo", () => {
 		test("matching value for isActive equals false", () => {
 			testData.isActive = false;
 			render(<ChatMoreInfo infoData={testData} />);
-			//
+			
 			expect(screen.getByLabelText("Active status of user")).toHaveTextContent("🔴 Last seen testLastSeen");
 		});
 	});
