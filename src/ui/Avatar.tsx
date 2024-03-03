@@ -21,6 +21,12 @@ const StyledAvatar = styled.div<IStyledAvatarProps>`
 	}
 `;
 
+const StyledImage = styled.img`
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+`;
+
 interface IAvatar {
 	size: string;
 	square?: boolean;
@@ -40,10 +46,9 @@ const Avatar = (props: IAvatar) => {
 			border={border}
 			aria-label="Avatar container"
 		>
-			<img
+			<StyledImage
 				src={src || "avatar-default.png"}
 				alt="Avatar"
-				style={{ width: "100%", height: "100%", objectFit: "cover" }}
 			/>
 		</StyledAvatar>
 	);
