@@ -14,7 +14,7 @@ vi.mock("../DashboardKeyRemove", () => {
 	};
 });
 
-vi.mock("../../searches/SearchesWindow", () => {
+vi.mock("../../../searches/SearchesWindow", () => {
 	return {
 		default: () => <div>SearchesWindow</div>,
 	};

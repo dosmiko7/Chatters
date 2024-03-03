@@ -9,7 +9,7 @@ import { IPostDataProps } from "../../../../services/firestore/dashboardApi";
 import DashboardList from "../DashboardList";
 import DashboardOptionsProvider from "../../../../context/DashboardOptionsContext";
 
-vi.mock("../../../hooks/useIsVisible");
+vi.mock("../../../../hooks/useIsVisible");
 
 vi.mock("../DashboardListElement", () => {
 	return {

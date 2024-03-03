@@ -3,25 +3,25 @@ import { describe, expect, test, vi } from "vitest";
 
 import DashboardListAttachment from "../DashboardListAttachment";
 
-vi.mock("../../../ui/AudioElement", () => {
+vi.mock("../../../../ui/AudioElement", () => {
 	return {
 		default: () => <div>AudioElement</div>,
 	};
 });
 
-vi.mock("../../../ui/VideoElement", () => {
+vi.mock("../../../../ui/VideoElement", () => {
 	return {
 		default: () => <div>VideoElement</div>,
 	};
 });
 
-vi.mock("../../../ui/ImageElement", () => {
+vi.mock("../../../../ui/ImageElement", () => {
 	return {
 		default: () => <div>ImageElement</div>,
 	};
 });
 
-vi.mock("../../../ui/DownloadElement", () => {
+vi.mock("../../../../ui/DownloadElement", () => {
 	return {
 		default: () => <div>DownloadElement</div>,
 	};

@@ -4,8 +4,8 @@ import { describe, expect, test, vi } from "vitest";
 
 import DashboardDetail from "../DashboardDetail";
 
-vi.mock("../DashboardButtons");
-vi.mock("../DashboardList");
+vi.mock("../buttons/DashboardButtons");
+vi.mock("../list/DashboardList");
 
 const queryClient = new QueryClient({
 	defaultOptions: {

@@ -3,7 +3,7 @@ import { describe, expect, test, vi } from "vitest";
 import { IPostDataProps } from "../../../../services/firestore/dashboardApi";
 import DashboardListElement from "../DashboardListElement";
 
-vi.mock("../../../ui/Avatar", () => {
+vi.mock("../../../../ui/Avatar", () => {
 	return {
 		default: () => <div>Avatar</div>,
 	};

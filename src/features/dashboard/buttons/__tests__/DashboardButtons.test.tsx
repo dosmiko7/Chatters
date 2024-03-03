@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from "vitest";
 import DashboardButtons from "../DashboardButtons";
 import DashboardOptionsProvider from "../../../../context/DashboardOptionsContext";
 
-vi.mock("../form/DashboardFormModal", () => {
+vi.mock("../../form/DashboardFormModal", () => {
 	return {
 		default: () => <div>DashboardFormModal</div>,
 	};
