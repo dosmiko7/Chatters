@@ -10,7 +10,7 @@ import SettingsOptionsReset from "../SettingsOptionsReset";
 
 const sendResetEmailMock: Mock = vi.fn();
 
-vi.mock("../../authentication/usePasswordReset", async (): Promise<unknown> => {
+vi.mock("../../../authentication/usePasswordReset", async (): Promise<unknown> => {
 	return {
 		default: () => ({ sendResetEmail: sendResetEmailMock }),
 	};

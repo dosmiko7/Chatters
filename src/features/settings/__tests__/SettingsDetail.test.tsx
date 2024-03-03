@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from "vitest";
 import { wrapper } from "./testingQuery";
 import SettingsDetail from "../SettingsDetail";
 
-vi.mock("../SettingsOptions", () => {
+vi.mock("../options/SettingsOptions", () => {
 	return {
 		default: () => <ul>Options</ul>,
 	};

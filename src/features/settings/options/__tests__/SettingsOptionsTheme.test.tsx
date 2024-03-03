@@ -7,7 +7,7 @@ import DarkThemeProvider from "../../../../context/DarkThemeContext";
 
 const toggleDarkThemeMock = vi.fn();
 
-vi.mock("../../../context/useDarkTheme", () => {
+vi.mock("../../../../context/useDarkTheme", () => {
 	return {
 		default: () => ({ toggleDarkTheme: toggleDarkThemeMock }),
 	};
