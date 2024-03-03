@@ -24,7 +24,7 @@ const Logo = () => {
 	return (
 		<StyledLogo role="logo">
 			<Image
-				src="logo.png"
+				src="/logo.png"
 				alt="Logo"
 				onClick={() => navigate("/dashboard")}
 			/>
