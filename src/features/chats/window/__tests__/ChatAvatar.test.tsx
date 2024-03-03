@@ -1,8 +1,8 @@
 import { screen, render, waitFor } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
 import ChatAvatar from "../ChatAvatar";
-import { userEvent } from "@testing-library/user-event";
 
 const useNavigateMock = vi.fn();
 vi.mock(`react-router-dom`, async (): Promise<unknown> => {

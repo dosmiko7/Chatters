@@ -15,7 +15,7 @@ vi.mock("../ChatTitle", () => {
 	};
 });
 
-vi.mock("../ChatWindow", () => {
+vi.mock("../window/ChatWindow", () => {
 	return {
 		default: (props: any) => (
 			<div data-testid="ChatWindow">

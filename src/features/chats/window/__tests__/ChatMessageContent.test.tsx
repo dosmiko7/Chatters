@@ -3,7 +3,7 @@ import { describe, expect, test, vi } from "vitest";
 
 import ChatMessageContent from "../ChatMessageContent";
 
-vi.mock("../../../ui/ImageElement", () => {
+vi.mock("../../../../ui/ImageElement", () => {
 	return {
 		default: (props: any) => (
 			<div data-testid="ImageElement">
@@ -13,7 +13,7 @@ vi.mock("../../../ui/ImageElement", () => {
 	};
 });
 
-vi.mock("../../../ui/AudioElement", () => {
+vi.mock("../../../../ui/AudioElement", () => {
 	return {
 		default: (props: any) => (
 			<div data-testid="AudioElement">
@@ -24,7 +24,7 @@ vi.mock("../../../ui/AudioElement", () => {
 	};
 });
 
-vi.mock("../../../ui/VideoElement", () => {
+vi.mock("../../../../ui/VideoElement", () => {
 	return {
 		default: (props: any) => (
 			<div data-testid="VideoElement">
@@ -35,7 +35,7 @@ vi.mock("../../../ui/VideoElement", () => {
 	};
 });
 
-vi.mock("../../../ui/DownloadElement", () => {
+vi.mock("../../../../ui/DownloadElement", () => {
 	return {
 		default: (props: any) => (
 			<div data-testid="DownloadElement">

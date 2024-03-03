@@ -9,7 +9,7 @@ vi.mock("../ChatMoreInfo", () => {
 	};
 });
 
-vi.mock("../ChatMoreOptions", () => {
+vi.mock("../options/ChatMoreOptions", () => {
 	return {
 		default: (props: any) => <div data-testid="ChatMoreOptions">{JSON.stringify(props.customizationData)}</div>,
 	};

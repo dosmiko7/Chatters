@@ -3,13 +3,13 @@ import { describe, expect, test, vi } from "vitest";
 
 import ChatMoreOptions from "../ChatMoreOptions";
 
-vi.mock("../ChatMoreCustomization", () => {
+vi.mock("../customization/ChatMoreCustomization", () => {
 	return {
 		default: (props: any) => <div data-testid="ChatMoreCustomization">{JSON.stringify(props.data)}</div>,
 	};
 });
 
-vi.mock("../ChatMorePrivacy", () => {
+vi.mock("../privacy/ChatMorePrivacy", () => {
 	return {
 		default: () => <div data-testid="ChatMorePrivacy"></div>,
 	};

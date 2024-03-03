@@ -5,8 +5,8 @@ import { toast } from "react-hot-toast";
 
 import ChatWindow from "../ChatWindow";
 
-vi.mock("../../../data/themes", async () => {
-	const actual = await vi.importActual("../../../data/themes");
+vi.mock("../../../../data/themes", async () => {
+	const actual = await vi.importActual("../../../../data/themes");
 	return {
 		...actual,
 		themes: [
@@ -25,69 +25,7 @@ vi.mock("../ChatMessage", () => {
 
 vi.mock("react-hot-toast");
 
-/*
-const ChatWindow = ({
-	currentUser,
-	chat,
-	setTheme,
-	error,
-}: {
-	currentUser: string;
-	chat: IChatElement[];
-	setTheme: string;
-	error: boolean;
-}) => {
-	const bottomRef = useRef<null | HTMLDivElement>(null);
-
-	const themeObject = themes.find((obj) => obj.theme === `${setTheme}`);
-	const fontColor = themeObject?.fontColor || "var(--color-white-100)";
-
-	useLayoutEffect(() => {
-		const scrollElement = () => {
-			if (bottomRef.current) {
-				bottomRef.current.scrollIntoView({
-					behavior: "auto",
-				});
-			}
-		};
-		scrollElement();
-	}, [bottomRef, chat]);
-
-	if (error) toast.error("Something went wrong with fetching messages.");
-
-	return (
-		<StyledChatWindow>
-			<Suspense fallback={<Spinner />}>
-				<List<IChatElement>
-					data={chat}
-					render={(message: IChatElement, index: number) => {
-						const renderPhoto = index + 1 === chat.length || chat[index].userId !== chat[index + 1].userId;
-						return (
-							<ChatMessage
-								key={index}
-								type={message.type}
-								fileName={message.fileName}
-								currentUser={currentUser}
-								userId={message.userId}
-								createdAt={message.createdAt}
-								nickname={message.nickname}
-								avatar={message.avatar}
-								message={message.message}
-								theme={{ name: setTheme, fontColor }}
-								renderPhoto={renderPhoto}
-							/>
-						);
-					}}
-				/>
-			</Suspense>
-			<div ref={bottomRef}></div>
-		</StyledChatWindow>
-	);
-};
-*/
-
 describe("ChatWindow", () => {
-	// FIX: JestDom can not recognize scrollIntoView method
 	const scrollIntoViewMock = vi.fn();
 	beforeEach(() => {
 		window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
