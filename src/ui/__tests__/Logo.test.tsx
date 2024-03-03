@@ -38,7 +38,7 @@ describe("Logo", () => {
 
 		const image = screen.getByRole("img");
 
-		expect(image).toHaveAttribute("src", "logo.png");
+		expect(image).toHaveAttribute("src", "/logo.png");
 	});
 
 	test("when pressed, navigates to /dashboard", async () => {
