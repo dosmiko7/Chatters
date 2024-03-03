@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import { BiUserMinus, BiUserPlus } from "react-icons/bi";
 
 import useFriendUpdate from "./useFriendUpdate";
-import ButtonProfile from "../../ui/ButtonProfile";
+import Button from "../../ui/Button";
 import ToasterWarning from "../../ui/ToasterWarning";
 import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
 
@@ -41,17 +41,25 @@ const ProfileButtonFriend = ({
 
 	if (isFriend)
 		return (
-			<ButtonProfile onClick={() => onRemoveFriendHandler()}>
+			<Button
+				variant="profile"
+				size="small"
+				onClick={() => onRemoveFriendHandler()}
+			>
 				<BiUserMinus style={{ fontSize: "2.4rem" }} />
 				<span>Remove friend</span>
-			</ButtonProfile>
+			</Button>
 		);
 	else
 		return (
-			<ButtonProfile onClick={() => onAddFriendHandler()}>
+			<Button
+				variant="profile"
+				size="small"
+				onClick={() => onAddFriendHandler()}
+			>
 				<BiUserPlus style={{ fontSize: "2.4rem" }} />
 				<span>Add to friends</span>
-			</ButtonProfile>
+			</Button>
 		);
 };
 

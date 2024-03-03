@@ -3,17 +3,20 @@ import { BiPencil } from "react-icons/bi";
 
 import Modal from "../../../ui/Modal";
 import ThreeDots from "../../../ui/ThreeDots";
-import ButtonProfile from "../../../ui/ButtonProfile";
+import Button from "../../../ui/Button";
 const ProfileForm = lazy(() => import("./ProfileForm"));
 
 const ProfileFormModal = ({ images }: { images: { avatar: string; background: string } }) => {
 	return (
 		<Modal>
 			<Modal.Open opens="profileForm">
-				<ButtonProfile>
+				<Button
+					variant="profile"
+					size="small"
+				>
 					<BiPencil style={{ fontSize: "2.4rem" }} />
 					<span>Edit profile</span>
-				</ButtonProfile>
+				</Button>
 			</Modal.Open>
 
 			<Modal.Window
