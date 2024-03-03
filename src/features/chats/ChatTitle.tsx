@@ -15,12 +15,12 @@ interface ChatTitleProps {
 	handlerOpen: () => void;
 }
 
-const defaultNickname = "friend";
+const DEFAULT_NICKNAME = "friend";
 
 const ChatTitle = ({ nickname, handlerOpen }: ChatTitleProps) => {
 	return (
 		<StyledChatTitle aria-label="Chat title">
-			<Heading as="h2">Chat with {nickname || defaultNickname}</Heading>
+			<Heading as="h2">Chat with {nickname || DEFAULT_NICKNAME}</Heading>
 			<ChatMoreOpen handlerOpen={handlerOpen} />
 		</StyledChatTitle>
 	);
