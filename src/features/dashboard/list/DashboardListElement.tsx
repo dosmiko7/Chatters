@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import { IPostDataProps } from "../../services/firestore/dashboardApi";
-import { flexRow } from "../../style/Templates";
-import Avatar from "../../ui/Avatar";
-import Heading from "../../ui/Heading";
-import Paragraph from "../../ui/Paragraph";
+import { IPostDataProps } from "../../../services/firestore/dashboardApi";
+import { flexRow } from "../../../style/Templates";
+import Avatar from "../../../ui/Avatar";
+import Heading from "../../../ui/Heading";
+import Paragraph from "../../../ui/Paragraph";
 import DashboardListAttachment from "./DashboardListAttachment";
 import DashboardRemove from "./DashboardRemove";
 

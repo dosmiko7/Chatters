@@ -2,12 +2,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
-import * as useIsVisibleHooks from "../../../hooks/useIsVisible";
-import * as useDashboardHooks from "../useDashboard";
-import { IPostDataProps } from "../../../services/firestore/dashboardApi";
+import * as useIsVisibleHooks from "../../../../hooks/useIsVisible";
+import * as useDashboardHooks from "../../useDashboard";
+import { IPostDataProps } from "../../../../services/firestore/dashboardApi";
 
 import DashboardList from "../DashboardList";
-import DashboardOptionsProvider from "../../../context/DashboardOptionsContext";
+import DashboardOptionsProvider from "../../../../context/DashboardOptionsContext";
 
 vi.mock("../../../hooks/useIsVisible");
 

@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-import { displayInfo } from "../../style/Templates";
-import Button from "../../ui/Button";
+import { displayInfo } from "../../../style/Templates";
+import Button from "../../../ui/Button";
 
 interface IFilterButtonProps {
 	infoMsg: string;

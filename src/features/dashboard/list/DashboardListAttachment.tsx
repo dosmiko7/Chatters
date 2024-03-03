@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import { flexCentered } from "../../style/Templates";
-import ImageElement from "../../ui/ImageElement";
-import AudioElement from "../../ui/AudioElement";
-import DownloadElement from "../../ui/DownloadElement";
-import VideoElement from "../../ui/VideoElement";
+import { flexCentered } from "../../../style/Templates";
+import ImageElement from "../../../ui/ImageElement";
+import AudioElement from "../../../ui/AudioElement";
+import DownloadElement from "../../../ui/DownloadElement";
+import VideoElement from "../../../ui/VideoElement";
 
 const StyledAttachment = styled.div`
 	${flexCentered};

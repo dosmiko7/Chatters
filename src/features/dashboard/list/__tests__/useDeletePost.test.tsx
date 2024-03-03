@@ -3,7 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { toast } from "react-hot-toast";
 
-import * as dashboardApiFunctions from "../../../services/firestore/dashboardApi";
+import * as dashboardApiFunctions from "../../../../services/firestore/dashboardApi";
 import useDeletePost from "../useDeletePost";
 
 vi.mock("react-hot-toast");

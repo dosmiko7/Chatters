@@ -2,9 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { userEvent } from "@testing-library/user-event";
 
-import * as useDashboardOptionsHooks from "../../../context/useDashboardOptions";
-import { IOptionsDashboard } from "../../../services/firestore/dashboardApi";
-import DashboardOptionsProvider from "../../../context/DashboardOptionsContext";
+import * as useDashboardOptionsHooks from "../../../../context/useDashboardOptions";
+import { IOptionsDashboard } from "../../../../services/firestore/dashboardApi";
+import DashboardOptionsProvider from "../../../../context/DashboardOptionsContext";
 import DashboardFilters from "../DashboardFilters";
 
 vi.mock("react-icons/hi", () => {

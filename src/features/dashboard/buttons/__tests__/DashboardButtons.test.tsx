@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 
 import DashboardButtons from "../DashboardButtons";
-import DashboardOptionsProvider from "../../../context/DashboardOptionsContext";
+import DashboardOptionsProvider from "../../../../context/DashboardOptionsContext";
 
 vi.mock("../form/DashboardFormModal", () => {
 	return {

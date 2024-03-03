@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import useIsVisible from "../../hooks/useIsVisible";
-import { IPostDataProps } from "../../services/firestore/dashboardApi";
-import List from "../../ui/List";
+import useIsVisible from "../../../hooks/useIsVisible";
+import { IPostDataProps } from "../../../services/firestore/dashboardApi";
+import List from "../../../ui/List";
 import DashboardListElement from "./DashboardListElement";
-import Spinner from "../../ui/Spinner";
-import Paragraph from "../../ui/Paragraph";
-import useDashboard from "./useDashboard";
+import Spinner from "../../../ui/Spinner";
+import Paragraph from "../../../ui/Paragraph";
+import useDashboard from "../useDashboard";
 
 const StyledDashbordList = styled.div`
 	height: 100%;

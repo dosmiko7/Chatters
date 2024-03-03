@@ -2,9 +2,9 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { userEvent } from "@testing-library/user-event";
 
-import { IOptionsDashboard } from "../../../services/firestore/dashboardApi";
+import { IOptionsDashboard } from "../../../../services/firestore/dashboardApi";
 import DashboardKeyRemove from "../DashboardKeyRemove";
-import * as useDashboardOptionsHooks from "../../../context/useDashboardOptions";
+import * as useDashboardOptionsHooks from "../../../../context/useDashboardOptions";
 
 vi.mock("react-icons/bi", () => {
 	const actual = vi.importActual("react-icons/bi");

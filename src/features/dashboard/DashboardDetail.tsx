@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn } from "../../style/Templates";
 import Container from "../../ui/Container";
-import DashboardButtons from "./DashboardButtons";
-import DashboardList from "./DashboardList";
+import DashboardButtons from "./buttons/DashboardButtons";
+import DashboardList from "./list/DashboardList";
 import Heading from "../../ui/Heading";
 import DashboardOptionsProvider from "../../context/DashboardOptionsContext";
 

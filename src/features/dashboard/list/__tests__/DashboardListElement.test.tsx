@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
-import { IPostDataProps } from "../../../services/firestore/dashboardApi";
+import { IPostDataProps } from "../../../../services/firestore/dashboardApi";
 import DashboardListElement from "../DashboardListElement";
 
 vi.mock("../../../ui/Avatar", () => {

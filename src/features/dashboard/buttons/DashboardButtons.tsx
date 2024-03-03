@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import { flexRow } from "../../style/Templates";
-import DashboardFormModal from "./form/DashboardFormModal";
+import { flexRow } from "../../../style/Templates";
+import DashboardFormModal from "../form/DashboardFormModal";
 import DashboardFilters from "./DashboardFilters";
 import DashboardKeyFilter from "./DashboardKeyFilter";
-import Wrapper from "../../ui/Wrapper";
+import Wrapper from "../../../ui/Wrapper";
 
 const StyledDashboardButtons = styled(Wrapper)`
 	${flexRow};

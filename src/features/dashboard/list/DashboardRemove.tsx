@@ -2,12 +2,12 @@ import { BiSolidTrash } from "react-icons/bi";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
-import useLoggedUser from "../authentication/useLoggedUser";
+import useLoggedUser from "../../authentication/useLoggedUser";
 import useDeletePost from "./useDeletePost";
-import { displayInfo } from "../../style/Templates";
-import { toasterWarningOptions } from "../../ui/ToasterWarning.options";
-import Button from "../../ui/Button";
-import ToasterWarning from "../../ui/ToasterWarning";
+import { displayInfo } from "../../../style/Templates";
+import { toasterWarningOptions } from "../../../ui/ToasterWarning.options";
+import Button from "../../../ui/Button";
+import ToasterWarning from "../../../ui/ToasterWarning";
 
 const RemoveButton = styled(Button)`
 	${displayInfo({ message: "Remove post", position: "left" })};

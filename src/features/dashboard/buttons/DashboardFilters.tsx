@@ -2,8 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { HiSortDescending, HiSortAscending } from "react-icons/hi";
 
-import useDashboardOptions from "../../context/useDashboardOptions";
-import { flexRow } from "../../style/Templates";
+import useDashboardOptions from "../../../context/useDashboardOptions";
+import { flexRow } from "../../../style/Templates";
 import DashboardFilterButton from "./DashboardFilterButton";
 
 const StyledDashboardFilters = styled.div`

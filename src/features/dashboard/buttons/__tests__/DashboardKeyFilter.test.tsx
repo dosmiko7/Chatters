@@ -2,10 +2,10 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { userEvent } from "@testing-library/user-event";
 
-import { IOptionsDashboard } from "../../../services/firestore/dashboardApi";
-import * as useDashboardOptionsHooks from "../../../context/useDashboardOptions";
-import * as useSmallerResolutionHooks from "../../../hooks/useSmallerResolution";
-import DashboardOptionsProvider from "../../../context/DashboardOptionsContext";
+import { IOptionsDashboard } from "../../../../services/firestore/dashboardApi";
+import * as useDashboardOptionsHooks from "../../../../context/useDashboardOptions";
+import * as useSmallerResolutionHooks from "../../../../hooks/useSmallerResolution";
+import DashboardOptionsProvider from "../../../../context/DashboardOptionsContext";
 import DashboardKeyFilter from "../DashboardKeyFilter";
 
 vi.mock("../DashboardKeyRemove", () => {

@@ -6,7 +6,7 @@ import { describe, expect, test, vi } from "vitest";
 import { userEvent } from "@testing-library/user-event";
 
 import DashboardRemove from "../DashboardRemove";
-import * as useLoggedUserHooks from "../../authentication/useLoggedUser";
+import * as useLoggedUserHooks from "../../../authentication/useLoggedUser";
 import * as useDeletePostHooks from "../useDeletePost";
 
 vi.mock("react-hot-toast");
