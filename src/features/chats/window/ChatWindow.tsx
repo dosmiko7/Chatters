@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, Suspense } from "react";
+import { useRef, useLayoutEffect, Suspense, useMemo } from "react";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
@@ -30,7 +30,7 @@ const ChatWindow = ({
 }) => {
 	const bottomRef = useRef<null | HTMLDivElement>(null);
 
-	const themeObject = themes.find((obj) => obj.theme === `${setTheme}`);
+	const themeObject = useMemo(() => themes.find((obj) => obj.theme === `${setTheme}`), [setTheme]);
 	const fontColor = themeObject?.fontColor || "var(--color-white-100)";
 
 	useLayoutEffect(() => {
