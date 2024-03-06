@@ -1,10 +1,14 @@
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import { BiPencil } from "react-icons/bi";
 
 import Modal from "../../../ui/Modal";
-import ThreeDots from "../../../ui/ThreeDots";
 import Button from "../../../ui/Button";
+import withLoader from "../../../hocs/withLoader";
 const ProfileForm = lazy(() => import("./ProfileForm"));
+
+const ProfileFormWithLoader = withLoader({
+	componentToSuspense: ProfileForm,
+});
 
 const ProfileFormModal = ({ images }: { images: { avatar: string; background: string } }) => {
 	return (
@@ -24,9 +28,7 @@ const ProfileFormModal = ({ images }: { images: { avatar: string; background: st
 				height="100dvh"
 				width="70rem"
 			>
-				<Suspense fallback={<ThreeDots />}>
-					<ProfileForm images={images} />
-				</Suspense>
+				<ProfileFormWithLoader images={images} />
 			</Modal.Window>
 		</Modal>
 	);
