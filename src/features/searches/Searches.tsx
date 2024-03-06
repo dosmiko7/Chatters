@@ -1,10 +1,14 @@
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import { BiSearch } from "react-icons/bi";
 
 import Modal from "../../ui/Modal";
 import Button from "../../ui/Button";
-import ThreeDots from "../../ui/ThreeDots";
+import withLoader from "../../hocs/withLoader";
 const SearchesWindow = lazy(() => import("./SearchesWindow"));
+
+const SearchesWindowWithLoader = withLoader({
+	componentToSuspense: SearchesWindow,
+});
 
 const Searches = ({ onClickHandler }: { onClickHandler: (userId: string) => void }) => {
 	return (
@@ -18,12 +22,10 @@ const Searches = ({ onClickHandler }: { onClickHandler: (userId: string) => void
 				</Button>
 			</Modal.Open>
 			<Modal.Window name="searches">
-				<Suspense fallback={<ThreeDots />}>
-					<SearchesWindow
-						onClickHandler={onClickHandler}
-						heading="Find user's profile"
-					/>
-				</Suspense>
+				<SearchesWindowWithLoader
+					onClickHandler={onClickHandler}
+					heading="Find user's profile"
+				/>
 			</Modal.Window>
 		</Modal>
 	);
