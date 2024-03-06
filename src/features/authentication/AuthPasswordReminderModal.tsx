@@ -1,10 +1,10 @@
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import styled from "styled-components";
 
 import { ephasis } from "../../style/Templates";
 import Modal from "../../ui/Modal";
 import Heading from "../../ui/Heading";
-import ThreeDots from "../../ui/ThreeDots";
+import withLoader from "../../hocs/withLoader";
 const AuthPasswordReminder = lazy(() => import("./AuthPasswordReminder"));
 
 const Reminder = styled.a`
@@ -13,6 +13,10 @@ const Reminder = styled.a`
 	margin: 2rem auto;
 	${ephasis};
 `;
+
+const AuthPasswordReminderWithLoader = withLoader({
+	componentToSuspense: AuthPasswordReminder,
+});
 
 const AuthPasswordReminderModal = () => {
 	return (
@@ -25,10 +29,8 @@ const AuthPasswordReminderModal = () => {
 				width="max-content"
 				height="max-content"
 			>
-				<Suspense fallback={<ThreeDots />}>
-					<Heading as="h2">Password reminder</Heading>
-					<AuthPasswordReminder />
-				</Suspense>
+				<Heading as="h2">Password reminder</Heading>
+				<AuthPasswordReminderWithLoader />
 			</Modal.Window>
 		</Modal>
 	);
