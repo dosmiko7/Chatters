@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from "react";
+import { lazy, useState } from "react";
 import styled from "styled-components";
 
 import useChat from "./useChat";
@@ -7,10 +7,10 @@ import { breakpoints } from "../../style/GlobalStyles";
 import { flexColumn, flexRow } from "../../style/Templates";
 import Container from "../../ui/Container";
 import Wrapper from "../../ui/Wrapper";
-import ThreeDots from "../../ui/ThreeDots";
 import ChatTitle from "./ChatTitle";
 import ChatForm from "./form/ChatForm";
 import ChatWindow from "./window/ChatWindow";
+import withLoader from "../../hocs/withLoader";
 const ChatMore = lazy(() => import("./more/ChatMore"));
 
 const StyledWrapper = styled(Wrapper)`
@@ -26,7 +26,7 @@ const StyledChat = styled(Container)`
 	flex-grow: 1;
 `;
 
-const FallbackContainer = styled(Container)`
+const StyledFallbackContainer = styled(Container)`
 	width: 25%;
 
 	@media only screen and (width <= ${breakpoints.smallTabletScreen}) {
@@ -35,6 +35,15 @@ const FallbackContainer = styled(Container)`
 		width: 100%;
 	}
 `;
+
+const FallbackContainer = (children: React.ReactNode) => {
+	return <StyledFallbackContainer>{children}</StyledFallbackContainer>;
+};
+
+const ChatMoreWithLoader = withLoader({
+	componentToSuspense: ChatMore,
+	containerForLoader: FallbackContainer,
+});
 
 const ChatDetail = ({ state }: { state: IChatStateProps }) => {
 	const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
@@ -63,20 +72,12 @@ const ChatDetail = ({ state }: { state: IChatStateProps }) => {
 				<ChatForm setEmoji={emoji} />
 			</StyledChat>
 			{isMoreOpen && (
-				<Suspense
-					fallback={
-						<FallbackContainer>
-							<ThreeDots />
-						</FallbackContainer>
-					}
-				>
-					<ChatMore
-						handlerClose={handleOpenMore}
-						data={data}
-						setEmoji={emoji}
-						setTheme={theme}
-					/>
-				</Suspense>
+				<ChatMoreWithLoader
+					handlerClose={handleOpenMore}
+					data={data}
+					setEmoji={emoji}
+					setTheme={theme}
+				/>
 			)}
 		</StyledWrapper>
 	);
