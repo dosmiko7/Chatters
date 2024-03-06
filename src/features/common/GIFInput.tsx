@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, lazy } from "react";
+import { useEffect, useState, lazy } from "react";
 import { useFormContext } from "react-hook-form";
 import { TbGif } from "react-icons/tb";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { displayInfo, flexColumn } from "../../style/Templates";
 import Button from "../../ui/Button";
 import Container from "../../ui/Container";
-import ThreeDots from "../../ui/ThreeDots";
+import withLoader from "../../hocs/withLoader";
 const GIFContainer = lazy(() => import("./GIFContainer"));
 
 const RelativeBox = styled.div`
@@ -31,6 +31,10 @@ const GIFWindow = styled(Container)`
 	border-right: none;
 `;
 
+const GIFContainerWithLoader = withLoader({
+	componentToSuspense: GIFContainer,
+});
+
 const GIFInput = ({ isSubmit }: { isSubmit: boolean }) => {
 	const [openGIFList, setOpenGIFList] = useState<boolean>(false);
 	const { watch } = useFormContext();
@@ -53,9 +57,7 @@ const GIFInput = ({ isSubmit }: { isSubmit: boolean }) => {
 		<RelativeBox>
 			{openGIFList && (
 				<GIFWindow>
-					<Suspense fallback={<ThreeDots />}>
-						<GIFContainer isSubmit={isSubmit} />
-					</Suspense>
+					<GIFContainerWithLoader isSubmit={isSubmit} />
 				</GIFWindow>
 			)}
 			<GIFButton
